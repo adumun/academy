@@ -3,7 +3,7 @@ title: "JDBC"
 description: "Modelo mental, componentes, ciclo de vida y acceso relacional desde Java."
 ---
 
-JDBC (Java Database Connectivity) define contratos estándar de Java para comunicarse con una base de datos relacional. El driver del proveedor implementa esos contratos y traduce las operaciones al protocolo del servidor. No es una base de datos ni un ORM.
+JDBC (Java Database Connectivity) es una [API](/handbook/java/programming/) que define contratos estándar de Java para comunicarse con una [base de datos relacional](/handbook/sql/relational-model/), es decir, datos estructurados en tablas, filas y columnas. El driver (conector) es una biblioteca que implementa esos contratos y traduce las operaciones al protocolo del servidor, las reglas de comunicación con el gestor de datos. Un ORM mapea objetos y relaciones a almacenamiento relacional con un nivel de automatización superior; JDBC no es una base de datos ni un ORM.
 
 ## Conocimientos previos recomendados
 
@@ -28,7 +28,7 @@ El flujo habitual es aplicación → API JDBC → driver → servidor. El result
 
 ## Ejemplo de extremo a extremo
 
-Supone una tabla libro con columnas id y titulo, un driver en Maven y variables de entorno DB_USER y DB_PASSWORD configuradas. Es un método para insertar dentro de una clase que importa java.sql y java.util; el modelo Libro se explica en la ficha de POO.
+Supone una tabla libro con columnas id y titulo, un driver en Maven y variables de entorno DB_USER y DB_PASSWORD configuradas. Es un [método](/handbook/java/methods/) para listar registros dentro de una clase que importa java.sql y java.util; el modelo Libro se explica en la ficha de POO.
 
 ```java
 public List<Libro> listarTodos() throws SQLException {

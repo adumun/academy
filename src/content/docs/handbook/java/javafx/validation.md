@@ -23,6 +23,8 @@ description: "Leer entradas, validar, manejar excepciones y confirmar operacione
 
 ## Qué validar
 
+Un formulario es un conjunto de [controles](/handbook/java/javafx/controls/) que permite introducir datos. Validar significa comprobar condiciones antes de aceptar una operación; una regla del dominio protege un requisito del problema, por ejemplo que la cantidad sea positiva. Una alerta es un diálogo que comunica información o pide confirmación; modal significa que restringe la interacción con otras ventanas según su modalidad. Una [condición booleana](/handbook/java/expressions/) devuelve true o false y permite decidir si continuar.
+
 Valida el formulario antes de construir el [objeto del dominio](/handbook/java/classes-and-objects/) o invocar el DAO. La validación es una regla, mientras las [excepciones](/handbook/java/exceptions/) representan fallos o condiciones excepcionales del contrato. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
 
 ```java
@@ -108,7 +110,7 @@ El detalle técnico puede registrarse por separado sin incluir credenciales ni d
 
 ## Números, fechas y selecciones · complementario
 
-Los TextField contienen texto, no números. Convierte y valida antes de construir el modelo. Fragmento de controlador con txtCantidad y mostrarError definidos:
+Los TextField contienen texto, no números. [Convertir o analizar un valor](/handbook/java/types/) transforma el texto en un tipo numérico; validar comprueba que ese valor cumpla la regla. Una entrada vacía y una [referencia null](/handbook/java/references/) son situaciones distintas. Convierte y valida antes de construir el modelo. Fragmento de controlador con txtCantidad y mostrarError definidos:
 
 ```java
 int cantidad;

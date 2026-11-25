@@ -11,7 +11,7 @@ description: "Parámetros SQL, firmas de métodos, consultas, DML y seguridad."
 
 ## Qué es y cuándo utilizarlo
 
-PreparedStatement representa una sentencia SQL parametrizable asociada a una Connection. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
+PreparedStatement representa una sentencia [SQL](/handbook/sql/queries/) parametrizable asociada a una [Connection](/handbook/java/jdbc/connection/). Una sentencia es una instrucción para el motor, por ejemplo SELECT o UPDATE. Parametrizar significa mantener la estructura SQL y suministrar los valores por separado mediante marcadores ?. Un parámetro SQL representa un valor de entrada; los parámetros de un [método Java](/handbook/java/methods/) son variables declaradas en su firma. Los setters vinculan valores de [tipos Java](/handbook/java/types/) compatibles con tipos SQL. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
 
 ## Anatomía de una sentencia
 
@@ -132,7 +132,7 @@ La disponibilidad y forma de las claves dependen del driver y la sentencia. El c
 
 ## Seguridad: qué resuelve y qué no
 
-Concatenar texto del usuario dentro de SQL mezcla datos e instrucciones y puede romper la sintaxis o introducir inyección SQL. Vincular parámetros separa los valores de la sentencia. Si debes seleccionar dinámicamente una columna para ordenar, usa una lista cerrada de nombres permitidos, no un valor arbitrario.
+La inyección SQL ocurre cuando datos externos alteran la estructura o intención de una sentencia. Concatenar texto del usuario dentro de SQL mezcla datos e instrucciones y puede romper la sintaxis o introducir inyección SQL. Vincular parámetros separa los valores de la sentencia. Si debes seleccionar dinámicamente una columna para ordenar, usa una lista cerrada de nombres permitidos, no un valor arbitrario.
 
 ## Errores habituales
 

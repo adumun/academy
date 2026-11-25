@@ -14,7 +14,7 @@ description: "Columnas, mapeo de propiedades, selección, carga y refresco desde
 
 ## Modelo mental
 
-La clase `TableView<T>` presenta una [colección de objetos](/handbook/java/collections/). Sus [genéricos](/handbook/java/generics/) determinan el tipo de fila: `TableView<Libro>` solo presenta objetos Libro. `TableColumn<S,T>` extrae un valor de cada fila. Una [ObservableList](/handbook/java/javafx/observable-list/) comunica cambios de la colección a la interfaz; no escribe nada en la base de datos.
+La clase `TableView<T>` presenta una [colección de objetos](/handbook/java/collections/). Sus [genéricos](/handbook/java/generics/) determinan el tipo de fila: `TableView<Libro>` solo presenta objetos Libro. Una fila representa un objeto; una columna organiza el mismo tipo de dato para todas las filas y una celda es la intersección de fila y columna. `TableColumn<S,T>` extrae un valor de cada fila: S indica el tipo de objeto de fila y T el tipo del valor extraído. Un [tipo](/handbook/java/types/) define los valores y operaciones válidos. Integer, por ejemplo, es un tipo de referencia que envuelve un entero. Una [ObservableList](/handbook/java/javafx/observable-list/) comunica cambios de la colección a la interfaz; no escribe nada en la base de datos.
 
 | Tipo | Significado |
 | --- | --- |
@@ -68,7 +68,7 @@ private void cargar() {
 }
 ```
 
-PropertyValueFactory busca propiedades o getters compatibles mediante reflexión. El nombre titulo corresponde a getTitulo(). En un proyecto modular puede ser necesario abrir el paquete del modelo a javafx.base. Con getters normales, editar el objeto no garantiza una notificación automática de la celda.
+PropertyValueFactory busca [propiedades observables](/handbook/java/javafx/properties-and-binding/) o getters (métodos que devuelven un atributo) compatibles mediante reflexión, es decir, inspección de los miembros de un tipo durante la ejecución. Un callback es una operación que JavaFX invoca para obtener o presentar el valor; consulta [lambdas](/handbook/java/lambdas/). El nombre titulo corresponde a getTitulo(). En un proyecto modular puede ser necesario abrir el paquete del modelo a javafx.base. Con getters normales, editar el objeto no garantiza una notificación automática de la celda.
 
 ### Alternativa sin reflexión
 
@@ -95,7 +95,7 @@ if (seleccionado == null) {
 int id = seleccionado.getId();
 ```
 
-Usa el ID real, no getSelectedIndex(), que solo indica una posición visual. Después de un INSERT, UPDATE o DELETE confirmado, vuelve a consultar el DAO. setAll sustituye los elementos de la lista, conservando su identidad. refresh() solicita redibujar las celdas; no consulta la base.
+Usa la [clave primaria](/handbook/sql/relational-model/) o ID real, no getSelectedIndex(), que solo indica una posición visual. Después de un INSERT, UPDATE o DELETE confirmado, vuelve a consultar el DAO. setAll sustituye los elementos de la lista, conservando su identidad. refresh() solicita redibujar las celdas; no consulta la base.
 
 ## Configuración de columnas · complementario
 
