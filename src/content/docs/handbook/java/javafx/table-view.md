@@ -3,11 +3,18 @@ title: "TableView y ObservableList"
 description: "Columnas, mapeo de propiedades, selección, carga y refresco desde DAO."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones y List](/handbook/java/collections/)
+- [Lambdas](/handbook/java/lambdas/)
+
 **Tipo:** referencia técnica con explicación introductoria. **Versión:** JavaFX 21. **Paquete:** `javafx.scene.control`, módulo `javafx.controls`.
 
 ## Modelo mental
 
-TableView<T> presenta una colección de objetos. TableColumn<S,T> extrae un valor de cada objeto de fila. ObservableList comunica cambios de la colección a la interfaz; no escribe nada en la base de datos.
+La clase `TableView<T>` presenta una [colección de objetos](/handbook/java/collections/). Sus [genéricos](/handbook/java/generics/) determinan el tipo de fila: `TableView<Libro>` solo presenta objetos Libro. `TableColumn<S,T>` extrae un valor de cada fila. Una [ObservableList](/handbook/java/javafx/observable-list/) comunica cambios de la colección a la interfaz; no escribe nada en la base de datos.
 
 | Tipo | Significado |
 | --- | --- |
@@ -144,7 +151,7 @@ tablaLibros.getSelectionModel()
         });
 ```
 
-El listener puede recibir null al eliminar una fila o recargar datos. No guardes automáticamente cada cambio de selección.
+El [listener](/handbook/java/javafx/events/) puede recibir null al eliminar una fila o recargar datos. No guardes automáticamente cada cambio de selección.
 
 ## Ordenamiento y filtrado · complementario
 
@@ -154,7 +161,7 @@ Para filtrar por texto sin perder registros ni reconsultar la base por cada tecl
 
 ## Personalización de celdas · avanzado
 
-Una cell factory permite cambiar cómo se presenta el valor sin modificar el modelo. Fragmento para la columna de título:
+Una cell factory utiliza un callback, normalmente una [lambda](/handbook/java/lambdas/), para cambiar cómo se presenta el valor sin modificar el modelo. Fragmento para la columna de título:
 
 ```java
 colTitulo.setCellFactory(columna -> new TableCell<Libro, String>() {

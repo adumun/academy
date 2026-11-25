@@ -3,6 +3,12 @@ title: "Controles, validación y alertas"
 description: "Leer entradas, validar, manejar excepciones y confirmar operaciones."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Excepciones](/handbook/java/exceptions/)
+- [Eventos](/handbook/java/javafx/events/)
+
 ## Referencia de controles
 
 | Control | Lectura o acción habitual |
@@ -17,7 +23,7 @@ description: "Leer entradas, validar, manejar excepciones y confirmar operacione
 
 ## Qué validar
 
-Valida el formulario antes de construir el modelo o invocar el DAO. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
+Valida el formulario antes de construir el [objeto del dominio](/handbook/java/classes-and-objects/) o invocar el DAO. La validación es una regla, mientras las [excepciones](/handbook/java/exceptions/) representan fallos o condiciones excepcionales del contrato. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
 
 ```java
 private boolean validarTitulo(String titulo) {

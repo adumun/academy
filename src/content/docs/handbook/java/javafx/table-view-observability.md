@@ -3,11 +3,16 @@ title: "Observabilidad en TableView"
 description: "Diferencias entre colecciones observables, propiedades, getters y persistencia."
 ---
 
+## Conocimientos previos recomendados
+
+- [ObservableList](/handbook/java/javafx/observable-list/)
+- [Patrón Observer](/handbook/architecture/observer/)
+
 **Tipo:** explicación. **Nivel:** complementario. **Versión:** JavaFX 21.
 
 ## Tres cambios diferentes
 
-Una tabla puede cambiar porque se añade un objeto a la colección, porque cambia una propiedad observable de un objeto o porque se solicita volver a representar sus celdas. Ninguno de esos cambios escribe por sí mismo en MariaDB.
+Una tabla puede cambiar porque se añade un objeto a la [colección observable](/handbook/java/javafx/observable-list/), porque cambia una propiedad observable de un objeto o porque se solicita volver a representar sus celdas. Ninguno de esos cambios escribe por sí mismo en MariaDB.
 
 | Cambio | Quién lo observa |
 | --- | --- |
@@ -18,7 +23,7 @@ Una tabla puede cambiar porque se añade un objeto a la colección, porque cambi
 
 ## Modelo simple y modelo observable
 
-Para un objeto inmutable como Libro, devolver una envoltura de solo lectura a una cell value factory es suficiente cuando sustituyes los objetos al recargar. Una propiedad JavaFX aporta otro comportamiento: permite observar cambios de valor.
+Para un objeto inmutable como Libro, devolver una envoltura de solo lectura a una cell value factory es suficiente cuando sustituyes los objetos al recargar. Una propiedad JavaFX aporta otro comportamiento: permite observar cambios de valor mediante [listeners](/handbook/java/javafx/events/), aplicando un mecanismo relacionado con el [patrón Observer](/handbook/architecture/observer/).
 
 ```java
 import javafx.beans.property.SimpleStringProperty;

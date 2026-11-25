@@ -3,9 +3,14 @@ title: "FXML y Controller"
 description: "Vincular vistas XML, campos, eventos, recursos y ciclo de inicialización."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Eventos y listeners](/handbook/java/javafx/events/)
+
 ## Contrato entre vista y controlador
 
-FXMLLoader interpreta el documento FXML, construye los objetos y conecta campos y métodos con su controlador. fx:controller identifica la clase; fx:id permite inyectar controles; onAction invoca un manejador compatible.
+FXMLLoader interpreta el documento FXML, construye los objetos y conecta campos y métodos con su controlador. fx:controller identifica la clase; fx:id permite inyectar controles; onAction invoca un [manejador de eventos](/handbook/java/javafx/events/) compatible.
 
 ## Ejemplo completo de vista y controlador
 

@@ -3,6 +3,12 @@ title: "Filtrar y ordenar una TableView"
 description: "Guía práctica con ObservableList, FilteredList y SortedList."
 ---
 
+## Conocimientos previos recomendados
+
+- [Genéricos](/handbook/java/generics/)
+- [ObservableList](/handbook/java/javafx/observable-list/)
+- [Lambdas y Predicate](/handbook/java/lambdas/)
+
 **Tipo:** guía práctica. **Nivel:** complementario. **Versión:** JavaFX 21.
 
 ## Objetivo y requisitos
@@ -119,7 +125,7 @@ Los resultados son expectativas para validar en ejecución, no resultados ya obs
 
 ## Cómo integrar un DAO
 
-Mantén la ObservableList fuente como atributo del controlador. Carga con `fuente.setAll(dao.listarTodos())`, una vez adaptados los tipos de Libro. Conserva FilteredList y SortedList conectadas. No intentes modificar la lista derivada con setAll ni reemplazarla cada vez que el usuario escribe.
+Mantén la [ObservableList](/handbook/java/javafx/observable-list/) fuente como atributo del controlador. Carga con `fuente.setAll(dao.listarTodos())`, una vez adaptados los tipos de Libro. Conserva FilteredList y SortedList conectadas. No intentes modificar la lista derivada con setAll ni reemplazarla cada vez que el usuario escribe. El predicado del filtro es una [interfaz funcional](/handbook/java/lambdas/): decide si un elemento pertenece a la vista.
 
 ## Errores frecuentes
 
