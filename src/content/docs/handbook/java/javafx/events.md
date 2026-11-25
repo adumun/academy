@@ -13,7 +13,7 @@ description: "Programación dirigida por eventos, handlers, cambios y responsabi
 
 ## Evento frente a cambio de propiedad
 
-Un evento representa una interacción u ocurrencia, como pulsar un botón. Un listener de propiedad observa el cambio de un valor. Ambos permiten reaccionar sin recorrer continuamente la interfaz.
+Un evento representa una interacción u ocurrencia, como pulsar un botón. Un listener (escuchador) es código registrado para recibir notificaciones; un handler (manejador) procesa un evento concreto. Un listener de [propiedad](/handbook/java/javafx/properties-and-binding/) observa el cambio de un valor. Suscripción significa registrar el callback; notificación significa invocarlo cuando se cumple la condición. El callback puede expresarse mediante una [lambda](/handbook/java/lambdas/) y recibe [parámetros](/handbook/java/methods/) según su interfaz. Ambos permiten reaccionar sin recorrer continuamente la interfaz.
 
 | API | Semántica |
 | --- | --- |
@@ -64,7 +64,7 @@ Un cambio de selección puede originarse por el usuario o por una recarga de la 
 
 ## Límites y diseño
 
-Los callbacks de la UI normalmente se ejecutan en el hilo JavaFX. Si la tarea tarda, la interfaz puede quedar bloqueada. No hagas una consulta SQL por cada tecla sin evaluar necesidad, filtrado local o una estrategia de debounce. Evita listeners duplicados al recargar una vista y retíralos cuando corresponda al ciclo de vida.
+Los callbacks de la UI normalmente se ejecutan en el hilo JavaFX. Si la tarea tarda, la interfaz puede quedar bloqueada. No hagas una consulta SQL por cada tecla sin evaluar necesidad, filtrado local o una estrategia de debounce (esperar un breve período sin nuevas entradas antes de ejecutar una acción). Evita listeners duplicados al recargar una vista y retíralos cuando corresponda al ciclo de vida.
 
 El [patrón Observer](/handbook/architecture/observer/) aporta el modelo mental de suscripción y notificación, aunque las APIs concretas de JavaFX tienen sus propios contratos.
 

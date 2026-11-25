@@ -13,7 +13,7 @@ description: "Guía práctica con ObservableList, FilteredList y SortedList."
 
 ## Objetivo y requisitos
 
-Crear una tabla que permita buscar títulos mientras el usuario escribe y ordenar pulsando sus encabezados, sin eliminar registros de la colección original.
+Crear una tabla que permita buscar títulos mientras el usuario escribe y ordenar pulsando sus encabezados, sin eliminar registros de la [colección](/handbook/java/collections/) original. Filtrar significa incluir solo los elementos que cumplen una condición; ordenar modifica la secuencia de presentación según un comparador. Un predicado es una [función](/handbook/java/lambdas/) que devuelve true o false; un comparador define el orden relativo de dos elementos. FilteredList y SortedList son vistas derivadas de la fuente: conservan el vínculo con los datos originales mediante la [observabilidad](/handbook/java/javafx/observable-list/).
 
 Usa el proyecto Maven no modular descrito en [Maven y entorno Java](/handbook/tools/maven/). Este ejemplo completo utiliza datos en memoria para aislar el comportamiento de la UI. No requiere MariaDB ni FXML. Sustituye temporalmente app/Main.java en un proyecto de prueba.
 
@@ -106,7 +106,7 @@ public class Main extends Application {
 }
 ```
 
-El record Libro se usa exclusivamente en este ejemplo para mantenerlo autónomo. No sustituye el modelo de los laboratorios existentes.
+Un record es una clase especializada para representar datos mediante componentes, con constructor y accesores generados según su declaración. El record Libro se usa exclusivamente en este ejemplo para mantenerlo autónomo; el modelo [Libro como clase](/handbook/java/classes-and-objects/) de los laboratorios utiliza getters. No sustituye el modelo de los laboratorios existentes.
 
 ## Ejecutar y comprobar
 

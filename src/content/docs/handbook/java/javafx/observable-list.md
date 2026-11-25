@@ -13,7 +13,7 @@ description: "Colecciones observables, creación, listeners y sincronización co
 
 ## Qué añade a List
 
-`ObservableList<E>` extiende [`List<E>`](/handbook/java/collections/) y permite observar cambios de colección. El parámetro E es un [genérico](/handbook/java/generics/) que fija el tipo de elemento. TableView y ComboBox pueden utilizarla para responder a cambios de sus elementos.
+`ObservableList<E>` extiende [`List<E>`](/handbook/java/collections/) y permite observar cambios de colección. El parámetro E es un [genérico](/handbook/java/generics/) que fija el tipo de elemento. Observable significa que otros componentes pueden suscribirse a notificaciones de cambios, no que la lista se guarde automáticamente. Un [listener](/handbook/java/javafx/events/) recibe esas notificaciones, según el mecanismo de suscripción del [patrón Observer](/handbook/architecture/observer/). [TableView](/handbook/java/javafx/table-view/) y [ComboBox](/handbook/java/javafx/controls/) pueden utilizarla para responder a cambios de sus elementos.
 
 | API | Uso |
 | --- | --- |
@@ -26,7 +26,7 @@ description: "Colecciones observables, creación, listeners y sincronización co
 
 ## Ejemplo autónomo sin ventana
 
-Requiere javafx-base en el classpath; el proyecto Maven JavaFX del Handbook ya incluye esta dependencia transitivamente.
+Requiere javafx-base en el [classpath](/handbook/java/packages-and-imports/), las ubicaciones donde se buscan clases y recursos; el proyecto [Maven](/handbook/tools/maven/) ya incluye esta dependencia transitivamente (a través de otra dependencia).
 
 ```java
 import javafx.collections.FXCollections;

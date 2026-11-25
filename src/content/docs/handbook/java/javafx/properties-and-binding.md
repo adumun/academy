@@ -13,7 +13,7 @@ description: "Propiedades observables, enlaces unidireccionales y bidireccionale
 
 ## Diferencias entre valores, propiedades y bindings
 
-Un atributo ordinario almacena un dato. Una propiedad JavaFX puede exponer un valor, recibir cambios y notificar a sus consumidores. Un binding expresa una dependencia calculada entre valores observables. No es una consulta SQL ni una regla de persistencia.
+Un [atributo](/handbook/java/variables/) ordinario almacena un valor de un objeto. Una propiedad JavaFX encapsula el valor y permite observarlo; puede ser modificable o de solo lectura. Un [listener](/handbook/java/javafx/events/) recibe cambios. Un binding (enlace) expresa una dependencia entre valores observables: cuando cambia la fuente, el valor dependiente puede recalcularse o sincronizarse. Unidireccional indica que el destino sigue a la fuente; bidireccional permite actualizar en ambos sentidos. No es una consulta SQL ni una regla de persistencia.
 
 | API | Significado |
 | --- | --- |

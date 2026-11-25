@@ -13,6 +13,8 @@ description: "TextField, TextArea, ComboBox, DatePicker, CheckBox y manejo de va
 
 ## Elegir el control según el dato
 
+Un control es un [objeto](/handbook/java/classes-and-objects/) visual que recibe entrada o muestra información. Cada control expone [métodos](/handbook/java/methods/) y propiedades para leer o cambiar valores. String, boolean y LocalDate son [tipos](/handbook/java/types/); null expresa [ausencia de referencia](/handbook/java/references/). El parámetro T de ComboBox es un [genérico](/handbook/java/generics/) que indica qué clase de objeto selecciona el usuario.
+
 | Control | Tipo de valor | Operaciones |
 | --- | --- | --- |
 | TextField | String | getText(), setText(), clear() |
@@ -26,7 +28,7 @@ El texto mostrado no siempre es el dato del dominio. ComboBox puede contener obj
 
 ## ComboBox con objetos
 
-Fragmento de controlador con modelo Libro, colLibros de tipo `ComboBox<Libro>` y DAO definidos. Utiliza una StringConverter para la representación. En este ejemplo no se permite escribir valores arbitrarios.
+Fragmento de controlador con modelo Libro, colLibros de tipo `ComboBox<Libro>` y DAO definidos. Utiliza una StringConverter para la representación: transforma entre el objeto y el texto mostrado, sin reemplazar necesariamente la identidad del objeto. En este ejemplo no se permite escribir valores arbitrarios.
 
 ```java
 colLibros.setEditable(false);

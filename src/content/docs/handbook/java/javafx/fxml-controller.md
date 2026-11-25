@@ -10,7 +10,7 @@ description: "Vincular vistas XML, campos, eventos, recursos y ciclo de iniciali
 
 ## Contrato entre vista y controlador
 
-FXMLLoader interpreta el documento FXML, construye los objetos y conecta campos y métodos con su controlador. fx:controller identifica la clase; fx:id permite inyectar controles; onAction invoca un [manejador de eventos](/handbook/java/javafx/events/) compatible.
+[FXML](/handbook/java/javafx/xml-and-fxml/) es XML especializado para describir la vista; una etiqueta puede representar una clase y un atributo configura un valor. La vista es la estructura presentada al usuario; el controlador es el objeto que coordina la interacción (consulta [MVC y DAO](/handbook/architecture/)). FXMLLoader interpreta el documento, construye los [objetos](/handbook/java/classes-and-objects/) y conecta sus [campos](/handbook/java/variables/) y [métodos](/handbook/java/methods/) con su controlador. Inyección significa que el cargador asigna referencias a los objetos construidos en los campos del controlador; @FXML es una anotación que marca miembros para el cargador. fx:controller identifica la clase; fx:id permite inyectar controles; onAction invoca un [manejador de eventos](/handbook/java/javafx/events/) compatible.
 
 ## Ejemplo completo de vista y controlador
 
@@ -101,7 +101,7 @@ Si eliges configurar un controlador programáticamente mediante setController, n
 | Botón sin acción | onAction y nombre del método |
 | Error de acceso modular | opens del paquete a javafx.fxml |
 
-El ejemplo es no modular. Si utilizas module-info.java, debes declarar las dependencias y los permisos de reflexión necesarios.
+El ejemplo es no modular. Si utilizas module-info.java, debes declarar las dependencias y los permisos de reflexión necesarios. Reflexión es la capacidad de inspeccionar o acceder a tipos y miembros durante la ejecución, sujeta a las reglas de acceso y módulos. Consulta [paquetes, imports y classpath](/handbook/java/packages-and-imports/).
 
 ## Comprobación
 
