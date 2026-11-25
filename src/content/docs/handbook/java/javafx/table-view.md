@@ -18,10 +18,10 @@ La clase `TableView<T>` presenta una [colección de objetos](/handbook/java/coll
 
 | Tipo | Significado |
 | --- | --- |
-| TableView<Libro> | Tabla de objetos Libro |
-| TableColumn<Libro, Integer> | Columna de ID |
-| TableColumn<Libro, String> | Columna de título |
-| ObservableList<Libro> | Colección observable |
+| `TableView<Libro>` | Tabla de objetos Libro |
+| `TableColumn<Libro, Integer>` | Columna de ID |
+| `TableColumn<Libro, String>` | Columna de título |
+| `ObservableList<Libro>` | Colección observable |
 | SelectionModel | Selección actual |
 
 ## Vista

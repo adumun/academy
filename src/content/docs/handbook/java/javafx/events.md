@@ -17,9 +17,9 @@ Un evento representa una interacción u ocurrencia, como pulsar un botón. Un li
 
 | API | Semántica |
 | --- | --- |
-| EventHandler<ActionEvent> | Maneja un evento de acción |
+| `EventHandler<ActionEvent>` | Maneja un evento de acción |
 | Button.setOnAction(handler) | Configura manejador de acción |
-| ChangeListener<T> | Recibe observable, valor anterior y valor nuevo |
+| `ChangeListener<T>` | Recibe observable, valor anterior y valor nuevo |
 | ObservableValue.addListener(listener) | Suscribe cambios de valor |
 | ObservableValue.removeListener(listener) | Retira la suscripción |
 

@@ -13,7 +13,7 @@ description: "Colecciones observables, creación, listeners y sincronización co
 
 ## Qué añade a List
 
-ObservableList<E> extiende [List<E>](/handbook/java/collections/) y permite observar cambios de colección. El parámetro E es un [genérico](/handbook/java/generics/) que fija el tipo de elemento. TableView y ComboBox pueden utilizarla para responder a cambios de sus elementos.
+`ObservableList<E>` extiende [`List<E>`](/handbook/java/collections/) y permite observar cambios de colección. El parámetro E es un [genérico](/handbook/java/generics/) que fija el tipo de elemento. TableView y ComboBox pueden utilizarla para responder a cambios de sus elementos.
 
 | API | Uso |
 | --- | --- |

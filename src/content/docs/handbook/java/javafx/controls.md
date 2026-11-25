@@ -17,7 +17,7 @@ description: "TextField, TextArea, ComboBox, DatePicker, CheckBox y manejo de va
 | --- | --- | --- |
 | TextField | String | getText(), setText(), clear() |
 | TextArea | String multilínea | getText(), setText(), clear() |
-| ComboBox<T> | T o null | getValue(), setValue(), getItems() |
+| `ComboBox<T>` | T o null | getValue(), setValue(), getItems() |
 | DatePicker | LocalDate o null | getValue(), setValue() |
 | CheckBox | boolean | isSelected(), setSelected(boolean) |
 | Button | Evento de acción | setOnAction(handler), setDisable(boolean) |
@@ -26,7 +26,7 @@ El texto mostrado no siempre es el dato del dominio. ComboBox puede contener obj
 
 ## ComboBox con objetos
 
-Fragmento de controlador con modelo Libro, colLibros de tipo ComboBox<Libro> y DAO definidos. Utiliza una StringConverter para la representación. En este ejemplo no se permite escribir valores arbitrarios.
+Fragmento de controlador con modelo Libro, colLibros de tipo `ComboBox<Libro>` y DAO definidos. Utiliza una StringConverter para la representación. En este ejemplo no se permite escribir valores arbitrarios.
 
 ```java
 colLibros.setEditable(false);
