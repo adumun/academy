@@ -17,6 +17,8 @@ export default defineConfig({
         { label: 'Java', items: [{ autogenerate: { directory: 'handbook/java' } }] },
         { label: 'SQL', items: [{ autogenerate: { directory: 'handbook/sql' } }] },
         { label: 'Arquitectura', items: [{ autogenerate: { directory: 'handbook/architecture' } }] },
+        { label: 'Herramientas', items: [{ autogenerate: { directory: 'handbook/tools' } }] },
+        { label: 'Diagnóstico', link: '/handbook/troubleshooting/' },
         { label: 'Rutas de aprendizaje', items: [{ autogenerate: { directory: 'paths' } }] },
       ],
       customCss: ['./src/styles/academy.css'],

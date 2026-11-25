@@ -1,13 +1,23 @@
 ---
-title: ADÜMÜN Academy
-description: Biblioteca pública de conocimiento técnico y rutas de aprendizaje.
+title: "ADÜMÜN Academy"
+description: "Biblioteca pública de conocimiento técnico y rutas de aprendizaje."
 ---
 
-Aprende y comprende conceptos técnicos con documentación, ejemplos y referencias verificables.
+Academy es un espacio de consulta y aprendizaje técnico. El contenido se organiza por conocimiento reutilizable; las rutas agrupan referencias según una necesidad formativa. No requiere cuenta ni almacena progreso individual.
 
-- [Explorar el Handbook](/handbook/).
-- [Ruta DSY1102: Desarrollo Orientado a Objetos](/paths/dsy1102/).
-- [Ruta Software Developer](/paths/software-developer/).
-- [Practicar en Academic Labs](https://academic-labs.adumun.cl/).
+## ¿Qué necesitas hoy?
 
-Este primer incremento está orientado a Java y persistencia relacional. No es un LMS ni requiere una cuenta.
+| Si quieres... | Visita |
+| --- | --- |
+| Consultar un concepto, método o error | [Handbook](/handbook/) |
+| Preparar persistencia y JavaFX para POO | [Ruta DSY1102](/paths/dsy1102/) |
+| Explorar fundamentos de desarrollo | [Software Developer](/paths/software-developer/) |
+| Resolver un ejercicio | [Academic Labs](https://academic-labs.adumun.cl/) |
+
+## Primer conjunto de conocimientos
+
+Java 21, SQL relacional, JDBC, JavaFX, Maven y patrones MVC/DAO. Las páginas incluyen ejemplos, referencias de API y diagnóstico. El sitio se ampliará por incrementos revisados, sin prometer un catálogo completo de todas las tecnologías.
+
+## Cómo se relacionan los recursos
+
+Academy explica y organiza el conocimiento; Academic Labs permite practicarlo. Las evaluaciones institucionales siguen las instrucciones del docente y de su plataforma oficial.
