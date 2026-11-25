@@ -7,11 +7,39 @@ description: "Estado, identidad, constructores, acceso y modelos de dominio."
 
 ## Conocimientos previos recomendados
 
-- [Java y POO para persistencia](/handbook/java/fundamentals/)
+- [Variables, valores y constantes](/handbook/java/variables/)
+- [Tipos de datos](/handbook/java/types/)
+- [Métodos, parámetros y retorno](/handbook/java/methods/)
 
 ## Clase e instancia
 
-Una clase define un tipo con estado y comportamiento. Una instancia contiene valores propios. Una variable de tipo referencia apunta a un objeto: asignar una segunda variable no crea una copia.
+Una **clase** define un [tipo](/handbook/java/types/): especifica qué información y operaciones tienen sus objetos. Una **instancia** u objeto es una realización concreta de esa clase, creada durante la ejecución.
+
+El **estado** es el conjunto de valores que caracterizan a un objeto en un momento determinado; por ejemplo, el ID y el título de un libro. El **comportamiento** es lo que el objeto puede hacer, expresado mediante [métodos](/handbook/java/methods/), como consultar el título o actualizarlo si el contrato lo permite.
+
+| Concepto | Ejemplo con Libro |
+| --- | --- |
+| Clase | La definición Libro |
+| Objeto o instancia | Un libro concreto con ID 1 y título Java |
+| Estado | id = 1, titulo = "Java" |
+| Comportamiento | getTitulo() devuelve su título |
+| Campo o atributo | Una variable declarada dentro de la clase, como titulo |
+| Constructor | Inicializa un objeto nuevo con datos válidos |
+
+Una [variable](/handbook/java/variables/) almacena un valor. Cuando su tipo es Libro, almacena una [referencia](/handbook/java/references/) al objeto, o null. Asignar la referencia a otra variable no crea una copia.
+
+```java
+Libro primero = new Libro(1, "Java");
+Libro segundo = primero;
+Libro tercero = new Libro(1, "Java");
+
+System.out.println(primero == segundo);
+System.out.println(primero == tercero);
+```
+
+Fragmento con la clase Libro del ejemplo siguiente. Salida esperada: true y false. Los dos primeros nombres apuntan a la misma instancia; tercero representa otro objeto, aunque sus datos coincidan.
+
+La **encapsulación** protege el estado mediante una interfaz de uso controlada. Una [invariante](/handbook/architecture/contracts/) es una condición que debe mantenerse válida, como exigir un título no vacío.
 
 ## Ejemplo completo
 
@@ -48,7 +76,7 @@ public class Libro {
 }
 ```
 
-Archivo Libro.java, JDK 21. Salida: Java y SQL. El constructor valida y establece el estado inicial. final impide reasignar los campos; los tipos usados aquí son inmutables.
+Archivo Libro.java, JDK 21. Salida: Java y SQL. El constructor valida y establece el estado inicial. [final](/handbook/java/variables/) impide reasignar los campos; String es inmutable y el campo int guarda un valor primitivo. La [condición](/handbook/java/expressions/) del constructor rechaza null o texto vacío y lanza una [excepción](/handbook/java/exceptions/) si se incumple la regla.
 
 ## Acceso y encapsulamiento
 
@@ -67,7 +95,7 @@ El ID de persistencia identifica una fila; el operador == entre referencias comp
 
 ## Mapeo y límites
 
-[ResultSet](/handbook/java/jdbc/result-set/) lee filas y construye objetos. Cada fila requiere una instancia propia. El modelo no debería contener SQL ni controles de interfaz: el DAO y controlador se encargan de esos aspectos. Para una UI observable, puedes adaptar el modelo sin introducir JavaFX en el dominio.
+[ResultSet](/handbook/java/jdbc/result-set/) lee filas y construye objetos. Cada fila requiere una instancia propia. El modelo no debería contener [SQL](/handbook/sql/) ni controles de interfaz: el [DAO y controlador](/handbook/architecture/) se encargan de esos aspectos. Para una UI observable, puedes adaptar el modelo sin introducir JavaFX en el dominio.
 
 ## Comprobación
 
