@@ -73,6 +73,8 @@ Abre recursos cerca de la operación que los usa, parametriza valores, seleccion
 
 ## Conceptos relacionados
 
+- [Preparar MariaDB](/handbook/java/jdbc/setup-mariadb/)
+
 - [Conexión JDBC](/handbook/java/jdbc/connection/)
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
 - [ResultSet](/handbook/java/jdbc/result-set/)

@@ -14,6 +14,11 @@ description: "Clases, encapsulamiento, constructores, colecciones, interfaces y 
 
 Las siguientes secciones presentan una síntesis en el contexto de persistencia. Consulta las fichas independientes para profundizar.
 
+### Conocimientos complementarios
+
+- [Optional y ausencia de valores](/handbook/java/optional/)
+- [Fechas con LocalDate y JDBC](/handbook/java/dates/)
+
 ## Modelo orientado a objetos
 
 Una clase define estructura y comportamiento; una instancia representa un objeto concreto. Para mapear una tabla, el modelo debe representar sus atributos y proteger su estado.

@@ -123,6 +123,8 @@ No publiques contraseñas ni logs que las contengan. En sistemas productivos con
 
 ## Conceptos relacionados
 
+- [Preparar MariaDB y permisos mínimos](/handbook/java/jdbc/setup-mariadb/)
+
 - [Maven](/handbook/tools/maven/)
 - [JDBC](/handbook/java/jdbc/)
 - [Transacciones](/handbook/java/jdbc/transactions/)

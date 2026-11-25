@@ -143,6 +143,9 @@ Para fechas, comprueba que DatePicker.getValue() no sea null antes de convertir 
 
 ## Conceptos relacionados
 
+- [Controles de formulario](/handbook/java/javafx/controls/)
+- [Properties y binding](/handbook/java/javafx/properties-and-binding/)
+
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)
 - [TableView](/handbook/java/javafx/table-view/)
 - [CRUD](/handbook/java/jdbc/crud/)

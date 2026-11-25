@@ -83,6 +83,9 @@ Un acceso JDBC lento dentro de un evento puede congelar temporalmente la ventana
 
 ## Conceptos relacionados
 
+- [Controles de formulario](/handbook/java/javafx/controls/)
+- [Properties y binding](/handbook/java/javafx/properties-and-binding/)
+
 - [ObservableList](/handbook/java/javafx/observable-list/)
 - [Eventos y listeners](/handbook/java/javafx/events/)
 - [Patrón Observer](/handbook/architecture/observer/)

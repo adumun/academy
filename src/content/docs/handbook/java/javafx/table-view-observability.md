@@ -75,6 +75,8 @@ Si reemplazas un Libro por otra instancia mediante setAll sobre la lista fuente,
 
 ## Conceptos relacionados
 
+- [Properties y binding](/handbook/java/javafx/properties-and-binding/)
+
 - [TableView](/handbook/java/javafx/table-view/)
 - [Filtrado y ordenamiento](/handbook/java/javafx/table-view-filter-sort/)
 - [MVC y DAO](/handbook/architecture/)
