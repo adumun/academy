@@ -15,10 +15,10 @@ description: "Leer entradas, validar, manejar excepciones y confirmar operacione
 | --- | --- |
 | TextField | getText(), setText(), clear() |
 | TextArea | getText(), setText(), clear() |
-| ComboBox<T> | getValue(), setValue(), getItems() |
+| `ComboBox<T>` | getValue(), setValue(), getItems() |
 | DatePicker | getValue() devuelve LocalDate o null |
 | Button | onAction en FXML o setOnAction |
-| TableView<T> | Selección y colección de elementos |
+| `TableView<T>` | Selección y colección de elementos |
 | Alert | showAndWait() para diálogo modal |
 
 ## Qué validar
@@ -126,7 +126,7 @@ if (cantidad <= 0) {
 }
 ```
 
-Una fecha de DatePicker es [LocalDate](/handbook/java/dates/); verifica si hay valor y si satisface las reglas del dominio. Una ComboBox<Libro> utiliza [genéricos](/handbook/java/generics/) y retorna el objeto seleccionado con getValue(), que puede ser null. No confundas el texto mostrado con la identidad del objeto. Para reaccionar a cambios de entrada usa [eventos y listeners](/handbook/java/javafx/events/); no dupliques todas las reglas de negocio en cada listener.
+Una fecha de DatePicker es [LocalDate](/handbook/java/dates/); verifica si hay valor y si satisface las reglas del dominio. Una `ComboBox<Libro>` utiliza [genéricos](/handbook/java/generics/) y retorna el objeto seleccionado con getValue(), que puede ser null. No confundas el texto mostrado con la identidad del objeto. Para reaccionar a cambios de entrada usa [eventos y listeners](/handbook/java/javafx/events/); no dupliques todas las reglas de negocio en cada listener.
 
 ## Casos de prueba
 

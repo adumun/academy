@@ -32,7 +32,7 @@ Si hay dos filas, las llamadas a next() devuelven true, true y false. Con cero f
 | java.sql.Date getDate(String label) | Fecha SQL o null |
 | BigDecimal getBigDecimal(String label) | Decimal exacto o null |
 | boolean wasNull() | Si la última lectura obtuvo NULL SQL |
-| T getObject(String label, Class<T> type) | Conversión tipada si el driver la admite |
+| T getObject(String label, `Class<T>` type) | Conversión tipada si el driver la admite |
 | void close() | Libera recursos |
 
 Los índices de columna también comienzan en 1; preferimos nombres o alias explícitos para reducir errores de mantenimiento.
