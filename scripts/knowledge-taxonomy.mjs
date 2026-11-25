@@ -12,6 +12,7 @@ export function classifyRoute(route) {
     }
 
     const prefixes = [
+        ['/projects/', 'project'],
         ['/handbook/foundations/', 'foundation'],
         ['/handbook/java/jdbc/', 'jdbc'],
         ['/handbook/java/javafx/', 'javafx'],
@@ -34,8 +35,10 @@ const allowedPrerequisites = {
     javafx: ['foundation', 'java', 'architecture', 'maven', 'javafx'],
     application: ['foundation', 'java', 'data', 'architecture', 'maven',
         'jdbc', 'javafx', 'application'],
+    project: ['foundation', 'java', 'data', 'architecture', 'maven',
+        'jdbc', 'javafx', 'application'],
     navigation: ['foundation', 'java', 'data', 'architecture', 'maven',
-        'jdbc', 'javafx', 'application', 'navigation'],
+        'jdbc', 'javafx', 'application', 'navigation', 'project'],
 };
 
 export function checkKnowledgeLink(source, target, section) {

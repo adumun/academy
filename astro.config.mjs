@@ -20,6 +20,7 @@ export default defineConfig({
         { label: 'Arquitectura', items: [{ autogenerate: { directory: 'handbook/architecture' } }] },
         { label: 'Herramientas', items: [{ autogenerate: { directory: 'handbook/tools' } }] },
         { label: 'Diagnóstico', link: '/handbook/troubleshooting/' },
+        { label: 'Projects', items: [{ autogenerate: { directory: 'projects' } }] },
         { label: 'Rutas de aprendizaje', items: [{ autogenerate: { directory: 'paths' } }] },
       ],
       customCss: ['./src/styles/academy.css'],

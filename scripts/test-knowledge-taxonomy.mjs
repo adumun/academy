@@ -48,3 +48,11 @@ test('architecture pattern does not require Java', () => {
     assert.equal(inspectKnowledgePage(observer, page('Conocimientos previos recomendados', java)).length, 1);
     assert.deepEqual(inspectKnowledgePage(observer, page('Aplicación: ejemplo Java', java)), []);
 });
+
+test('project consumes knowledge, never the reverse as a prerequisite', () => {
+    const project = '/projects/petcare/';
+    assert.equal(classifyRoute(project), 'project');
+    assert.deepEqual(inspectKnowledgePage(project, page('Conocimientos previos recomendados', java)), []);
+    assert.equal(inspectKnowledgePage(java, page('Conocimientos previos recomendados', project)).length, 1);
+    assert.deepEqual(inspectKnowledgePage(java, page('Aplicaciones', project)), []);
+});
