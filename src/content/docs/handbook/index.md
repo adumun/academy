@@ -17,6 +17,10 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 - [Operaciones, funciones y contratos](/handbook/foundations/operations/)
 - [Expresiones, decisiones y repetición](/handbook/foundations/flow/)
 
+- [Paradigmas de programación](/handbook/foundations/paradigms/)
+- [Abstracción y relaciones OO](/handbook/foundations/object-relationships/)
+- [Estructuras de datos](/handbook/foundations/data-structures/)
+
 ## Java
 
 - [Fundamentos Java y POO](/handbook/java/fundamentals/): clases, colecciones, interfaces y excepciones.
@@ -42,6 +46,15 @@ Si necesitas partir desde el significado de los términos, estas fichas explican
 - [Interfaces y polimorfismo](/handbook/java/interfaces/)
 - [Excepciones y recursos](/handbook/java/exceptions/)
 - [Lambdas](/handbook/java/lambdas/)
+
+- [Constructores](/handbook/java/constructors/)
+- [Colaboración y composición](/handbook/java/composition/)
+- [Herencia y polimorfismo](/handbook/java/inheritance/)
+- [Clases abstractas](/handbook/java/abstract-classes/)
+- [Arrays](/handbook/java/arrays/)
+- [Set](/handbook/java/sets/) y [Map](/handbook/java/maps/)
+- [Igualdad y hashCode](/handbook/java/equality/)
+- [Scanner y consola](/handbook/java/scanner/)
 
 ## Datos y arquitectura
 

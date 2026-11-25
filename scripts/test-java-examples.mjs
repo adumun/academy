@@ -6,6 +6,15 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 const cases = [
+    ["handbook/java/constructors.md","ConstructorDemo","10\n5\nRechazado"],
+    ["handbook/java/composition.md","ComposicionDemo","Centro: 0,0"],
+    ["handbook/java/inheritance.md","HerenciaDemo","Normal\nCritico"],
+    ["handbook/java/abstract-classes.md","AbstraccionDemo","21 C"],
+    ["handbook/java/arrays.md","ArraysDemo","3\n20\n60"],
+    ["handbook/java/sets.md","SetDemo","true\nfalse\ntrue\n2"],
+    ["handbook/java/maps.md","MapDemo","10\n15\nfalse\n2"],
+    ["handbook/java/equality.md","IgualdadDemo","false\ntrue\n1"],
+    ["handbook/java/scanner.md","ScannerDemo","21\nSol"],
     ['handbook/java/classes-and-objects.md', 'Libro', 'Java\nSQL'],
     ['handbook/java/generics.md', 'Caja', 'Java\n21'],
     ['handbook/java/collections.md', 'ColeccionesDemo', 'Java\nSQL\nJava\nTotal: 3'],
