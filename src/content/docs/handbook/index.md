@@ -25,6 +25,10 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 - [Memoria y persistencia](/handbook/foundations/persistence/)
 - [Pruebas y evidencia](/handbook/foundations/testing/)
 
+- [Lógica proposicional](/handbook/foundations/boolean-logic/)
+- [Matemáticas para programar](/handbook/foundations/programming-math/)
+- [Del requerimiento al algoritmo](/handbook/foundations/problem-solving/)
+
 ## Java
 
 - [Fundamentos Java y POO](/handbook/java/fundamentals/): clases, colecciones, interfaces y excepciones.
@@ -74,6 +78,13 @@ Si necesitas partir desde el significado de los términos, estas fichas explican
 - [MVC y DAO](/handbook/architecture/): responsabilidades, contratos y acceso a datos.
 
 ## Herramientas y diagnóstico
+
+- [Sistema de archivos](/handbook/tools/filesystem/)
+- [Terminal](/handbook/tools/terminal/)
+- [Entorno de desarrollo](/handbook/tools/development-environment/)
+- [Git y GitHub](/handbook/tools/git/)
+- [Estrategias de ramas](/handbook/tools/git-branching/)
+- [Markdown](/handbook/tools/markdown/)
 
 - [Maven y entorno Java](/handbook/tools/maven/): dependencias, estructura y build.
 - [Diagnóstico de errores](/handbook/troubleshooting/): buscar síntomas y comprobar hipótesis.

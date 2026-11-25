@@ -19,6 +19,7 @@ export function classifyRoute(route) {
         ['/handbook/sql/', 'data'],
         ['/handbook/architecture/', 'architecture'],
         ['/handbook/tools/maven/', 'maven'],
+        ['/handbook/tools/', 'tooling'],
     ];
 
     return prefixes.find(([prefix]) => route.startsWith(prefix))?.[1] ?? null;
@@ -29,13 +30,14 @@ const allowedPrerequisites = {
     java: ['foundation', 'java'],
     data: ['foundation', 'data'],
     architecture: ['foundation', 'architecture'],
-    maven: ['foundation', 'java', 'maven'],
+    maven: ['foundation', 'java', 'maven', 'tooling'],
+    tooling: ['foundation', 'tooling'],
     jdbc: ['foundation', 'java', 'data', 'architecture', 'maven', 'jdbc'],
     javafx: ['foundation', 'java', 'architecture', 'maven', 'javafx'],
     application: ['foundation', 'java', 'data', 'architecture', 'maven',
-        'jdbc', 'javafx', 'application'],
+        'jdbc', 'javafx', 'application', 'tooling'],
     navigation: ['foundation', 'java', 'data', 'architecture', 'maven',
-        'jdbc', 'javafx', 'application', 'navigation'],
+        'jdbc', 'javafx', 'application', 'navigation', 'tooling'],
 };
 
 export function checkKnowledgeLink(source, target, section) {
