@@ -16,4 +16,16 @@ SELECT id, titulo FROM libro WHERE id = 1;
 
 Usa condiciones WHERE apropiadas en modificaciones por registro. En Java, vincula los valores con [PreparedStatement](/handbook/java/jdbc/prepared-statement/).
 
+## Documentación oficial
+
 [Referencia SQL MariaDB](https://mariadb.com/kb/en/sql-statements/)
+
+## Conceptos relacionados
+
+- [JDBC](/handbook/java/jdbc/)
+- [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
+- [ResultSet](/handbook/java/jdbc/result-set/)
+
+## Practicar en Academic Labs
+
+- [Microdesafíos JDBC y JavaFX](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-microdesafios/)

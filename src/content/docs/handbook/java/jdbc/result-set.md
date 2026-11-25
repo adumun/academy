@@ -29,4 +29,17 @@ El fragmento supone un ResultSet abierto con columnas id y titulo, y un modelo L
 
 No leas columnas antes de avanzar el cursor ni después de agotarlo. Cierra el ResultSet junto con la sentencia y conexión mediante try-with-resources.
 
+## Documentación oficial
+
 [API Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/ResultSet.html)
+
+## Conceptos relacionados
+
+- [JDBC](/handbook/java/jdbc/)
+- [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
+- [MVC y DAO](/handbook/architecture/)
+
+## Practicar en Academic Labs
+
+- [Microdesafíos JDBC y JavaFX](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-microdesafios/)
+- [Detective JDBC](https://academic-labs.adumun.cl/activities/dsy1102-detective-jdbc/)

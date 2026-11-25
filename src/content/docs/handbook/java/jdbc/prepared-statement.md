@@ -42,4 +42,16 @@ Los índices empiezan en 1. Evita concatenar valores del formulario dentro del S
 
 Parameter index out of range: compara el número de marcadores con las posiciones usadas por los setters.
 
+## Documentación oficial
+
 [API Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html)
+
+## Conceptos relacionados
+
+- [JDBC](/handbook/java/jdbc/)
+- [ResultSet y cursor](/handbook/java/jdbc/result-set/)
+- [SQL y CRUD](/handbook/sql/)
+
+## Practicar en Academic Labs
+
+- [Microdesafíos JDBC y JavaFX](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-microdesafios/)

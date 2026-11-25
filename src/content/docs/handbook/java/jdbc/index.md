@@ -13,8 +13,18 @@ JDBC es la API estándar de Java para acceder a bases de datos mediante un drive
 4. Ejecutar la consulta o modificación.
 5. Leer los resultados y cerrar recursos.
 
-## Referencias iniciales
+## Conceptos relacionados
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
 - [ResultSet y cursor](/handbook/java/jdbc/result-set/)
-- [Documentación Java 21: java.sql](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/package-summary.html)
+- [SQL y CRUD](/handbook/sql/)
+- [MVC y DAO](/handbook/architecture/)
+
+## Documentación oficial
+
+[Java 21: java.sql](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/package-summary.html)
+
+## Practicar en Academic Labs
+
+- [Laboratorio guiado](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-dao-guiado/)
+- [Detective JDBC](https://academic-labs.adumun.cl/activities/dsy1102-detective-jdbc/)

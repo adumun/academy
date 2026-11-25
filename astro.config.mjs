@@ -8,6 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'ADÜMÜN Academy',
+      pagination: false,
       defaultLocale: 'root',
       locales: { root: { label: 'Español', lang: 'es' } },
       sidebar: [

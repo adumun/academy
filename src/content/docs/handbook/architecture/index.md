@@ -16,4 +16,13 @@ public interface LibroDao {
 
 El contrato no depende de JavaFX ni de un motor de datos concreto. La implementación JDBC prepara consultas y transforma resultados a objetos. El controlador consume el contrato.
 
-[Referencia JDBC](/handbook/java/jdbc/)
+## Conceptos relacionados
+
+- [JDBC](/handbook/java/jdbc/)
+- [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
+- [ResultSet y mapeo](/handbook/java/jdbc/result-set/)
+
+## Practicar en Academic Labs
+
+- [Laboratorio guiado JDBC y DAO](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-dao-guiado/)
+- [Ensayo práctico](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-dao-ensayo/)
