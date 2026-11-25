@@ -44,3 +44,7 @@ Una página puede comenzar como explicación o referencia; cuando un caso crece,
 - [ ] Revisión técnica, pedagógica, visual móvil y build antes de declarar publicación.
 
 Primer piloto: TableView, con referencia, explicación de observabilidad y guía de filtrado/ordenamiento separadas. Mantener sus URLs existentes. No ampliar masivamente el catálogo hasta revisar el piloto.
+
+## Relaciones de conocimiento — ADU-221
+
+Usar enlaces Markdown dentro de la prosa en la primera aparición significativa de un concepto, preferir fichas canónicas independientes y añadir conocimientos previos recomendados cuando permitan identificar brechas. No enlazar cada repetición ni crear páginas vacías. Distinguir prerequisito, relación complementaria y aplicación; no imponer bloqueos ni dependencias circulares obligatorias. No introducir un nuevo schema de grafo o IDs hasta reconciliar ADR-011, ADU-86 y ADU-94. Mantener rutas, URLs y contenidos públicos; enlaces relativos al origen. La ficha de fundamentos es síntesis contextual, no una segunda autoridad de cada concepto.

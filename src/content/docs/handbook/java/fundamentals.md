@@ -3,6 +3,17 @@ title: "Java y POO para persistencia"
 description: "Clases, encapsulamiento, constructores, colecciones, interfaces y excepciones."
 ---
 
+## Índice de conocimientos canónicos
+
+- [Clases, objetos y encapsulamiento](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones y List](/handbook/java/collections/)
+- [Interfaces y polimorfismo](/handbook/java/interfaces/)
+- [Excepciones y try-with-resources](/handbook/java/exceptions/)
+- [Lambdas e interfaces funcionales](/handbook/java/lambdas/)
+
+Las siguientes secciones presentan una síntesis en el contexto de persistencia. Consulta las fichas independientes para profundizar.
+
 ## Modelo orientado a objetos
 
 Una clase define estructura y comportamiento; una instancia representa un objeto concreto. Para mapear una tabla, el modelo debe representar sus atributos y proteger su estado.

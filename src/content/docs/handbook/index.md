@@ -5,11 +5,24 @@ description: "Índice de conocimiento técnico reutilizable y consulta no lineal
 
 El Handbook organiza conocimiento por tecnologías y disciplinas, independientemente de la asignatura que lo utilice. Busca una clase, método, error o problema mediante el buscador. No es necesario leer las páginas en orden.
 
+## Cómo navegar el conocimiento
+
+Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos recomendados. Si un término no te resulta familiar, abre su ficha canónica y vuelve al objetivo original. No necesitas seguir un orden fijo ni completar un curso.
+
 ## Java
 
 - [Fundamentos Java y POO](/handbook/java/fundamentals/): clases, colecciones, interfaces y excepciones.
 - [JDBC](/handbook/java/jdbc/): conexiones, consultas, mapeo y persistencia.
 - [JavaFX](/handbook/java/javafx/): ciclo de vida, FXML, controles, TableView y validaciones.
+
+### Fundamentos reutilizables
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones y List](/handbook/java/collections/)
+- [Interfaces y polimorfismo](/handbook/java/interfaces/)
+- [Excepciones y recursos](/handbook/java/exceptions/)
+- [Lambdas](/handbook/java/lambdas/)
 
 ## Datos y arquitectura
 

@@ -5,6 +5,14 @@ description: "Modelo mental, componentes, ciclo de vida y acceso relacional desd
 
 JDBC (Java Database Connectivity) define contratos estándar de Java para comunicarse con una base de datos relacional. El driver del proveedor implementa esos contratos y traduce las operaciones al protocolo del servidor. No es una base de datos ni un ORM.
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones](/handbook/java/collections/)
+- [Excepciones y try-with-resources](/handbook/java/exceptions/)
+- [SQL](/handbook/sql/)
+
 ## Arquitectura mental
 
 | Componente | Responsabilidad | No confundir con |
@@ -46,7 +54,7 @@ public List<Libro> listarTodos() throws SQLException {
 
 ## Ciclo de vida de recursos
 
-La conexión permanece abierta mientras se utilizan sentencia y resultado. Try-with-resources cierra en orden inverso: ResultSet, sentencia, conexión. La lista ya construida permanece disponible después de cerrarlos.
+La conexión permanece abierta mientras se utilizan sentencia y resultado. [Try-with-resources](/handbook/java/exceptions/) cierra en orden inverso: ResultSet, sentencia, conexión. La lista ya construida permanece disponible después de cerrarlos.
 
 | Necesidad | API habitual |
 | --- | --- |

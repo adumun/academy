@@ -3,6 +3,13 @@ title: "JavaFX"
 description: "Arquitectura de una aplicación de escritorio, ciclo de vida, controles y eventos."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones](/handbook/java/collections/)
+- [Lambdas](/handbook/java/lambdas/)
+
 ## Modelo mental
 
 JavaFX construye interfaces gráficas mediante un árbol de nodos. Application gestiona el ciclo de vida; Stage es una ventana; Scene contiene el árbol de controles; un contenedor como VBox organiza sus hijos.
@@ -75,6 +82,10 @@ Un acceso JDBC lento dentro de un evento puede congelar temporalmente la ventana
 - Interfaz congelada: mide duración de la tarea en el evento.
 
 ## Conceptos relacionados
+
+- [ObservableList](/handbook/java/javafx/observable-list/)
+- [Eventos y listeners](/handbook/java/javafx/events/)
+- [Patrón Observer](/handbook/architecture/observer/)
 
 - [Maven](/handbook/tools/maven/)
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)
