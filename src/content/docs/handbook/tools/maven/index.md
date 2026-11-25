@@ -94,6 +94,30 @@ Baseline del curso: Java 21, JavaFX 21.0.6, MariaDB Connector/J 3.5.11. El ejemp
 | mvn javafx:run | Iniciar la aplicación JavaFX |
 | mvn package | Empaquetar según el proyecto |
 
+## Dependencias, plugins y ciclo de vida · complementario
+
+Una dependencia aporta clases al proyecto; un plugin ejecuta tareas del build. No son intercambiables. Maven resuelve dependencias directas y transitivas y puede utilizar el repositorio local para evitar nuevas descargas.
+
+| Concepto | Comportamiento |
+| --- | --- |
+| compile | Scope por defecto; disponible al compilar y ejecutar |
+| runtime | Disponible en ejecución y pruebas, no en compilación principal |
+| test | Solo para compilación/ejecución de pruebas |
+| provided | Compilación y pruebas; el entorno aporta el artefacto en ejecución |
+| compile, test, package, verify | Fases del ciclo de vida default; al ejecutar una fase se recorren las previas |
+| clean | Ciclo separado que elimina salidas del build |
+
+Para diagnosticar un proyecto, ejecuta desde la carpeta que contiene pom.xml:
+
+```bash
+mvn -version
+mvn help:effective-pom
+mvn dependency:tree
+mvn clean compile
+```
+
+El POM efectivo combina configuración heredada y perfiles activos. dependency:tree muestra dependencias resueltas, no comprueba una conexión a MariaDB. Si falta una clase, verifica su dependencia y scope antes de cambiar versiones al azar. Fijar versiones de dependencias y plugins mejora la repetibilidad, pero no garantiza por sí solo un build hermético.
+
 ## Configurar credenciales locales
 
 Configura DB_USER y DB_PASSWORD en la ejecución del IDE o proceso Java. Evita fijarlas en pom.xml y no subas archivos locales con secretos. La configuración debe estar disponible para el proceso que ejecuta Maven o Main.

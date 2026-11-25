@@ -84,6 +84,10 @@ public int actualizar(Connection con, Libro libro) throws SQLException {
 
 La cantidad afectada permite comprobar el resultado; su significado exacto para UPDATE depende de la semántica del servidor y conector (filas coincidentes o modificadas). No presupongas que cero significa necesariamente que el ID no existe.
 
+## Ausencia de registros
+
+El método buscarPorId utiliza [Optional](/handbook/java/optional/) para expresar ausencia y no para ocultar SQLException. La conversión de [LocalDate](/handbook/java/dates/) a DATE debe preservar la intención del dominio.
+
 ## Fechas y valores nulos
 
 ```java

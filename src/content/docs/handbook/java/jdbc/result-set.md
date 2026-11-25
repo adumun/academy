@@ -102,6 +102,8 @@ LocalDate fecha = fechaSql == null ? null : fechaSql.toLocalDate();
 
 Si la columna es NOT NULL, la validación del esquema simplifica el mapeo. No uses cero como sustituto de ausencia sin definir esa regla.
 
+Consulta [LocalDate y conversiones JDBC](/handbook/java/dates/) para distinguir fecha sin hora, instante y NULL.
+
 ## Alias y proyecciones
 
 ```sql

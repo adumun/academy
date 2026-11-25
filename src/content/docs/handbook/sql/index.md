@@ -86,6 +86,14 @@ Los IDs concretos son ilustrativos; comprueba primero los existentes en tu entor
 
 En Java, usa marcadores ? y setters en lugar de concatenar valores. Nunca retires WHERE de una modificación por registro para «hacerla funcionar».
 
+## Profundizar por necesidad
+
+- [Consultas: SELECT, condiciones, JOIN y ordenamiento](/handbook/sql/queries/).
+- [Restricciones y modificaciones SQL](/handbook/sql/constraints-and-writes/).
+- [Tipos de fecha y conversión Java](/handbook/java/dates/).
+
+No es necesario estudiar JOIN para ejecutar un CRUD de una sola tabla. Utiliza la ficha correspondiente cuando el problema incluya relaciones entre entidades.
+
 ## Conceptos relacionados
 
 - [JDBC](/handbook/java/jdbc/)

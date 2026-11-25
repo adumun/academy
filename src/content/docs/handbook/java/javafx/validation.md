@@ -106,6 +106,28 @@ private void mostrarError(String mensaje) {
 
 El detalle técnico puede registrarse por separado sin incluir credenciales ni datos sensibles.
 
+## Números, fechas y selecciones · complementario
+
+Los TextField contienen texto, no números. Convierte y valida antes de construir el modelo. Fragmento de controlador con txtCantidad y mostrarError definidos:
+
+```java
+int cantidad;
+
+try {
+    cantidad = Integer.parseInt(txtCantidad.getText().strip());
+} catch (NumberFormatException e) {
+    mostrarError("Ingresa un número entero válido.");
+    return;
+}
+
+if (cantidad <= 0) {
+    mostrarError("La cantidad debe ser positiva.");
+    return;
+}
+```
+
+Una fecha de DatePicker es [LocalDate](/handbook/java/dates/); verifica si hay valor y si satisface las reglas del dominio. Una ComboBox<Libro> utiliza [genéricos](/handbook/java/generics/) y retorna el objeto seleccionado con getValue(), que puede ser null. No confundas el texto mostrado con la identidad del objeto. Para reaccionar a cambios de entrada usa [eventos y listeners](/handbook/java/javafx/events/); no dupliques todas las reglas de negocio en cada listener.
+
 ## Casos de prueba
 
 | Entrada | Resultado |

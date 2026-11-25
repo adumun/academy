@@ -54,6 +54,20 @@ Coloca un breakpoint en el evento del controlador y otro en el DAO. Inspecciona 
 
 La tabla aparece vacía tras guardar. Comprueba primero SELECT directo en MariaDB. Si existe el registro, la escritura funcionó; revisa el refresco del controlador. Si no existe, inspecciona filas afectadas, excepciones y transacción. No agregues objetos artificialmente a la TableView para esconder un fallo de persistencia.
 
+## Receta de diagnóstico por capas · complementario
+
+| Checkpoint | Evidencia mínima | Si falla |
+| --- | --- | --- |
+| Entorno | java -version y mvn -version | [Maven](/handbook/tools/maven/) |
+| Conexión | isValid(3) | [Connection](/handbook/java/jdbc/connection/) |
+| Consulta aislada | SELECT devuelve filas esperadas | [Consultas SQL](/handbook/sql/queries/) |
+| DAO | Lista, identidad y conteo correcto | [CRUD](/handbook/java/jdbc/crud/) |
+| Carga FXML | Controlador y campos inyectados | [FXML](/handbook/java/javafx/fxml-controller/) |
+| Presentación | Items y columnas correctos | [TableView](/handbook/java/javafx/table-view/) |
+| Persistencia | Reinicio y SELECT directo | [Transacciones](/handbook/java/jdbc/transactions/) |
+
+Inspecciona las excepciones encadenadas mediante getCause(), getSuppressed() y, para SQLException, getNextException(). [Excepciones y try-with-resources](/handbook/java/exceptions/) explica por qué cerrar un recurso puede generar una excepción adicional. No confundas la línea superior del stack trace con la causa de negocio. Conserva el mensaje completo en un entorno local seguro, sin secretos.
+
 ## Evidencia útil
 
 Registra entrada, resultado esperado, resultado observado, causa, cambio y nueva prueba. Un mensaje de éxito o una captura de la interfaz no son suficientes para demostrar que los datos persisten.
