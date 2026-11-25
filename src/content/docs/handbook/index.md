@@ -21,6 +21,10 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 - [Abstracción y relaciones OO](/handbook/foundations/object-relationships/)
 - [Estructuras de datos](/handbook/foundations/data-structures/)
 
+- [JSON](/handbook/foundations/json/)
+- [Memoria y persistencia](/handbook/foundations/persistence/)
+- [Pruebas y evidencia](/handbook/foundations/testing/)
+
 ## Java
 
 - [Fundamentos Java y POO](/handbook/java/fundamentals/): clases, colecciones, interfaces y excepciones.
@@ -55,6 +59,11 @@ Si necesitas partir desde el significado de los términos, estas fichas explican
 - [Set](/handbook/java/sets/) y [Map](/handbook/java/maps/)
 - [Igualdad y hashCode](/handbook/java/equality/)
 - [Scanner y consola](/handbook/java/scanner/)
+
+- [Archivos: Path y Files](/handbook/java/files/)
+- [Streams](/handbook/java/streams/)
+- [Serialización JSON: Jackson y Gson](/handbook/java/json-serialization/)
+- [JUnit](/handbook/java/junit/)
 
 ## Datos y arquitectura
 

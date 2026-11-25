@@ -83,6 +83,9 @@ Un hilo de ejecución es una secuencia de instrucciones que puede avanzar indepe
 
 ## Conceptos relacionados
 
+- [Scene Builder](/handbook/java/javafx/scene-builder/)
+- [Navegación entre vistas](/handbook/java/javafx/navigation/)
+
 - [Controles de formulario](/handbook/java/javafx/controls/)
 - [Properties y binding](/handbook/java/javafx/properties-and-binding/)
 

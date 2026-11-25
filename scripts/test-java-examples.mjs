@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 const cases = [
+    ["handbook/java/files.md","ArchivosDemo","21"],
+    ["handbook/java/streams.md","StreamsDemo","true\n[2, 6]"],
     ["handbook/java/constructors.md","ConstructorDemo","10\n5\nRechazado"],
     ["handbook/java/composition.md","ComposicionDemo","Centro: 0,0"],
     ["handbook/java/inheritance.md","HerenciaDemo","Normal\nCritico"],
