@@ -7,14 +7,16 @@ description: "Suscripción, notificación y límites de la observabilidad."
 
 ## Conocimientos previos recomendados
 
-- [Interfaces](/handbook/java/interfaces/)
-- [Lambdas](/handbook/java/lambdas/)
+- [Objetos, estado y comportamiento](/handbook/foundations/objects/)
+- [Operaciones y contratos](/handbook/foundations/operations/)
 
 ## Problema
 
 Cuando cambia el [estado de un objeto](/handbook/java/classes-and-objects/), varios consumidores pueden necesitar reaccionar. Un patrón es una solución reutilizable a un problema de diseño. Observer permite suscribir observadores a un sujeto y notificarlos sin que el sujeto conozca cada consumidor concreto. El sujeto mantiene las suscripciones; suscribir es registrar un consumidor de notificaciones, notificar es comunicar un cambio y desuscribir es dejar de recibirlo. Un consumidor puede ser un objeto que cumple una [interfaz funcional](/handbook/java/lambdas/).
 
-## Ejemplo completo en Java
+## Aplicación: ejemplo completo en Java
+
+Para implementar este patrón en Java, consulta [interfaces](/handbook/java/interfaces/) y [lambdas](/handbook/java/lambdas/). Estos conocimientos son específicos del ejemplo, no del patrón.
 
 ```java
 import java.util.ArrayList;

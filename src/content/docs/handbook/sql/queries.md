@@ -8,7 +8,9 @@ description: "Proyección, condiciones, NULL, JOIN y agregaciones."
 ## Conocimientos previos recomendados
 
 - [SQL y CRUD](/handbook/sql/)
-- [Clases y objetos](/handbook/java/classes-and-objects/) para interpretar el mapeo posterior.
+- [Modelo relacional](/handbook/sql/relational-model/)
+
+Si luego implementas el mapeo en Java, consulta [clases y objetos](/handbook/java/classes-and-objects/). Ese conocimiento no es un requisito para consultar SQL.
 
 ## Modelo mental
 

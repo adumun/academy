@@ -107,7 +107,7 @@ Ejemplo de cálculo aproximado, no apropiado para dinero. Los comodines expresan
 
 La mayoría de la información de parámetros de tipo se borra durante la compilación (type erasure). Por eso no puedes crear new T() sin otra estrategia ni comprobar instanceof `List<String>`. No uses tipos raw como List para silenciar errores: pierdes comprobaciones.
 
-## Aplicación en Academy
+## Aplicaciones e implementaciones: JavaFX
 
 [ObservableList](/handbook/java/javafx/observable-list/) parametriza el elemento observable. `TableView<Libro>` establece el tipo de fila; `TableColumn<Libro, String>` establece el tipo de fila y valor. Comprender esto permite leer firmas de API sin memorizar declaraciones.
 

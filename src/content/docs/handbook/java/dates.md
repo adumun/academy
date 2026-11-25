@@ -1,5 +1,5 @@
 ---
-title: "Fechas con LocalDate y JDBC"
+title: "Fechas en Java: LocalDate y conversiones"
 description: "Fechas sin hora, conversión y validación de entrada."
 ---
 
@@ -45,7 +45,7 @@ public class FechasDemo {
 
 Salida: 2026-11-25, 2026-11-26 y true en líneas distintas. LocalDate es inmutable: plusDays retorna otro objeto.
 
-## Conversión para DATE
+## Aplicación: conversión para SQL DATE
 
 ```java
 java.sql.Date fechaSql = java.sql.Date.valueOf(fecha);

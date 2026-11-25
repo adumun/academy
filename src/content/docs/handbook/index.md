@@ -9,15 +9,23 @@ El Handbook organiza conocimiento por tecnologías y disciplinas, independientem
 
 Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos recomendados. Si un término no te resulta familiar, abre su ficha canónica y vuelve al objetivo original. No necesitas seguir un orden fijo ni completar un curso.
 
+## Fundamentos independientes del lenguaje
+
+- [Programas y algoritmos](/handbook/foundations/programs/)
+- [Valores, variables y tipos](/handbook/foundations/values-and-types/)
+- [Objetos, estado y comportamiento](/handbook/foundations/objects/)
+- [Operaciones, funciones y contratos](/handbook/foundations/operations/)
+- [Expresiones, decisiones y repetición](/handbook/foundations/flow/)
+
 ## Java
 
 - [Fundamentos Java y POO](/handbook/java/fundamentals/): clases, colecciones, interfaces y excepciones.
 - [JDBC](/handbook/java/jdbc/): conexiones, consultas, mapeo y persistencia.
 - [JavaFX](/handbook/java/javafx/): ciclo de vida, FXML, controles, TableView y validaciones.
 
-### Fundamentos reutilizables
+### Fundamentos específicos de Java
 
-Si necesitas partir desde el significado de los términos, estas fichas explican el vocabulario de programación sin exigir conocimientos de POO ni de persistencia.
+Si necesitas partir desde el significado de los términos, estas fichas explican la sintaxis y el comportamiento de Java. Las definiciones generales se encuentran en Fundamentos.
 
 - [Programas, código fuente y ejecución](/handbook/java/programming/)
 - [Variables, valores y constantes](/handbook/java/variables/)
