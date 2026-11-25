@@ -3,6 +3,13 @@ title: "CRUD con JDBC"
 description: "Operaciones completas de acceso a datos y comprobación de filas afectadas."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Colecciones](/handbook/java/collections/)
+- [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
+- [ResultSet](/handbook/java/jdbc/result-set/)
+
 ## Contrato básico
 
 CRUD significa crear, leer, actualizar y eliminar registros. No confundir crear una fila con CREATE TABLE, que crea una estructura. En estos métodos se supone la tabla libro definida en la ficha SQL, el modelo Libro y DatabaseConnection de la ficha de conexión.
@@ -78,6 +85,21 @@ public int eliminar(int id) throws SQLException {
     }
 }
 ```
+
+## Búsqueda por identidad · complementario
+
+Una consulta por ID puede devolver un `Optional<Libro>`, un tipo [genérico](/handbook/java/generics/) que representa presencia o ausencia. Diferencia un registro inexistente de una [excepción](/handbook/java/exceptions/) de acceso. Consulta el ejemplo buscarPorId de [PreparedStatement](/handbook/java/jdbc/prepared-statement/). Si utilizas ese contrato en el DAO, documenta quién crea y cierra la conexión.
+
+## Separar errores y resultados
+
+| Resultado | Interpretación |
+| --- | --- |
+| List vacía | Consulta exitosa sin filas |
+| Optional.empty() | Búsqueda exitosa sin coincidencia |
+| Conteo cero | Sin filas afectadas según semántica del conector |
+| SQLException | Fallo de acceso, no ausencia de datos |
+
+No devuelvas una lista vacía en el catch. El consumidor debe poder distinguir estos casos.
 
 ## Matriz de pruebas
 

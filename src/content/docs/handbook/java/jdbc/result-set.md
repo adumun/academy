@@ -3,6 +3,13 @@ title: "ResultSet"
 description: "Cursor, lectura tipada, NULL, mapeo y colecciones Java."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Colecciones](/handbook/java/collections/)
+- [Genéricos](/handbook/java/generics/)
+- [Excepciones](/handbook/java/exceptions/)
+
 ## Modelo mental
 
 ResultSet permite recorrer filas obtenidas por una consulta. Un cursor forward-only (habitual por defecto) avanza en un solo sentido. No es una List ni contiene automáticamente objetos del dominio.
@@ -49,6 +56,33 @@ public List<Libro> mapear(ResultSet rs) throws SQLException {
 ```
 
 El método recibe un ResultSet abierto posicionado antes de la primera fila. Quien lo creó conserva la responsabilidad de cerrarlo. Las instancias Libro no dependen del cursor después de crearse.
+
+## Separar el mapeo · complementario
+
+El cursor y el modelo pertenecen a responsabilidades diferentes. Una función de mapeo puede transformar exclusivamente la fila actual y otra encargarse de iterar. El tipo `List<Libro>` utiliza [genéricos](/handbook/java/generics/) y el resultado es una [colección](/handbook/java/collections/) de objetos independientes.
+
+```java
+private Libro mapearFila(ResultSet rs) throws SQLException {
+    return new Libro(
+            rs.getInt("id"),
+            rs.getString("titulo")
+    );
+}
+
+private List<Libro> mapearTodas(ResultSet rs)
+        throws SQLException {
+
+    List<Libro> libros = new ArrayList<>();
+
+    while (rs.next()) {
+        libros.add(mapearFila(rs));
+    }
+
+    return libros;
+}
+```
+
+Son métodos de una clase DAO con imports java.sql y java.util correspondientes. mapearFila no llama next(): su precondición es que el cursor ya esté sobre una fila válida. mapearTodas recibe un cursor antes de la primera fila. Separar ambos evita avanzar dos veces y facilita reutilizar mapeo en consultas por ID. No cierres el cursor en un método que no es su propietario.
 
 ## Una fila frente a muchas filas
 

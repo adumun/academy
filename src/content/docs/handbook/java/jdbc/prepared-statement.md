@@ -3,6 +3,12 @@ title: "PreparedStatement"
 description: "Parámetros SQL, firmas de métodos, consultas, DML y seguridad."
 ---
 
+## Conocimientos previos recomendados
+
+- [Conexión JDBC](/handbook/java/jdbc/connection/)
+- [Excepciones y recursos](/handbook/java/exceptions/)
+- [SQL](/handbook/sql/)
+
 ## Qué es y cuándo utilizarlo
 
 PreparedStatement representa una sentencia SQL parametrizable asociada a una Connection. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
@@ -89,6 +95,36 @@ if (fechaApertura == null) {
 ```
 
 El ejemplo usa LocalDate y una columna que admite NULL. Si el dato es obligatorio, valídalo antes de ejecutar.
+
+## Recuperar claves generadas · complementario
+
+Cuando el servidor genera el ID al insertar, puedes solicitar las claves mediante `Statement.RETURN_GENERATED_KEYS`. El siguiente fragmento presupone una Connection abierta, un título validado y una tabla libro con ID autoincremental. Importa java.sql.PreparedStatement, java.sql.ResultSet, java.sql.Statement y java.sql.SQLException.
+
+```java
+String sql = "INSERT INTO libro (titulo) VALUES (?)";
+
+try (PreparedStatement ps = con.prepareStatement(
+        sql, Statement.RETURN_GENERATED_KEYS)) {
+
+    ps.setString(1, titulo);
+    int filas = ps.executeUpdate();
+
+    if (filas != 1) {
+        throw new SQLException("Inserción no confirmada");
+    }
+
+    try (ResultSet claves = ps.getGeneratedKeys()) {
+        if (!claves.next()) {
+            throw new SQLException("Clave no disponible");
+        }
+
+        int idGenerado = claves.getInt(1);
+        System.out.println(idGenerado);
+    }
+}
+```
+
+La disponibilidad y forma de las claves dependen del driver y la sentencia. El conteo no es la clave. Si la inserción ya se confirmó por auto-commit, fallar al recuperar la clave no la revierte automáticamente. Para una unidad atómica, revisa [transacciones JDBC](/handbook/java/jdbc/transactions/).
 
 ## Seguridad: qué resuelve y qué no
 

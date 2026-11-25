@@ -3,6 +3,12 @@ title: "Connection y DriverManager"
 description: "Configurar la conexión, administrar su ciclo de vida y diagnosticar errores."
 ---
 
+## Conocimientos previos recomendados
+
+- [Excepciones y try-with-resources](/handbook/java/exceptions/)
+- [Maven](/handbook/tools/maven/)
+- [SQL](/handbook/sql/)
+
 ## Qué representa una conexión
 
 Una Connection es una sesión con una base de datos. Puede preparar sentencias y controlar transacciones. Cerrarla libera los recursos asociados; no cierra el servidor.
@@ -89,6 +95,19 @@ public class TestConnection {
 ```
 
 Salida esperada: Conexión válida: true, si servidor, usuario y esquema están disponibles.
+
+## Propiedad y cierre de la conexión · complementario
+
+El contrato de Connection implementa AutoCloseable. Utiliza [try-with-resources](/handbook/java/exceptions/) para delimitar su ciclo de vida. Si una función recibe una conexión como argumento, el contrato debe indicar quién la cierra. En una transacción, normalmente la unidad de trabajo conserva la propiedad de la conexión y los DAO cierran únicamente sus sentencias y resultados.
+
+| API | Retorno y semántica |
+| --- | --- |
+| getAutoCommit() | boolean; indica confirmación automática |
+| isClosed() | boolean; indica cierre, no prueba conectividad |
+| isValid(int timeout) | boolean; valida la conexión, timeout en segundos |
+| prepareStatement(String sql) | PreparedStatement; puede lanzar SQLException |
+
+Un pool puede devolver una conexión lógica; close() devuelve el recurso al pool según el contrato de su implementación. No mantengas una conexión estática compartida entre operaciones sin definir concurrencia y ciclo de vida.
 
 ## Diagnóstico por síntoma
 
