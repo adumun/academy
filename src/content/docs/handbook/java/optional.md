@@ -13,7 +13,7 @@ description: "Representar ausencia explícita, métodos y límites."
 
 ## Qué representa
 
-Optional<T> representa presencia o ausencia de un valor no nulo. No representa automáticamente éxito o error. Una consulta que no encuentra una fila puede retornar Optional.empty(); un fallo JDBC debe conservar su excepción.
+`Optional<T>` representa presencia o ausencia de un valor no nulo. No representa automáticamente éxito o error. Una consulta que no encuentra una fila puede retornar Optional.empty(); un fallo JDBC debe conservar su excepción.
 
 | Método | Semántica |
 | --- | --- |
@@ -48,7 +48,7 @@ Salida: Java y Sin título. Archivo OptionalDemo.java, JDK 21.
 
 ## Aplicación en DAO
 
-Un buscarPorId puede retornar Optional<Libro>; el controlador distingue vacío de error y decide el mensaje. No retornes null en lugar de Optional ni uses get() sin comprobar presencia. No reemplaza validación de negocio ni representa un valor SQL NULL de manera universal.
+Un buscarPorId puede retornar `Optional<Libro>`; el controlador distingue vacío de error y decide el mensaje. No retornes null en lugar de Optional ni uses get() sin comprobar presencia. No reemplaza validación de negocio ni representa un valor SQL NULL de manera universal.
 
 ## Conceptos relacionados
 

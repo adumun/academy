@@ -12,7 +12,7 @@ description: "Interfaces de colección, orden, operaciones, mutabilidad y selecc
 
 ## Modelo mental
 
-Una colección organiza objetos en memoria. List<E> representa una secuencia ordenada que permite duplicados; ArrayList<E> es una implementación redimensionable. Set evita duplicados según su contrato de igualdad; Map asocia claves con valores y no implementa Collection.
+Una colección organiza objetos en memoria. `List<E>` representa una secuencia ordenada que permite duplicados; `ArrayList<E>` es una implementación redimensionable. Set evita duplicados según su contrato de igualdad; Map asocia claves con valores y no implementa Collection.
 
 | Necesidad | Alternativa habitual |
 | --- | --- |
@@ -81,7 +81,7 @@ El DAO devuelve una List de objetos sin depender de JavaFX. Una [ObservableList]
 | ConcurrentModificationException | Modificación estructural durante iteración incompatible |
 | Listado vacío tras reiniciar | Colección en memoria sin persistencia |
 
-Prueba duplicados, tamaño, lista vacía y eliminación por posición. Para List<Integer>, diferencia remove(1) de remove(Integer.valueOf(1)): el primero elimina por índice; el segundo por valor.
+Prueba duplicados, tamaño, lista vacía y eliminación por posición. Para `List<Integer>`, diferencia remove(1) de remove(Integer.valueOf(1)): el primero elimina por índice; el segundo por valor.
 
 ## Conceptos relacionados
 

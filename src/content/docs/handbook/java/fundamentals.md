@@ -57,7 +57,7 @@ for (Libro libro : libros) {
 }
 ```
 
-List<Libro> expresa qué objetos se esperan. List es un contrato y ArrayList una implementación. La colección en memoria no persiste por sí misma.
+`List<Libro>` expresa qué objetos se esperan. List es un contrato y ArrayList una implementación. La colección en memoria no persiste por sí misma.
 
 ## Interfaces y polimorfismo
 

@@ -36,11 +36,11 @@ Los tipos se pueden declarar cuando sea necesario. Una expresión puede omitir r
 
 | Tipo | Método abstracto |
 | --- | --- |
-| Predicate<T> | boolean test(T) |
-| Function<T,R> | R apply(T) |
-| Consumer<T> | void accept(T) |
-| Supplier<T> | T get() |
-| Comparator<T> | int compare(T,T) |
+| `Predicate<T>` | boolean test(T) |
+| `Function<T,R>` | R apply(T) |
+| `Consumer<T>` | void accept(T) |
+| `Supplier<T>` | T get() |
+| `Comparator<T>` | int compare(T,T) |
 
 ## Ejemplo completo
 
