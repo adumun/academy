@@ -48,7 +48,7 @@ try {
         const filename = className + '.java';
         writeFileSync(join(work, filename), blocks[0] + '\n', 'utf8');
         run('javac', ['--release', '21', '-encoding', 'UTF-8', filename], work);
-        const actual = run('java', ['-cp', work, className], work);
+        const actual = run('java', ['-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8', '-cp', work, className], work);
 
         if (actual !== expected) {
             throw new Error(className + ': unexpected output ' + JSON.stringify(actual));
