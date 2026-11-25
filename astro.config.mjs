@@ -14,6 +14,7 @@ export default defineConfig({
       sidebar: [
         { label: 'Inicio', link: '/' },
         { label: 'Handbook', link: '/handbook/' },
+        { label: 'Fundamentos', items: [{ autogenerate: { directory: 'handbook/foundations' } }] },
         { label: 'Java', items: [{ autogenerate: { directory: 'handbook/java' } }] },
         { label: 'SQL', items: [{ autogenerate: { directory: 'handbook/sql' } }] },
         { label: 'Arquitectura', items: [{ autogenerate: { directory: 'handbook/architecture' } }] },

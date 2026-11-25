@@ -3,6 +3,28 @@ title: "Java y POO para persistencia"
 description: "Clases, encapsulamiento, constructores, colecciones, interfaces y excepciones."
 ---
 
+**Alcance:** guía de aplicación de Java y POO al contexto de persistencia. No es la definición canónica de los fundamentos de programación.
+
+## Antes de comenzar
+
+Si estás iniciándote en Java, comprende primero qué es un [programa](/handbook/java/programming/), cómo las [variables](/handbook/java/variables/) almacenan valores de un [tipo](/handbook/java/types/), cómo se ejecutan [expresiones](/handbook/java/expressions/) y [decisiones y bucles](/handbook/java/control-flow/), y cómo se invocan [métodos](/handbook/java/methods/). La persistencia conserva datos después de terminar un proceso; consulta el [modelo relacional](/handbook/sql/relational-model/).
+
+## Índice de conocimientos canónicos
+
+- [Clases, objetos y encapsulamiento](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones y List](/handbook/java/collections/)
+- [Interfaces y polimorfismo](/handbook/java/interfaces/)
+- [Excepciones y try-with-resources](/handbook/java/exceptions/)
+- [Lambdas e interfaces funcionales](/handbook/java/lambdas/)
+
+Las siguientes secciones presentan una síntesis en el contexto de persistencia. Consulta las fichas independientes para profundizar.
+
+### Conocimientos complementarios
+
+- [Optional y ausencia de valores](/handbook/java/optional/)
+- [Fechas con LocalDate y JDBC](/handbook/java/dates/)
+
 ## Modelo orientado a objetos
 
 Una clase define estructura y comportamiento; una instancia representa un objeto concreto. Para mapear una tabla, el modelo debe representar sus atributos y proteger su estado.
@@ -41,7 +63,7 @@ for (Libro libro : libros) {
 }
 ```
 
-List<Libro> expresa qué objetos se esperan. List es un contrato y ArrayList una implementación. La colección en memoria no persiste por sí misma.
+`List<Libro>` expresa qué objetos se esperan. List es un contrato y ArrayList una implementación. La colección en memoria no persiste por sí misma.
 
 ## Interfaces y polimorfismo
 

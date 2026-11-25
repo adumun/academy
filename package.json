@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "validate:content": "node scripts/validate-content.mjs",
+    "prebuild": "npm run test:taxonomy && npm run validate:content && npm run validate:taxonomy",
+    "test:java-examples": "node scripts/test-java-examples.mjs",
+    "validate:taxonomy": "node scripts/validate-taxonomy.mjs",
+    "test:taxonomy": "node --test scripts/test-knowledge-taxonomy.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.4",

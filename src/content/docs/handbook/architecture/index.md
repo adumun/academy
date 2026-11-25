@@ -3,9 +3,16 @@ title: "MVC y DAO"
 description: "Responsabilidades, contratos, dependencias y refactorización de aplicaciones."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Interfaces y polimorfismo](/handbook/java/interfaces/)
+- [Colecciones y genéricos](/handbook/java/collections/)
+- [Excepciones](/handbook/java/exceptions/)
+
 ## Por qué separar responsabilidades
 
-MVC organiza la interacción con la interfaz: modelo, vista y controlador. DAO encapsula operaciones de acceso a datos. Son conceptos distintos que se complementan.
+Un patrón de diseño describe una solución reutilizable a un problema recurrente, no código obligatorio. MVC (Model-View-Controller) organiza la interacción con la interfaz: modelo, vista y controlador. DAO (Data Access Object) encapsula operaciones de acceso a datos, de modo que el resto de la aplicación utiliza su contrato sin conocer los detalles de almacenamiento. Son conceptos distintos que se complementan. Una [responsabilidad](/handbook/architecture/contracts/) es el trabajo que corresponde a una parte del software; un contrato define operaciones y resultados; una dependencia existe cuando una parte necesita otra para funcionar.
 
 | Pieza | Responsabilidad | Evita |
 | --- | --- | --- |
@@ -76,7 +83,50 @@ private void cargar() {
 }
 ```
 
-El controlador conoce el contrato; en este ejemplo simple selecciona una implementación. Más adelante puede recibirla mediante inyección de dependencias. El DAO no conoce controles JavaFX.
+El controlador conoce el contrato; en este ejemplo simple selecciona una implementación. Más adelante puede recibirla mediante inyección de dependencias: el consumidor recibe la implementación desde fuera, por ejemplo en un constructor, en lugar de construirla por sí mismo. Consulta [contratos y dependencias](/handbook/architecture/contracts/). El DAO no conoce controles JavaFX.
+
+## Sustituir una implementación · complementario
+
+El DAO es un [contrato](/handbook/java/interfaces/), no un nombre de clase obligatorio. Una implementación en memoria permite aislar el consumidor de la infraestructura.
+
+```java
+public class LibroDaoMemoria implements LibroDao {
+
+    private final List<Libro> libros = new ArrayList<>();
+
+    @Override
+    public List<Libro> listarTodos() {
+        return new ArrayList<>(libros);
+    }
+
+    @Override
+    public int insertar(Libro libro) {
+        libros.add(libro);
+        return 1;
+    }
+
+    @Override
+    public int actualizar(Libro libro) {
+        for (int i = 0; i < libros.size(); i++) {
+            if (libros.get(i).getId() == libro.getId()) {
+                libros.set(i, libro);
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    @Override
+    public int eliminar(int id) {
+        int anterior = libros.size();
+        libros.removeIf(libro -> libro.getId() == id);
+        return anterior - libros.size();
+    }
+}
+```
+
+Ejemplo educativo parcial de semántica: presupone IDs únicos asignados por el llamador; no reproduce generación de claves, restricciones SQL ni transacciones. No sustituye la prueba JDBC real. Utiliza [colecciones](/handbook/java/collections/) y una [lambda](/handbook/java/lambdas/) en removeIf. En un test del controlador, inyecta el contrato en lugar de acoplarlo a una implementación concreta.
 
 ## Refactorización en pasos verificables
 

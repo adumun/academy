@@ -3,9 +3,16 @@ title: "JavaFX"
 description: "Arquitectura de una aplicación de escritorio, ciclo de vida, controles y eventos."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Genéricos](/handbook/java/generics/)
+- [Colecciones](/handbook/java/collections/)
+- [Lambdas](/handbook/java/lambdas/)
+
 ## Modelo mental
 
-JavaFX construye interfaces gráficas mediante un árbol de nodos. Application gestiona el ciclo de vida; Stage es una ventana; Scene contiene el árbol de controles; un contenedor como VBox organiza sus hijos.
+JavaFX es una biblioteca y framework de interfaz gráfica (consulta [programas, API y frameworks](/handbook/java/programming/)). Una interfaz gráfica (UI) es la parte de una aplicación mediante la que el usuario interactúa con botones, campos y otros elementos. Un nodo es un objeto visual del árbol; un árbol organiza elementos padre e hijos, de modo que cada contenedor puede agrupar otros nodos. JavaFX construye interfaces gráficas mediante ese árbol. Application gestiona el ciclo de vida; Stage es una ventana; Scene contiene el árbol de controles; un contenedor como VBox organiza sus hijos.
 
 | Concepto | Responsabilidad |
 | --- | --- |
@@ -65,7 +72,7 @@ Ambos permiten construir el árbol visual. FXML facilita separar la estructura d
 
 ## Hilo de interfaz
 
-Un acceso JDBC lento dentro de un evento puede congelar temporalmente la ventana. Para comenzar se pueden usar operaciones locales y rápidas. Como ampliación, Task o Service permiten hacer trabajo bloqueante fuera del hilo JavaFX; los controles deben actualizarse desde el hilo de interfaz. No es necesario agregar concurrencia al primer laboratorio si no se solicita.
+Un hilo de ejecución es una secuencia de instrucciones que puede avanzar independientemente de otras. El hilo JavaFX procesa eventos y actualiza la interfaz; una operación bloqueante espera un resultado antes de continuar. Un acceso JDBC lento dentro de un [evento](/handbook/java/javafx/events/) puede congelar temporalmente la ventana. Para comenzar se pueden usar operaciones locales y rápidas. Como ampliación, Task o Service permiten hacer trabajo bloqueante fuera del hilo JavaFX; los controles deben actualizarse desde el hilo de interfaz. No es necesario agregar concurrencia al primer laboratorio si no se solicita.
 
 ## Diagnóstico inicial
 
@@ -75,6 +82,13 @@ Un acceso JDBC lento dentro de un evento puede congelar temporalmente la ventana
 - Interfaz congelada: mide duración de la tarea en el evento.
 
 ## Conceptos relacionados
+
+- [Controles de formulario](/handbook/java/javafx/controls/)
+- [Properties y binding](/handbook/java/javafx/properties-and-binding/)
+
+- [ObservableList](/handbook/java/javafx/observable-list/)
+- [Eventos y listeners](/handbook/java/javafx/events/)
+- [Patrón Observer](/handbook/architecture/observer/)
 
 - [Maven](/handbook/tools/maven/)
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)

@@ -5,7 +5,7 @@ description: "Esquema relacional, tipos, restricciones, consultas y operaciones 
 
 ## Modelo relacional
 
-Una tabla contiene filas y columnas. Cada fila representa un registro; la clave primaria identifica una fila de manera única. Las restricciones permiten que la base de datos proteja invariantes aunque una aplicación tenga errores.
+SQL (Structured Query Language) es un lenguaje para definir, consultar y modificar datos. Una [base de datos relacional](/handbook/sql/relational-model/) organiza datos en tablas con filas y columnas. Cada fila representa un registro; la clave primaria identifica una fila de manera única. Una restricción es una condición aplicada por el motor a los datos. Las restricciones permiten proteger [invariantes](/handbook/architecture/contracts/) (condiciones que deben mantenerse válidas) aunque una aplicación tenga errores. CRUD son las operaciones de crear, leer, actualizar y eliminar registros.
 
 | Categoría | Sentencias |
 | --- | --- |
@@ -44,7 +44,7 @@ Ejecuta la creación de tabla e inserciones iniciales una sola vez. AUTO_INCREME
 | DATE | LocalDate con conversión JDBC |
 | BOOLEAN | boolean / Boolean |
 
-La nulabilidad y el rango real deben ser compatibles con el modelo.
+La nulabilidad indica si una columna admite NULL (ausencia de un valor); el rango indica qué valores puede representar el tipo. Deben ser compatibles con los [tipos Java](/handbook/java/types/) y el modelo.
 
 ## Consultar
 
@@ -84,7 +84,15 @@ Los IDs concretos son ilustrativos; comprueba primero los existentes en tu entor
 - Un título NULL se rechaza por la restricción.
 - Una lectura con WHERE no modifica la tabla.
 
-En Java, usa marcadores ? y setters en lugar de concatenar valores. Nunca retires WHERE de una modificación por registro para «hacerla funcionar».
+En Java, usa [PreparedStatement](/handbook/java/jdbc/prepared-statement/) con marcadores ? y métodos de asignación de parámetros en lugar de concatenar valores. Nunca retires WHERE de una modificación por registro para «hacerla funcionar».
+
+## Profundizar por necesidad
+
+- [Consultas: SELECT, condiciones, JOIN y ordenamiento](/handbook/sql/queries/).
+- [Restricciones y modificaciones SQL](/handbook/sql/constraints-and-writes/).
+- [Tipos de fecha y conversión Java](/handbook/java/dates/).
+
+No es necesario estudiar JOIN para ejecutar un CRUD de una sola tabla. Utiliza la ficha correspondiente cuando el problema incluya relaciones entre entidades.
 
 ## Conceptos relacionados
 

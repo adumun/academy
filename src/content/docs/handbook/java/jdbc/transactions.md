@@ -5,7 +5,7 @@ description: "Auto-commit, commit, rollback y límites de una unidad de trabajo.
 
 ## Qué problema resuelven
 
-Una transacción agrupa operaciones relacionadas que deben confirmarse juntas o revertirse. Ejemplo: crear un préstamo y marcar un libro como no disponible; no conviene confirmar solo una de las dos operaciones.
+Una transacción agrupa operaciones relacionadas que deben confirmarse juntas o revertirse. Confirmar (commit) aplica los cambios pendientes según las garantías del motor; revertir (rollback) descarta los cambios no confirmados de esa unidad. Una unidad de trabajo representa una operación completa del negocio, que puede requerir varias sentencias SQL. El motor es el componente que administra almacenamiento e integridad de los datos (consulta [modelo relacional](/handbook/sql/relational-model/)). Ejemplo: crear un préstamo y marcar un libro como no disponible; no conviene confirmar solo una de las dos operaciones.
 
 ## API
 
@@ -51,7 +51,23 @@ public void actualizarPar(int idA, int idB) throws SQLException {
 }
 ```
 
-El ejemplo muestra atomicidad ante errores SQL, no valida que los IDs existan. Una regla de negocio adicional debe comprobar los resultados antes del commit. Algunos DDL generan commits implícitos según el motor.
+El ejemplo muestra atomicidad ante errores SQL, no valida que los IDs existan. Una regla de negocio adicional debe comprobar los resultados antes del commit. Algunas sentencias DDL (instrucciones que definen estructuras, como CREATE o ALTER) generan commits implícitos según el motor. Consulta [SQL y CRUD](/handbook/sql/).
+
+## ACID y límites · complementario
+
+Atomicidad: confirmar o revertir la unidad. Consistencia: preservar reglas de integridad. Aislamiento: controlar interferencias entre transacciones concurrentes. Durabilidad: conservar cambios confirmados según garantías del motor y configuración. JDBC configura la sesión, pero el motor aplica estas garantías.
+
+| API de Connection | Propósito |
+| --- | --- |
+| getTransactionIsolation() | Nivel de aislamiento actual |
+| setTransactionIsolation(int) | Solicitar otro nivel soportado |
+| setSavepoint() | Punto intermedio para rollback parcial |
+| rollback(Savepoint) | Revertir hasta el punto indicado |
+| releaseSavepoint(Savepoint) | Liberar el punto |
+
+Evita cambiar el nivel de aislamiento durante una transacción activa: el resultado puede depender del driver. En el ejemplo anterior, una sentencia sin coincidencias puede retornar cero sin lanzar excepción; si el negocio requiere que ambos libros existan, valida ese hecho y lanza un fallo antes del commit. Un error durante el commit o su respuesta de red puede dejar incertidumbre sobre el resultado; no reintentes escrituras automáticamente sin una estrategia de reconciliación (comprobar qué ocurrió antes de decidir) o idempotencia (repetir la misma operación lógica sin duplicar su efecto).
+
+Una transacción no debe permanecer abierta mientras el usuario piensa en un diálogo. Primero recoge y valida entradas, luego ejecuta una unidad de trabajo breve. Los [recursos y excepciones](/handbook/java/exceptions/) ayudan a delimitar la propiedad de conexión y rollback.
 
 ## Prueba y advertencias
 

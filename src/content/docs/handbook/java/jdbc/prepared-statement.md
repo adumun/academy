@@ -3,9 +3,15 @@ title: "PreparedStatement"
 description: "Parámetros SQL, firmas de métodos, consultas, DML y seguridad."
 ---
 
+## Conocimientos previos recomendados
+
+- [Conexión JDBC](/handbook/java/jdbc/connection/)
+- [Excepciones y recursos](/handbook/java/exceptions/)
+- [SQL](/handbook/sql/)
+
 ## Qué es y cuándo utilizarlo
 
-PreparedStatement representa una sentencia SQL parametrizable asociada a una Connection. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
+PreparedStatement representa una sentencia [SQL](/handbook/sql/queries/) parametrizable asociada a una [Connection](/handbook/java/jdbc/connection/). Una sentencia es una instrucción para el motor, por ejemplo SELECT o UPDATE. Parametrizar significa mantener la estructura SQL y suministrar los valores por separado mediante marcadores ?. Un parámetro SQL representa un valor de entrada; los parámetros de un [método Java](/handbook/java/methods/) son variables declaradas en su firma. Los setters vinculan valores de [tipos Java](/handbook/java/types/) compatibles con tipos SQL. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
 
 ## Anatomía de una sentencia
 
@@ -78,6 +84,10 @@ public int actualizar(Connection con, Libro libro) throws SQLException {
 
 La cantidad afectada permite comprobar el resultado; su significado exacto para UPDATE depende de la semántica del servidor y conector (filas coincidentes o modificadas). No presupongas que cero significa necesariamente que el ID no existe.
 
+## Ausencia de registros
+
+El método buscarPorId utiliza [Optional](/handbook/java/optional/) para expresar ausencia y no para ocultar SQLException. La conversión de [LocalDate](/handbook/java/dates/) a DATE debe preservar la intención del dominio.
+
 ## Fechas y valores nulos
 
 ```java
@@ -90,9 +100,39 @@ if (fechaApertura == null) {
 
 El ejemplo usa LocalDate y una columna que admite NULL. Si el dato es obligatorio, valídalo antes de ejecutar.
 
+## Recuperar claves generadas · complementario
+
+Cuando el servidor genera el ID al insertar, puedes solicitar las claves mediante `Statement.RETURN_GENERATED_KEYS`. El siguiente fragmento presupone una Connection abierta, un título validado y una tabla libro con ID autoincremental. Importa java.sql.PreparedStatement, java.sql.ResultSet, java.sql.Statement y java.sql.SQLException.
+
+```java
+String sql = "INSERT INTO libro (titulo) VALUES (?)";
+
+try (PreparedStatement ps = con.prepareStatement(
+        sql, Statement.RETURN_GENERATED_KEYS)) {
+
+    ps.setString(1, titulo);
+    int filas = ps.executeUpdate();
+
+    if (filas != 1) {
+        throw new SQLException("Inserción no confirmada");
+    }
+
+    try (ResultSet claves = ps.getGeneratedKeys()) {
+        if (!claves.next()) {
+            throw new SQLException("Clave no disponible");
+        }
+
+        int idGenerado = claves.getInt(1);
+        System.out.println(idGenerado);
+    }
+}
+```
+
+La disponibilidad y forma de las claves dependen del driver y la sentencia. El conteo no es la clave. Si la inserción ya se confirmó por auto-commit, fallar al recuperar la clave no la revierte automáticamente. Para una unidad atómica, revisa [transacciones JDBC](/handbook/java/jdbc/transactions/).
+
 ## Seguridad: qué resuelve y qué no
 
-Concatenar texto del usuario dentro de SQL mezcla datos e instrucciones y puede romper la sintaxis o introducir inyección SQL. Vincular parámetros separa los valores de la sentencia. Si debes seleccionar dinámicamente una columna para ordenar, usa una lista cerrada de nombres permitidos, no un valor arbitrario.
+La inyección SQL ocurre cuando datos externos alteran la estructura o intención de una sentencia. Concatenar texto del usuario dentro de SQL mezcla datos e instrucciones y puede romper la sintaxis o introducir inyección SQL. Vincular parámetros separa los valores de la sentencia. Si debes seleccionar dinámicamente una columna para ordenar, usa una lista cerrada de nombres permitidos, no un valor arbitrario.
 
 ## Errores habituales
 

@@ -5,7 +5,7 @@ description: "Estructura, dependencias, plugins, configuración y diagnóstico d
 
 ## Qué hace Maven
 
-Maven gestiona el build y resuelve dependencias según pom.xml. No instala el servidor MariaDB ni reemplaza al JDK. Un artefacto se identifica por groupId, artifactId y version.
+Maven es una herramienta de automatización de construcción de proyectos. Un build es el proceso que transforma el código fuente en una salida utilizable, normalmente mediante compilación, pruebas y empaquetado. Una dependencia es un componente externo que el proyecto necesita; Maven resuelve sus versiones y descarga artefactos según pom.xml (Project Object Model), un archivo [XML](/handbook/java/javafx/xml-and-fxml/) de configuración. No instala el servidor MariaDB ni reemplaza al [JDK](/handbook/java/programming/). Un artefacto es una unidad distribuible, por ejemplo un JAR, identificada por groupId (grupo), artifactId (nombre) y version (versión).
 
 ## Estructura de proyecto
 
@@ -22,7 +22,7 @@ libros-app/
     └── view/libro.fxml
 ```
 
-Maven incorpora los recursos al classpath. Por eso getResource("/view/libro.fxml") puede encontrar el FXML tras compilar.
+Maven incorpora los recursos al [classpath](/handbook/java/packages-and-imports/), las ubicaciones donde Java busca clases y recursos. Por eso getResource("/view/libro.fxml") puede encontrar el FXML tras compilar.
 
 ## POM de referencia
 
@@ -93,6 +93,30 @@ Baseline del curso: Java 21, JavaFX 21.0.6, MariaDB Connector/J 3.5.11. El ejemp
 | mvn test | Ejecutar pruebas configuradas |
 | mvn javafx:run | Iniciar la aplicación JavaFX |
 | mvn package | Empaquetar según el proyecto |
+
+## Dependencias, plugins y ciclo de vida · complementario
+
+Una dependencia aporta clases al proyecto; un plugin ejecuta tareas del build. No son intercambiables. Una dependencia directa se declara en el POM; una transitiva es requerida por otra dependencia. Un scope determina en qué etapas está disponible. Maven resuelve dependencias directas y transitivas y puede utilizar el repositorio local para evitar nuevas descargas.
+
+| Concepto | Comportamiento |
+| --- | --- |
+| compile | Scope por defecto; disponible al compilar y ejecutar |
+| runtime | Disponible en ejecución y pruebas, no en compilación principal |
+| test | Solo para compilación/ejecución de pruebas |
+| provided | Compilación y pruebas; el entorno aporta el artefacto en ejecución |
+| compile, test, package, verify | Fases del ciclo de vida default; al ejecutar una fase se recorren las previas |
+| clean | Ciclo separado que elimina salidas del build |
+
+Para diagnosticar un proyecto, ejecuta desde la carpeta que contiene pom.xml:
+
+```bash
+mvn -version
+mvn help:effective-pom
+mvn dependency:tree
+mvn clean compile
+```
+
+El POM efectivo combina configuración heredada y perfiles activos. dependency:tree muestra dependencias resueltas, no comprueba una conexión a MariaDB. Si falta una clase, verifica su dependencia y scope antes de cambiar versiones al azar. Fijar versiones de dependencias y plugins mejora la repetibilidad, pero no garantiza por sí solo un build hermético.
 
 ## Configurar credenciales locales
 

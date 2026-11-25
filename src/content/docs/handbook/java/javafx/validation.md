@@ -3,21 +3,29 @@ title: "Controles, validación y alertas"
 description: "Leer entradas, validar, manejar excepciones y confirmar operaciones."
 ---
 
+## Conocimientos previos recomendados
+
+- [Clases y objetos](/handbook/java/classes-and-objects/)
+- [Excepciones](/handbook/java/exceptions/)
+- [Eventos](/handbook/java/javafx/events/)
+
 ## Referencia de controles
 
 | Control | Lectura o acción habitual |
 | --- | --- |
 | TextField | getText(), setText(), clear() |
 | TextArea | getText(), setText(), clear() |
-| ComboBox<T> | getValue(), setValue(), getItems() |
+| `ComboBox<T>` | getValue(), setValue(), getItems() |
 | DatePicker | getValue() devuelve LocalDate o null |
 | Button | onAction en FXML o setOnAction |
-| TableView<T> | Selección y colección de elementos |
+| `TableView<T>` | Selección y colección de elementos |
 | Alert | showAndWait() para diálogo modal |
 
 ## Qué validar
 
-Valida el formulario antes de construir el modelo o invocar el DAO. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
+Un formulario es un conjunto de [controles](/handbook/java/javafx/controls/) que permite introducir datos. Validar significa comprobar condiciones antes de aceptar una operación; una regla del dominio protege un requisito del problema, por ejemplo que la cantidad sea positiva. Una alerta es un diálogo que comunica información o pide confirmación; modal significa que restringe la interacción con otras ventanas según su modalidad. Una [condición booleana](/handbook/java/expressions/) devuelve true o false y permite decidir si continuar.
+
+Valida el formulario antes de construir el [objeto del dominio](/handbook/java/classes-and-objects/) o invocar el DAO. La validación es una regla, mientras las [excepciones](/handbook/java/exceptions/) representan fallos o condiciones excepcionales del contrato. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
 
 ```java
 private boolean validarTitulo(String titulo) {
@@ -100,6 +108,28 @@ private void mostrarError(String mensaje) {
 
 El detalle técnico puede registrarse por separado sin incluir credenciales ni datos sensibles.
 
+## Números, fechas y selecciones · complementario
+
+Los TextField contienen texto, no números. [Convertir o analizar un valor](/handbook/java/types/) transforma el texto en un tipo numérico; validar comprueba que ese valor cumpla la regla. Una entrada vacía y una [referencia null](/handbook/java/references/) son situaciones distintas. Convierte y valida antes de construir el modelo. Fragmento de controlador con txtCantidad y mostrarError definidos:
+
+```java
+int cantidad;
+
+try {
+    cantidad = Integer.parseInt(txtCantidad.getText().strip());
+} catch (NumberFormatException e) {
+    mostrarError("Ingresa un número entero válido.");
+    return;
+}
+
+if (cantidad <= 0) {
+    mostrarError("La cantidad debe ser positiva.");
+    return;
+}
+```
+
+Una fecha de DatePicker es [LocalDate](/handbook/java/dates/); verifica si hay valor y si satisface las reglas del dominio. Una `ComboBox<Libro>` utiliza [genéricos](/handbook/java/generics/) y retorna el objeto seleccionado con getValue(), que puede ser null. No confundas el texto mostrado con la identidad del objeto. Para reaccionar a cambios de entrada usa [eventos y listeners](/handbook/java/javafx/events/); no dupliques todas las reglas de negocio en cada listener.
+
 ## Casos de prueba
 
 | Entrada | Resultado |
@@ -114,6 +144,9 @@ El detalle técnico puede registrarse por separado sin incluir credenciales ni d
 Para fechas, comprueba que DatePicker.getValue() no sea null antes de convertir a java.sql.Date. Para números, captura NumberFormatException y aplica límites de dominio.
 
 ## Conceptos relacionados
+
+- [Controles de formulario](/handbook/java/javafx/controls/)
+- [Properties y binding](/handbook/java/javafx/properties-and-binding/)
 
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)
 - [TableView](/handbook/java/javafx/table-view/)
