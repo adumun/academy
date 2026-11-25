@@ -5,7 +5,9 @@ description: "Declaración, inicialización, asignación, alcance y final."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
-## Qué es una variable
+## Qué es una variable en Java
+
+Consulta [valores, variables y tipos](/handbook/foundations/values-and-types/) para la definición independiente del lenguaje. Aquí se desarrolla la semántica de almacenamiento, asignación y alcance en Java.
 
 Una variable es un lugar de almacenamiento identificado por un nombre que contiene un valor de un [tipo](/handbook/java/types/). El tipo determina qué valores puede contener y qué operaciones son válidas. Declarar una variable no es lo mismo que asignarle un valor.
 

@@ -7,6 +7,8 @@ description: "Literales, evaluación, asignación, comparación, booleanos y pre
 
 ## Expresión e instrucción
 
+Consulta [expresiones y control de flujo](/handbook/foundations/flow/) para el modelo conceptual. Esta página desarrolla los operadores y reglas de evaluación propios de Java.
+
 Una expresión es una construcción que puede evaluarse para producir un valor o realizar un efecto, según el caso. Una instrucción (statement) es una unidad de ejecución. Un literal representa directamente un valor, como 42, "Java" o true.
 
 ```java

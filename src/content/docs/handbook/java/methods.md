@@ -5,7 +5,9 @@ description: "Firma, argumentos, retorno, void, static y sobrecarga."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
-## Qué es un método
+## Qué es un método en Java
+
+Las [operaciones, parámetros y contratos](/handbook/foundations/operations/) existen independientemente del lenguaje. Aquí se documentan las reglas de declaración, invocación y retorno de métodos en Java.
 
 Un método es una operación con nombre declarada en una clase o interfaz. Su cuerpo puede ejecutar instrucciones, recibir datos mediante parámetros y devolver un resultado. El conjunto de operaciones de un objeto contribuye a su comportamiento.
 

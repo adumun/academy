@@ -7,6 +7,8 @@ description: "Diferencia entre objetos y referencias, alias, igualdad, ausencia 
 
 ## Objeto y referencia
 
+Los [objetos, identidad y estado](/handbook/foundations/objects/) son conceptos generales. Aquí se explica cómo Java representa y copia referencias y cómo utiliza null.
+
 Un [objeto](/handbook/java/classes-and-objects/) es una instancia creada en ejecución. Una referencia es un valor que permite acceder a ese objeto. Una [variable](/handbook/java/variables/) de [tipo de referencia](/handbook/java/types/) contiene una referencia o null, no una copia automática del objeto.
 
 ```java

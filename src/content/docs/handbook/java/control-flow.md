@@ -7,6 +7,8 @@ description: "Bloques, if, else, while, for, return y recorrido de datos."
 
 ## Qué es el flujo de ejecución
 
+Los [conceptos de secuencia, decisión y repetición](/handbook/foundations/flow/) son independientes de Java. Esta ficha muestra sus construcciones concretas y su sintaxis.
+
 El flujo es el orden en que el programa ejecuta sus instrucciones. Una condición es una [expresión booleana](/handbook/java/expressions/) que permite elegir caminos. Un bloque agrupa instrucciones entre llaves.
 
 ## Decisiones

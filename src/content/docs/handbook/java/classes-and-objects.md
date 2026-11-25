@@ -11,7 +11,9 @@ description: "Estado, identidad, constructores, acceso y modelos de dominio."
 - [Tipos de datos](/handbook/java/types/)
 - [Métodos, parámetros y retorno](/handbook/java/methods/)
 
-## Clase e instancia
+## Clase e instancia en Java
+
+La definición canónica independiente del lenguaje está en [objetos, estado y comportamiento](/handbook/foundations/objects/). Aquí se desarrolla su implementación mediante clases, campos, constructores y referencias de Java.
 
 Una **clase** define un [tipo](/handbook/java/types/): especifica qué información y operaciones tienen sus objetos. Una **instancia** u objeto es una realización concreta de esa clase, creada durante la ejecución.
 
@@ -41,7 +43,7 @@ Fragmento con la clase Libro del ejemplo siguiente. Salida esperada: true y fals
 
 La **encapsulación** protege el estado mediante una interfaz de uso controlada. Una [invariante](/handbook/architecture/contracts/) es una condición que debe mantenerse válida, como exigir un título no vacío.
 
-## Ejemplo completo
+## Ejemplo completo: contexto ilustrativo de biblioteca
 
 ```java
 public class Libro {
@@ -93,7 +95,7 @@ Un getter es una operación que expone un valor, no una obligación de permitir 
 
 El ID de persistencia identifica una fila; el operador == entre referencias comprueba si apuntan al mismo objeto. equals puede representar igualdad lógica si el modelo lo define. No asumas que dos instancias obtenidas en consultas distintas son el mismo objeto.
 
-## Mapeo y límites
+## Aplicaciones e implementaciones: persistencia
 
 [ResultSet](/handbook/java/jdbc/result-set/) lee filas y construye objetos. Cada fila requiere una instancia propia. El modelo no debería contener [SQL](/handbook/sql/) ni controles de interfaz: el [DAO y controlador](/handbook/architecture/) se encargan de esos aspectos. Para una UI observable, puedes adaptar el modelo sin introducir JavaFX en el dominio.
 

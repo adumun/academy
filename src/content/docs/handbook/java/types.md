@@ -5,7 +5,9 @@ description: "Primitivos, referencias, String, wrappers y compatibilidad de tipo
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
-## Qué es un tipo
+## Qué es un tipo en Java
+
+La definición general de [valor y tipo](/handbook/foundations/values-and-types/) se aplica a distintos lenguajes; esta página documenta los tipos y conversiones de Java.
 
 Un tipo define un conjunto de valores posibles y las operaciones que se pueden realizar con ellos. Por ejemplo, int permite representar enteros de 32 bits con signo; boolean representa true o false. Un tipo de referencia como String permite representar una referencia a un objeto de esa clase o null.
 

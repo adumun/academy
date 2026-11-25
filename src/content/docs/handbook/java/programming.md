@@ -7,6 +7,8 @@ description: "Instrucciones, compilador, JVM, JDK, API y bibliotecas."
 
 ## Del problema al programa
 
+Los [programas y algoritmos](/handbook/foundations/programs/) son conceptos generales. Esta ficha explica el ciclo de compilación y ejecución específico de Java.
+
 Un programa es una secuencia y estructura de instrucciones que un computador puede ejecutar para realizar una tarea. El código fuente es su representación escrita en un lenguaje de programación. Un algoritmo describe un procedimiento para resolver un problema; un programa lo implementa con datos, instrucciones y mecanismos de entrada y salida.
 
 En Java, un archivo .java contiene código fuente. javac es el compilador: comprueba la sintaxis y los tipos y genera archivos .class con bytecode. La JVM (Java Virtual Machine) ejecuta ese bytecode. El JDK (Java Development Kit) proporciona herramientas de desarrollo, incluido javac, además del entorno de ejecución.
