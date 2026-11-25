@@ -1,57 +1,127 @@
 ---
-title: PreparedStatement
-description: Consultas parametrizadas, índices, ejecución y errores frecuentes.
+title: "PreparedStatement"
+description: "Parámetros SQL, firmas de métodos, consultas, DML y seguridad."
 ---
 
-## Para qué sirve
+## Qué es y cuándo utilizarlo
 
-Representa una sentencia SQL preparada. Los marcadores `?` representan valores, no identificadores SQL como nombres de tablas.
+PreparedStatement representa una sentencia SQL parametrizable asociada a una Connection. Úsala cuando una consulta recibe valores de un formulario, objeto, búsqueda o identificador. Un parámetro representa un valor SQL, no un nombre de tabla, columna ni palabra reservada.
 
-## Ejemplo de lectura
+## Anatomía de una sentencia
 
-Este fragmento presupone una Connection abierta y un modelo Libro con constructor (int, String).
+```sql
+UPDATE libro SET titulo = ? WHERE id = ?;
+```
+
+El primer marcador recibe el título y el segundo el ID. Los índices son independientes de los índices de listas Java: comienzan en 1.
+
+| Firma simplificada | Tipo o resultado |
+| --- | --- |
+| void setString(int index, String value) | VARCHAR y textos |
+| void setInt(int index, int value) | INTEGER |
+| void setLong(int index, long value) | BIGINT |
+| void setBigDecimal(int index, BigDecimal value) | DECIMAL exacto |
+| void setBoolean(int index, boolean value) | Booleano |
+| void setDate(int index, java.sql.Date value) | DATE |
+| void setNull(int index, int sqlType) | NULL tipado |
+| ResultSet executeQuery() | Resultado de una consulta |
+| int executeUpdate() | Filas afectadas por DML; cero para ciertas sentencias sin conteo |
+| void clearParameters() | Limpia valores vinculados |
+| void close() | Libera recursos |
+
+Los métodos JDBC anteriores pueden lanzar SQLException. Los setters deben corresponder al tipo SQL de cada marcador.
+
+## SELECT parametrizado
+
+El siguiente método supone una Connection abierta recibida por parámetro y un modelo Libro.
 
 ```java
-String sql = "SELECT id, titulo FROM libro WHERE id = ?";
+public Optional<Libro> buscarPorId(Connection con, int id)
+        throws SQLException {
 
-try (PreparedStatement ps = con.prepareStatement(sql)) {
-    ps.setInt(1, id);
+    String sql = "SELECT id, titulo FROM libro WHERE id = ?";
 
-    try (ResultSet rs = ps.executeQuery()) {
-        if (rs.next()) {
-            Libro libro = new Libro(
-                    rs.getInt("id"),
-                    rs.getString("titulo")
-            );
-            System.out.println(libro.getTitulo());
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setInt(1, id);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                Libro libro = new Libro(
+                        rs.getInt("id"),
+                        rs.getString("titulo")
+                );
+                return Optional.of(libro);
+            }
         }
+    }
+
+    return Optional.empty();
+}
+```
+
+Optional permite representar la ausencia de un registro sin devolver null. Requiere java.util.Optional; no es obligatorio para el primer laboratorio, pero resulta útil como contrato.
+
+## UPDATE parametrizado
+
+```java
+public int actualizar(Connection con, Libro libro) throws SQLException {
+    String sql = "UPDATE libro SET titulo = ? WHERE id = ?";
+
+    try (PreparedStatement ps = con.prepareStatement(sql)) {
+        ps.setString(1, libro.getTitulo());
+        ps.setInt(2, libro.getId());
+
+        return ps.executeUpdate();
     }
 }
 ```
 
-| Método | Uso |
-| --- | --- |
-| setInt(int, int) | Vincular un entero |
-| setString(int, String) | Vincular texto |
-| executeQuery() | Obtener ResultSet |
-| executeUpdate() | Obtener el número de filas afectadas por DML |
+La cantidad afectada permite comprobar el resultado; su significado exacto para UPDATE depende de la semántica del servidor y conector (filas coincidentes o modificadas). No presupongas que cero significa necesariamente que el ID no existe.
 
-Los índices empiezan en 1. Evita concatenar valores del formulario dentro del SQL. Los métodos pueden lanzar SQLException.
+## Fechas y valores nulos
 
-## Diagnóstico
+```java
+if (fechaApertura == null) {
+    ps.setNull(1, java.sql.Types.DATE);
+} else {
+    ps.setDate(1, java.sql.Date.valueOf(fechaApertura));
+}
+```
 
-Parameter index out of range: compara el número de marcadores con las posiciones usadas por los setters.
+El ejemplo usa LocalDate y una columna que admite NULL. Si el dato es obligatorio, valídalo antes de ejecutar.
 
-## Documentación oficial
+## Seguridad: qué resuelve y qué no
 
-[API Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html)
+Concatenar texto del usuario dentro de SQL mezcla datos e instrucciones y puede romper la sintaxis o introducir inyección SQL. Vincular parámetros separa los valores de la sentencia. Si debes seleccionar dinámicamente una columna para ordenar, usa una lista cerrada de nombres permitidos, no un valor arbitrario.
+
+## Errores habituales
+
+| Error | Causa posible | Corrección |
+| --- | --- | --- |
+| Parameter index out of range | Índice 0 o mayor que número de marcadores | Contar los signos ? |
+| No value specified for parameter | Falta asignación | Vincular todos antes de ejecutar |
+| Tipo incompatible | setInt para un texto, o viceversa | Revisar esquema y orden |
+| executeQuery en DELETE | API incorrecta | Usar executeUpdate |
+| SQL syntax error | SQL incorrecto | Revisar sentencia; parametrizar no corrige sintaxis |
+
+## Prueba observable
+
+Busca un título que contenga un apóstrofo, como O'Connor, utilizando setString. Debe tratarse como texto. Busca un ID existente e inexistente y comprueba ambos resultados. Trabaja solo sobre una base desechable.
 
 ## Conceptos relacionados
 
-- [JDBC](/handbook/java/jdbc/)
-- [ResultSet y cursor](/handbook/java/jdbc/result-set/)
-- [SQL y CRUD](/handbook/sql/)
+- [Connection](/handbook/java/jdbc/connection/)
+- [ResultSet](/handbook/java/jdbc/result-set/)
+- [CRUD desde Java](/handbook/java/jdbc/crud/)
+- [SQL](/handbook/sql/)
+
+## Documentación oficial
+
+- [PreparedStatement, Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/PreparedStatement.html)
+- [Statement](https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/java/sql/Statement.html)
 
 ## Practicar en Academic Labs
 
-- [Microdesafíos JDBC y JavaFX](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-microdesafios/)
+- [Laboratorio guiado JDBC y DAO](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-dao-guiado/)
+- [Microdesafíos](https://academic-labs.adumun.cl/activities/dsy1102-jdbc-microdesafios/)
+- [Detective JDBC](https://academic-labs.adumun.cl/activities/dsy1102-detective-jdbc/)
