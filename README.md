@@ -1,9 +1,16 @@
 # ADÜMÜN Academy
 
-Biblioteca pública de conocimiento técnico y rutas de aprendizaje.
+Biblioteca pública de conocimiento técnico y rutas de aprendizaje. Astro + Starlight, salida estática.
 
-- Jira: [ADU-93](https://adumun.atlassian.net/browse/ADU-93)
-- Práctica: [Academic Labs](https://academic-labs.adumun.cl/)
-- Repositorio público; no incluir material reservado ni datos personales.
+```bash
+npm install
+npm run dev
+npm run build
+```
 
-El Handbook se implementará por incrementos mediante pull requests.
+Primer incremento en revisión; la instalación/build y el lockfile deben verificarse antes de publicar.
+
+- [Despliegue](docs/DEPLOYMENT.md)
+- [Política editorial](docs/EDITORIAL.md)
+- [ADU-93](https://adumun.atlassian.net/browse/ADU-93)
+- [Academic Labs](https://academic-labs.adumun.cl/)
