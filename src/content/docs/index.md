@@ -16,7 +16,7 @@ Academy es un espacio de consulta y aprendizaje técnico. El contenido se organi
 
 ## Primer conjunto de conocimientos
 
-Java 21, SQL relacional, JDBC, JavaFX, Maven y patrones MVC/DAO. Las páginas incluyen ejemplos, referencias de API y diagnóstico. El sitio se ampliará por incrementos revisados, sin prometer un catálogo completo de todas las tecnologías.
+[Java 21](/handbook/java/programming/) es el lenguaje y entorno de partida; [SQL relacional](/handbook/sql/relational-model/) permite trabajar con datos persistentes; [JDBC](/handbook/java/jdbc/) conecta Java con la base de datos; [JavaFX](/handbook/java/javafx/) construye interfaces gráficas; [Maven](/handbook/tools/maven/) automatiza la construcción del proyecto; [MVC/DAO](/handbook/architecture/) organiza responsabilidades. Las páginas incluyen ejemplos, referencias de API y diagnóstico. El sitio se ampliará por incrementos revisados, sin prometer un catálogo completo de todas las tecnologías.
 
 ## Cómo se relacionan los recursos
 

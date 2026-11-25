@@ -40,6 +40,7 @@ Una página puede comenzar como explicación o referencia; cuando un caso crece,
 - [ ] Los ejemplos declaran contexto, dependencias y resultado; distinguir revisión estática de ejecución.
 - [ ] Errores frecuentes, causas y comprobaciones están cubiertos cuando corresponde.
 - [ ] Enlaces internos válidos, fuentes primarias pertinentes, práctica relacionada cuando existe.
+- [ ] Cada término técnico necesario para comprender el contenido se define brevemente o enlaza en su primera aparición significativa, según nivel y contexto; no se presupone vocabulario desconocido.
 - [ ] No reproduce material de terceros ni contenido reservado.
 - [ ] Revisión técnica, pedagógica, visual móvil y build antes de declarar publicación.
 
@@ -56,3 +57,13 @@ Los prerrequisitos editoriales son recomendaciones de lectura, no dependencias o
 ### Controles reproducibles
 
 `npm run validate:content` comprueba frontmatter mínimo, rutas internas y delimitadores de bloques de código. `npm run test:java-examples` extrae nueve ejemplos autónomos de las fichas y compara su salida con expectativas usando JDK 21. El build ejecuta la validación de contenido; la suite Java es separada para no exigir Java al hosting estático. La comprobación no sustituye pruebas de JavaFX/MariaDB, validación de enlaces externos o revisión visual.
+
+## Regla de cobertura semántica — ADU-221
+
+Antes de aceptar una ficha, leerla desde la perspectiva de una persona que conoce menos que el autor. Preguntar por cada término técnico significativo: ¿qué es?, ¿qué conocimiento presupone?, ¿necesita una explicación aquí o una ficha reutilizable?
+
+- Definición local: explica en una frase el término necesario para entender la oración; usa un ejemplo o contraste si evita ambigüedad (estado frente a comportamiento, valor frente a referencia, validación frente a conversión).
+- Ficha canónica: crea una página útil y autónoma cuando el concepto se reutiliza o necesita profundidad; enlázala desde el texto y, si aporta orientación, desde los conocimientos previos recomendados. No crear páginas vacías ni duplicar una explicación extensa.
+- Nivel: el lector puede seguir leyendo con el recordatorio o profundizar sin obligación de recorrer todos los enlaces. No enlazar palabras ordinarias ni cada repetición.
+- Cierre: auditar introducciones, tablas de API, explicaciones de código, errores y rutas. Identificar acrónimos, términos en inglés y supuestos tácitos. Registrar brechas detectadas y soluciones; un build verde no demuestra comprensión pedagógica.
+- Los enlaces de consulta pueden tener ciclos semánticos; no representan dependencias obligatorias de competencias. Mantener separación con Learning Roadmaps y Competency Engine.

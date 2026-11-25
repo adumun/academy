@@ -5,12 +5,13 @@ description: "Ruta inicial de consulta transversal para desarrollo de software."
 
 ## Alcance inicial
 
-Esta ruta agrupa conocimientos reutilizables para estudiantes y colaboradores. No representa todavía un programa de onboarding completo ni una certificación.
+Esta ruta agrupa conocimientos reutilizables para estudiantes y colaboradores. Onboarding significa incorporación a un equipo y sus herramientas; una certificación acredita un resultado bajo condiciones definidas. Esta ruta de consulta no representa todavía un programa de onboarding completo ni una certificación.
 
 ## Capacidades disponibles
 
 | Capacidad | Recursos |
 | --- | --- |
+| Comprender programas y código | [Programas](/handbook/java/programming/), [variables](/handbook/java/variables/), [tipos](/handbook/java/types/) y [métodos](/handbook/java/methods/) |
 | Construir y ejecutar proyectos | [Maven](/handbook/tools/maven/) |
 | Modelar datos y contratos | [Java y POO](/handbook/java/fundamentals/) |
 | Consultar y persistir información | [SQL](/handbook/sql/) y [JDBC](/handbook/java/jdbc/) |

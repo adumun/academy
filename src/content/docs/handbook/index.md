@@ -17,6 +17,17 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 
 ### Fundamentos reutilizables
 
+Si necesitas partir desde el significado de los términos, estas fichas explican el vocabulario de programación sin exigir conocimientos de POO ni de persistencia.
+
+- [Programas, código fuente y ejecución](/handbook/java/programming/)
+- [Variables, valores y constantes](/handbook/java/variables/)
+- [Tipos de datos y conversiones](/handbook/java/types/)
+- [Referencias, identidad y null](/handbook/java/references/)
+- [Métodos, parámetros y retorno](/handbook/java/methods/)
+- [Expresiones y operadores](/handbook/java/expressions/)
+- [Control de flujo](/handbook/java/control-flow/)
+- [Paquetes e imports](/handbook/java/packages-and-imports/)
+
 - [Clases y objetos](/handbook/java/classes-and-objects/)
 - [Genéricos](/handbook/java/generics/)
 - [Colecciones y List](/handbook/java/collections/)
@@ -25,6 +36,9 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 - [Lambdas](/handbook/java/lambdas/)
 
 ## Datos y arquitectura
+
+- [Datos, persistencia y modelo relacional](/handbook/sql/relational-model/)
+- [Contratos, responsabilidades y dependencias](/handbook/architecture/contracts/)
 
 - [SQL y CRUD](/handbook/sql/): esquema, tipos, restricciones y operaciones.
 - [MVC y DAO](/handbook/architecture/): responsabilidades, contratos y acceso a datos.
@@ -36,7 +50,7 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 
 ## Cómo utilizar cada ficha
 
-Consulta el propósito, contrato, ejemplo, diagnóstico y prueba observable. Los fragmentos indican su contexto; no todos son programas independientes. Las referencias oficiales permiten profundizar. Las actividades prácticas se desarrollan en Academic Labs.
+Consulta el propósito, [contrato](/handbook/architecture/contracts/) (entradas, resultados y reglas), ejemplo, diagnóstico y prueba observable. Una ficha canónica es la explicación principal de un concepto; las demás páginas pueden resumirlo y enlazarla. En los enlaces dentro del texto se explican términos que podrían ser nuevos, sin obligarte a seguir una ruta completa. Los fragmentos indican su contexto; no todos son programas independientes. Las referencias oficiales permiten profundizar. Las actividades prácticas se desarrollan en Academic Labs.
 
 ## Conceptos relacionados
 
