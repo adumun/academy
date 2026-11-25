@@ -10,9 +10,9 @@ description: "Proyección, condiciones, NULL, JOIN y agregaciones."
 - [SQL y CRUD](/handbook/sql/)
 - [Modelo relacional](/handbook/sql/relational-model/)
 
-Si luego implementas el mapeo en Java, consulta [clases y objetos](/handbook/java/classes-and-objects/). Ese conocimiento no es un requisito para consultar SQL.
-
 ## Modelo mental
+
+Si luego implementas el mapeo en Java, consulta [clases y objetos](/handbook/java/classes-and-objects/). Ese conocimiento no es un requisito para consultar SQL.
 
 SELECT produce un resultado de [filas y columnas](/handbook/sql/relational-model/); en una consulta ordinaria de lectura no modifica los datos. Una condición es una expresión lógica que evalúa qué filas cumplen una regla; SQL admite TRUE, FALSE y UNKNOWN (por ejemplo, al comparar con NULL), a diferencia de los [booleanos Java](/handbook/java/expressions/) de dos valores. La proyección elige columnas, WHERE filtra filas y ORDER BY determina el orden. La consulta no es una colección Java hasta que se transforma mediante [ResultSet](/handbook/java/jdbc/result-set/).
 
