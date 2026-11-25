@@ -11,7 +11,7 @@ description: "Contratos, implementaciones, sustitución y desacoplamiento."
 
 ## Contrato y comportamiento
 
-Una interfaz expresa operaciones disponibles para un consumidor sin exigir que conozca una implementación concreta. Un contrato no es solamente una firma: también define qué significa el resultado, qué entradas son válidas y qué errores pueden producirse.
+Una interfaz es un [tipo de referencia](/handbook/java/types/) que expresa operaciones disponibles para un consumidor (código que las utiliza), sin exigir que conozca una implementación concreta. Una implementación es una clase que cumple esas operaciones. Un [contrato](/handbook/architecture/contracts/) no es solamente una [firma de método](/handbook/java/methods/): también define qué significa el resultado, qué entradas son válidas y qué errores pueden producirse. Polimorfismo significa que una misma referencia del tipo de la interfaz puede invocar el comportamiento de diferentes implementaciones; se selecciona el método de instancia apropiado durante la ejecución. Un método abstracto declara una operación sin cuerpo en ese contexto.
 
 ## Ejemplo completo
 

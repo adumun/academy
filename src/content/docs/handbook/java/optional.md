@@ -13,7 +13,7 @@ description: "Representar ausencia explícita, métodos y límites."
 
 ## Qué representa
 
-`Optional<T>` representa presencia o ausencia de un valor no nulo. No representa automáticamente éxito o error. Una consulta que no encuentra una fila puede retornar Optional.empty(); un fallo JDBC debe conservar su excepción.
+`Optional<T>` representa presencia o ausencia de un valor no nulo. T es el [parámetro genérico](/handbook/java/generics/); [null](/handbook/java/references/) significa que no hay referencia a un objeto. Optional expresa ausencia mediante una instancia vacía y proporciona [métodos](/handbook/java/methods/) para consultarla o transformar su contenido. En orElseGet, map e ifPresent se pasan [interfaces funcionales](/handbook/java/lambdas/). No representa automáticamente éxito o error. Una consulta que no encuentra una fila puede retornar Optional.empty(); un fallo JDBC debe conservar su excepción.
 
 | Método | Semántica |
 | --- | --- |

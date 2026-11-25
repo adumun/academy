@@ -11,7 +11,7 @@ description: "Errores, propagación, captura, recursos y diagnóstico."
 
 ## Qué representa una excepción
 
-Una excepción interrumpe el flujo normal y transporta información sobre una operación que no pudo completarse normalmente. No todas las excepciones son errores recuperables ni requieren ser capturadas en el mismo lugar.
+Una excepción es un objeto que representa una condición excepcional: interrumpe el [flujo normal](/handbook/java/control-flow/) y transporta información sobre una operación que no pudo completarse normalmente. Lanzar (throw) transfiere el control; capturar (catch) permite tratar el fallo; declarar (throws) indica al llamador las excepciones comprobadas que pueden propagarse. Un recurso es algo que requiere gestión de ciclo de vida, como un archivo o una conexión; AutoCloseable es una [interfaz](/handbook/java/interfaces/) cuyo método close libera el recurso. No todas las excepciones son errores recuperables ni requieren ser capturadas en el mismo lugar.
 
 | Tipo | Ejemplo | Tratamiento |
 | --- | --- | --- |

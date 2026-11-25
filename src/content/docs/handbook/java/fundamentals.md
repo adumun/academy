@@ -3,6 +3,10 @@ title: "Java y POO para persistencia"
 description: "Clases, encapsulamiento, constructores, colecciones, interfaces y excepciones."
 ---
 
+## Antes de comenzar
+
+Si estás iniciándote en Java, comprende primero qué es un [programa](/handbook/java/programming/), cómo las [variables](/handbook/java/variables/) almacenan valores de un [tipo](/handbook/java/types/), cómo se ejecutan [expresiones](/handbook/java/expressions/) y [decisiones y bucles](/handbook/java/control-flow/), y cómo se invocan [métodos](/handbook/java/methods/). La persistencia conserva datos después de terminar un proceso; consulta el [modelo relacional](/handbook/sql/relational-model/).
+
 ## Índice de conocimientos canónicos
 
 - [Clases, objetos y encapsulamiento](/handbook/java/classes-and-objects/)

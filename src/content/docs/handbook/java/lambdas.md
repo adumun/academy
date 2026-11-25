@@ -12,7 +12,7 @@ description: "Funciones como valores, parámetros, callbacks y referencias a mé
 
 ## Qué es una lambda
 
-Una lambda expresa una implementación de una interfaz funcional: una interfaz con un único método abstracto relevante. El tipo de destino determina los parámetros y retorno esperados.
+Una lambda expresa una implementación de una [interfaz funcional](/handbook/java/interfaces/): una interfaz con un único método abstracto relevante. Un método abstracto especifica una operación sin su cuerpo. El tipo de destino determina los [parámetros y retorno](/handbook/java/methods/) esperados. Una [expresión](/handbook/java/expressions/) lambda permite describir una operación en el lugar donde otra API la necesita. Un callback es código entregado a otro componente para que lo invoque cuando corresponda; por ejemplo, un filtro llama a un Predicate para cada elemento.
 
 ```java
 Predicate<String> noVacio = texto -> !texto.isBlank();

@@ -12,7 +12,7 @@ description: "Parámetros de tipo, seguridad de tipos, límites, comodines e inv
 
 ## Qué problema resuelven
 
-Un genérico parametriza un tipo o método. Permite expresar qué clase de valor acepta o devuelve una estructura sin escribir una implementación diferente para cada tipo. El compilador comprueba la compatibilidad antes de ejecutar.
+Un genérico parametriza un [tipo](/handbook/java/types/) o [método](/handbook/java/methods/). Parametrizar significa declarar una parte variable del contrato (por ejemplo T) y especificarla cuando se usa. Una caja de String y una caja de Integer tienen la misma implementación, pero aceptan valores de tipos distintos. El [compilador](/handbook/java/programming/) comprueba la compatibilidad antes de ejecutar. Una [colección](/handbook/java/collections/) es una estructura que agrupa elementos; sus genéricos indican qué elementos admite. Los límites y comodines avanzados presuponen la relación entre tipos e interfaces.
 
 ```java
 List<String> titulos = new ArrayList<>();

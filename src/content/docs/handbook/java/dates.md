@@ -10,6 +10,10 @@ description: "Fechas sin hora, conversión y validación de entrada."
 - [Clases y objetos](/handbook/java/classes-and-objects/)
 - [Excepciones](/handbook/java/exceptions/)
 
+## Conceptos de partida
+
+Una fecha de calendario identifica año, mes y día; una hora local indica la hora del reloj sin identificar necesariamente un instante global. Una zona horaria define reglas para relacionar horas locales con instantes. Un [tipo](/handbook/java/types/) determina qué valores y operaciones puede representar. Inmutable significa que el estado observable de una instancia no cambia; una operación que suma días devuelve otra [instancia](/handbook/java/classes-and-objects/). SQL DATE almacena fecha sin hora; consulta el [modelo relacional](/handbook/sql/relational-model/) para comprender los tipos de columna.
+
 ## Elegir el tipo correcto
 
 | Tipo | Representa |
