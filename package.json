@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "validate:content": "node scripts/validate-content.mjs",
+    "prebuild": "npm run validate:content",
+    "test:java-examples": "node scripts/test-java-examples.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.4",

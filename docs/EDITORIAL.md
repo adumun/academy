@@ -48,3 +48,11 @@ Primer piloto: TableView, con referencia, explicación de observabilidad y guía
 ## Relaciones de conocimiento — ADU-221
 
 Usar enlaces Markdown dentro de la prosa en la primera aparición significativa de un concepto, preferir fichas canónicas independientes y añadir conocimientos previos recomendados cuando permitan identificar brechas. No enlazar cada repetición ni crear páginas vacías. Distinguir prerequisito, relación complementaria y aplicación; no imponer bloqueos ni dependencias circulares obligatorias. No introducir un nuevo schema de grafo o IDs hasta reconciliar ADR-011, ADU-86 y ADU-94. Mantener rutas, URLs y contenidos públicos; enlaces relativos al origen. La ficha de fundamentos es síntesis contextual, no una segunda autoridad de cada concepto.
+
+### Límite entre documentación y aprendizaje evaluable
+
+Los prerrequisitos editoriales son recomendaciones de lectura, no dependencias obligatorias entre competencias ni evidencia de dominio. Una URL canónica identifica una ficha documental; no representa automáticamente una competencia, una cápsula o una versión de un resultado de aprendizaje. La eventual asociación debe ser explícita, versionada y compatible con los contratos de sus respectivos propietarios. La reconciliación interna se registra en ADU-221; no se introducen campos nuevos en contratos externos ni se publica contenido interno de otros repositorios.
+
+### Controles reproducibles
+
+`npm run validate:content` comprueba frontmatter mínimo, rutas internas y delimitadores de bloques de código. `npm run test:java-examples` extrae nueve ejemplos autónomos de las fichas y compara su salida con expectativas usando JDK 21. El build ejecuta la validación de contenido; la suite Java es separada para no exigir Java al hosting estático. La comprobación no sustituye pruebas de JavaFX/MariaDB, validación de enlaces externos o revisión visual.

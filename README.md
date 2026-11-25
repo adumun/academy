@@ -8,7 +8,14 @@ npm run dev
 npm run build
 ```
 
-Primer incremento en revisión; la instalación/build y el lockfile deben verificarse antes de publicar.
+La base del Handbook está publicada mediante Cloudflare Pages. El incremento de referencias conectadas se trabaja en un PR separado.
+
+```bash
+npm run validate:content
+npm run test:java-examples
+```
+
+La primera orden es parte del build. La segunda requiere JDK 21 y comprueba ejemplos Java autónomos; no necesita MariaDB ni interfaz gráfica. El lockfile aún debe generarse y verificarse en un entorno con acceso al registro npm.
 
 - [Despliegue](docs/DEPLOYMENT.md)
 - [Política editorial](docs/EDITORIAL.md)
