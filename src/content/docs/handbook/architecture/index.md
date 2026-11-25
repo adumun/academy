@@ -12,7 +12,7 @@ description: "Responsabilidades, contratos, dependencias y refactorización de a
 
 ## Por qué separar responsabilidades
 
-MVC organiza la interacción con la interfaz: modelo, vista y controlador. DAO encapsula operaciones de acceso a datos. Son conceptos distintos que se complementan.
+Un patrón de diseño describe una solución reutilizable a un problema recurrente, no código obligatorio. MVC (Model-View-Controller) organiza la interacción con la interfaz: modelo, vista y controlador. DAO (Data Access Object) encapsula operaciones de acceso a datos, de modo que el resto de la aplicación utiliza su contrato sin conocer los detalles de almacenamiento. Son conceptos distintos que se complementan. Una [responsabilidad](/handbook/architecture/contracts/) es el trabajo que corresponde a una parte del software; un contrato define operaciones y resultados; una dependencia existe cuando una parte necesita otra para funcionar.
 
 | Pieza | Responsabilidad | Evita |
 | --- | --- | --- |
@@ -83,7 +83,7 @@ private void cargar() {
 }
 ```
 
-El controlador conoce el contrato; en este ejemplo simple selecciona una implementación. Más adelante puede recibirla mediante inyección de dependencias. El DAO no conoce controles JavaFX.
+El controlador conoce el contrato; en este ejemplo simple selecciona una implementación. Más adelante puede recibirla mediante inyección de dependencias: el consumidor recibe la implementación desde fuera, por ejemplo en un constructor, en lugar de construirla por sí mismo. Consulta [contratos y dependencias](/handbook/architecture/contracts/). El DAO no conoce controles JavaFX.
 
 ## Sustituir una implementación · complementario
 

@@ -12,7 +12,7 @@ description: "Proyección, condiciones, NULL, JOIN y agregaciones."
 
 ## Modelo mental
 
-SELECT produce un conjunto de filas y columnas; no modifica los datos. La proyección elige columnas, WHERE filtra filas y ORDER BY determina el orden. La consulta no es una colección Java hasta que se transforma mediante [ResultSet](/handbook/java/jdbc/result-set/).
+SELECT produce un resultado de [filas y columnas](/handbook/sql/relational-model/); en una consulta ordinaria de lectura no modifica los datos. Una condición es una expresión lógica que evalúa qué filas cumplen una regla; SQL admite TRUE, FALSE y UNKNOWN (por ejemplo, al comparar con NULL), a diferencia de los [booleanos Java](/handbook/java/expressions/) de dos valores. La proyección elige columnas, WHERE filtra filas y ORDER BY determina el orden. La consulta no es una colección Java hasta que se transforma mediante [ResultSet](/handbook/java/jdbc/result-set/).
 
 ```sql
 SELECT id, titulo
@@ -21,7 +21,7 @@ WHERE titulo LIKE 'Java%'
 ORDER BY titulo ASC, id ASC;
 ```
 
-Usa el esquema desechable de SQL y CRUD. La consulta devuelve los títulos cuyo prefijo coincide; las reglas de comparación dependen de la intercalación (collation). El ID desempata el orden.
+Usa el esquema desechable de SQL y CRUD. La consulta devuelve los títulos cuyo prefijo coincide; las reglas de comparación dependen de la intercalación (collation), que determina cómo se comparan y ordenan cadenas, incluyendo mayúsculas y acentos. El ID desempata el orden.
 
 | Expresión | Propósito |
 | --- | --- |
@@ -58,7 +58,7 @@ INNER JOIN prestamo AS p
 ORDER BY l.id;
 ```
 
-INNER JOIN devuelve coincidencias; LEFT JOIN conserva las filas de la tabla izquierda incluso sin coincidencia (las columnas derechas pueden quedar NULL). Si existen varios préstamos por libro, la consulta puede devolver varias filas del mismo libro: no es automáticamente un error.
+JOIN combina filas de dos orígenes de datos según una condición de unión. La cardinalidad describe cuántas filas de un origen pueden relacionarse con una fila del otro. INNER JOIN devuelve coincidencias; LEFT JOIN conserva las filas de la tabla izquierda incluso sin coincidencia (las columnas derechas pueden quedar NULL). Si existen varios préstamos por libro, la consulta puede devolver varias filas del mismo libro: no es automáticamente un error.
 
 ## Agregar y contar · complementario
 
@@ -71,7 +71,7 @@ GROUP BY l.id, l.titulo
 ORDER BY cantidad DESC, l.id;
 ```
 
-COUNT(p.id) ignora los NULL de la parte derecha; COUNT(*) contaría también la fila resultante del LEFT JOIN sin préstamo. HAVING filtra grupos después de agregar.
+Una agregación resume varios valores mediante una operación como COUNT (contar), SUM (sumar) o AVG (promediar). GROUP BY organiza filas en grupos para calcular esos resúmenes. COUNT(p.id) ignora los NULL de la parte derecha; COUNT(*) contaría también la fila resultante del LEFT JOIN sin préstamo. HAVING filtra grupos después de agregar.
 
 ## SQL parametrizado y paginación
 

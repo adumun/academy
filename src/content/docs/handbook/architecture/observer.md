@@ -12,7 +12,7 @@ description: "Suscripción, notificación y límites de la observabilidad."
 
 ## Problema
 
-Cuando un objeto cambia, varios consumidores pueden necesitar reaccionar. El patrón Observer permite suscribir observadores a un sujeto y notificarlos sin que el sujeto conozca cada consumidor concreto.
+Cuando cambia el [estado de un objeto](/handbook/java/classes-and-objects/), varios consumidores pueden necesitar reaccionar. Un patrón es una solución reutilizable a un problema de diseño. Observer permite suscribir observadores a un sujeto y notificarlos sin que el sujeto conozca cada consumidor concreto. El sujeto mantiene las suscripciones; suscribir es registrar un consumidor de notificaciones, notificar es comunicar un cambio y desuscribir es dejar de recibirlo. Un consumidor puede ser un objeto que cumple una [interfaz funcional](/handbook/java/lambdas/).
 
 ## Ejemplo completo en Java
 
@@ -52,7 +52,7 @@ public class ObservableDemo {
 }
 ```
 
-Salida: Cambio. Es un ejemplo pedagógico síncrono, no una biblioteca segura para concurrencia ni eventos distribuidos. List.copyOf permite recorrer una instantánea de suscripciones, pero no resuelve acceso concurrente.
+Salida: Cambio. Es un ejemplo pedagógico síncrono (cada notificación se ejecuta antes de continuar con la siguiente operación), no una biblioteca segura para concurrencia (varias tareas pueden progresar de forma intercalada o simultánea) ni eventos distribuidos (comunicación entre procesos o servicios). List.copyOf permite recorrer una instantánea de suscripciones, pero no resuelve acceso concurrente.
 
 ## Responsabilidades y límites
 

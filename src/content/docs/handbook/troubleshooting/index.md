@@ -5,6 +5,8 @@ description: "Procedimiento de depuración y catálogo de síntomas Java, JDBC y
 
 ## Método de diagnóstico
 
+Diagnosticar consiste en identificar la causa de un comportamiento incorrecto mediante evidencia, no adivinar una solución. Un síntoma es lo que observas; la causa es lo que origina el fallo. Un caso mínimo reduce entradas y componentes hasta conservar solo lo necesario para reproducirlo. El stack trace (traza de pila) muestra llamadas y ubicaciones asociadas a una [excepción](/handbook/java/exceptions/); no todas las líneas representan la causa original.
+
 1. Reproduce el problema con un caso mínimo.
 2. Lee el mensaje completo y la primera causa relevante del stack trace.
 3. Identifica la frontera: build, conexión, SQL, modelo, FXML o vista.
@@ -48,7 +50,7 @@ No cambies simultáneamente dependencias, credenciales, consultas y controladore
 
 ## Usar breakpoints
 
-Coloca un breakpoint en el evento del controlador y otro en el DAO. Inspecciona el valor de título, ID y SQL parametrizado, avanza hasta executeUpdate() y revisa el conteo retornado. En una lectura, inspecciona el cursor y el tamaño de la colección después del bucle. Evita mostrar secretos en capturas.
+Un breakpoint (punto de interrupción) detiene temporalmente la ejecución en una ubicación elegida para inspeccionar [variables](/handbook/java/variables/), llamadas y estado. Un depurador permite continuar o avanzar paso a paso. Coloca un breakpoint en el [evento del controlador](/handbook/java/javafx/events/) y otro en el DAO. Inspecciona el valor de título, ID y SQL parametrizado, avanza hasta executeUpdate() y revisa el conteo retornado. En una lectura, inspecciona el cursor y el tamaño de la colección después del bucle. Evita mostrar secretos en capturas.
 
 ## Ejemplo de diagnóstico aislado
 

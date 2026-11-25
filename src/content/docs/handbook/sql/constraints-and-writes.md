@@ -12,6 +12,8 @@ description: "Integridad, INSERT, UPDATE, DELETE, claves y verificación de camb
 
 ## Integridad relacional
 
+La integridad significa que los datos respetan las reglas y relaciones del esquema. Una [clave primaria](/handbook/sql/relational-model/) identifica un registro; una clave foránea vincula un registro con otro existente. Una restricción es una regla declarada en la base. Un predicado es una condición lógica que se evalúa sobre valores (consulta [expresiones y condiciones](/handbook/java/expressions/)).
+
 | Restricción | Qué protege |
 | --- | --- |
 | PRIMARY KEY | Identidad única y no nula de una fila |
@@ -25,7 +27,7 @@ Una validación en JavaFX mejora la interacción, pero el motor debe proteger la
 
 ## Escrituras seguras
 
-Ejecuta únicamente sobre preparacion_db desechable. Usa un motor transaccional como InnoDB.
+Ejecuta únicamente sobre preparacion_db desechable. Usa un motor transaccional como InnoDB, encargado del almacenamiento y de las garantías de [transacción](/handbook/java/jdbc/transactions/), para poder confirmar o revertir cambios.
 
 ```sql
 INSERT INTO libro (titulo)

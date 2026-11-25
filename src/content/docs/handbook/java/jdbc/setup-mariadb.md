@@ -13,7 +13,7 @@ description: "Configurar esquema desechable, permisos mínimos, credenciales y p
 
 ## Objetivo y requisitos
 
-Preparar un esquema de práctica y una cuenta de aplicación sin permisos administrativos. Se presupone MariaDB instalado y en ejecución; no es una guía de instalación para todos los sistemas operativos. Trabaja en una instancia local de desarrollo que administras. No reutilices las credenciales ni los datos de producción.
+Preparar un esquema de práctica y una cuenta de aplicación sin permisos administrativos. Un [esquema](/handbook/sql/relational-model/) organiza tablas y otros objetos de la base de datos. Una cuenta permite identificar al cliente; los privilegios determinan qué acciones puede ejecutar. El principio de mínimo privilegio consiste en conceder solo los permisos necesarios. Una instancia local es un servidor en ejecución en el entorno de desarrollo, no necesariamente un servidor de producción. Se presupone MariaDB instalado y en ejecución; no es una guía de instalación para todos los sistemas operativos. Trabaja en una instancia local de desarrollo que administras. No reutilices las credenciales ni los datos de producción.
 
 ## Crear esquema y cuenta
 
@@ -54,11 +54,11 @@ SHOW GRANTS;
 SELECT id, titulo FROM libro ORDER BY id;
 ```
 
-Debe aparecer el esquema correcto, la cuenta efectiva y sus permisos. Una tabla vacía es un resultado válido. Si el cliente no está disponible en PATH, usa un cliente SQL configurado con los mismos valores.
+Debe aparecer el esquema correcto, la cuenta efectiva y sus permisos. Una tabla vacía es un resultado válido. Un cliente es el programa que se conecta al servidor. PATH es una variable de entorno con ubicaciones donde el sistema busca comandos ejecutables. Si el cliente no está disponible en PATH, usa un cliente SQL configurado con los mismos valores.
 
 ## Configurar el proceso Java
 
-Establece DB_USER y DB_PASSWORD en la configuración de ejecución de tu IDE. En Bash puedes evitar que la contraseña quede en el historial:
+Establece DB_USER y DB_PASSWORD como variables de entorno (valores que recibe el proceso al iniciarse) en la configuración de ejecución de tu IDE, el entorno integrado de desarrollo. En Bash puedes evitar que la contraseña quede en el historial:
 
 ```bash
 export DB_USER=academy_lab
