@@ -52,6 +52,26 @@ Salida esperada:
 
 IOException indica un problema de acceso. Files.exists y notExists pueden devolver ambos false cuando no se puede determinar existencia; no conviertas automáticamente un fallo de acceso en ausencia. Usa temporales y datos de prueba; `ATOMIC_MOVE` depende del proveedor del sistema de archivos y su interacción con destino existente es específica. No reemplaces archivos reales sin estrategia de recuperación.
 
+## Ruta y operación de entrada/salida
+
+![Path identifica una ubicación de archivo. Files usa esa ruta para leer o escribir bytes o texto; el resultado se representa en memoria.](/diagrams/java-path-files.svg)
+
+Path no abre un archivo por sí mismo. resolve construye una nueva ruta a partir de otra; no crea carpetas ni mueve archivos. Una ruta relativa depende del directorio de trabajo, que puede variar entre terminal e IDE. El classpath localiza clases y recursos empaquetados y no es el mismo mecanismo.
+
+### Diagnosticar sin modificar datos
+
+```java
+java.nio.file.Path archivo = java.nio.file.Path.of("data", "mediciones.txt");
+System.out.println(archivo.toAbsolutePath().normalize());
+System.out.println(java.nio.file.Files.isRegularFile(archivo));
+```
+
+Fragmento de método. La salida depende del entorno. normalize elimina componentes redundantes de la ruta según reglas sintácticas; no verifica existencia ni resuelve enlaces simbólicos. Si necesitas determinar el destino real, utiliza las APIs adecuadas y contempla sus excepciones.
+
+## Lectura frente a escritura
+
+readString resulta adecuado para archivos de texto pequeños; para volúmenes grandes conviene procesamiento incremental. writeString sin opciones específicas crea o trunca el archivo según su contrato. Para anexar datos se requieren opciones explícitas. No escribas directamente sobre el único archivo valioso si debes preservar el estado anterior: valida datos, usa temporal y aplica una política de reemplazo y respaldo. Consulta [persistencia](/handbook/foundations/persistence/). El ejemplo autónomo trabaja en una carpeta temporal y la elimina al terminar; no utiliza datos reales.
+
 ## Documentación oficial
 
 - [Path](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html)

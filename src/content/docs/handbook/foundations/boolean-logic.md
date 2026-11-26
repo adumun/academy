@@ -20,6 +20,26 @@ Las leyes de De Morgan establecen NOT(A AND B) = NOT A OR NOT B, y NOT(A OR B) =
 
 Antes de codificar, redacta la regla, divide proposiciones, agrupa con paréntesis, revisa negación y prueba valores 9, 10, 20 y 21. Distingue un OR inclusivo de una regla que exige exactamente una alternativa.
 
+## De una regla escrita a una condición
+
+Una proposición simple afirma algo comprobable, por ejemplo «el valor está por encima del mínimo». Una proposición compuesta combina otras mediante conectores. Distingue la regla de dominio de su formulación concreta: cambiar AND por OR altera el conjunto de casos aceptados.
+
+Supón que un acceso requiere identificación válida y, además, permiso de invitación o de membresía. Define A = identificación válida, B = invitación y C = membresía. La expresión es A AND (B OR C).
+
+| A | B | C | ¿Acceso? |
+|---|---|---|---|
+| falso | verdadero | verdadero | No |
+| verdadero | falso | falso | No |
+| verdadero | verdadero | falso | Sí |
+| verdadero | falso | verdadero | Sí |
+| verdadero | verdadero | verdadero | Sí |
+
+Sin paréntesis, una agrupación diferente podría permitir acceso sin identificación. La negación de la regla completa es NOT A OR (NOT B AND NOT C). XOR, o disyunción exclusiva, acepta exactamente una de dos condiciones; OR inclusivo acepta también ambas.
+
+## Autocomprobación
+
+Escribe una condición de rango inclusivo y su negación. Comprueba los extremos y los valores inmediatamente fuera del rango. Después formula una condición para permitir exactamente una de dos opciones. Las tablas de verdad permiten verificar equivalencia lógica sin ejecutar un programa.
+
 ## Conceptos relacionados
 
 - [Expresiones y control de flujo](/handbook/foundations/flow/)

@@ -43,6 +43,35 @@ El ejemplo usa una cadena de prueba para que pueda ejecutarse sin teclado. Para 
 
 Puedes leer una línea completa y convertir con Integer.parseInt, capturando NumberFormatException. Si usas hasNextInt, consume la entrada inválida antes de reintentar y trata fin de entrada. Distingue formato inválido de una regla de negocio (por ejemplo, rango permitido). El modelo debe proteger sus reglas aunque cambie la interfaz.
 
+## Qué queda pendiente en la entrada
+
+![nextInt consume 21 pero deja el separador de línea. nextLine consume el resto vacío; una segunda nextLine lee Sol.](/diagrams/java-scanner-tokens.svg)
+
+Scanner utiliza un delimitador para reconocer tokens. nextInt analiza el siguiente token entero, pero no consume necesariamente el separador que sigue. nextLine devuelve el resto de la línea sin incluir su terminador y avanza a la siguiente. Mezclar ambos estilos requiere conocer ese estado.
+
+## Alternativa: leer líneas y convertir
+
+```java
+try (java.util.Scanner lector = new java.util.Scanner("abc\n21\n")) {
+    while (lector.hasNextLine()) {
+        String entrada = lector.nextLine().strip();
+        try {
+            int numero = Integer.parseInt(entrada);
+            System.out.println(numero);
+            break;
+        } catch (NumberFormatException exception) {
+            System.out.println("Entero invalido");
+        }
+    }
+}
+```
+
+Fragmento dentro de un método. Salida esperada: Entero invalido y 21. Se consume la línea inválida antes de reintentar. Si no quedan líneas, el ciclo termina; no presupongas que la entrada siempre está disponible. El ejemplo usa texto en memoria y puede cerrar su Scanner sin cerrar System.in compartido.
+
+## Diagnóstico
+
+Si nextInt lanza InputMismatchException, revisa token y tipo; si nextLine retorna vacío tras una lectura de token, inspecciona separadores. Para decimales, Scanner puede usar configuración regional: define si esperas coma o punto. Un entero leído correctamente todavía puede incumplir la regla de dominio.
+
 ## Documentación oficial
 
 - [Scanner Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Scanner.html)

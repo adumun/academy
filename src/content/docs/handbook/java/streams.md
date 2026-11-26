@@ -52,6 +52,35 @@ true
 
 Una [lambda](/handbook/java/lambdas/) implementa la interfaz funcional que recibe cada operación; una referencia a método puede simplificarla. No uses un stream solo por novedad; un for claro es válido. Evita efectos secundarios dentro de filter/map. No reutilices streams consumidos. Los streams de E/S como Files.list deben cerrarse; una colección no mantiene ese recurso.
 
+## Fuente, operaciones intermedias y terminal
+
+![Una fuente contiene 1, -2 y 3. filter conserva 1 y 3, map los duplica y toList materializa 2 y 6.](/diagrams/java-stream-pipeline.svg)
+
+El pipeline describe una secuencia de procesamiento: obtiene elementos de una fuente, aplica transformaciones intermedias y finalmente produce un resultado. filter recibe un Predicate, map una Function y toList materializa una lista. Las operaciones intermedias son perezosas: se procesan cuando la terminal lo necesita, no necesariamente se construye una colección por cada etapa.
+
+| Etapa del ejemplo | Elementos conceptuales |
+|---|---|
+| Fuente | 1, -2, 3 |
+| filter positivo | 1, 3 |
+| map por 2 | 2, 6 |
+| toList | Lista no modificable con 2 y 6 |
+
+anyMatch puede detener el recorrido al encontrar una coincidencia. allMatch sobre una fuente vacía retorna true por su contrato; anyMatch retorna false. Si necesitas repetir una operación terminal, crea otro Stream a partir de la fuente. No se garantiza que un pipeline paralelo preserve el orden de efectos secundarios; evita añadir paralelismo sin una necesidad y medición.
+
+## Contraste con un ciclo
+
+```java
+java.util.List<Integer> resultado = new java.util.ArrayList<>();
+for (Integer valor : java.util.List.of(1, -2, 3)) {
+    if (valor > 0) {
+        resultado.add(valor * 2);
+    }
+}
+System.out.println(resultado); // [2, 6]
+```
+
+Fragmento dentro de un método. El ciclo y el pipeline expresan el mismo cálculo, aunque esta lista es modificable y la de toList no. Elige según claridad, contrato y necesidad de control del recorrido.
+
 ## Documentación oficial
 
 - [Stream Java 21](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html)

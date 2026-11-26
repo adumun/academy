@@ -28,6 +28,27 @@ Por ejemplo, una operación que suma cantidades no negativas debe retornar 5 par
 
 Una captura de la interfaz no prueba que un dato sobreviva al reinicio. Un test verde no garantiza ausencia de todos los defectos. Conserva datos de prueba, versión, ejecución y resultado; evita datos personales y secretos.
 
+## Estructura de un caso reproducible
+
+![Una prueba prepara un estado conocido, ejecuta una operación y compara resultado observado con el esperado. Conserva evidencia del caso.](/diagrams/testing-aaa.svg)
+
+Una prueba necesita un resultado esperado independiente de lo que implemente el programa. Si primero se observa la salida y luego se declara correcta sin contrastarla con el contrato, no se está comprobando la regla.
+
+### Matriz de ejemplo: contador entre 0 y 100
+
+| Estado inicial | Operación | Resultado esperado | Estado final |
+|---|---|---|---|
+| 0 | Aumentar 1 | Aceptación | 1 |
+| 99 | Aumentar 1 | Aceptación | 100 |
+| 100 | Aumentar 1 | Rechazo | 100 |
+| 0 | Disminuir 1 | Rechazo | 0 |
+
+El límite no se prueba únicamente con valores típicos. El caso de rechazo también comprueba que el estado no cambió.
+
+## Niveles de comprobación
+
+Una prueba unitaria aísla una unidad de comportamiento; una de integración verifica interacción entre componentes reales o configurados para la prueba; una prueba de extremo a extremo verifica un flujo completo desde la entrada hasta el resultado. Los límites concretos dependen de la arquitectura. Una prueba del modelo no certifica la persistencia ni la interacción gráfica; una prueba manual útil registra datos, pasos, resultado y versión. Un doble de prueba ayuda a controlar una dependencia, pero no prueba la implementación real sustituida.
+
 ## Conceptos relacionados
 
 - [Operaciones y contratos](/handbook/foundations/operations/)
