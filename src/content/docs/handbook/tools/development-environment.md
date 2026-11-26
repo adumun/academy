@@ -19,6 +19,43 @@ Para comenzar con Java basta un JDK compatible, un editor/IDE y un mecanismo de 
 
 Si IDE y terminal usan JDK distintos, compara configuración antes de cambiar dependencias. Aprende a leer consola y errores. La [terminal](/handbook/tools/terminal/) ayuda a comprobar el entorno; [Maven](/handbook/tools/maven/) automatiza la construcción cuando el proyecto lo requiere.
 
+## Qué ocurre entre escribir y ejecutar
+
+```text
+Editor → archivos fuente → compilador → artefactos → ejecución
+                                                  │
+                                              depurador
+```
+
+El editor no valida por sí solo todo el comportamiento. El compilador comprueba restricciones del lenguaje y genera una representación ejecutable por el entorno correspondiente. El depurador se conecta a la ejecución para observar su estado, sin sustituir las pruebas.
+
+| Herramienta | Pregunta que responde |
+|---|---|
+| Editor | ¿Qué código estoy escribiendo? |
+| Compilador | ¿Es aceptable para el lenguaje y su configuración? |
+| Runtime | ¿Puede ejecutarse en este entorno? |
+| Depurador | ¿Qué está ocurriendo durante la ejecución? |
+| Gestor de build | ¿Cómo repetir la construcción del proyecto? |
+| Control de versiones | ¿Qué cambió y cómo se conserva su historial? |
+
+## Experimento: observar el estado
+
+Guarda Main.java y ejecútalo con un JDK compatible:
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        int cantidad = 2;
+        int precio = 5;
+        int total = cantidad * precio;
+        System.out.println(total);
+    }
+}
+```
+
+Coloca un breakpoint en la impresión. Al llegar, comprueba que cantidad vale 2, precio 5 y total 10. Cambia el valor inicial a 3, recompila y repite. Si observas todavía 10, comprueba qué archivo, configuración y artefacto estás ejecutando. La práctica exige un depurador configurado; la salida indicada es esperada.
+
 ## Aplicaciones
 
 - [Programas Java y ejecución](/handbook/java/programming/)

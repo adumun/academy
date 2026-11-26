@@ -30,6 +30,31 @@ Una rama permite aislar cambios. Un merge integra historias; un conflicto exige 
 
 .gitignore evita que archivos no rastreados coincidentes se añadan por accidente; no elimina del historial archivos ya versionados. Configura identidad por repositorio si trabajas en un equipo compartido. Verifica autor y cuenta remota; cierra sesión al terminar.
 
+## Tres estados locales y el remoto
+
+```text
+Working tree ── git add ──► Staging ── git commit ──► Historial local
+                                                          │
+                                                       git push
+                                                          ▼
+                                                   Repositorio remoto
+```
+
+El directorio de trabajo contiene los archivos que editas. El staging (índice) registra el contenido preparado para el siguiente commit. El commit conserva ese estado en el historial local. Publicar al remoto es otra operación.
+
+| Estado | Cómo observarlo |
+|---|---|
+| Archivo nuevo no rastreado | git status |
+| Cambios no preparados | git diff |
+| Cambios preparados | git diff --cached |
+| Commits registrados | git log --oneline |
+
+## Ejercicio controlado
+
+Dentro de una carpeta nueva dedicada a esta práctica, ejecuta git init. Crea README.md con el texto inicial y ejecuta los comandos del flujo de trabajo anterior. Después edita el README y observa git status y git diff sin preparar el cambio. El commit previo sigue existiendo; el archivo editado aún no forma parte de un nuevo commit.
+
+Un clon es un repositorio local con historia y un remoto configurado. Fetch actualiza referencias remotas sin cambiar automáticamente tu rama actual; pull obtiene e integra según la configuración. Si un push es rechazado, inspecciona la divergencia antes de elegir la integración. No utilices credenciales compartidas ni guardes tokens en archivos versionados.
+
 ## Conceptos relacionados
 
 - [Estrategias de ramas](/handbook/tools/git-branching/)

@@ -54,13 +54,13 @@ Una etiqueta XML distingue mayúsculas y minúsculas. Los espacios de nombres ca
 
 | Forma | Significado |
 |---|---|
-| <Button/> | Elemento autocerrado |
+| `<Button/>` | Elemento autocerrado |
 | text="Guardar" | Atributo de configuración |
-| <children>...</children> | Elemento que representa una propiedad |
+| `<children>...</children>` | Elemento que representa una propiedad |
 | fx:controller="app.FormController" | Clase asociada al documento |
 | onAction="#aceptar" | Referencia a un manejador del controlador |
 
-Los caracteres reservados del XML requieren escape cuando se utilizan como datos, por ejemplo &amp;amp; para el ampersand.
+Los caracteres reservados del XML requieren escape cuando se utilizan como datos, por ejemplo `&amp;` para el ampersand.
 
 ## Dos niveles de validación
 

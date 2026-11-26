@@ -74,6 +74,32 @@ Inspecciona las excepciones encadenadas mediante getCause(), getSuppressed() y, 
 
 Registra entrada, resultado esperado, resultado observado, causa, cambio y nueva prueba. Un mensaje de éxito o una captura de la interfaz no son suficientes para demostrar que los datos persisten.
 
+## Leer una traza sin perder la causa
+
+Una llamada puede fallar en una capa interna y aparecer como una excepción de otra capa. La siguiente traza es ilustrativa, no evidencia de una ejecución real.
+
+```text
+java.lang.IllegalStateException: No se pudo cargar
+    at app.Main.cargar(Main.java:20)
+Caused by: java.sql.SQLException: Acceso denegado
+    at app.Dao.listar(Dao.java:12)
+```
+
+La primera línea comunica el fallo exterior. Caused by muestra una excepción encadenada. La ubicación en Dao.java permite inspeccionar la operación que inició el acceso. Esto no demuestra que el problema sea necesariamente la contraseña: también pueden intervenir permisos, host o cuenta efectiva.
+
+## Separar hipótesis de evidencia
+
+| Hipótesis | Prueba que permite descartarla |
+|---|---|
+| No existe el dato | SELECT directo con el mismo criterio |
+| Se perdió en el mapeo | Comparar columnas y objetos del DAO |
+| La vista usa otra lista | Inspeccionar identidad y tamaño de items |
+| El evento no se ejecutó | Breakpoint al entrar al manejador |
+
+Un breakpoint pausa la ejecución; step over ejecuta la línea sin entrar en la llamada, step into entra cuando corresponde y resume continúa hasta la siguiente pausa. Comprueba valores antes y después del cambio. Si el problema desaparece al depurar, registra esa observación: la temporización también puede afectar sistemas concurrentes.
+
+No cierres el diagnóstico hasta reproducir el caso corregido y repetir los casos que antes funcionaban.
+
 ## Conceptos relacionados
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)

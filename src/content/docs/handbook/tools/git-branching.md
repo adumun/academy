@@ -19,6 +19,38 @@ Una estrategia de ramas define cómo aislar e integrar cambios. No es una obliga
 
 En un repositorio local de práctica, confirma rama y estado; crea feature/documentacion desde la base acordada, modifica README, haz commit y vuelve a la rama de integración. Revisa el diff y fusiona según el flujo autorizado. En colaboración real, utiliza Pull Request y controles acordados. No asumas que todas las organizaciones usan develop o GitFlow.
 
+## La rama como referencia a una historia
+
+```text
+A ── B ── C ───────── M   main
+      ╲              ╱
+       D ────────── E     feature
+```
+
+Cada letra representa un commit. La feature parte de B; C avanza la rama principal; D y E registran el trabajo aislado. M representa una posible integración con commit de merge. Si la historia no diverge, Git puede avanzar una referencia mediante fast-forward sin crear M. Una rama no es una copia independiente de toda la carpeta.
+
+## Elegir una estrategia
+
+| Contexto | Alternativa razonable |
+|---|---|
+| Proyecto individual sencillo | Rama principal y commits pequeños |
+| Colaboración con revisiones | Ramas breves y Pull Requests |
+| Versiones simultáneas y releases planificados | Ramas de release según necesidad |
+
+Un Pull Request propone integrar cambios y permite revisión; no equivale a ejecutar merge. Antes de integrar, comprueba la base, los cambios, las pruebas y el criterio de aceptación. Eliminar una rama remota no deshace automáticamente los commits que ya fueron integrados.
+
+### Práctica de lectura
+
+En tu repositorio de práctica ejecuta:
+
+```bash
+git log --oneline --graph --all
+git branch
+git status
+```
+
+Identifica el commit actual, las ramas y sus divergencias. No fusiones una rama de trabajo compartida hasta comprender el flujo acordado.
+
 ## Conceptos relacionados
 
 - [Git y GitHub](/handbook/tools/git/)
