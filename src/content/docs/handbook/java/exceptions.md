@@ -69,6 +69,37 @@ SQLException ofrece getSQLState(), getErrorCode() y getNextException(). El stack
 
 Prueba una entrada válida, una inválida y un fallo de recurso. Verifica que el sistema no comunique éxito ante fallo y que el diagnóstico identifique la frontera. No uses excepciones como sustituto de una validación sencilla.
 
+## Seguir el flujo cuando algo falla
+
+![main llama a calcular, que llama a convertir. Si convertir lanza NumberFormatException, el flujo normal se interrumpe y la excepción se propaga hasta el catch compatible de main.](/diagrams/java-exception-propagation.svg)
+
+Cuando se ejecuta throw, no se siguen las instrucciones normales de ese bloque. Java busca un catch compatible en las invocaciones activas; si no se encuentra, el fallo se propaga. finally suele ejecutar limpieza al salir, pero no es garantía frente a terminación abrupta de la JVM. No retornes desde finally para ocultar una excepción pendiente.
+
+## Ejemplo autónomo: capturar en el límite
+
+```java
+public class PropagacionDemo {
+
+    private static int convertir(String texto) {
+        return Integer.parseInt(texto);
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(convertir("12"));
+            System.out.println(convertir("abc"));
+            System.out.println("No se alcanza");
+        } catch (NumberFormatException exception) {
+            System.out.println("Formato invalido");
+        } finally {
+            System.out.println("Fin");
+        }
+    }
+}
+```
+
+Salida esperada: 12, Formato invalido, Fin. La segunda llamada no retorna normalmente; se omite la siguiente impresión. El catch trata el formato inválido sin presentar un dato ficticio. Si el método no puede recuperarse, puede propagar o traducir preservando la causa. Throwable es la raíz de la jerarquía de excepciones y errores; capturar todo indiscriminadamente oculta condiciones que el programa quizá no puede manejar.
+
 ## Conceptos relacionados
 
 - [Connection](/handbook/java/jdbc/connection/)

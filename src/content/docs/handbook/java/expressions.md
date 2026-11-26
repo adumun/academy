@@ -47,6 +47,39 @@ Multiplicación y división preceden a suma y resta; las comparaciones preceden 
 
 Con cantidad = 5, evalúa cantidad > 0, cantidad == 5, cantidad < 3 y !(cantidad < 3). Resultados esperados: true, true, false y true. Para igualdad de texto utiliza equals o una comparación adecuada a las reglas del negocio, no identidad de referencias.
 
+## Operadores, operandos y orden de evaluación
+
+Un operador especifica una operación; sus operandos son las expresiones sobre las que actúa. La precedencia define cómo se agrupa una expresión sin paréntesis. No es lo mismo que el orden temporal de evaluación de operandos. En Java los operandos se evalúan de izquierda a derecha conforme a las reglas de cada operador.
+
+| Expresión | Resultado | Motivo |
+|---|---|---|
+| 2 + 3 * 4 | 14 | Multiplicación antes de suma |
+| (2 + 3) * 4 | 20 | Agrupación explícita |
+| 5 / 2 | 2 | División entera |
+| 5 % 2 | 1 | Resto |
+| "Total: " + 2 + 3 | Total: 23 | Concatenación desde la izquierda |
+| "Total: " + (2 + 3) | Total: 5 | Primero suma numérica |
+
+## Ejemplo autónomo: cortocircuito
+
+```java
+public class CortocircuitoDemo {
+
+    private static boolean comprobar() {
+        System.out.println("Evaluado");
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(false && comprobar());
+        System.out.println(true || comprobar());
+        System.out.println(true && comprobar());
+    }
+}
+```
+
+Archivo CortocircuitoDemo.java. Salida esperada: false, true, Evaluado, true (cada resultado en su propia línea). Las dos primeras expresiones omiten la llamada porque su resultado ya es conocido. La tercera la invoca. Evita incluir cambios de estado necesarios en condiciones que pueden omitir su evaluación. Para rangos no uses `0 < cantidad < 10`; combina comparaciones con &&. Consulta [lógica proposicional](/handbook/foundations/boolean-logic/).
+
 ## Conceptos relacionados
 
 - [Control de flujo](/handbook/java/control-flow/)

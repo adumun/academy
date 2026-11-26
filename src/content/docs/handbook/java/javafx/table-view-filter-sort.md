@@ -131,6 +131,21 @@ Mantén la [ObservableList](/handbook/java/javafx/observable-list/) fuente como 
 
 Si el filtro desaparece al recargar, comprueba que modificas la fuente y no reemplazas los items de la tabla. Si el orden no responde, revisa el binding del comparador. Si eliminas registros al buscar, probablemente estás modificando la fuente en lugar del predicado. Para volúmenes grandes, prefiere filtrar en la consulta SQL.
 
+## Cómo se conectan fuente, filtro y orden
+
+![La lista fuente conserva Java, SQL y JavaFX. FilteredList selecciona Java y JavaFX; SortedList ordena la selección según comparador; la tabla consume la vista ordenada.](/diagrams/tableview-filter-sort.svg)
+
+La fuente es la colección que contiene los datos disponibles; FilteredList expone solo los elementos que cumplen el predicado; SortedList representa el resultado en el orden del comparador. La tabla consume la última vista. Cambiar el filtro no elimina objetos de la fuente; cambiar el orden no modifica los valores de los objetos. Al limpiar búsqueda, los registros vuelven a aparecer.
+
+| Acción | Fuente | Vista filtrada |
+|---|---|---|
+| Inicio | 3 elementos | 3 elementos |
+| Buscar java | 3 elementos | 2 elementos |
+| Buscar xyz | 3 elementos | 0 elementos |
+| Limpiar | 3 elementos | 3 elementos |
+
+Si el filtro depende de un campo mutable, comprueba que los cambios produzcan una notificación que permita reevaluar el predicado, o reemplaza el elemento/actualiza el filtro explícitamente según el diseño. Una propiedad observable en la celda no garantiza por sí sola que FilteredList observe ese campo. No conviertas filtrado visual en una operación DELETE.
+
 ## Conceptos relacionados
 
 - [TableView](/handbook/java/javafx/table-view/)

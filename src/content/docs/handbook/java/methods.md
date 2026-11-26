@@ -53,6 +53,54 @@ Un constructor inicializa una instancia. Se declara con el nombre de la clase y 
 - Missing return statement: asegúrate de que cada camino normal de un método con retorno produzca un valor.
 - Non-static method cannot be referenced from a static context: necesitas una instancia o una operación realmente estática.
 
+## Anatomía de una declaración
+
+| Parte | Ejemplo | Función |
+|---|---|---|
+| Acceso | public | Determina quién puede usar el método según reglas de acceso |
+| Modificador | static | Asocia el método con la clase; no tiene this |
+| Retorno | int | Tipo de resultado, o void si no devuelve valor |
+| Nombre y parámetros | sumar(int primero, int segundo) | Identifican la firma en este caso |
+| Cuerpo | return primero + segundo; | Ejecuta la operación |
+
+Una llamada evalúa sus argumentos y crea parámetros locales con sus valores. Un return con expresión entrega un valor compatible con el retorno; return sin expresión puede terminar un método void. La salida impresa en consola no equivale al valor devuelto al llamador.
+
+## Ejemplo ejecutable: sobrecarga y estado
+
+Archivo SobrecargaDemo.java, Java 21.
+
+```java
+public class SobrecargaDemo {
+
+    private int total = 0;
+
+    public void agregar(int cantidad) {
+        total += cantidad;
+    }
+
+    public void agregar(int primera, int segunda) {
+        agregar(primera + segunda);
+    }
+
+    public int consultar() {
+        return total;
+    }
+
+    public static void main(String[] args) {
+        SobrecargaDemo acumulador = new SobrecargaDemo();
+        acumulador.agregar(2);
+        acumulador.agregar(3, 4);
+        System.out.println(acumulador.consultar());
+    }
+}
+```
+
+Salida esperada: 9. La sobrecarga con dos argumentos delega a la operación con uno; no duplica el cambio de estado. consultar retorna el valor sin imprimirlo. La elección de sobrecarga ocurre durante compilación, a diferencia del despacho dinámico de métodos sobrescritos.
+
+## Autocomprobación
+
+¿Qué ocurre si declaras otro agregar(int cantidad) con retorno int? No basta cambiar el retorno para distinguir la firma. Intenta llamar consultar directamente desde main sin una instancia y explica el diagnóstico.
+
 ## Conceptos relacionados
 
 - [Expresiones y operadores](/handbook/java/expressions/)

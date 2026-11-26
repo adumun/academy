@@ -124,6 +124,55 @@ Lee rs.getString("nombre_libro") porque el alias es la etiqueta de columna. Sele
 
 Ejecuta consultas con cero, uno y dos registros. Compara IDs y títulos contra el SELECT directo. Un resultado vacío es una lista vacía, no un objeto ficticio.
 
+## Estado del cursor y traza de ejecución
+
+![El cursor comienza antes de la primera fila. next devuelve true para fila 1, true para fila 2 y false después de la última fila.](/diagrams/jdbc-cursor.svg)
+
+| Llamada | Retorno | Fila disponible | Elementos agregados |
+|---|---|---|---|
+| Antes de next | — | Ninguna | 0 |
+| Primera next | true | 1: Java | 1 |
+| Segunda next | true | 2: SQL | 2 |
+| Tercera next | false | Ninguna | 2 |
+
+Los getters no avanzan el cursor. Si se utiliza if en lugar de while para listar, solo se procesa la primera fila. Si se llama next dentro del mapeo y también en el bucle, pueden perderse filas. No asumas que las filas están ordenadas sin ORDER BY.
+
+## Ejemplo autónomo sin servidor: cursor en memoria
+
+Archivo CursorDemo.java, JDK 21. Usa CachedRowSet, una implementación desconectada de ResultSet, para practicar el contrato del cursor sin necesitar MariaDB. No sustituye las pruebas del driver.
+
+```java
+import java.sql.Types;
+import javax.sql.rowset.CachedRowSet;
+import javax.sql.rowset.RowSetMetaDataImpl;
+import javax.sql.rowset.RowSetProvider;
+
+public class CursorDemo {
+
+    public static void main(String[] args) throws Exception {
+        RowSetMetaDataImpl metadatos = new RowSetMetaDataImpl();
+        metadatos.setColumnCount(1);
+        metadatos.setColumnName(1, "cantidad");
+        metadatos.setColumnType(1, Types.INTEGER);
+
+        try (CachedRowSet resultado = RowSetProvider.newFactory().createCachedRowSet()) {
+            resultado.setMetaData(metadatos);
+            resultado.moveToInsertRow();
+            resultado.updateInt(1, 0);
+            resultado.insertRow();
+            resultado.moveToCurrentRow();
+            resultado.beforeFirst();
+            System.out.println(resultado.next());
+            System.out.println(resultado.getInt(1));
+            System.out.println(resultado.wasNull());
+            System.out.println(resultado.next());
+        }
+    }
+}
+```
+
+Salida esperada: true, 0, false, false. El valor cero existe y wasNull es false. Cambia updateInt por updateNull(1): la lectura sigue devolviendo 0, pero wasNull debe ser true. El ejemplo separa la semántica del cursor de la conexión y de un caso de negocio específico.
+
 ## Conceptos relacionados
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)

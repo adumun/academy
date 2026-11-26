@@ -9,6 +9,18 @@ El Handbook organiza conocimiento por tecnologías y disciplinas, independientem
 
 Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos recomendados. Si un término no te resulta familiar, abre su ficha canónica y vuelve al objetivo original. No necesitas seguir un orden fijo ni completar un curso.
 
+## Elegir el nivel de consulta
+
+| Necesidad | Dónde buscar |
+|---|---|
+| Entender un término o principio sin depender de un lenguaje | Fundamentos |
+| Aprender sintaxis y comportamiento específico de Java | Java |
+| Consultar un método de acceso a datos o un control gráfico | JDBC o JavaFX |
+| Decidir cómo distribuir responsabilidades | Arquitectura |
+| Configurar, construir o diagnosticar un proyecto | Herramientas |
+
+En una ficha de referencia, el diagrama explica una relación, un flujo o un estado; el código muestra cómo se expresa el comportamiento en un lenguaje concreto. Las tablas de contraste ayudan a elegir una alternativa o reconocer un error. No es necesario que cada ficha tenga todos esos formatos: cada representación debe aportar comprensión. Diferencia una salida esperada de una prueba ejecutada. Sigue el enlace a la práctica cuando quieras comprobar el conocimiento en otro contexto.
+
 ## Fundamentos independientes del lenguaje
 
 - [Programas y algoritmos](/handbook/foundations/programs/)
@@ -16,6 +28,18 @@ Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos
 - [Objetos, estado y comportamiento](/handbook/foundations/objects/)
 - [Operaciones, funciones y contratos](/handbook/foundations/operations/)
 - [Expresiones, decisiones y repetición](/handbook/foundations/flow/)
+
+- [Paradigmas de programación](/handbook/foundations/paradigms/)
+- [Abstracción y relaciones OO](/handbook/foundations/object-relationships/)
+- [Estructuras de datos](/handbook/foundations/data-structures/)
+
+- [JSON](/handbook/foundations/json/)
+- [Memoria y persistencia](/handbook/foundations/persistence/)
+- [Pruebas y evidencia](/handbook/foundations/testing/)
+
+- [Lógica proposicional](/handbook/foundations/boolean-logic/)
+- [Matemáticas para programar](/handbook/foundations/programming-math/)
+- [Del requerimiento al algoritmo](/handbook/foundations/problem-solving/)
 
 ## Java
 
@@ -43,6 +67,20 @@ Si necesitas partir desde el significado de los términos, estas fichas explican
 - [Excepciones y recursos](/handbook/java/exceptions/)
 - [Lambdas](/handbook/java/lambdas/)
 
+- [Constructores](/handbook/java/constructors/)
+- [Colaboración y composición](/handbook/java/composition/)
+- [Herencia y polimorfismo](/handbook/java/inheritance/)
+- [Clases abstractas](/handbook/java/abstract-classes/)
+- [Arrays](/handbook/java/arrays/)
+- [Set](/handbook/java/sets/) y [Map](/handbook/java/maps/)
+- [Igualdad y hashCode](/handbook/java/equality/)
+- [Scanner y consola](/handbook/java/scanner/)
+
+- [Archivos: Path y Files](/handbook/java/files/)
+- [Streams](/handbook/java/streams/)
+- [Serialización JSON: Jackson y Gson](/handbook/java/json-serialization/)
+- [JUnit](/handbook/java/junit/)
+
 ## Datos y arquitectura
 
 - [Datos, persistencia y modelo relacional](/handbook/sql/relational-model/)
@@ -52,6 +90,13 @@ Si necesitas partir desde el significado de los términos, estas fichas explican
 - [MVC y DAO](/handbook/architecture/): responsabilidades, contratos y acceso a datos.
 
 ## Herramientas y diagnóstico
+
+- [Sistema de archivos](/handbook/tools/filesystem/)
+- [Terminal](/handbook/tools/terminal/)
+- [Entorno de desarrollo](/handbook/tools/development-environment/)
+- [Git y GitHub](/handbook/tools/git/)
+- [Estrategias de ramas](/handbook/tools/git-branching/)
+- [Markdown](/handbook/tools/markdown/)
 
 - [Maven y entorno Java](/handbook/tools/maven/): dependencias, estructura y build.
 - [Diagnóstico de errores](/handbook/troubleshooting/): buscar síntomas y comprobar hipótesis.

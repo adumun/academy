@@ -24,6 +24,34 @@ Un contrato especifica qué acepta una operación, qué resultado produce y qué
 
 Una operación pura no altera estado externo observable y produce el mismo resultado para las mismas entradas, según su modelo. No toda operación necesita ser pura; las escrituras requieren efectos deliberados.
 
+## De la definición a la invocación
+
+![El llamador proporciona los argumentos 3 y 4 a una operación sumar; el contrato especifica parámetros y resultado, y la operación retorna 7.](/diagrams/operation-contract.svg)
+
+Una firma permite identificar la operación mediante los elementos que establece el lenguaje (por ejemplo nombre y parámetros). El contrato es más amplio: incluye el significado de los datos, condiciones válidas, resultado, errores y efectos. Dos operaciones con la misma firma pueden incumplir el mismo contrato de formas distintas.
+
+### Ejemplo de contrato: dividir
+
+| Parte | Especificación |
+|---|---|
+| Parámetros | dividendo y divisor, números |
+| Precondición | divisor distinto de cero |
+| Resultado | cociente según la representación numérica acordada |
+| Error | informar divisor cero según la política definida |
+| Efectos | ninguno |
+
+```text
+operación dividir(dividendo, divisor):
+    si divisor = 0: devolver error
+    devolver dividendo / divisor
+```
+
+No es correcto devolver cero para ocultar el fallo: cero puede ser un resultado válido. Una operación que registra datos tiene otro contrato, porque además modifica estado. Una función pura se puede razonar por sus entradas y salida; una operación con efectos también requiere observar el estado previo y posterior.
+
+## Autocomprobación
+
+Define el contrato de buscar un elemento por clave. Distingue resultado encontrado, ausencia y fallo de acceso. ¿Qué prueba permitiría verificar que una consulta no modifica la colección?
+
 ## Conceptos relacionados
 
 - [Valores y tipos](/handbook/foundations/values-and-types/)

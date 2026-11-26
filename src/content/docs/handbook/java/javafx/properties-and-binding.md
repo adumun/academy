@@ -83,6 +83,36 @@ Una propiedad de fila permite a la cell value factory retornar un valor observab
 
 Cambia la fuente, comprueba el destino, retira el binding y vuelve a cambiar la fuente. La propagación debe detenerse tras unbind. En un formulario, comprueba también que la acción valida los datos aunque el botón esté habilitado.
 
+## Cómo interpretar la dirección del enlace
+
+![El origen A cambia de Java a JavaFX y el destino B sigue ese cambio mientras está enlazado. Al ejecutar unbind, B conserva el último valor y puede cambiar independientemente.](/diagrams/javafx-binding.svg)
+
+Una propiedad es un objeto que almacena o representa un valor y expone operaciones observables. Un binding unidireccional no crea un vínculo bidireccional: modificar el origen actualiza el destino; escribir directamente en un destino enlazado es incompatible con su contrato. Tras unbind, el valor puede quedar en el último estado observado.
+
+| Operación | Efecto |
+|---|---|
+| destino.set(origen.get()) | Copia el valor actual; no sigue cambios posteriores |
+| destino.bind(origen) | El destino sigue cambios del origen |
+| destino.unbind() | El destino deja de seguir el origen |
+| destino.bindBidirectional(origen) | Enlaza cambios en ambas direcciones según API |
+
+El enlace bidireccional requiere dos propiedades compatibles y una decisión clara sobre quién controla el valor inicial. No utilices este mecanismo como sustituto de validación de negocio ni para ligar directamente almacenamiento a campos de texto.
+
+### Ejemplo de valor derivado
+
+Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.IntegerBinding.
+
+```java
+SimpleIntegerProperty cantidad = new SimpleIntegerProperty(2);
+SimpleIntegerProperty precio = new SimpleIntegerProperty(5);
+IntegerBinding total = cantidad.multiply(precio);
+System.out.println(total.get()); // 10
+cantidad.set(3);
+System.out.println(total.get()); // 15
+```
+
+El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada evento. La salida es esperada, no verificada en ejecución JavaFX. Para montos reales, este ejemplo entero no sustituye una política de precisión y redondeo.
+
 ## Conceptos relacionados
 
 - [ObservableList](/handbook/java/javafx/observable-list/)

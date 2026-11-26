@@ -89,6 +89,41 @@ No es necesario conceder ALL PRIVILEGES, usar root en Java ni desactivar control
 - [GRANT](https://mariadb.com/kb/en/grant/)
 - [MariaDB Connector/J](https://mariadb.com/docs/connectors/mariadb-connector-j)
 
+## Verificar cada frontera por separado
+
+El servidor escucha solicitudes en un host y puerto. El driver es parte de la aplicación, no del servidor. Instalar el conector Maven no inicia MariaDB; arrancar MariaDB no añade automáticamente la biblioteca al proyecto.
+
+```text
+Proceso Java → Connector/J → localhost:3306
+                                  │
+                           autenticación
+                                  │
+                           permisos de cuenta
+                                  │
+                           preparacion_db
+```
+
+| Prueba | Resultado esperado | Si falla |
+|---|---|---|
+| Conectar mediante cliente SQL | Sesión autenticada | Motor, host, puerto o credenciales |
+| SELECT DATABASE() | preparacion_db | URL o esquema elegido |
+| SHOW GRANTS | Permisos CRUD previstos | Cuenta efectiva y privilegios |
+| TestConnection | Conexión válida | Classpath, URL JDBC o entorno |
+| SELECT con DAO | Lista de datos o lista vacía | SQL, mapeo o tabla |
+
+## Comprobación controlada de escritura
+
+Solo en el esquema desechable recién preparado, conecta con academy_lab y ejecuta:
+
+```sql
+START TRANSACTION;
+INSERT INTO libro (titulo) VALUES ('Prueba local');
+SELECT id, titulo FROM libro WHERE titulo = 'Prueba local';
+ROLLBACK;
+```
+
+Con un motor transaccional como InnoDB, la fila de esta transacción no debe quedar persistida tras rollback; el contador autoincremental puede dejar un salto. Verifica desde una sesión independiente si necesitas confirmar la ausencia. No utilices datos reales para probar permisos y no concedas privilegios administrativos para corregir un fallo de conexión.
+
 ## Conceptos relacionados
 
 - [Connection](/handbook/java/jdbc/connection/)

@@ -65,6 +65,34 @@ Archivo TiposDemo.java. Salida esperada: 12, 2.5 y 2. La ampliación int a long 
 
 var en una declaración local con inicializador permite inferir el tipo estático, no convierte Java en un lenguaje de tipado dinámico. El boxing convierte automáticamente un primitivo a su envoltorio; el unboxing de una referencia null falla con NullPointerException.
 
+## Cómo elegir el tipo y reconocer sus límites
+
+| Tipo | Mínimo | Máximo |
+|---|---|---|
+| byte | -128 | 127 |
+| short | -32768 | 32767 |
+| int | -2147483648 | 2147483647 |
+| long | -9223372036854775808 | 9223372036854775807 |
+| char | 0 | 65535 (unidad UTF-16) |
+
+Los enteros tienen límites: sumar 1 a Integer.MAX_VALUE con aritmética int ordinaria da Integer.MIN_VALUE por desbordamiento, no una excepción. Si el contrato exige detectar el desbordamiento, Math.addExact es una alternativa. La conversión ampliadora puede perder precisión cuando se pasa a punto flotante, aun sin cast explícito (por ejemplo int a float).
+
+## Conversiones distintas, resultados distintos
+
+```java
+System.out.println(5 / 2);          // 2
+System.out.println(5 / 2.0);        // 2.5
+System.out.println((double) (5 / 2)); // 2.0
+System.out.println((int) -2.9);     // -2
+System.out.println((byte) 130);     // -126
+```
+
+Fragmento dentro de un método. En la tercera operación la división entera ocurre antes de convertir. El cast a byte conserva los bits bajos según las reglas de Java, no valida un rango de negocio. Para leer texto usa parseInt o la API adecuada y trata errores de conversión. Para dinero, BigDecimal construido desde texto decimal evita el error de representar fracciones binarias; define también escala y redondeo.
+
+## Autocomprobación
+
+Predice la salida de 7 / 3, 7 / 3.0 y (double) (7 / 3). Explica por qué Integer puede ser null pero int no. Comprueba qué ocurre al convertir "12a" con Integer.parseInt.
+
 ## Conceptos relacionados
 
 - [Variables](/handbook/java/variables/)

@@ -57,7 +57,7 @@ Los prerrequisitos editoriales son recomendaciones de lectura, no dependencias o
 
 ### Controles reproducibles
 
-`npm run validate:content` comprueba frontmatter mínimo, rutas internas y delimitadores de bloques de código. `npm run test:java-examples` extrae nueve ejemplos autónomos de las fichas y compara su salida con expectativas usando JDK 21. El build ejecuta la validación de contenido; la suite Java es separada para no exigir Java al hosting estático. La comprobación no sustituye pruebas de JavaFX/MariaDB, validación de enlaces externos o revisión visual.
+`npm run validate:content` comprueba frontmatter mínimo, rutas internas y delimitadores de bloques de código. `npm run test:java-examples` extrae los ejemplos autónomos registrados en la suite de las fichas y compara su salida con expectativas usando JDK 21. El build ejecuta la validación de contenido; la suite Java es separada para no exigir Java al hosting estático. La comprobación no sustituye pruebas de JavaFX/MariaDB, validación de enlaces externos o revisión visual.
 
 ## Regla de cobertura semántica — ADU-221
 
@@ -106,3 +106,28 @@ Los scopes editoriales se identifican por ruta en `scripts/knowledge-taxonomy.mj
 - `npm run build` ejecuta ambos controles y la validación de contenido antes de Astro. La matriz puede evolucionar mediante PR con pruebas y justificación; no agregar una excepción para ocultar una mala clasificación.
 
 El control comprende enlaces Markdown internos raíz-relativos y secciones convencionales; no analiza por completo la semántica de la prosa, los ejemplos, los enlaces externos ni los metadatos de competencias. La revisión de acoplamiento y cobertura semántica sigue siendo obligatoria: un PASS estructural no certifica independencia conceptual absoluta.
+
+## Estándar editorial v1.3 — profundidad conceptual y representación (ADU-228)
+
+El objetivo de una ficha no es mencionar un término sino permitir comprenderlo, consultarlo y aplicarlo sin depender de otra asignatura o caso de negocio. El estándar v1.2 de independencia sigue vigente. Una ficha breve puede ser completa; no se fija una cantidad mínima de palabras ni una cuota de diagramas.
+
+### Criterios de aceptación según propósito
+
+| Dimensión | Evidencia esperada |
+| --- | --- |
+| Definición | Qué es, qué representa, de qué se distingue y bajo qué alcance resulta válida. Enlazar o definir vocabulario previo. |
+| Modelo mental | Explicar componentes, relaciones, estados, flujo o mecanismos cuando sean necesarios; no limitarse a una tabla de nombres. |
+| Ejemplo | Caso mínimo autónomo o fragmento contextualizado; pasos y valores concretos, interpretación del resultado. |
+| Contraste | Caso incorrecto, límite, alternativa o error frecuente que permita distinguir el concepto. |
+| Comprobación | Pregunta, traza, prueba local o resultado observable; indicar evidencia real frente a salida esperada. |
+| Referencia técnica | API/especificación primaria versionada cuando corresponda; entradas, retorno, excepciones y restricciones. |
+
+### Diagramas como parte de la explicación
+
+Usar un diagrama cuando relaciones, estado, identidad, recorrido, tiempo, responsabilidades o arquitectura se comprendan mejor visualmente. Cada diagrama tiene un propósito, texto alternativo descriptivo, explicación textual cercana y elementos legibles también en móvil. Preferir SVG estático original versionado en public/diagrams, con viewBox, título y descripción, sin dependencias remotas, scripts ni datos sensibles. No usar capturas decorativas. Una traza tabular o un fragmento de código puede ser más adecuado que un diagrama. Los diagramas no reemplazan una definición ni certifican la ejecución.
+
+La validación de contenido comprueba existencia de assets SVG locales y alt no vacío. La taxonomía distingue una ilustración de un enlace a conocimiento; las reglas de dependencias no se relajan. El gate automatizado no valida precisión semántica, legibilidad o calidad pedagógica. Revisar SVG y páginas en escritorio y móvil antes de aceptación.
+
+### Auditoría de profundidad
+
+Revisar páginas existentes, no solo fichas nuevas. Registrar qué fichas se revisaron, qué evidencia se añadió, qué ejemplos se ejecutaron y qué brechas quedan. No agregar secciones repetitivas ni introducir dependencias de negocio por aumentar longitud. Las referencias externas requieren comprobación pertinente; preservar URLs, fuentes y comportamiento de las fichas.

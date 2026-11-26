@@ -82,6 +82,33 @@ FilteredList y SortedList son vistas derivadas. Actualiza la colección fuente y
 
 Agrega, elimina y reemplaza elementos. Comprueba notificaciones y representación en el control. Si un cambio en un campo del objeto no aparece, revisa propiedades observables y cell value factory. Si el dato no persiste después de reiniciar, revisa DAO/SQL, no la lista.
 
+## Qué observa una colección y qué no
+
+![Al agregar un elemento a la lista observable se notifica al listener y al control que consume la misma lista. Cambiar un campo ordinario de un elemento no genera necesariamente un cambio estructural.](/diagrams/javafx-observable-list.svg)
+
+ObservableList notifica cambios estructurales: incorporación, eliminación, reemplazo o permutación según la operación. Una modificación de un campo ordinario dentro de un objeto puede no alterar la lista. Un extractor de observables puede hacer que determinadas propiedades de los elementos produzcan notificaciones de actualización; no convierte automáticamente todos los campos en observables.
+
+| Operación | Resultado observable esperado |
+|---|---|
+| fuente.add(elemento) | Se incorpora un elemento |
+| fuente.remove(elemento) | Se elimina una coincidencia, si existe |
+| fuente.setAll(otraLista) | Se sustituyen los elementos; permanece la lista fuente |
+| fuente = otraObservableList | Cambia la referencia de la variable, no la referencia ya entregada al control |
+| elemento.setCampo(...) ordinario | No implica una notificación estructural |
+
+### Comprobar la referencia compartida
+
+```java
+ObservableList<String> fuente = FXCollections.observableArrayList("A");
+ObservableList<String> consumidor = fuente;
+fuente.setAll("B", "C");
+System.out.println(consumidor); // [B, C]
+fuente = FXCollections.observableArrayList("D");
+System.out.println(consumidor); // [B, C]
+```
+
+Fragmento dentro de un método con javafx-base e imports correspondientes. La segunda asignación no modifica la lista anterior. Si una TableView consume esa lista, mantiene la referencia original hasta que se le entregue otra mediante setItems. Consulta [referencias](/handbook/java/references/) y distingue actualización de datos de reasignación.
+
 ## Conceptos relacionados
 
 - [TableView](/handbook/java/javafx/table-view/)

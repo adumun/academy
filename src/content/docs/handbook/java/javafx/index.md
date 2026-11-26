@@ -62,7 +62,7 @@ Ejecuta mvn javafx:run. Debe aparecer una ventana de 480 × 320 con el texto. Ap
 
 Ambos permiten construir el árbol visual. FXML facilita separar la estructura de los eventos. Scene Builder es un editor opcional de FXML, no un requisito para ejecutar la aplicación.
 
-## Flujo de una aplicación de datos
+## Aplicación: flujo de una interfaz con persistencia
 
 1. El usuario introduce datos o selecciona una fila.
 2. El controlador recibe un evento y valida entradas.
@@ -81,7 +81,28 @@ Un hilo de ejecución es una secuencia de instrucciones que puede avanzar indepe
 - FXML no carga: revisa ruta, controlador e imports XML.
 - Interfaz congelada: mide duración de la tarea en el evento.
 
+## Modelo visual del árbol de escena
+
+![Stage contiene una Scene; la Scene tiene una raíz VBox, que contiene nodos Label, TextField y Button.](/diagrams/javafx-scene-graph.svg)
+
+Stage no es un contenedor de botones: contiene una Scene. Scene tiene una raíz de tipo Parent; la raíz y sus descendientes constituyen el scene graph. Un nodo no puede pertenecer simultáneamente a dos padres del mismo árbol. Un layout calcula posición y tamaño de sus hijos según sus reglas; VBox los dispone verticalmente y HBox horizontalmente.
+
+## Ciclo de vida y ejecución
+
+| Etapa | Qué ocurre |
+|---|---|
+| launch | Arranca el runtime y crea la Application |
+| init | Inicialización previa; no se ejecuta en el hilo JavaFX |
+| start(Stage) | Construcción y presentación inicial de la ventana en el hilo JavaFX |
+| Eventos | Se procesan y actualizan los nodos en el hilo JavaFX |
+| stop | Limpieza al terminar normalmente la aplicación |
+
+No crees Scene o Stage en init. El punto de entrada main inicia el runtime; los métodos de evento se invocan posteriormente. En la aplicación mínima, sustituye VBox por HBox (añadiendo su import), incorpora dos Label y observa qué cambia sin modificar el contenido de cada control. Si la interfaz necesita datos externos, separa la obtención de los datos de su presentación.
+
 ## Conceptos relacionados
+
+- [Scene Builder](/handbook/java/javafx/scene-builder/)
+- [Navegación entre vistas](/handbook/java/javafx/navigation/)
 
 - [Controles de formulario](/handbook/java/javafx/controls/)
 - [Properties y binding](/handbook/java/javafx/properties-and-binding/)

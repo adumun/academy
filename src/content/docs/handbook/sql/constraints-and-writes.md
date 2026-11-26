@@ -79,6 +79,32 @@ Una clave foránea puede impedir eliminar un libro con préstamos. ON DELETE CAS
 
 La aplicación debe conservar la diferencia entre ausencia, rechazo de integridad y error de acceso. Consulta [CRUD JDBC](/handbook/java/jdbc/crud/) y [transacciones JDBC](/handbook/java/jdbc/transactions/).
 
+## Qué protege cada regla y dónde se verifica
+
+Una restricción declarada en el esquema pertenece al contrato de almacenamiento y se aplica incluso cuando la escritura no procede de la aplicación habitual. DEFAULT no es una comprobación de validez: proporciona un valor cuando corresponde según la sentencia y el motor. UNIQUE no equivale necesariamente a NOT NULL; el tratamiento de NULL depende del motor. CHECK evalúa una condición; si necesitas rechazar ausencia, declara además NOT NULL.
+
+### Ejemplo de integridad sin GUI
+
+```sql
+CREATE TABLE nivel_demo (
+    id INT PRIMARY KEY,
+    etiqueta VARCHAR(30) NOT NULL UNIQUE,
+    valor INT NOT NULL CHECK (valor BETWEEN 0 AND 100)
+);
+INSERT INTO nivel_demo VALUES (1, 'A', 30);
+```
+
+En una versión de MariaDB que aplique CHECK y un esquema desechable, prueba las siguientes sentencias por separado (cada una debe fallar):
+
+```sql
+INSERT INTO nivel_demo VALUES (1, 'B', 20);
+INSERT INTO nivel_demo VALUES (2, 'A', 20);
+INSERT INTO nivel_demo VALUES (3, 'C', -1);
+INSERT INTO nivel_demo VALUES (4, 'D', NULL);
+```
+
+La primera viola identidad, la segunda unicidad de etiqueta, la tercera rango y la cuarta presencia obligatoria. Consulta después SELECT para confirmar que solo permanece la fila válida. No reemplaces esta comprobación con un mensaje de éxito de la aplicación. En cambios múltiples, define una unidad transaccional y evita DDL que pueda producir commit implícito.
+
 ## Documentación oficial
 
 - [Constraints](https://mariadb.com/kb/en/constraint/)

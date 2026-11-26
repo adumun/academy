@@ -87,6 +87,40 @@ Las propiedades de los controles permiten observar cambios y enlazar estados. Co
 | El botón no reacciona | Revisa evento, fx:id y estado disabled |
 | El formulario pierde datos tras fallo | Limpia controles solo cuando la operación sea exitosa |
 
+## El valor visual y el valor del modelo
+
+Leer un control no equivale a validar ni guardar. Un TextField contiene texto incluso cuando el dominio requiere un entero. Una cadena vacía, una fecha ausente y un número fuera de rango son problemas diferentes.
+
+```text
+Control → extracción → conversión → validación → operación de dominio
+ texto       String       int          rango       cambio de estado
+```
+
+### Ejemplo de conversión explícita
+
+Fragmento dentro de un controlador: cantidadField es TextField y mensaje es Label.
+
+```java
+String entrada = cantidadField.getText().strip();
+
+try {
+    int cantidad = Integer.parseInt(entrada);
+    if (cantidad <= 0) {
+        mensaje.setText("La cantidad debe ser positiva");
+        return;
+    }
+    mensaje.setText("Cantidad válida: " + cantidad);
+} catch (NumberFormatException exception) {
+    mensaje.setText("Ingresa un entero válido");
+}
+```
+
+Prueba con espacios, abc, 0 y 12. Solo el último caso debe aceptar la cantidad. El texto de confirmación no demuestra que el dato haya sido persistido. Si se utiliza una selección de objetos, verifica también que el valor seleccionado siga siendo válido antes de ejecutar la operación.
+
+## Selección y agrupación
+
+RadioButton permite representar opciones mutuamente excluyentes si pertenecen a un mismo ToggleGroup. CheckBox representa una decisión independiente. ComboBox permite escoger un valor de una lista; DatePicker proporciona una fecha. El control se elige por el tipo de interacción, no por su apariencia. Para varias decisiones independientes, no agrupes los botones como si fueran una sola elección.
+
 ## Conceptos relacionados
 
 - [Validación y alertas](/handbook/java/javafx/validation/)

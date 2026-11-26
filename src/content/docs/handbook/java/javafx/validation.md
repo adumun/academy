@@ -45,7 +45,7 @@ private boolean validarTitulo(String titulo) {
 
 ## Guardar y manejar fallos
 
-Fragmento de Controller con txtTitulo, dao, cargar y mostrarError definidos. El ID cero representa un objeto aún no persistido en este ejemplo; no se incluye en el INSERT autoincremental.
+Fragmento de Controller con txtTitulo, dao, cargar y mostrarError definidos. En este ejemplo cargar declara throws SQLException y no captura internamente el error; el guardado y el refresco se tratan por separado. Se presupone que insertar usa auto-commit y comunica su resultado según el contrato. El ID cero representa un objeto aún no persistido en este ejemplo; no se incluye en el INSERT autoincremental.
 
 ```java
 @FXML
@@ -65,10 +65,16 @@ private void guardar() {
             return;
         }
 
-        txtTitulo.clear();
+    } catch (SQLException exception) {
+        mostrarError("No se pudo confirmar el guardado del libro.");
+        return;
+    }
+
+    txtTitulo.clear();
+    try {
         cargar();
-    } catch (SQLException e) {
-        mostrarError("No se pudo guardar el libro.");
+    } catch (SQLException exception) {
+        mostrarError("Libro guardado; no se pudo actualizar el listado.");
     }
 }
 ```
@@ -139,9 +145,25 @@ Una fecha de DatePicker es [LocalDate](/handbook/java/dates/); verifica si hay v
 | Título válido | INSERT y refresco |
 | Actualizar sin selección | Mensaje y ninguna escritura |
 | Cancelar eliminación | No llamar al DAO |
-| SQLException | Mensaje de fallo, sin anunciar éxito |
+| SQLException al insertar | Guardado no confirmado, conservar entrada |
+| SQLException al recargar tras INSERT confirmado | Informar guardado confirmado y fallo de refresco |
 
 Para fechas, comprueba que DatePicker.getValue() no sea null antes de convertir a java.sql.Date. Para números, captura NumberFormatException y aplica límites de dominio.
+
+## Separar formato, regla y persistencia
+
+| Frontera | Ejemplo | Resultado ante fallo |
+|---|---|---|
+| Formato de entrada | Convertir texto a número | Mostrar corrección requerida |
+| Regla de dominio | Cantidad mayor que cero | Rechazar operación inválida |
+| Acceso a datos | Restricción única o conexión | Comunicar fallo según contrato |
+| Presentación posterior | Recargar tabla tras confirmar | Informar fallo de refresco sin negar la escritura confirmada |
+
+Una condición de botón deshabilitado no sustituye ninguna de las reglas que protegen el estado. El guardado puede completarse y la recarga posterior fallar: son dos resultados distintos. Si el acceso falla en un punto en el que no se conoce si el motor confirmó, no reintentes ciegamente; informa incertidumbre y verifica el estado.
+
+## Prueba de contraste
+
+Configura un DAO de prueba que retorna una fila insertada y una operación de lectura que falla. Comprueba que la interfaz comunica que la escritura se confirmó pero que no pudo refrescarse. Luego invierte el escenario: falla insertar y se conserva el texto de entrada. Estos son criterios para la prueba gráfica, no resultados ejecutados.
 
 ## Conceptos relacionados
 

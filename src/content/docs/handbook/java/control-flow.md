@@ -67,6 +67,42 @@ Un [ResultSet](/handbook/java/jdbc/result-set/) tiene un cursor que avanza media
 
 Un bucle que no cambia las condiciones de salida puede no terminar. Un índice debe estar dentro de los límites de la colección. Un return dentro de un bucle finaliza el método, no solo la iteración. Comprueba casos vacíos, un elemento y varios.
 
+## Elegir la estructura de control
+
+| Problema | Construcción |
+|---|---|
+| Ejecutar una de varias ramas | if / else if / else o switch apropiado |
+| Recorrer un número conocido de posiciones | for con índice |
+| Recorrer elementos sin necesitar posición | for-each |
+| Repetir mientras cambie una condición | while |
+| Ejecutar al menos una vez y luego evaluar | do-while |
+
+Un for clásico tiene inicialización, condición y actualización; evalúa la condición antes de cada iteración. do-while evalúa después del cuerpo. break sale del bucle correspondiente; continue omite lo restante de la iteración; return finaliza todo el método.
+
+## Ejemplo autónomo: buscar el primer positivo
+
+```java
+public class BusquedaDemo {
+
+    private static int buscarPrimeroPositivo(int[] valores) {
+        for (int indice = 0; indice < valores.length; indice++) {
+            if (valores[indice] > 0) {
+                return indice;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(buscarPrimeroPositivo(new int[] {-2, 0, 4, 8}));
+        System.out.println(buscarPrimeroPositivo(new int[] {-2, 0}));
+        System.out.println(buscarPrimeroPositivo(new int[] {}));
+    }
+}
+```
+
+Archivo BusquedaDemo.java. Salida esperada: 2, -1, -1. El contrato retorna índice de la primera coincidencia o -1 si no hay ninguna; presupone un array no nulo. No se recorre 8 cuando ya se encontró 4. Para un array vacío el cuerpo no se ejecuta. Consulta [arrays](/handbook/java/arrays/) para el rango de índices.
+
 ## Conceptos relacionados
 
 - [Variables](/handbook/java/variables/)

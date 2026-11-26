@@ -19,6 +19,7 @@ export function classifyRoute(route) {
         ['/handbook/sql/', 'data'],
         ['/handbook/architecture/', 'architecture'],
         ['/handbook/tools/maven/', 'maven'],
+        ['/handbook/tools/', 'tooling'],
     ];
 
     return prefixes.find(([prefix]) => route.startsWith(prefix))?.[1] ?? null;
@@ -29,13 +30,14 @@ const allowedPrerequisites = {
     java: ['foundation', 'java'],
     data: ['foundation', 'data'],
     architecture: ['foundation', 'architecture'],
-    maven: ['foundation', 'java', 'maven'],
+    maven: ['foundation', 'java', 'maven', 'tooling'],
+    tooling: ['foundation', 'tooling'],
     jdbc: ['foundation', 'java', 'data', 'architecture', 'maven', 'jdbc'],
     javafx: ['foundation', 'java', 'architecture', 'maven', 'javafx'],
     application: ['foundation', 'java', 'data', 'architecture', 'maven',
-        'jdbc', 'javafx', 'application'],
+        'jdbc', 'javafx', 'application', 'tooling'],
     navigation: ['foundation', 'java', 'data', 'architecture', 'maven',
-        'jdbc', 'javafx', 'application', 'navigation'],
+        'jdbc', 'javafx', 'application', 'navigation', 'tooling'],
 };
 
 export function checkKnowledgeLink(source, target, section) {
@@ -127,6 +129,12 @@ export function inspectKnowledgePage(source, markdown) {
 
         for (const match of line.matchAll(/\]\((\/[^)\s]+)\)/g)) {
             const target = match[1].split(/[?#]/)[0];
+            const opening = line.lastIndexOf('[', match.index);
+            // A static diagram is not a knowledge dependency; validate-content checks its path and alt text.
+            if (opening > 0 && line[opening - 1] === '!'
+                    && /^\/diagrams\/[a-z0-9-]+\.svg$/.test(target)) {
+                continue;
+            }
             const message = checkKnowledgeLink(source, target, section);
             if (message) {
                 issues.push({ line: index + 1, message: message + ': ' + target });

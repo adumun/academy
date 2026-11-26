@@ -94,6 +94,19 @@ En Java, usa [PreparedStatement](/handbook/java/jdbc/prepared-statement/) con ma
 
 No es necesario estudiar JOIN para ejecutar un CRUD de una sola tabla. Utiliza la ficha correspondiente cuando el problema incluya relaciones entre entidades.
 
+## Observar el efecto de cada operación
+
+El lenguaje SQL expresa operaciones sobre conjuntos de filas. El motor determina cómo ejecutarlas. CREATE TABLE define la estructura; INSERT agrega registros a esa estructura. SELECT permite observar los datos, mientras UPDATE y DELETE los modifican según un criterio.
+
+| Operación sobre la tabla de práctica | Qué se espera observar |
+|---|---|
+| INSERT de un título nuevo | Una fila adicional con ID asignado |
+| SELECT por el ID asignado | Una fila con sus valores |
+| UPDATE por ese ID | El título actualizado; mismo ID |
+| DELETE por ese ID | El registro deja de existir |
+
+Antes de una escritura por criterio, ejecuta un SELECT con el mismo WHERE para revisar qué filas coinciden. En un esquema de práctica con motor transaccional, puedes envolver las modificaciones en una transacción y terminar con ROLLBACK para evitar conservarlas. No mezcles DDL con esa demostración: determinadas sentencias DDL producen commits implícitos en MariaDB. Consulta las fichas de restricciones y transacciones para conocer sus límites. Los resultados de esta tabla son expectativas, no ejecuciones certificadas.
+
 ## Conceptos relacionados
 
 - [JDBC](/handbook/java/jdbc/)

@@ -73,6 +73,24 @@ PropertyValueFactory intenta resolver una propiedad observable o un getter compa
 
 Si reemplazas un Libro por otra instancia mediante setAll sobre la lista fuente, la tabla refleja la nueva colección. Si modificas un atributo ordinario sin notificación, no presupongas que la celda se refrescará. Si ejecutas UPDATE en otra aplicación, ninguna de estas estrategias detecta automáticamente la modificación remota.
 
+## Qué observa la tabla
+
+![TableView observa cambios de la colección para altas y bajas; las celdas observan valores de propiedades si la factoría devuelve la propiedad del elemento.](/diagrams/javafx-table-observation.svg)
+
+El control utiliza una lista de elementos para sus filas. La cell value factory de una columna obtiene un ObservableValue para cada elemento. Cuando retorna una propiedad real, la celda puede recibir cambios de ese valor. Cuando retorna una envoltura creada a partir de un getter, esa envoltura representa una lectura y no necesariamente queda conectada a futuros cambios del campo.
+
+| Estrategia | Comportamiento | Uso habitual |
+|---|---|---|
+| Modelo inmutable y setAll | Sustituye los objetos de las filas | Recarga explícita de datos |
+| Propiedades de presentación | Observa cambios del mismo objeto | Edición y bindings |
+| refresh() | Solicita volver a crear y poblar celdas visibles según contrato de TableView | Cambio no observado; no es mecanismo de persistencia |
+
+## Diagnóstico por observación
+
+Si un valor cambia sin reflejarse en pantalla, comprueba en orden: ¿se modificó la misma instancia que contiene la lista?, ¿la factoría retorna la propiedad del objeto correcto?, ¿el cambio ocurre en el hilo adecuado? Si la tabla muestra valores correctos pero los pierde al reiniciar, el problema pertenece al contrato de persistencia, no a la observación de celdas.
+
+Prueba con un modelo mutable ordinario, después con una propiedad observable y finalmente reemplazando una instancia en la lista. Registra qué cambio se observa de forma automática en cada caso. No se afirma que las pruebas gráficas estén ejecutadas; el objetivo es distinguir estos mecanismos.
+
 ## Conceptos relacionados
 
 - [Properties y binding](/handbook/java/javafx/properties-and-binding/)

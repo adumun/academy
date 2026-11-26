@@ -32,6 +32,34 @@ Imagina sustituir el algoritmo de conversión de unidades por otro. Identifica q
 - [Interfaces Java](/handbook/java/interfaces/): contratos expresados en un lenguaje concreto.
 - [MVC y DAO](/handbook/architecture/): aplicación al diseño de interfaces y persistencia.
 
+## Visualizar dependencias
+
+![Un consumidor usa el contrato de conversión; las implementaciones A y B cumplen ese contrato. El consumidor no depende directamente de sus detalles.](/diagrams/contract-dependencies.svg)
+
+Una dependencia puede ser estructural (una parte necesita un tipo o módulo) o semántica (depende de su comportamiento). Acoplamiento bajo no significa ausencia de dependencias: significa evitar que detalles innecesarios de una parte obliguen a modificar otra. Cohesión alta significa que una pieza concentra responsabilidades que cambian por motivos relacionados.
+
+## Ejemplo de contrato y sustitución
+
+```text
+Contrato ConversorTemperatura:
+    recibe una temperatura válida en Celsius
+    devuelve su equivalente en Kelvin
+    rechaza temperaturas inferiores al cero absoluto
+```
+
+Dos implementaciones pueden calcular mediante una fórmula o delegar a una biblioteca, pero deben conservar unidad, reglas de entrada y política de errores. Si una retorna Fahrenheit y otra Kelvin, no cumplen el mismo contrato aunque tengan una firma idéntica. Prueba entradas normales, límite físico y valor inválido.
+
+## Separar responsabilidades sin multiplicar capas
+
+| Señal | Pregunta |
+|---|---|
+| Un cambio de formato obliga a editar reglas de negocio | ¿Se mezclaron representación y dominio? |
+| Un componente contiene muchas operaciones no relacionadas | ¿Puede dividirse por razones reales de cambio? |
+| Toda clase tiene una interfaz sin alternativas ni contrato útil | ¿Aporta aislamiento o solo agrega navegación? |
+| Dos componentes validan la misma invariante de forma diferente | ¿Quién tiene la autoridad sobre esa regla? |
+
+La validación de entrada puede comprobar formato y dar feedback temprano; el propietario de una invariante debe protegerla independientemente del consumidor. Las pruebas de un consumidor aislado no certifican la implementación sustituida.
+
 ## Conceptos relacionados
 
 - [Interfaces y polimorfismo](/handbook/java/interfaces/)

@@ -55,6 +55,42 @@ Archivo ReferenciasDemo.java. Salida esperada: Sin título. Invocar un método d
 
 Java pasa argumentos por valor. Si un argumento es una referencia, el método recibe una copia de esa referencia. Puede modificar un objeto mutable compartido, pero reasignar su parámetro no reasigna la variable del llamador.
 
+## Visualizar alias y reasignación
+
+![Las variables primero y segundo contienen referencias al mismo StringBuilder, cuyo contenido cambia a JavaFX. Otra instancia con el mismo contenido tiene identidad propia.](/diagrams/java-reference-alias.svg)
+
+En el diagrama A y B son etiquetas conceptuales, no direcciones de memoria ni valores de puntero que Java permita manipular. Dos referencias pueden compartir un objeto (alias); reasignar una de ellas cambia esa variable, no el objeto ni las otras variables.
+
+## Ejemplo ejecutable: paso por valor
+
+Archivo AliasDemo.java, Java 21 sin dependencias.
+
+```java
+public class AliasDemo {
+
+    private static void modificar(StringBuilder texto) {
+        texto.append("B");
+        texto = new StringBuilder("C");
+        texto.append("D");
+    }
+
+    public static void main(String[] args) {
+        StringBuilder primero = new StringBuilder("A");
+        StringBuilder segundo = primero;
+        modificar(segundo);
+        System.out.println(primero);
+        System.out.println(segundo);
+        System.out.println(primero == segundo);
+    }
+}
+```
+
+Salida esperada: AB, AB y true (una línea por valor). La primera llamada append modifica el objeto compartido. La asignación posterior solo cambia el parámetro local texto; el nuevo objeto CD no reemplaza primero ni segundo.
+
+## Autocomprobación
+
+Cambia segundo por una instancia nueva antes de invocar modificar. Predice los dos textos y la identidad. Para igualdad lógica, consulta [equals y hashCode](/handbook/java/equality/).
+
 ## Conceptos relacionados
 
 - [Clases, objetos y encapsulamiento](/handbook/java/classes-and-objects/)

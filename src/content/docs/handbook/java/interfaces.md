@@ -62,6 +62,54 @@ No introduzcas interfaces vacías o redundantes solo por cumplir una regla esté
 
 Agrega otra implementación que retorne una lista vacía y cambia únicamente la construcción de CatalogoDemo. El consumidor debería seguir compilando. Verifica qué espera el consumidor ante lista vacía y fallo.
 
+## Cómo se selecciona una implementación
+
+![El consumidor invoca describir mediante el tipo Describible; el objeto real puede ser Punto o Linea, que cumplen el mismo contrato.](/diagrams/java-interface-dispatch.svg)
+
+El tipo declarado determina qué operaciones puede invocar el consumidor. El objeto real determina qué implementación de un método de instancia se ejecuta. Para sustituir implementaciones, el contrato debe expresar la semántica completa: en este caso, cada objeto proporciona su propia descripción textual no nula. Las dos implementaciones satisfacen esa misma expectativa; el consumidor no necesita conocer el tipo concreto.
+
+## Ejemplo ejecutable con dos implementaciones
+
+Archivo DespachoDemo.java, Java 21. Ambas implementaciones cumplen el contrato de obtener una descripción textual no nula.
+
+```java
+public class DespachoDemo {
+
+    interface Describible {
+        String describir();
+    }
+
+    static class Punto implements Describible {
+        @Override
+        public String describir() {
+            return "Punto";
+        }
+    }
+
+    static class Linea implements Describible {
+        @Override
+        public String describir() {
+            return "Linea";
+        }
+    }
+
+    private static void mostrar(Describible elemento) {
+        System.out.println(elemento.describir());
+    }
+
+    public static void main(String[] args) {
+        mostrar(new Punto());
+        mostrar(new Linea());
+    }
+}
+```
+
+Salida esperada: Punto y Linea. mostrar recibe el contrato, no necesita comprobar el tipo concreto con instanceof. Las clases anidadas solo simplifican la ejecución en un archivo; en un proyecto pueden estar separadas. Los métodos abstractos de interfaz son públicos según sus reglas; al implementar no se puede reducir la visibilidad. Una interfaz puede extender otras interfaces y una clase implementar más de una.
+
+## Autocomprobación
+
+Agrega un tercer elemento describible y úsalo sin editar mostrar. Compara con una clase abstracta cuando se necesita estado común. Consulta [herencia](/handbook/java/inheritance/) y [clases abstractas](/handbook/java/abstract-classes/).
+
 ## Conceptos relacionados
 
 - [Genéricos](/handbook/java/generics/)

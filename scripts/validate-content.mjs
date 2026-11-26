@@ -1,7 +1,8 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+const publicRoot = fileURLToPath(new URL('../public/', import.meta.url));
 const root = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
 function markdownFiles(directory) {
@@ -28,6 +29,7 @@ const routes = new Set();
 const errors = [];
 let links = 0;
 let codeBlocks = 0;
+let diagrams = 0;
 
 for (const path of files) {
     const route = routeFor(path);
@@ -75,6 +77,16 @@ for (const path of files) {
         // This intentionally validates route existence, not anchor or external HTTP health.
         for (const match of line.matchAll(/\]\((\/[^)\s]+)\)/g)) {
             const target = match[1].split(/[?#]/)[0];
+            const opening = line.lastIndexOf('[', match.index);
+            if (opening > 0 && line[opening - 1] === '!') {
+                if (!/^\/diagrams\/[a-z0-9-]+\.svg$/.test(target)
+                        || !line.slice(opening + 1, match.index).trim()
+                        || !existsSync(join(publicRoot, target.slice(1)))) {
+                    errors.push(name + ': ' + (index + 1) + ': invalid diagram asset or alt text ' + target);
+                }
+                diagrams++;
+                continue;
+            }
             links++;
             if (!routes.has(target)) {
                 errors.push(name + ': ' + (index + 1) + ': missing route ' + target);
@@ -92,11 +104,11 @@ if (files.length === 0) {
 }
 
 console.log('Content: ' + files.length + ' pages, ' + links
-    + ' internal links, ' + codeBlocks + ' code blocks.');
+    + ' internal links, ' + codeBlocks + ' code blocks, ' + diagrams + ' diagram references.');
 
 if (errors.length > 0) {
     console.error(errors.join('\n'));
     process.exitCode = 1;
 } else {
-    console.log('PASS: route existence, frontmatter, fenced code blocks.');
+    console.log('PASS: route existence, frontmatter, fenced code blocks, local diagram assets and alt text.');
 }

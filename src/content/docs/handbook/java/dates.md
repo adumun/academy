@@ -63,6 +63,31 @@ Fragmento con fecha no nula, PreparedStatement y ResultSet válidos. Si el valor
 
 DatePicker.getValue() retorna LocalDate o null. Comprueba presencia y reglas del dominio antes de convertir. LocalDate.parse usa formato ISO por defecto; un formato local requiere DateTimeFormatter explícito. Una fecha imposible provoca una excepción, no se convierte automáticamente a una fecha válida.
 
+## Fecha, hora local e instante: diferencias concretas
+
+Una fecha como 2026-11-25 no indica una hora; una hora local 08:00 no identifica por sí sola un instante global. Una zona aporta reglas de desplazamiento y cambios históricos. Para convertir una fecha y hora local a un instante, debes conocer la zona o desplazamiento apropiado; para un vencimiento expresado como día civil, convertir a UTC sin necesidad puede alterar el día observado.
+
+| Método | Contrato |
+|---|---|
+| LocalDate.of(año, mes, día) | Construye fecha válida o lanza DateTimeException |
+| LocalDate.parse(texto) | Analiza formato ISO por defecto |
+| plusDays(n) | Retorna una fecha desplazada, sin mutar la anterior |
+| isBefore / isAfter | Compara fechas |
+| Period.between(inicio, fin) | Diferencia en componentes años, meses y días |
+
+### Validar una fecha introducida como texto
+
+```java
+try {
+    java.time.LocalDate fecha = java.time.LocalDate.parse("2026-02-30");
+    System.out.println(fecha);
+} catch (java.time.format.DateTimeParseException exception) {
+    System.out.println("Fecha invalida");
+}
+```
+
+Fragmento de método. El 30 de febrero no existe y se rechaza. No uses una cadena arbitraria para ordenar fechas sin controlar formato. Para mostrar formatos locales utiliza DateTimeFormatter y un patrón explícito; si analizas formatos personalizados estrictos, revisa ResolverStyle y la distinción entre yyyy y uuuu. El contrato de entrada debe definir formato y política de rechazo.
+
 ## Conceptos relacionados
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)

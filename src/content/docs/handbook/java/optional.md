@@ -50,6 +50,28 @@ Salida: Java y Sin título. Archivo OptionalDemo.java, JDK 21.
 
 Un buscarPorId puede retornar `Optional<Libro>`; el controlador distingue vacío de error y decide el mensaje. No retornes null en lugar de Optional ni uses get() sin comprobar presencia. No reemplaza validación de negocio ni representa un valor SQL NULL de manera universal.
 
+## Presencia no equivale a éxito
+
+Un Optional vacío representa que no hay valor, no que se produjo cualquier error. Una búsqueda válida sin coincidencias y una búsqueda que no pudo realizarse tienen resultados semánticos distintos. El método que retorna Optional no debe retornar null: eso crea dos mecanismos de ausencia simultáneos.
+
+### Alternativa evaluada frente a alternativa diferida
+
+```java
+java.util.Optional<String> dato = java.util.Optional.of("A");
+System.out.println(dato.orElse(alternativa()));
+System.out.println(dato.orElseGet(() -> alternativa()));
+```
+
+Fragmento dentro de un método; presupone un método alternativa que imprime un mensaje y retorna texto. La primera llamada evalúa alternativa aunque dato esté presente. La segunda no invoca el Supplier mientras haya valor. Evita utilizar alternativas costosas o con efectos innecesarios mediante orElse.
+
+## Transformar sin extraer prematuramente
+
+map aplica una transformación cuando hay valor; filter conserva el valor si satisface un predicado; flatMap permite encadenar una transformación que ya retorna Optional. Consulta [lambdas](/handbook/java/lambdas/) para identificar los contratos funcionales. No uses Optional como campo obligatorio que deba verificarse cada vez si el modelo exige presencia al construir.
+
+## Autocomprobación
+
+Prueba ofNullable(null), ofNullable(""), empty y una búsqueda que lanza una excepción. Explica por qué el texto vacío puede ser un valor presente y por qué el fallo no debe transformarse automáticamente en Optional.empty().
+
 ## Conceptos relacionados
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
