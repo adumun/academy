@@ -31,6 +31,51 @@ Scene Builder es un editor visual para [FXML](/handbook/java/javafx/xml-and-fxml
 
 Es una vista que necesita la clase app.FormController con campo texto y método aceptar. No es un programa autónomo. Comprueba que pulsar el botón ejecuta el handler y que una ruta o nombre inválido se diagnostica en la copia de práctica.
 
+## Del diseño al controlador
+
+El editor visual modifica un documento. Al ejecutar la aplicación, FXMLLoader lee ese documento e instancia sus nodos; no ejecuta Scene Builder.
+
+```text
+Scene Builder ── guarda ──► vista.fxml
+                                │
+                         FXMLLoader.load()
+                                │
+                    árbol de nodos + Controller
+                                │
+                         Scene / Stage
+```
+
+| Configuración | Para qué sirve | Verificación |
+|---|---|---|
+| Hierarchy | Contención y orden de nodos | El Button pertenece al VBox |
+| Properties | Texto y otras propiedades | El texto del botón coincide con FXML |
+| Layout | Tamaño, alineación y espaciado | Redimensionar no corta los controles |
+| Code | fx:id y manejadores | El nombre coincide con el controlador |
+
+### Completar el controlador del ejemplo
+
+Archivo app/FormController.java, con las dependencias JavaFX del proyecto. El campo texto corresponde exactamente al fx:id; el método aceptar al onAction.
+
+```java
+package app;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
+public class FormController {
+
+    @FXML
+    private TextField texto;
+
+    @FXML
+    private void aceptar() {
+        System.out.println(texto.getText());
+    }
+}
+```
+
+Cargar el documento desde la aplicación descrita en [FXML y Controller](/handbook/java/javafx/fxml-controller/). Al escribir Hola y pulsar Aceptar, la salida esperada es Hola. Cambia deliberadamente el nombre del manejador en una copia y verifica el error de carga. El ejemplo requiere ejecución JavaFX real para confirmar el resultado.
+
 ## Referencias
 
 - [Scene Builder](https://gluonhq.com/products/scene-builder/)

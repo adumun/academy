@@ -74,6 +74,34 @@ Salida esperada: 21 con una versión de Gson compatible con records. Consulta el
 
 Revisa estructura, campos obligatorios, límites numéricos y política de claves duplicadas. No asumas que el parser aplica reglas de negocio. Diferencia archivo ausente, vacío, JSON malformado y datos inválidos. Para un DAO, [Path y Files](/handbook/java/files/) gestionan rutas y [persistencia](/handbook/foundations/persistence/) explica recuperación. En proyectos modulares, revisa opens según las necesidades de reflexión.
 
+## Qué se transforma y qué se conserva
+
+```text
+Instancia Java ── serializar ──► texto JSON
+Instancia Java ◄─ deserializar ─ texto JSON
+                                     │
+                            lectura/escritura opcional
+                                     ▼
+                                   archivo
+```
+
+El texto representa datos, no la identidad en memoria ni los métodos del objeto. Una instancia reconstruida puede tener los mismos valores sin ser la misma referencia. La biblioteca utiliza la estructura y el tipo esperado para decidir la conversión. Un record facilita expresar un portador de datos; no garantiza que sus componentes cumplan reglas de dominio.
+
+### Comparar las operaciones
+
+| Necesidad | Jackson | Gson |
+|---|---|---|
+| Crear texto | writeValueAsString | toJson |
+| Leer un objeto | readValue con clase | fromJson con clase |
+| Leer una lista tipada | TypeReference | TypeToken |
+| Persistir | API de escritura o Files | Writer o Files |
+
+Una lista genérica requiere conservar información sobre el tipo de sus elementos. Leer únicamente List.class puede producir representaciones genéricas en vez de instancias del tipo esperado. TypeReference y TypeToken capturan ese tipo para la biblioteca; no validan automáticamente sus valores.
+
+## Probar la ida y vuelta
+
+En los ejemplos anteriores, imprime también texto: se espera un arreglo JSON con una medición que contiene etiqueta A y valor 21. No dependas del orden de las propiedades. Comprueba lista vacía, campo ausente, valor de tipo incorrecto y texto malformado; la respuesta concreta depende de la configuración y versión de cada biblioteca. Declara qué entradas rechaza tu aplicación, en vez de aceptar implícitamente cualquier conversión. Estos escenarios requieren ejecutar los ejemplos con sus dependencias reales.
+
 ## Referencias
 
 - [Jackson Databind](https://github.com/FasterXML/jackson-databind)

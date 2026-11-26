@@ -38,6 +38,34 @@ Este documento crea un VBox con un botón. La instrucción import permite usar n
 
 XML mal formado puede impedir cargar la vista. Un nombre de clase o propiedad incorrecto también puede fallar aunque el XML esté bien formado. Revisa el error y su causa, la ubicación del recurso, las dependencias y el nombre completo del controlador.
 
+## Del documento al árbol de objetos
+
+El anidamiento representa relaciones estructurales. En el ejemplo FXML, VBox es el nodo contenedor y Button es un hijo; children representa la propiedad de colección que los conecta.
+
+```text
+VBox
+└── children
+    └── Button
+        ├── text = Guardar
+        └── fx:id = btnGuardar
+```
+
+Una etiqueta XML distingue mayúsculas y minúsculas. Los espacios de nombres califican nombres: el prefijo fx se asocia al espacio de nombres de FXML, no a una variable Java. El identificador fx:id no equivale al texto visible.
+
+| Forma | Significado |
+|---|---|
+| <Button/> | Elemento autocerrado |
+| text="Guardar" | Atributo de configuración |
+| <children>...</children> | Elemento que representa una propiedad |
+| fx:controller="app.FormController" | Clase asociada al documento |
+| onAction="#aceptar" | Referencia a un manejador del controlador |
+
+Los caracteres reservados del XML requieren escape cuando se utilizan como datos, por ejemplo &amp;amp; para el ampersand.
+
+## Dos niveles de validación
+
+Un documento puede ser XML bien formado pero FXML inválido. Por ejemplo, un atributo con nombre de propiedad inexistente puede respetar la sintaxis XML y fallar al construir el objeto JavaFX. Una etiqueta sin cerrar falla antes, en el análisis del documento. Ante una LoadException, inspecciona la causa y la línea del archivo en lugar de modificar nombres al azar.
+
 ## Conceptos relacionados
 
 - [Paquetes e imports](/handbook/java/packages-and-imports/)
