@@ -55,6 +55,23 @@ Un miembro privado no es accesible directamente desde el subtipo; protege el est
 
 Quita temporalmente la implementación sobrescrita: ambos objetos mostrarán Normal. Cambia la firma dejando @Override: la compilación debe rechazar la declaración. Restaura después el ejemplo.
 
+## Tipo declarado y objeto real
+
+![IndicadorCritico extiende Indicador. Una variable de tipo Indicador que referencia un IndicadorCritico ejecuta mostrar del subtipo.](/diagrams/java-inheritance.svg)
+
+El tipo declarado determina las operaciones accesibles durante compilación; el tipo real determina el despacho de métodos de instancia sobrescribibles. Un cast no transforma el objeto en otro tipo; expresa una comprobación/conversión de referencia que puede fallar en ejecución. No necesitas convertir al subtipo para invocar un método ya declarado por la superclase.
+
+| Construcción | Semántica |
+|---|---|
+| extends | Declara una superclase directa |
+| super(...) | Invoca un constructor de la superclase según las reglas Java 21 |
+| super.mostrar() | Invoca la implementación de la superclase accesible |
+| @Override | Solicita comprobación de sobrescritura al compilador |
+| final en método | Impide sobrescribir ese método |
+| final en clase | Impide crear subclases |
+
+No reduzcas visibilidad de un método sobrescrito ni cambies su contrato de manera incompatible. Un campo con el mismo nombre en una subclase no se despacha polimórficamente como los métodos. La relación de sustitución es una decisión de diseño: si un subtipo rompe reglas válidas del padre, revisa la abstracción. Consulta [clases abstractas](/handbook/java/abstract-classes/).
+
 ## Documentación oficial
 
 - [JLS 21: clases y sobrescritura](https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.4.8)

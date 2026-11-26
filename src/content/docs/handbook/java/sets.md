@@ -48,6 +48,32 @@ true
 
 HashSet depende de [equals y hashCode](/handbook/java/equality/). No cambies campos que participan en esos métodos mientras el elemento está en la estructura. No dependas de una salida ordenada; si el orden es un requisito, elige otra implementación o presenta una copia ordenada.
 
+## Elegir una implementación y observar unicidad
+
+| Implementación | Propiedad principal |
+|---|---|
+| HashSet | Unicidad mediante igualdad y hashing; no garantiza orden de recorrido |
+| LinkedHashSet | Unicidad y orden de encuentro definido |
+| TreeSet | Unicidad según comparación y orden de clasificación |
+
+Set no ofrece acceso por índice como List. El retorno de add permite distinguir incorporación de duplicado. En TreeSet, si el comparador considera dos elementos equivalentes (compare devuelve cero), se consideran la misma posición del conjunto; por ello conviene un orden consistente con equals para respetar el contrato general de Set.
+
+### Ejemplo de contraste
+
+```java
+java.util.Set<String> etiquetas = new java.util.LinkedHashSet<>();
+etiquetas.add("B");
+etiquetas.add("A");
+etiquetas.add("B");
+System.out.println(etiquetas); // [B, A]
+```
+
+Fragmento dentro de un método. La segunda B no se agrega; el orden mostrado corresponde a LinkedHashSet. No dependas del mismo resultado al cambiar a HashSet. Con objetos propios, define [igualdad y hashCode](/handbook/java/equality/) según el significado de unicidad; no confundas igualdad de referencia con igualdad de negocio.
+
+## Autocomprobación
+
+Elige un Set para etiquetas únicas sin orden, para conservar orden de llegada y para ordenar alfabéticamente. Predice qué ocurre al eliminar un elemento ausente y al intentar agregar una segunda instancia lógicamente igual a otra existente.
+
 ## Documentación oficial
 
 - [Set](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html)

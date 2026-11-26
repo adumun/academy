@@ -51,6 +51,30 @@ Salida esperada:
 
 Un índice negativo o igual a length provoca ArrayIndexOutOfBoundsException. Un array no crece; copia a otro array o utiliza [List](/handbook/java/collections/) si necesitas altas y bajas frecuentes. La copia de un array de referencias no duplica los objetos.
 
+## Visualizar longitud e índices
+
+![La variable mediciones referencia un array de tres elementos. Los índices 0, 1 y 2 contienen 10, 20 y 30; length vale 3.](/diagrams/java-array-slots.svg)
+
+La variable contiene una referencia al array. Su tipo determina qué elementos pueden almacenarse; length es la longitud de esa instancia y no se modifica. Un array de longitud cero es válido y no tiene índices utilizables. Distingue posición de valor: el índice 1 del ejemplo contiene 20.
+
+### Reasignar, copiar y recorrer
+
+```java
+int[] original = {10, 20, 30};
+int[] alias = original;
+alias[1] = 99;
+System.out.println(original[1]); // 99
+int[] copia = java.util.Arrays.copyOf(original, 5);
+System.out.println(copia.length); // 5
+System.out.println(copia[4]); // 0
+```
+
+Fragmento dentro de un método. Asignar copia la referencia; copyOf crea otro array con longitud solicitada y copia valores. En arrays de referencias eso no implica copiar objetos. Si la longitud solicitada es menor, se truncan elementos. Para recorrer posiciones usa un índice desde 0 hasta length exclusivo. La expresión new int[-1] provoca NegativeArraySizeException.
+
+## Autocomprobación
+
+Crea un array vacío, otro de tres valores y uno de String de longitud dos. Predice sus valores iniciales y qué ocurre al leer la última posición. Consulta [referencias](/handbook/java/references/) y [colecciones](/handbook/java/collections/) para distinguir alias y estructuras redimensionables.
+
 ## Documentación oficial
 
 - [JLS 21: arrays](https://docs.oracle.com/javase/specs/jls/se21/html/jls-10.html)

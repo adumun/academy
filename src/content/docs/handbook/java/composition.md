@@ -67,6 +67,29 @@ El ejemplo agrupa clases anidadas para ejecutar en un archivo; normalmente se se
 - Duplicar datos de un objeto colaborador: puede generar dos estados contradictorios.
 - Aceptar una referencia ausente cuando es obligatoria: valida al construir.
 
+## Qué relación establece el campo
+
+![Circulo guarda una referencia a Punto y delega descripcion; no copia coordenadas. Punto también podría ser referenciado por otro consumidor.](/diagrams/java-composition-reference.svg)
+
+El campo centro almacena una referencia al Punto recibido; Circulo delega la representación de coordenadas a descripcion. Este ejemplo ilustra colaboración, no necesariamente composición fuerte en UML. La propiedad exclusiva y el ciclo de vida dependen del contrato del modelo. Un objeto colaborador inmutable puede compartirse sin permitir cambios de estado; uno mutable requiere evaluar alias y garantías.
+
+## Propiedad frente a acceso
+
+```java
+// Fragmento dentro de una clase que administra datos propios.
+private final java.util.List<String> datos = new java.util.ArrayList<>();
+
+public java.util.List<String> consultarDatos() {
+    return java.util.List.copyOf(datos);
+}
+```
+
+Retornar una copia no modificable evita que el consumidor agregue elementos directamente a la lista interna. Como los String son inmutables, los elementos no exponen mutación; si fueran objetos mutables, una copia superficial no bastaría. No confundas final con propiedad exclusiva. Consulta [colecciones y mutabilidad](/handbook/java/collections/).
+
+## Cuándo preferir delegación
+
+Si un objeto necesita usar otra capacidad sin ser un subtipo de ella, delegar conserva contratos separados. Si cambia el colaborador, el consumidor debería depender de las operaciones que necesita, no de detalles internos. No agregues una capa intermedia sin un motivo de responsabilidad o sustitución.
+
 ## Documentación oficial
 
 - [JLS 21: campos y clases](https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html)
