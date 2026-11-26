@@ -42,6 +42,35 @@ Un recurso como view/libro.fxml no es una clase Java. Maven copia src/main/resou
 - ClassNotFoundException: revisa disponibilidad en ejecución.
 - Recurso null: revisa ubicación, ruta y mayúsculas.
 
+## Nombre cualificado, ubicación y resolución
+
+El nombre cualificado de PaquetesDemo es app.PaquetesDemo. Un import no crea instancias ni modifica el classpath: permite resolver nombres simples al compilar. Importar un paquete con asterisco no incluye sus subpaquetes. Si dos tipos comparten nombre simple, puedes escribir el nombre cualificado donde se necesite.
+
+### Práctica sin Maven
+
+Crea esta estructura en una carpeta nueva:
+
+```text
+proyecto/
+    src/
+        app/
+            PaquetesDemo.java
+    out/
+```
+
+Desde proyecto, con el ejemplo anterior guardado y out existente:
+
+```bash
+javac --release 21 -d out src/app/PaquetesDemo.java
+java -cp out app.PaquetesDemo
+```
+
+Salida esperada: [Java]. El archivo compilado queda en out/app/PaquetesDemo.class; el classpath indica la raíz desde la que se resuelve app, no la carpeta app. La opción -d indica directorio de salida y -cp classpath. En Windows y Unix, la separación de varias entradas de classpath es distinta; Maven puede administrar esa configuración.
+
+## Compilación frente a ejecución
+
+Si javac encuentra una dependencia pero java no, la compilación puede pasar y la ejecución fallar. No copies una clase .class al azar para resolver el síntoma: revisa classpath y versión del artefacto. En proyectos modulares, requires expresa lectura de otro módulo, exports acceso a API pública y opens permite reflexión profunda según destino. No añadas module-info a un proyecto no modular solo por usar FXML.
+
 ## Conceptos relacionados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
