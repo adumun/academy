@@ -55,3 +55,9 @@ test('general tools are not language or project prerequisites by accident', () =
     assert.equal(inspectKnowledgePage(git, page('Conocimientos previos recomendados', java)).length, 1);
     assert.deepEqual(inspectKnowledgePage(git, page('Conocimientos previos recomendados', '/handbook/tools/terminal/')), []);
 });
+
+test('static SVG illustrations are not knowledge dependencies', () => {
+    assert.deepEqual(inspectKnowledgePage(foundation, '![Modelo de estado](/diagrams/object-state-identity.svg)'), []);
+    assert.equal(inspectKnowledgePage(foundation, '[Enlace inválido](/diagrams/object-state-identity.svg)').length, 1);
+    assert.equal(inspectKnowledgePage(foundation, '![Imagen inválida](/handbook/java/variables/)').length, 1);
+});

@@ -29,6 +29,7 @@ const routes = new Set();
 const errors = [];
 let links = 0;
 let codeBlocks = 0;
+let diagrams = 0;
 
 for (const path of files) {
     const route = routeFor(path);
@@ -83,6 +84,7 @@ for (const path of files) {
                         || !existsSync(join(publicRoot, target.slice(1)))) {
                     errors.push(name + ': ' + (index + 1) + ': invalid diagram asset or alt text ' + target);
                 }
+                diagrams++;
                 continue;
             }
             links++;
@@ -102,11 +104,11 @@ if (files.length === 0) {
 }
 
 console.log('Content: ' + files.length + ' pages, ' + links
-    + ' internal links, ' + codeBlocks + ' code blocks.');
+    + ' internal links, ' + codeBlocks + ' code blocks, ' + diagrams + ' diagram references.');
 
 if (errors.length > 0) {
     console.error(errors.join('\n'));
     process.exitCode = 1;
 } else {
-    console.log('PASS: route existence, frontmatter, fenced code blocks.');
+    console.log('PASS: route existence, frontmatter, fenced code blocks, local diagram assets and alt text.');
 }

@@ -64,9 +64,9 @@ Agrega otra implementación que retorne una lista vacía y cambia únicamente la
 
 ## Cómo se selecciona una implementación
 
-![El consumidor invoca convertir mediante el tipo Conversor; el objeto real puede ser una implementación CelsiusAFahrenheit o CelsiusAKelvin, con contratos de salida explícitos.](/diagrams/java-interface-dispatch.svg)
+![El consumidor invoca describir mediante el tipo Describible; el objeto real puede ser Punto o Linea, que cumplen el mismo contrato.](/diagrams/java-interface-dispatch.svg)
 
-El tipo declarado determina qué operaciones puede invocar el consumidor. El objeto real determina qué implementación de un método de instancia se ejecuta. Para sustituir implementaciones, el contrato debe expresar la semántica completa: el ejemplo de conversión necesita documentar la unidad de salida; no debe presentar Kelvin como Fahrenheit. El consumidor puede recibir resultado y unidad explícitos, o usar un contrato más específico.
+El tipo declarado determina qué operaciones puede invocar el consumidor. El objeto real determina qué implementación de un método de instancia se ejecuta. Para sustituir implementaciones, el contrato debe expresar la semántica completa: en este caso, cada objeto proporciona su propia descripción textual no nula. Las dos implementaciones satisfacen esa misma expectativa; el consumidor no necesita conocer el tipo concreto.
 
 ## Ejemplo ejecutable con dos implementaciones
 
