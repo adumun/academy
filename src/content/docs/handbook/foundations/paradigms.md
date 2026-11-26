@@ -27,6 +27,34 @@ Una operación puntual puede ser más clara como función. Un sistema con objeto
 
 Describe el algoritmo para contar valores positivos, primero como instrucciones secuenciales y luego como operación reutilizable. Identifica qué datos entran, qué sale y qué estado cambia. Ninguna descripción requiere aún una sintaxis específica.
 
+## Un mismo problema, cuatro enfoques
+
+El objetivo es contar positivos en 2, -1 y 4. Todos los enfoques deben producir 2; cambia la organización del cálculo.
+
+```text
+imperativo:
+    contador := 0
+    para cada valor: si valor > 0: contador := contador + 1
+
+procedural:
+    resultado := contarPositivos(valores)
+
+orientado a objetos:
+    registro := crear RegistroDeMediciones(valores)
+    resultado := registro.contarPositivos()
+
+funcional:
+    resultado := contar(filtrar(valores, esPositivo))
+```
+
+Son representaciones conceptuales. La versión procedural puede contener el mismo ciclo imperativo; la OO puede delegar a una función; la funcional puede utilizar una implementación interna imperativa. Los paradigmas no son categorías excluyentes ni definen una sintaxis universal.
+
+Un enfoque declarativo expresaría la selección de valores positivos y su conteo sin indicar el procedimiento de recorrido. La ventaja es comunicar la intención; el costo es depender de las garantías y capacidades del motor que ejecuta esa declaración.
+
+## Cómo comparar
+
+Pregúntate quién controla el estado, dónde está la regla, cómo se prueba y qué cambia cuando cambia el requerimiento. Para un cálculo puro, no hace falta inventar una entidad con identidad. Para varios objetos con estado y reglas, encapsular responsabilidades puede reducir errores. La selección es una decisión de diseño, no una competencia entre lenguajes.
+
 ## Conceptos relacionados
 
 - [Objetos, estado y comportamiento](/handbook/foundations/objects/)

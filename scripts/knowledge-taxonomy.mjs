@@ -129,6 +129,12 @@ export function inspectKnowledgePage(source, markdown) {
 
         for (const match of line.matchAll(/\]\((\/[^)\s]+)\)/g)) {
             const target = match[1].split(/[?#]/)[0];
+            const opening = line.lastIndexOf('[', match.index);
+            // A static diagram is not a knowledge dependency; validate-content checks its path and alt text.
+            if (opening > 0 && line[opening - 1] === '!'
+                    && /^\/diagrams\/[a-z0-9-]+\.svg$/.test(target)) {
+                continue;
+            }
             const message = checkKnowledgeLink(source, target, section);
             if (message) {
                 issues.push({ line: index + 1, message: message + ': ' + target });

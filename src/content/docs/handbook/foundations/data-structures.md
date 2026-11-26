@@ -25,6 +25,26 @@ Una secuencia de mediciones puede contener 10, 10, 12. Un conjunto de mediciones
 
 Si buscas conservar el orden de llegada, una secuencia es apropiada. Si necesitas evitar repeticiones, considera un conjunto. Si consultas por identificador, usa una asociación. Las implementaciones tienen costes y reglas distintas; antes de duplicar estructuras, define quién mantiene su coherencia.
 
+## Modelo visual
+
+![La secuencia conserva tres posiciones con valores 10, 10 y 12. El conjunto contiene solo 10 y 12. El mapa asocia A con 10, B con 10 y C con 12.](/diagrams/data-structures.svg)
+
+| Operación | Secuencia | Conjunto | Asociación |
+|---|---|---|---|
+| Agregar un valor ya presente | Puede conservar otra ocurrencia | No genera otro elemento igual | Requiere decidir qué hacer con la clave |
+| Recuperar posición | Según el contrato | No forma parte del contrato general | Se recupera por clave |
+| Recorrer | Orden de la secuencia | Orden depende de implementación | Orden depende de implementación |
+
+La estructura abstracta describe las operaciones admitidas; la implementación decide la representación interna (por ejemplo, almacenamiento contiguo, nodos enlazados o una tabla hash). Las estructuras tienen distintos costos de acceso, inserción y búsqueda. No se deduce rendimiento de su nombre solamente. En una tabla hash, una función hash ayuda a ubicar candidatos; colisiones pueden ocurrir y se necesita comprobar igualdad.
+
+## Ejemplo de decisión
+
+Para un registro de llegada, importa el orden y una secuencia conserva todas las observaciones. Para comprobar qué etiquetas aparecieron, un conjunto elimina duplicados. Para obtener la última medición de cada etiqueta, una asociación permite actualizar el valor vinculado a cada clave. Una clave repetida no equivale a un valor repetido.
+
+## Autocomprobación
+
+Elige una estructura para una cola de atención, un conjunto de códigos autorizados y un inventario consultado por código. Explica qué operación es esencial, cómo tratarías duplicados y qué orden necesitas.
+
 ## Conceptos relacionados
 
 - [Valores y tipos](/handbook/foundations/values-and-types/)
