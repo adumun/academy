@@ -63,6 +63,36 @@ Una variable int contiene un valor entero. Una variable Libro contiene una [refe
 - Cannot find symbol: verifica nombre, alcance y ortografía.
 - Incompatible types: revisa el tipo y la conversión, no agregues casts indiscriminados.
 
+## Alcance y duración: no son lo mismo
+
+El alcance indica dónde puede utilizarse un nombre en el código; la duración de un valor depende de cuándo existe el almacenamiento o el objeto. Un campo de instancia pertenece al objeto; un campo static pertenece a la clase en el sentido de que no existe una copia por instancia. Un parámetro se inicializa con el argumento de cada llamada.
+
+```java
+int total = 10;
+if (total > 0) {
+    int incremento = 2;
+    total += incremento;
+}
+// total vale 12; incremento no está en alcance aquí.
+```
+
+Fragmento dentro de un método. La declaración local sin inicializador es válida, pero leerla antes de asignarla definitivamente no compila. Los campos numéricos reciben cero por defecto; boolean recibe false y las referencias reciben null. No confíes en esos valores para construir estados válidos.
+
+## Ejemplo de referencia final
+
+```java
+final StringBuilder texto = new StringBuilder("A");
+texto.append("B");
+System.out.println(texto); // AB
+// texto = new StringBuilder("C"); // no compila
+```
+
+El objeto puede cambiar; lo que final impide es asignar otra referencia a texto. No todo campo final es una constante de compilación. Una constante de compilación Java es una variable final de tipo primitivo o String inicializada con una expresión constante.
+
+## Autocomprobación
+
+En VariablesDemo, señala qué variable se crea en cada llamada, qué campo conserva su valor entre llamadas y qué cambia si creas una segunda instancia. Después intenta leer una variable local no inicializada y observa el diagnóstico del compilador.
+
 ## Conceptos relacionados
 
 - [Tipos de datos](/handbook/java/types/)

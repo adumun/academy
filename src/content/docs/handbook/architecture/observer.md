@@ -68,6 +68,23 @@ El sujeto posee la lista de suscripciones; el consumidor decide cómo reaccionar
 
 Suscribe dos consumidores, publica un valor, retira uno y publica otro. Verifica quién recibe cada notificación. Comprueba que retirar la suscripción evita efectos posteriores.
 
+## Modelo del patrón y ciclo de vida
+
+![El sujeto conoce contratos de observadores A y B. Al cambiar notifica a ambos; al retirar B, solo A sigue registrado.](/diagrams/observer-subscription.svg)
+
+El patrón separa la fuente de un cambio de los consumidores que reaccionan. Una suscripción representa una relación temporal; un observador que ya no necesita recibir cambios debe retirarse cuando corresponda. La notificación puede transportar el nuevo valor, una descripción del evento o una señal que obliga a consultar la fuente. El contrato debe especificar cuál de ellas usa.
+
+| Acción | Observador A | Observador B |
+|---|---|---|
+| Suscribir ambos | Registrado | Registrado |
+| Publicar cambio 1 | Recibe | Recibe |
+| Retirar B | Registrado | Retirado |
+| Publicar cambio 2 | Recibe | No recibe |
+
+## Comparación con consulta periódica
+
+Consultar continuamente (polling) pregunta si hubo un cambio a intervalos. Observer notifica a consumidores registrados según el contrato, evitando consultas innecesarias, pero introduce gestión de suscripciones, orden y errores. No garantiza concurrencia, aislamiento entre observadores ni persistencia. Si un observador modifica otra vez el sujeto durante la notificación, puede producirse reentrancia: define si es admisible y cómo se trata. En el ejemplo Java, la lista copiada evita modificar el recorrido actual, no todas las posibles interacciones.
+
 ## Conceptos relacionados
 
 - [Eventos JavaFX](/handbook/java/javafx/events/)

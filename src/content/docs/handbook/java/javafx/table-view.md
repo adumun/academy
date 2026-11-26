@@ -227,6 +227,18 @@ Si SQL devuelve dos filas, la tabla debe mostrar dos objetos. Si la tabla contie
 
 Estas comprobaciones son criterios de prueba; no constituyen evidencia de ejecución.
 
+## Cómo se representa una fila
+
+![Una lista contiene dos objetos Libro. Cada fila corresponde a un objeto; las factorías de columnas extraen id y titulo para las celdas.](/diagrams/tableview-row-column.svg)
+
+TableView utiliza objetos como elementos; TableColumn identifica el tipo de fila y el tipo de valor que representa. La cell value factory obtiene ese valor, normalmente mediante un ObservableValue. La cell factory configura la presentación de la celda, por ejemplo texto, formato o gráfico; no debe modificar el modelo para simular un formato visual. Consulta [observabilidad](/handbook/java/javafx/table-view-observability/) para comprender las notificaciones.
+
+### Contraste entre identidad visual y de datos
+
+Si la tabla muestra los libros ID 8 e ID 3, la posición 0 podría corresponder al ID 8. Ordenar puede cambiar qué objeto ocupa esa posición. Obtén el objeto seleccionado y su identificador según el contrato; no envíes getSelectedIndex como clave de almacenamiento.
+
+Una tabla vacía puede significar una consulta exitosa sin resultados, un filtro sin coincidencias o un fallo de carga. La aplicación debe distinguirlos. Si la carga inicial usa dependencias configuradas después de FXMLLoader.load, no las invoques dentro de initialize antes de recibirlas.
+
 ## Conceptos relacionados
 
 - [Observabilidad y propiedades](/handbook/java/javafx/table-view-observability/)

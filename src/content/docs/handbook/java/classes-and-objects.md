@@ -103,6 +103,60 @@ El ID de persistencia identifica una fila; el operador == entre referencias comp
 
 Construye dos libros, verifica sus atributos y provoca un título vacío en un proyecto de prueba: debe lanzarse IllegalArgumentException. Si aparece NullPointerException al invocar un getter, comprueba que la referencia exista.
 
+## De la clase a las instancias
+
+![La clase Libro declara id y titulo y un constructor. Dos invocaciones de new crean dos instancias con sus propios valores.](/diagrams/java-class-instance.svg)
+
+El archivo fuente contiene la declaración de clase, que describe los campos y métodos; cada new reserva e inicializa una nueva instancia en el sentido del modelo de ejecución Java. Los campos de instancia tienen valores propios. Los métodos de instancia trabajan con el receptor (this), mientras los campos static no tienen una copia por objeto. No confundas el nombre de una variable con la identidad del objeto.
+
+## Ejemplo complementario: estado que cambia sin romper reglas
+
+Archivo ContadorValidoDemo.java, Java 21. El dominio es distinto del ejemplo Libro y permite observar una operación de cambio.
+
+```java
+public class ContadorValidoDemo {
+
+    private int valor;
+
+    public boolean decrementar() {
+        if (valor == 0) {
+            return false;
+        }
+        valor--;
+        return true;
+    }
+
+    public boolean incrementar() {
+        if (valor == Integer.MAX_VALUE) {
+            return false;
+        }
+        valor++;
+        return true;
+    }
+
+    public int obtenerValor() {
+        return valor;
+    }
+
+    public static void main(String[] args) {
+        ContadorValidoDemo primero = new ContadorValidoDemo();
+        ContadorValidoDemo segundo = new ContadorValidoDemo();
+        primero.incrementar();
+        System.out.println(primero.obtenerValor());
+        System.out.println(segundo.obtenerValor());
+        primero.decrementar();
+        System.out.println(primero.decrementar());
+        System.out.println(primero.obtenerValor());
+    }
+}
+```
+
+Salida esperada: 1, 0, false y 0. El constructor implícito y valor inicial por defecto crean contadores válidos; las operaciones controlan los cambios, incluido el desbordamiento. No hay setter que permita invalidar la regla. Consulta [constructores](/handbook/java/constructors/) para inicializaciones explícitas.
+
+## Diferencias entre acceso y encapsulamiento
+
+private controla acceso de código según las reglas de Java (incluidas clases anidadas); por sí solo no garantiza un modelo correcto. Un método público que acepta cualquier valor puede romper invariantes aun con campos privados. Tampoco devuelvas una colección mutable interna si eso permite saltarse el contrato.
+
 ## Conceptos relacionados
 
 - [Genéricos](/handbook/java/generics/)

@@ -72,6 +72,51 @@ El [patrón Observer](/handbook/architecture/observer/) aporta el modelo mental 
 
 Escribe texto, borra la entrada, selecciona una fila y limpia selección. Verifica que el estado del formulario se actualiza sin invocar el DAO por accidente.
 
+## Dos mecanismos de reacción
+
+![Un clic genera ActionEvent e invoca un handler. Un cambio de texto notifica a ChangeListener con valor anterior y actual.](/diagrams/javafx-event-dispatch.svg)
+
+Una acción no equivale necesariamente a un clic de ratón: Button puede disparar ActionEvent mediante teclado u otra interacción soportada. Un cambio de propiedad no tiene por qué proceder de un gesto: setText también puede notificar un cambio. No uses una notificación de propiedad como si fuera una confirmación de guardado.
+
+### Ejemplo completo sin FXML
+
+Archivo EventosDemo.java en un proyecto JavaFX 21 con javafx-controls; ejecuta con la configuración Maven de la ficha JavaFX.
+
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class EventosDemo extends Application {
+
+    @Override
+    public void start(Stage stage) {
+        TextField entrada = new TextField();
+        Label mensaje = new Label("Sin accion");
+        Button aceptar = new Button("Aceptar");
+        aceptar.setDisable(true);
+        entrada.textProperty().addListener((observable, anterior, actual) -> {
+            aceptar.setDisable(actual.isBlank());
+        });
+        aceptar.setOnAction(evento -> {
+            mensaje.setText("Aceptado: " + entrada.getText());
+        });
+        stage.setScene(new Scene(new VBox(10, entrada, aceptar, mensaje), 340, 160));
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+```
+
+Resultado esperado: escribir texto habilita Aceptar, pero la etiqueta solo cambia al accionar el botón. Borrar el texto vuelve a deshabilitarlo. El listener mejora interacción; una operación de dominio aún debe validar su entrada. Ejecución JavaFX pendiente de verificación en un entorno con dependencias.
+
 ## Conceptos relacionados
 
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)

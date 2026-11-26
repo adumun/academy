@@ -130,6 +130,28 @@ Invalid target release: Maven está usando un JDK incompatible. Package javafx d
 
 Ejecuta mvn -version, mvn clean compile y mvn javafx:run con el ejemplo mínimo de JavaFX. Un build correcto no certifica que MariaDB esté disponible: prueba la conexión por separado.
 
+## De las fuentes al artefacto
+
+```text
+pom.xml → resolución de dependencias
+                     │
+src/main/java ──────► compile ──► target/classes
+src/main/resources ─────────────► recursos de ejecución
+src/test/java ──────► test ─────► resultados de pruebas
+                     │
+                   package ────► artefacto
+```
+
+La configuración del POM declara las coordenadas del proyecto, dependencias, propiedades y plugins. El classpath se construye según la fase y el scope. El repositorio local contiene artefactos descargados e instalados; no es el repositorio Git del código.
+
+### Distinguir fase y goal
+
+mvn test invoca una fase del ciclo de vida y ejecuta las fases anteriores necesarias. mvn dependency:tree invoca un goal de un plugin para inspeccionar el grafo de dependencias. mvn javafx:run invoca el goal de ejecución del plugin JavaFX. No son tres maneras equivalentes de compilar.
+
+### Caso de diagnóstico
+
+Si javac compila un ejemplo simple pero Maven informa Invalid target release, compara el JDK que reportan java -version y mvn -version. Si Maven compila pero la aplicación no conecta con la base, el fallo pertenece a otra frontera. Consulta [diagnóstico](/handbook/troubleshooting/) antes de agregar dependencias que no necesita el proyecto.
+
 ## Conceptos relacionados
 
 - [JavaFX](/handbook/java/javafx/)

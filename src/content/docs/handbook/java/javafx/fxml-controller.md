@@ -107,6 +107,25 @@ El ejemplo es no modular. Si utilizas module-info.java, debes declarar las depen
 
 Abre la ventana: debe mostrar Esperando entrada. Escribe un título y pulsa Mostrar; la etiqueta debe coincidir con la entrada. Cambia temporalmente el fx:id en una copia para observar el fallo y luego restáuralo.
 
+## Qué sucede durante load()
+
+![El cargador localiza el FXML, construye nodos y controlador, inyecta los campos y llama a initialize. El controlador puede atender eventos tras la carga.](/diagrams/javafx-fxml-lifecycle.svg)
+
+La clase Controller no es una vista; recibe referencias a nodos creados durante la carga. Si el código crea otro TextField manualmente, no será el campo visible salvo que se incorpore al árbol. Un fx:id no debe confundirse con el atributo CSS id: el primero identifica un objeto en el espacio de nombres del cargador y habilita la inyección.
+
+| Momento | Campos FXML disponibles | Dependencias externas |
+|---|---|---|
+| Constructor | Aún no inyectados | Las entregadas por constructor, si se utiliza una factoría |
+| initialize | Ya inyectados cuando el documento es correcto | Solo las entregadas antes de cargar |
+| configurar(...) tras load | Ya inyectados | Las que recibe configurar |
+| Handler posterior | Ya inyectados | Las que se hayan configurado correctamente |
+
+## Leer el error de carga
+
+La excepción LoadException suele incluir ubicación del FXML y causa subyacente. Comprueba primero ruta absoluta de classpath, nombre de clase y imports; después coincidencia entre fx:id y tipo del campo, nombre y firma del handler. En un proyecto modular, abre el paquete del controlador a javafx.fxml según corresponda. No tapes el fallo con un catch vacío ni crees otra vista para esconder la causa.
+
+Prueba de contraste: elimina onAction de una copia del documento y observa que el botón puede mostrarse sin ejecutar el método. Restaura el enlace y prueba la acción. Mostrar un control y ejecutar su comportamiento son resultados distintos.
+
 ## Conceptos relacionados
 
 - [JavaFX](/handbook/java/javafx/)

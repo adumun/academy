@@ -75,6 +75,40 @@ Una cell value factory recibe información de la fila y devuelve un valor observ
 
 Añade un título en blanco al ejemplo y comprueba que se elimina. Cambia el predicado para seleccionar títulos largos. Si aparece incompatible parameter types, revisa la interfaz funcional de destino.
 
+## Declarar no es ejecutar
+
+Una lambda tiene un tipo de destino, por ejemplo Predicate de String. La asignación crea u obtiene una implementación de ese contrato; el cuerpo se ejecuta cuando alguien llama a test, no al declarar la expresión. Una referencia a método indica una operación compatible sin invocarla en ese momento.
+
+## Tres formas de expresar la misma operación
+
+```java
+import java.util.function.Predicate;
+
+public class PredicadoDemo {
+
+    private static boolean esPositivo(Integer valor) {
+        return valor > 0;
+    }
+
+    public static void main(String[] args) {
+        Predicate<Integer> primero = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer valor) {
+                return valor > 0;
+            }
+        };
+        Predicate<Integer> segundo = valor -> valor > 0;
+        Predicate<Integer> tercero = PredicadoDemo::esPositivo;
+
+        System.out.println(primero.test(2));
+        System.out.println(segundo.test(-1));
+        System.out.println(tercero.test(0));
+    }
+}
+```
+
+Salida esperada: true, false, false. La primera usa una clase anónima, la segunda una lambda y la tercera referencia a método. Cada variante cumple el mismo contrato boolean test(Integer); no son sintácticamente equivalentes en todos los aspectos (por ejemplo, this en una lambda conserva el significado del contexto, no introduce una instancia anónima propia). Un Predicate responde una pregunta; un Function transforma; un Consumer realiza una acción; un Supplier produce un valor sin entrada. Consulta [Streams](/handbook/java/streams/) para pipelines que reciben estas operaciones.
+
 ## Conceptos relacionados
 
 - [Colecciones](/handbook/java/collections/)

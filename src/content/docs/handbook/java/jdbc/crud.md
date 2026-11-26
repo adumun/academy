@@ -119,6 +119,23 @@ Verifica con SQL y no solamente observando TableView. Nunca ejecutes UPDATE o DE
 
 Los métodos retornan conteos para permitir al controlador decidir qué comunicar. La excepción informa fallos de acceso. No devuelvas true incondicionalmente ni ocultes SQLException. Para varias escrituras que deben confirmarse juntas, utiliza una única conexión y transacción.
 
+## Contrato de cada operación y alcance de recursos
+
+| Operación | Entrada | Resultado normal | Estado persistente |
+|---|---|---|---|
+| Crear | Datos válidos sin ID generado | Conteo de inserción o clave generada según contrato | Nueva fila |
+| Leer | Criterio de consulta | Lista o resultado opcional | Sin modificación intencional |
+| Actualizar | Identidad y nuevos valores | Conteo según motor/driver | Fila objetivo modificada si corresponde |
+| Eliminar | Identidad | Conteo | Fila objetivo eliminada si corresponde |
+
+La clase DAO puede implementar estas operaciones mediante PreparedStatement. En cada método del ejemplo se abre y cierra una conexión propia; ello es adecuado para operaciones individuales, no para coordinar automáticamente varias escrituras atómicas. Un servicio que agrupa operaciones debe establecer una unidad de trabajo explícita.
+
+## Traza de prueba sin depender de la UI
+
+En una base desechable, parte de tabla vacía. Inserta A, consulta el ID generado de forma inequívoca, busca ese ID, actualiza a B y vuelve a consultar. Elimina por ID y verifica ausencia; intenta eliminar otra vez y observa el conteo. Reinicia el proceso y comprueba el estado persistente. No uses el título como identidad si el esquema admite repetidos.
+
+Una consulta que falla no es una consulta sin coincidencias. Si el motor rechaza un INSERT por restricción, el DAO comunica el error; si UPDATE retorna cero, interpreta el resultado conforme a la semántica del conector y el contrato. Evita anunciar «no existe» únicamente por un conteo que también puede significar «sin modificación».
+
 ## Conceptos relacionados
 
 - [SQL](/handbook/sql/)

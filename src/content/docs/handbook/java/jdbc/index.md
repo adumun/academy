@@ -71,6 +71,33 @@ Con una tabla que contiene dos registros, el método devuelve dos objetos. Una t
 
 Abre recursos cerca de la operación que los usa, parametriza valores, selecciona columnas explícitas y separa acceso a datos de la interfaz. Para aplicaciones grandes, estudia DataSource y pools; no son prerrequisitos del primer ejemplo.
 
+## Una operación de lectura de principio a fin
+
+```text
+Aplicación
+   │ solicita conexión y prepara SELECT
+   ▼
+API JDBC / Driver ── consulta ──► Motor relacional
+   ▲                              │
+   └──────── filas ────────────────┘
+   │ next() + getters tipados
+   ▼
+Objetos Java → List → consumidor
+```
+
+La conexión representa la sesión; la sentencia contiene la operación y sus parámetros; el resultado ofrece un cursor sobre las filas. El mapeo crea objetos Java independientes del ciclo de vida del cursor. Si la aplicación modifica uno de esos objetos posteriormente, no modifica automáticamente el registro original.
+
+| Estado | Interpretación |
+|---|---|
+| Conexión abierta, SELECT válido | Se puede intentar leer |
+| next() devuelve true | Existe una fila actual |
+| next() devuelve false desde el inicio | Consulta sin filas |
+| SQLException | Fallo que debe propagarse o traducirse |
+
+## Elegir la ficha según la necesidad
+
+Para configurar credenciales y permisos, comienza por la preparación del motor. Para valores aportados por el usuario, estudia PreparedStatement; para transformar filas, ResultSet. Cuando varias escrituras deben confirmarse juntas, revisa transacciones antes de introducir un servicio que coordine DAOs. Estas responsabilidades son distintas: JDBC permite ejecutarlas, pero no define por sí solo la arquitectura del dominio.
+
 ## Conceptos relacionados
 
 - [Preparar MariaDB](/handbook/java/jdbc/setup-mariadb/)

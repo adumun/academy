@@ -88,6 +88,29 @@ En Java, los valores de búsqueda pertenecen a un [PreparedStatement](/handbook/
 
 Comprueba consultas sin filtro, con filtro inexistente y con dos préstamos del mismo libro. No declares correctos resultados sin compararlos con datos de prueba.
 
+## Entender el resultado como transformación
+
+![La consulta filtra las filas por activo, proyecta nombre y ordena el resultado. La representación muestra el significado lógico, no el plan físico del motor.](/diagrams/sql-query-transform.svg)
+
+WHERE filtra filas; SELECT elige columnas o expresiones; ORDER BY establece el orden del resultado. Esta explicación es lógica, no el plan físico que el optimizador decide ejecutar. En un resultado SQL pueden existir duplicados; DISTINCT los elimina según las reglas de comparación del motor.
+
+### Datos concretos para comparar JOIN y agregación
+
+Supón dos libros: ID 1 Java, ID 2 SQL. Hay dos préstamos de libro 1 y ninguno de libro 2.
+
+| Consulta | Resultado esperado |
+|---|---|
+| INNER JOIN por libro_id | Dos filas de Java |
+| LEFT JOIN por libro_id | Dos filas de Java y una de SQL con préstamo NULL |
+| LEFT JOIN y COUNT(p.id) por libro | Java: 2, SQL: 0 |
+| LEFT JOIN y COUNT(*) por libro | Java: 2, SQL: 1 |
+
+No uses DISTINCT como solución automática a una unión mal definida. Primero establece qué representa cada fila. Un filtro sobre la tabla derecha en WHERE puede excluir las filas sin coincidencia de un LEFT JOIN; si quieres conservarlas, revisa si la condición corresponde a ON.
+
+## Autocomprobación
+
+Prueba la consulta de agregación con esos datos en un esquema desechable. Explica por qué WHERE filtra antes de agrupar en el modelo lógico y HAVING permite filtrar grupos. Agrega un segundo criterio ORDER BY para desempatar. No se declara ejecutado en MariaDB durante esta revisión.
+
 ## Conceptos relacionados
 
 - [Restricciones y modificaciones](/handbook/sql/constraints-and-writes/)

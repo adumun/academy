@@ -7,4 +7,6 @@
 - Ejecutar `npm run test:taxonomy`, `npm run validate:content`, `npm run validate:taxonomy` y `npm run build`. La suite `npm run test:java-examples` requiere JDK 21; distinguir pruebas ejecutadas de revisión estática.
 - Revisar manualmente independencia semántica, cobertura de conceptos, corrección de ejemplos, fuentes y experiencia móvil. No relajar un gate para hacer pasar contenido acoplado; corregir el alcance, la relación o el contenido.
 
+- Aplicar también v1.3: definición precisa, modelo mental, ejemplos contextualizados, contrastes y autocomprobación según propósito; incluir diagramas SVG locales accesibles cuando expliquen relaciones o comportamiento. El build no certifica profundidad ni revisión visual.
+
 - Projects (/projects/) consume conocimiento del Handbook y contiene experiencias integradoras completas con incrementos, evidencia y referencias. No introducir reglas de negocio de un proyecto en una definición canónica.

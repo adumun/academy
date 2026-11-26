@@ -115,6 +115,29 @@ La mayoría de la información de parámetros de tipo se borra durante la compil
 
 Prueba `Caja<String>` y `Caja<Integer>`. Luego intenta asignar `Caja<Integer>` a `Caja<String>` en una copia: la compilación debe fallar. Si aparece incompatible types, revisa argumentos de tipo y retornos, no añadas casts arbitrarios.
 
+## Visualizar un argumento de tipo
+
+![Caja declara un parámetro T. Caja de String acepta texto y Caja de Integer acepta enteros envueltos; el compilador comprueba los tipos.](/diagrams/java-generic-types.svg)
+
+T no es una variable de instancia: es un parámetro de tipo declarado por Caja. El mismo código genérico funciona para distintos argumentos compatibles. Al usar Caja de String, getValor retorna String según el tipo estático; no requiere un cast manual. Una colección raw pierde esa comprobación y puede desplazar el fallo a ejecución.
+
+## Por qué la invariancia protege el contrato
+
+Supón que se permitiera asignar una List de Integer a una List de Number. El segundo nombre podría agregar un Double; el primero ya no garantizaría enteros. Java evita esa asignación. Un comodín extends permite leer como supertipo, pero no insertar un valor arbitrario del supertipo (puede admitir null si la implementación lo permite). Un comodín super permite entregar valores del límite inferior compatible, pero solo garantiza lectura como Object.
+
+### Ejemplo de método genérico
+
+```java
+public static <T> T elegir(boolean usarPrimero, T primero, T segundo) {
+    if (usarPrimero) {
+        return primero;
+    }
+    return segundo;
+}
+```
+
+Fragmento dentro de una clase. elegir(true, "A", "B") retorna A; elegir(false, 1, 2) retorna 2 como Integer según inferencia y contexto. El parámetro de tipo se declara antes del retorno. Distingue un parámetro de tipo (T) de un parámetro de valor (primero). Los genéricos no constituyen por sí solos un mecanismo de validación de datos externos.
+
 ## Conceptos relacionados
 
 - [Colecciones y List](/handbook/java/collections/)

@@ -100,6 +100,22 @@ Try-with-resources administra objetos AutoCloseable. No sustituye la validación
 
 Crea dos instancias con títulos distintos, agrégalas a una lista y comprueba que mantienen sus valores. Luego recupera los mismos atributos desde ResultSet. Si reinicias sin persistencia, una lista creada en memoria se pierde.
 
+## Cómo se relacionan los conceptos en una lectura JDBC
+
+```text
+fila SQL → constructor → instancia Libro → List<Libro>
+                                                │
+                                       contrato LibroDao
+                                                │
+                                           consumidor
+```
+
+El constructor reúne los valores de una fila en un objeto; los genéricos indican qué tipo contiene la lista; el DAO delimita la operación de acceso y las excepciones permiten informar fallos. Estos conocimientos no dependen de JDBC para existir. En el ejemplo de Libro, id representa una identidad del almacenamiento, distinta de la identidad de instancia o el índice de una colección. Dos lecturas del mismo registro pueden producir dos instancias con iguales datos.
+
+### Comprobar el modelo antes de conectar
+
+En un proyecto de práctica, coloca el modelo en Libro.java y la creación de instancias dentro de un método main de otra clase. Importa java.util.List y java.util.ArrayList. Comprueba dos libros y una lista vacía sin instalar MariaDB. Después integra la lectura JDBC y repite las expectativas con datos de prueba. La segunda prueba incorpora el motor y el driver; que la primera pase no demuestra que la segunda funcione.
+
 ## Conceptos relacionados
 
 - [ResultSet](/handbook/java/jdbc/result-set/)

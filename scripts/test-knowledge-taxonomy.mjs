@@ -49,10 +49,32 @@ test('architecture pattern does not require Java', () => {
     assert.deepEqual(inspectKnowledgePage(observer, page('Aplicación: ejemplo Java', java)), []);
 });
 
+test('general tools are not language or project prerequisites by accident', () => {
+    const git = '/handbook/tools/git/';
+    assert.equal(classifyRoute(git), 'tooling');
+    assert.equal(inspectKnowledgePage(git, page('Conocimientos previos recomendados', java)).length, 1);
+    assert.deepEqual(inspectKnowledgePage(git, page('Conocimientos previos recomendados', '/handbook/tools/terminal/')), []);
+});
+
+test('static SVG illustrations are not knowledge dependencies', () => {
+    assert.deepEqual(inspectKnowledgePage(foundation, '![Modelo de estado](/diagrams/object-state-identity.svg)'), []);
+    assert.equal(inspectKnowledgePage(foundation, '[Enlace inválido](/diagrams/object-state-identity.svg)').length, 1);
+    assert.equal(inspectKnowledgePage(foundation, '![Imagen inválida](/handbook/java/variables/)').length, 1);
+});
+
 test('project consumes knowledge, never the reverse as a prerequisite', () => {
     const project = '/projects/petcare/';
     assert.equal(classifyRoute(project), 'project');
     assert.deepEqual(inspectKnowledgePage(project, page('Conocimientos previos recomendados', java)), []);
     assert.equal(inspectKnowledgePage(java, page('Conocimientos previos recomendados', project)).length, 1);
     assert.deepEqual(inspectKnowledgePage(java, page('Aplicaciones', project)), []);
+});
+
+test('integrated project can recommend tooling without reversing knowledge dependencies', () => {
+    const project = '/projects/petcare/';
+    const git = '/handbook/tools/git/';
+    assert.deepEqual(inspectKnowledgePage(project, page('Conocimientos previos recomendados', git)), []);
+    assert.equal(inspectKnowledgePage(git, page('Conocimientos previos recomendados', project)).length, 1);
+    assert.equal(inspectKnowledgePage(foundation, page('Definición', project)).length, 1);
+    assert.deepEqual(inspectKnowledgePage('/handbook/', page('Conceptos relacionados', project)), []);
 });

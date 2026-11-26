@@ -12,7 +12,7 @@ description: "Interfaces de colección, orden, operaciones, mutabilidad y selecc
 
 ## Modelo mental
 
-Una colección organiza [objetos](/handbook/java/classes-and-objects/) en memoria. Cada elemento es un valor; en una colección de objetos se almacenan [referencias](/handbook/java/references/). Un índice identifica una posición empezando desde cero, no la identidad del objeto. El parámetro E es un [genérico](/handbook/java/generics/) que describe el tipo de elemento. La interfaz es el contrato de operaciones, mientras que la implementación es la clase que las realiza (consulta [interfaces y polimorfismo](/handbook/java/interfaces/)). `List<E>` representa una secuencia ordenada que permite duplicados; `ArrayList<E>` es una implementación redimensionable. Set evita duplicados según su contrato de igualdad; Map asocia claves con valores y no implementa Collection.
+El modelo general de [estructuras de datos](/handbook/foundations/data-structures/) distingue secuencias, conjuntos y asociaciones. Una colección organiza [objetos](/handbook/java/classes-and-objects/) en memoria. Cada elemento es un valor; en una colección de objetos se almacenan [referencias](/handbook/java/references/). Un índice identifica una posición empezando desde cero, no la identidad del objeto. El parámetro E es un [genérico](/handbook/java/generics/) que describe el tipo de elemento. La interfaz es el contrato de operaciones, mientras que la implementación es la clase que las realiza (consulta [interfaces y polimorfismo](/handbook/java/interfaces/)). `List<E>` representa una secuencia ordenada que permite duplicados; `ArrayList<E>` es una implementación redimensionable. [Set](/handbook/java/sets/) evita duplicados según su contrato de [igualdad](/handbook/java/equality/); [Map](/handbook/java/maps/) asocia claves con valores y no implementa Collection.
 
 | Necesidad | Alternativa habitual |
 | --- | --- |
@@ -82,6 +82,32 @@ El DAO devuelve una List de objetos sin depender de JavaFX. Una [ObservableList]
 | Listado vacío tras reiniciar | Colección en memoria sin persistencia |
 
 Prueba duplicados, tamaño, lista vacía y eliminación por posición. Para `List<Integer>`, diferencia remove(1) de remove(Integer.valueOf(1)): el primero elimina por índice; el segundo por valor.
+
+## Tamaño, índice y capacidad
+
+![Una lista con A, B, C tiene índices 0, 1 y 2. Al eliminar B en índice 1, C pasa al índice 1. El tamaño cambia de 3 a 2.](/diagrams/java-list-index.svg)
+
+El tamaño es el número de elementos actualmente almacenados. La capacidad de ArrayList se relaciona con el espacio interno y puede ser mayor; no se consulta como size. Cuando se elimina una posición, las siguientes se desplazan. Conservar un índice como identificador estable puede apuntar a otro elemento después de una modificación.
+
+## Ejemplo autónomo: dos formas de eliminar
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class EliminarDemo {
+
+    public static void main(String[] args) {
+        List<Integer> valores = new ArrayList<>(List.of(1, 8, 1));
+        valores.remove(1);
+        System.out.println(valores);
+        valores.remove(Integer.valueOf(1));
+        System.out.println(valores);
+    }
+}
+```
+
+Salida esperada: [1, 1] y [1]. La primera sobrecarga elimina índice 1 (el 8); la segunda elimina la primera coincidencia con el valor 1. Consulta [métodos y sobrecarga](/handbook/java/methods/). Para buscar por clave estable, considera [Map](/handbook/java/maps/). Las copias de listas no implican copiar sus objetos; revisa mutabilidad y referencias.
 
 ## Conceptos relacionados
 
