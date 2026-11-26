@@ -12,6 +12,7 @@ Academy es un espacio de consulta y aprendizaje técnico. El contenido se organi
 | Consultar un concepto, método o error | [Handbook](/handbook/) |
 | Preparar persistencia y JavaFX para POO | [Ruta DSY1102](/paths/dsy1102/) |
 | Explorar fundamentos de desarrollo | [Software Developer](/paths/software-developer/) |
+| Integrar conocimientos en una solución completa | [Projects](/projects/) |
 | Resolver un ejercicio | [Academic Labs](https://academic-labs.adumun.cl/) |
 
 ## Primer conjunto de conocimientos

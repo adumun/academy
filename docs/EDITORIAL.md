@@ -131,3 +131,7 @@ La validación de contenido comprueba existencia de assets SVG locales y alt no 
 ### Auditoría de profundidad
 
 Revisar páginas existentes, no solo fichas nuevas. Registrar qué fichas se revisaron, qué evidencia se añadió, qué ejemplos se ejecutaron y qué brechas quedan. No agregar secciones repetitivas ni introducir dependencias de negocio por aumentar longitud. Las referencias externas requieren comprobación pertinente; preservar URLs, fuentes y comportamiento de las fichas.
+
+## Projects — experiencias integradoras (ADU-229)
+
+Projects tiene su propia superficie pública /projects/. Un proyecto es una experiencia que combina conocimientos para construir una solución completa, no una autoridad de conceptos ni una actividad focalizada. Los proyectos consumen Handbook; las referencias inversas son aplicaciones opcionales y nunca prerrequisitos del conocimiento. Las rutas pueden seleccionar proyectos y Labs. Un proyecto longitudinal conserva su propio checkpoint; un proyecto autónomo no exige otros proyectos. Cada experiencia declara problema, resultado, entorno, requisitos, incrementos con pruebas, procedencia fijada, referencias separadas y límites de evidencia. No inventar etapas, certificar ejecuciones no observadas ni publicar soluciones reservadas. No hay cuentas, progreso persistente, custodia de evidencias ni evaluación automática. Learning Roadmaps/Competency Engine conservan sus contratos; la aceptación local es un resultado observable, no una evaluación de dominio emitida por Academy.
