@@ -142,6 +142,30 @@ Si el comportamiento cambia involuntariamente, revisa antes de continuar. Refact
 
 No crees interfaces que no representan un contrato útil. No uses una clase DAO global que administra también ventanas. Evita que una implementación JDBC devuelva TableView o muestre Alert. Si dos operaciones forman una unidad transaccional, coordina la transacción explícitamente en lugar de asumir que DAOs con conexiones distintas comparten commit.
 
+## Cómo fluye una operación entre responsabilidades
+
+![La vista entrega eventos al controlador, que coordina un servicio opcional y el DAO; el DAO usa el motor. Los datos y errores retornan por las mismas responsabilidades, sin SQL en la vista.](/diagrams/mvc-dao-flow.svg)
+
+En una aplicación con reglas, el controlador obtiene datos de la vista, convierte y valida formato, llama al servicio y presenta su resultado. El servicio protege reglas y coordina el acceso al DAO. El DAO traduce operaciones a SQL y mapea resultados; el motor protege restricciones propias del almacenamiento. En un CRUD sencillo el controlador puede utilizar directamente el contrato DAO, siempre que no se acumulen reglas de aplicación en eventos.
+
+### Traza de un alta
+
+1. El usuario solicita registrar; el controlador interpreta los campos y construye la entrada.
+2. El responsable de la operación valida reglas del modelo y solicita persistencia.
+3. El DAO ejecuta la sentencia y retorna resultado o error.
+4. Solo cuando la operación se confirma se informa éxito. Si después falla el refresco de tabla, informa por separado que el guardado ocurrió pero no pudo actualizarse la vista.
+
+| Caso | Responsable y resultado |
+|---|---|
+| Campo no convertible | Controller: informar error de formato, no escribir |
+| Regla inválida | Modelo/Service: rechazar, sin cambio de estado válido |
+| Restricción SQL incumplida | DAO: comunicar fallo según contrato |
+| Escritura exitosa, refresco fallido | Controller: distinguir ambos resultados |
+
+La dirección de llamadas y la dependencia de tipos no son necesariamente iguales. El punto de composición puede crear DAO y entregarlo a los consumidores; no es necesario que cada Controller conozca su clase concreta.
+
+El DAO en memoria de esta ficha es una aproximación parcial: antes de utilizarlo como doble de prueba, define si los IDs son asignados por el cliente o generados por el motor y qué debe ocurrir con duplicados. No declarar equivalencia de implementaciones que no cumplen las mismas precondiciones y resultados.
+
 ## Conceptos relacionados
 
 - [Java y POO](/handbook/java/fundamentals/)

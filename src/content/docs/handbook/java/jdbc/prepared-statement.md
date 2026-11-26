@@ -148,6 +148,39 @@ La inyección SQL ocurre cuando datos externos alteran la estructura o intenció
 
 Busca un título que contenga un apóstrofo, como O'Connor, utilizando setString. Debe tratarse como texto. Busca un ID existente e inexistente y comprueba ambos resultados. Trabaja solo sobre una base desechable.
 
+## Qué significa vincular valores
+
+![En UPDATE, el marcador 1 corresponde a titulo y recibe setString; el marcador 2 corresponde a id y recibe setInt. El driver ejecuta la estructura SQL con los valores vinculados.](/diagrams/jdbc-parameters.svg)
+
+Los marcadores se cuentan en el orden de la sentencia, empezando en 1. El driver recibe la estructura SQL y sus valores por medio de la API. El protocolo concreto (preparación en servidor o procesamiento en cliente) depende del conector y configuración; lo importante es no construir la estructura mezclando entrada arbitraria. No encierres el marcador entre comillas, porque se convertiría en un literal de texto.
+
+| Intención | Forma correcta |
+|---|---|
+| Buscar ID | WHERE id = ? y setInt(1, id) |
+| Buscar texto | WHERE titulo = ? y setString(1, titulo) |
+| Buscar ausencia SQL | WHERE columna IS NULL (no = NULL) |
+| Cambiar columna de orden | Selección mediante lista cerrada de columnas válidas |
+
+## Ejemplo de lectura y propiedad de recursos
+
+Fragmento Java dentro de un DAO con una Connection abierta y los imports de java.sql. No requiere una clase de modelo para comprobar parámetros.
+
+```java
+String consulta = "SELECT titulo FROM libro WHERE id = ?";
+try (PreparedStatement sentencia = conexion.prepareStatement(consulta)) {
+    sentencia.setInt(1, 7);
+    try (ResultSet resultado = sentencia.executeQuery()) {
+        if (resultado.next()) {
+            System.out.println(resultado.getString("titulo"));
+        } else {
+            System.out.println("Sin coincidencias");
+        }
+    }
+}
+```
+
+El fragmento necesita una tabla libro con id y titulo. El resultado depende de los datos reales; el código cierra resultado y sentencia, no la conexión recibida. Prueba ID existente, ausente y un fallo de conexión por separado.
+
 ## Conceptos relacionados
 
 - [Connection](/handbook/java/jdbc/connection/)

@@ -123,6 +123,24 @@ Un pool es un conjunto administrado de conexiones reutilizables que evita abrir 
 
 No publiques contraseñas ni logs que las contengan. En sistemas productivos configura TLS, límites de tiempo y DataSource según el entorno.
 
+## Ciclo de vida y propiedad
+
+![El programa solicita una conexión a DriverManager; el driver negocia con el servidor y devuelve una sesión lógica. Las sentencias usan la conexión y close libera o devuelve recursos.](/diagrams/jdbc-connection-lifecycle.svg)
+
+JDBC es una API Java; el driver implementa la comunicación con un motor específico. DriverManager selecciona un driver que acepta la URL y solicita una conexión. El motor autentica al usuario, establece el contexto y aplica permisos. Tener el driver en Maven no implica tener un servidor disponible. Una conexión abierta tampoco prueba que todas las operaciones estén autorizadas.
+
+### Comprobaciones por separado
+
+| Comprobación | Qué demuestra |
+|---|---|
+| El proyecto resuelve java.sql y el conector | Compilación y dependencia, no conectividad |
+| getConnection finaliza normalmente | La sesión pudo abrirse con esa configuración |
+| isValid(3) retorna true | El driver comprueba validez en ese momento |
+| SELECT 1 se ejecuta | Una consulta sencilla funciona |
+| SELECT sobre tabla de práctica | La tabla y permisos de lectura son adecuados |
+
+En una conexión recibida como parámetro, la función que la utiliza no debe cerrarla salvo que el contrato le transfiera su propiedad. El cierre debe tener alcance explícito; evita confiar en que el recolector de basura libere recursos del servidor.
+
 ## Conceptos relacionados
 
 - [Preparar MariaDB y permisos mínimos](/handbook/java/jdbc/setup-mariadb/)

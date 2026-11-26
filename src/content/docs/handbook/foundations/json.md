@@ -36,6 +36,37 @@ No confundas ausencia explícita (null), propiedad ausente, arreglo vacío y doc
 
 Evalúa `[]`, `{"valor":-1}` y `{"valor":1,}`. Los dos primeros son JSON bien formado; su validez depende del contrato y las reglas. El tercero tiene un error sintáctico.
 
+## De la estructura al texto y de vuelta
+
+![Un registro con sensor A y valor 21 se serializa a un documento JSON; al deserializar se reconstruyen valores que después deben validarse.](/diagrams/json-representation.svg)
+
+JSON representa datos mediante una gramática de texto. El objeto JSON no es una instancia ejecutable con métodos; sus nombres son cadenas. Un arreglo puede contener objetos, otros arreglos o valores escalares, aunque el contrato de una aplicación puede restringirlos a un tipo uniforme.
+
+### Lectura por niveles
+
+```json
+{
+  "mediciones": [
+    {"sensor": "A", "valor": 21},
+    {"sensor": "B", "valor": null}
+  ]
+}
+```
+
+La raíz es un objeto con una propiedad mediciones. Su valor es un arreglo de dos objetos; el segundo declara ausencia explícita de valor. La propiedad omitida puede tener otra semántica, por ejemplo «no se recibió». No presupongas que todos los parsers interpretan números con igual precisión. Las cadenas pueden contener comillas escapadas como \\"; los separadores y espacios fuera de cadenas no cambian su estructura.
+
+| Documento | ¿Bien formado? | Observación |
+|---|---|---|
+| {"valor":21} | Sí | Valor numérico |
+| {"valor":"21"} | Sí | Valor textual; requiere conversión si se espera número |
+| {"valor":null} | Sí | Ausencia explícita |
+| {} | Sí | Propiedad ausente |
+| {"valor":21,} | No | Coma final |
+
+## Autocomprobación
+
+Diseña una representación de dos puntos con coordenadas y un campo opcional. Indica cuál estructura se espera, cómo tratar un campo ausente y qué comprobar después de analizar la sintaxis.
+
 ## Conceptos relacionados
 
 - [Valores y tipos](/handbook/foundations/values-and-types/)

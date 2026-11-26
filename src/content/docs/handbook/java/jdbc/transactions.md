@@ -75,6 +75,25 @@ En un esquema desechable, provoca un fallo controlado en la segunda modificació
 
 Esta ficha es ampliación: no exige incorporar transacciones al laboratorio CRUD simple si no forman parte del enunciado.
 
+## Confirmación explícita y trayectoria de error
+
+![Con auto-commit desactivado, dos cambios forman una unidad. Si ambos completan correctamente se confirma; si falla una operación, se revierte lo pendiente.](/diagrams/jdbc-transaction.svg)
+
+| Momento | Sesión propia | Otras sesiones |
+|---|---|---|
+| Antes de los cambios | Estado original | Estado original |
+| Cambios ejecutados sin commit | Puede leer sus propios cambios | Visibilidad según aislamiento y motor |
+| Commit exitoso | Estado confirmado | Visible según aislamiento y momento de lectura |
+| Rollback exitoso antes de commit | Cambios pendientes revertidos | No se consolidan esos cambios |
+
+La tabla supone un motor transaccional y operaciones DML. El aislamiento regula interacciones con otras transacciones; no significa que todos los motores tengan idénticas garantías. Commit puede fallar o perderse la respuesta: un error de comunicación no siempre permite saber si el motor confirmó. No prometas rollback sobre una transacción que ya se confirmó.
+
+## Prueba de integración independiente
+
+Crea dos registros desechables con valores iniciales conocidos. En una misma conexión desactiva auto-commit, ejecuta la primera modificación y provoca una violación de restricción en la segunda. Captura el fallo, revierte y verifica ambos valores usando otra conexión después del rollback. Repite con dos modificaciones válidas y commit. No utilices CREATE/ALTER para simular un fallo dentro de esa unidad: algunos motores confirman implícitamente el DDL.
+
+El ejemplo anterior necesita definir también qué ocurre con excepciones no SQL producidas en medio de la unidad, y verificar el restablecimiento de estado cuando se utiliza un pool. Una aplicación que captura un fallo no debe anunciar una confirmación que no verificó.
+
 ## Conceptos relacionados
 
 - [Connection](/handbook/java/jdbc/connection/)
