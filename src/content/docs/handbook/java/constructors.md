@@ -65,6 +65,25 @@ Rechazado
 
 No uses un setter obligatorio posterior para completar un objeto inválido. No ignores una entrada incorrecta dejando el valor por defecto accidentalmente; define explícitamente la política de error. El ejemplo usa una excepción no comprobada, consulta [excepciones](/handbook/java/exceptions/). El constructor de una subclase debe inicializar su parte heredada según [herencia](/handbook/java/inheritance/).
 
+## Secuencia de inicialización
+
+![new ConstructorDemo(10) delega al constructor de dos argumentos mediante this(0, 10); este valida los límites, inicializa campos y permite utilizar el objeto.](/diagrams/java-constructor.svg)
+
+En Java 21, la invocación explícita this(...) o super(...) debe aparecer al principio del constructor. Si no se escribe ninguna, se invoca implícitamente super() cuando corresponde. La inicialización incluye valores por defecto, construcción de superclases y ejecución de inicializadores de instancia y cuerpos según el orden definido por Java. Los constructores no se heredan ni se sobrescriben.
+
+| Declaración | Consecuencia |
+|---|---|
+| Ningún constructor declarado | Constructor por defecto, si las reglas de la clase lo permiten |
+| Constructor con argumentos declarado | No se añade automáticamente uno sin argumentos |
+| this(0, maximo) | Reutiliza otro constructor de la misma clase |
+| super(...) | Inicializa mediante constructor de la superclase |
+
+Si la superclase no tiene un constructor sin argumentos accesible, la subclase debe llamar al apropiado explícitamente. Una excepción durante construcción impide que la expresión new finalice normalmente con una referencia; evita publicar this antes de completar las invariantes.
+
+## Autocomprobación
+
+En ConstructorDemo, sigue la ejecución de new ConstructorDemo(10) y de new ConstructorDemo(9, 2). ¿Qué valores se validan? ¿Por qué no se debe duplicar la validación en todos los constructores?
+
 ## Documentación oficial
 
 - [JLS 21: constructores](https://docs.oracle.com/javase/specs/jls/se21/html/jls-8.html#jls-8.8)
