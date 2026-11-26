@@ -9,6 +9,18 @@ El Handbook organiza conocimiento por tecnologías y disciplinas, independientem
 
 Las fichas contienen enlaces dentro de sus explicaciones y conocimientos previos recomendados. Si un término no te resulta familiar, abre su ficha canónica y vuelve al objetivo original. No necesitas seguir un orden fijo ni completar un curso.
 
+## Elegir el nivel de consulta
+
+| Necesidad | Dónde buscar |
+|---|---|
+| Entender un término o principio sin depender de un lenguaje | Fundamentos |
+| Aprender sintaxis y comportamiento específico de Java | Java |
+| Consultar un método de acceso a datos o un control gráfico | JDBC o JavaFX |
+| Decidir cómo distribuir responsabilidades | Arquitectura |
+| Configurar, construir o diagnosticar un proyecto | Herramientas |
+
+En una ficha de referencia, el diagrama explica una relación, un flujo o un estado; el código muestra cómo se expresa el comportamiento en un lenguaje concreto. Las tablas de contraste ayudan a elegir una alternativa o reconocer un error. No es necesario que cada ficha tenga todos esos formatos: cada representación debe aportar comprensión. Diferencia una salida esperada de una prueba ejecutada. Sigue el enlace a la práctica cuando quieras comprobar el conocimiento en otro contexto.
+
 ## Fundamentos independientes del lenguaje
 
 - [Programas y algoritmos](/handbook/foundations/programs/)

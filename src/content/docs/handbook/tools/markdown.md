@@ -35,10 +35,10 @@ Markdown permite que un lector interprete convenciones de texto como títulos, l
 |---|---|
 | # Título | Encabezado principal |
 | ## Sección | Encabezado subordinado |
-| **texto** | Énfasis fuerte |
+| `**texto**` | Énfasis fuerte |
 | `codigo` | Código en línea |
-| [texto](ruta) | Enlace |
-| ![descripción](ruta) | Imagen con texto alternativo |
+| `[texto](ruta)` | Enlace |
+| `![descripción](ruta)` | Imagen con texto alternativo |
 
 ### Documentar una ejecución
 
