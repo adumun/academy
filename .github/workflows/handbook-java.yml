@@ -2,6 +2,7 @@ name: Handbook executable examples
 on:
   pull_request:
     branches: [master]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'examples/java/handbook/**'
       - 'src/content/docs/handbook/**'
@@ -9,7 +10,7 @@ on:
       - '.github/workflows/handbook-java.yml'
       - 'package.json'
   push:
-    branches: [master]
+    branches: [master, feature/ADU-236-executable-examples]
     paths:
       - 'examples/java/handbook/**'
       - 'src/content/docs/handbook/**'
