@@ -5,12 +5,15 @@ description: "Firma, argumentos, retorno, void, static y sobrecarga."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir parámetro de argumento, valor retornado de salida por consola, método de instancia de método estático y sobrecarga de sobrescritura.
+
 ## Qué es un método en Java
 
 Las [operaciones, parámetros y contratos](/handbook/foundations/operations/) existen independientemente del lenguaje. Aquí se documentan las reglas de declaración, invocación y retorno de métodos en Java.
 
 Un método es una operación con nombre declarada en una clase o interfaz. Su cuerpo puede ejecutar instrucciones, recibir datos mediante parámetros y devolver un resultado. El conjunto de operaciones de un objeto contribuye a su comportamiento.
 
+<!-- example:method-instance -->
 ```java
 public int sumar(int primero, int segundo) {
     return primero + segundo;
@@ -21,6 +24,7 @@ Es un fragmento de clase. public indica acceso; int es el [tipo](/handbook/java/
 
 ## Llamada, parámetros y argumentos
 
+<!-- example:method-static -->
 ```java
 public class MetodosDemo {
 
@@ -69,6 +73,7 @@ Una llamada evalúa sus argumentos y crea parámetros locales con sus valores. U
 
 Archivo SobrecargaDemo.java, Java 21.
 
+<!-- example:method-overload -->
 ```java
 public class SobrecargaDemo {
 
@@ -97,9 +102,23 @@ public class SobrecargaDemo {
 
 Salida esperada: 9. La sobrecarga con dos argumentos delega a la operación con uno; no duplica el cambio de estado. consultar retorna el valor sin imprimirlo. La elección de sobrecarga ocurre durante compilación, a diferencia del despacho dinámico de métodos sobrescritos.
 
+## Comprobación ejecutable
+
+Los tres ejemplos de esta ficha se mantienen como fuentes Java en `examples/java/handbook/methods/`. El primer bloque es un método de instancia extraído de una clase compilable; los otros dos son clases completas. Desde la raíz del repositorio, `npm run test:java-sources` compila las fuentes y ejecuta pruebas de comportamiento, incluidas las salidas publicadas. `npm run validate:snippets` comprueba que el texto mostrado coincida con las fuentes.
+
+La suma de enteros usa la aritmética de `int`: si supera el máximo representable, se produce desbordamiento. Para rechazarlo explícitamente existe `Math.addExact`. Cada instancia del acumulador conserva su propio total; un argumento negativo lo reduce porque este ejemplo no impone una regla de negocio.
+
 ## Autocomprobación
 
 ¿Qué ocurre si declaras otro agregar(int cantidad) con retorno int? No basta cambiar el retorno para distinguir la firma. Intenta llamar consultar directamente desde main sin una instancia y explica el diagnóstico.
+
+## Práctica de diagnóstico
+
+Predice qué ocurre si dos instancias de SobrecargaDemo reciben cantidades distintas. Después realiza una llamada que retorne un valor y otra que lo imprima. Comprueba que una llamada a consultar no modifica el estado. Si intentas sobrecargar agregar variando solo el retorno, javac rechaza la firma duplicada; si llamas a consultar sin instancia desde main, rechaza el contexto estático.
+
+**Fuentes de los ejemplos mostrados:** [MetodosInstanciaDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/MetodosInstanciaDemo.java) · [MetodosDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/MetodosDemo.java) · [SobrecargaDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/SobrecargaDemo.java).
+
+Casos de rechazo verificados con javac 21: [ReturnOnlyOverload.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/ReturnOnlyOverload.java) · [StaticContext.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/StaticContext.java). Son archivos deliberadamente inválidos, no ejemplos para copiar como solución.
 
 ## Conceptos relacionados
 

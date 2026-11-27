@@ -5,6 +5,8 @@ description: "Primitivos, referencias, String, wrappers y compatibilidad de tipo
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Elegir tipos según el dominio, anticipar conversiones implícitas y explícitas, y reconocer pérdida de precisión, desbordamiento y ausencia.
+
 ## Qué es un tipo en Java
 
 La definición general de [valor y tipo](/handbook/foundations/values-and-types/) se aplica a distintos lenguajes; esta página documenta los tipos y conversiones de Java.
@@ -32,6 +34,7 @@ Un char no representa necesariamente un carácter Unicode completo. float y doub
 
 Clases, interfaces y arreglos definen tipos de referencia. String representa texto y es inmutable; Integer es la clase envoltorio de int. A diferencia de int, Integer puede representar ausencia mediante null. Los [genéricos](/handbook/java/generics/) utilizan tipos de referencia como argumentos.
 
+<!-- example:types-declaration -->
 ```java
 int edad = 21;
 Integer edadOpcional = null;
@@ -43,6 +46,7 @@ Son declaraciones independientes. No uses el valor cero como sustituto universal
 
 ## Conversión y análisis de texto
 
+<!-- example:types-demo -->
 ```java
 public class TiposDemo {
 
@@ -79,6 +83,7 @@ Los enteros tienen límites: sumar 1 a Integer.MAX_VALUE con aritmética int ord
 
 ## Conversiones distintas, resultados distintos
 
+<!-- example:types-conversions -->
 ```java
 System.out.println(5 / 2);          // 2
 System.out.println(5 / 2.0);        // 2.5
@@ -92,6 +97,20 @@ Fragmento dentro de un método. En la tercera operación la división entera ocu
 ## Autocomprobación
 
 Predice la salida de 7 / 3, 7 / 3.0 y (double) (7 / 3). Explica por qué Integer puede ser null pero int no. Comprueba qué ocurre al convertir "12a" con Integer.parseInt.
+
+## Verificación del ejemplo
+
+La conversión numérica y la validación son operaciones distintas. Una prueba de desbordamiento o estrechamiento comprueba la semántica de Java, no la validez del dato para un dominio.
+
+Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/types/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
+
+## Práctica de diagnóstico
+
+Antes de ejecutar, predice 5 / 2, 5 / 2.0 y (double) (5 / 2). Explica por qué un cast posterior no recupera la fracción perdida. Contrasta convertir un valor fuera de rango con validar el rango antes de convertirlo. Prueba Integer.parseInt con texto inválido: el error es de ejecución, a diferencia de una asignación incompatible que javac rechaza.
+
+**Fuentes de los ejemplos mostrados:** [TypesFragmentsTest.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/types/TypesFragmentsTest.java) · [TiposDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/types/TiposDemo.java).
+
+Casos de rechazo verificados con javac 21: [IncompatibleType.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/IncompatibleType.java). Son archivos deliberadamente inválidos, no ejemplos para copiar como solución.
 
 ## Conceptos relacionados
 

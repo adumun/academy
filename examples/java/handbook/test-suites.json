@@ -1,0 +1,84 @@
+[
+  {
+    "directory": "methods",
+    "runs": [
+      {
+        "className": "MethodsTest",
+        "expected": null
+      }
+    ]
+  },
+  {
+    "directory": "variables",
+    "runs": [
+      {
+        "className": "VariablesDemo",
+        "expected": "5"
+      },
+      {
+        "className": "VariablesFragmentsTest",
+        "expected": "AB\nVariables fragments PASS"
+      }
+    ]
+  },
+  {
+    "directory": "types",
+    "runs": [
+      {
+        "className": "TiposDemo",
+        "expected": "12\n2.5\n2"
+      },
+      {
+        "className": "TypesFragmentsTest",
+        "expected": "2\n2.5\n2.0\n-2\n-126\nTypes fragments PASS"
+      }
+    ]
+  },
+  {
+    "directory": "expressions",
+    "runs": [
+      {
+        "className": "CortocircuitoDemo",
+        "expected": "false\ntrue\nEvaluado\ntrue"
+      },
+      {
+        "className": "ExpressionsFragmentsTest",
+        "expected": "Expressions fragments PASS"
+      }
+    ]
+  },
+  {
+    "directory": "control-flow",
+    "runs": [
+      {
+        "className": "FlujoDemo",
+        "expected": "Java\nSQL\n2"
+      },
+      {
+        "className": "BusquedaDemo",
+        "expected": "2\n-1\n-1"
+      },
+      {
+        "className": "ControlFlowFragmentsTest",
+        "expected": "Cantidad inválida\nCantidad inválida\nCantidad aceptada\nControlFlow fragments PASS"
+      }
+    ]
+  },
+  {
+    "directory": "references",
+    "runs": [
+      {
+        "className": "ReferenciasDemo",
+        "expected": "Sin título"
+      },
+      {
+        "className": "AliasDemo",
+        "expected": "AB\nAB\ntrue"
+      },
+      {
+        "className": "ReferencesFragmentsTest",
+        "expected": "JavaFX\nReferences fragments PASS"
+      }
+    ]
+  }
+]

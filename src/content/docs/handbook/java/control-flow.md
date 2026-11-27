@@ -5,6 +5,8 @@ description: "Bloques, if, else, while, for, return y recorrido de datos."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Elegir una estructura de control, justificar su condición de terminación y distinguir una posición válida de un resultado de ausencia.
+
 ## Qué es el flujo de ejecución
 
 Los [conceptos de secuencia, decisión y repetición](/handbook/foundations/flow/) son independientes de Java. Esta ficha muestra sus construcciones concretas y su sintaxis.
@@ -13,6 +15,7 @@ El flujo es el orden en que el programa ejecuta sus instrucciones. Una condició
 
 ## Decisiones
 
+<!-- example:control-flow-decision -->
 ```java
 if (cantidad <= 0) {
     System.out.println("Cantidad inválida");
@@ -34,6 +37,7 @@ Fragmento con cantidad de tipo int. Se ejecuta exactamente una de las ramas. Usa
 | continue | Pasar a la siguiente iteración |
 | return | Salir del método, con valor si corresponde |
 
+<!-- example:control-flow-loops -->
 ```java
 import java.util.List;
 
@@ -81,6 +85,7 @@ Un for clásico tiene inicialización, condición y actualización; evalúa la c
 
 ## Ejemplo autónomo: buscar el primer positivo
 
+<!-- example:control-flow-search -->
 ```java
 public class BusquedaDemo {
 
@@ -102,6 +107,18 @@ public class BusquedaDemo {
 ```
 
 Archivo BusquedaDemo.java. Salida esperada: 2, -1, -1. El contrato retorna índice de la primera coincidencia o -1 si no hay ninguna; presupone un array no nulo. No se recorre 8 cuando ya se encontró 4. Para un array vacío el cuerpo no se ejecuta. Consulta [arrays](/handbook/java/arrays/) para el rango de índices.
+
+## Verificación del ejemplo
+
+Los casos de frontera para una condición `cantidad <= 0` son -1, 0 y 1. En una búsqueda, distingue el índice cero de -1 y el arreglo vacío de un arreglo nulo.
+
+Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/control-flow/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
+
+## Práctica de diagnóstico
+
+Traza buscarPrimeroPositivo con [4, 0, 8], [-2, 0, 4, 8] y []. Predice 0, 2 y -1 respectivamente; el índice 0 no equivale a ausencia. Explica por qué el return evita recorrer los elementos posteriores y qué precondición exige el método respecto a null. El ejemplo publicado verifica el segundo y el tercer escenario; el primero es una extensión de práctica.
+
+**Fuentes de los ejemplos mostrados:** [ControlFlowFragmentsTest.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/control-flow/ControlFlowFragmentsTest.java) · [FlujoDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/control-flow/FlujoDemo.java) · [BusquedaDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/control-flow/BusquedaDemo.java).
 
 ## Conceptos relacionados
 

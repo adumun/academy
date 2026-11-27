@@ -5,12 +5,15 @@ description: "Literales, evaluación, asignación, comparación, booleanos y pre
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Evaluar expresiones respetando los tipos, la precedencia y el cortocircuito, y justificar cuándo se ejecuta un operando con efectos.
+
 ## Expresión e instrucción
 
 Consulta [expresiones y control de flujo](/handbook/foundations/flow/) para el modelo conceptual. Esta página desarrolla los operadores y reglas de evaluación propios de Java.
 
 Una expresión es una construcción que puede evaluarse para producir un valor o realizar un efecto, según el caso. Una instrucción (statement) es una unidad de ejecución. Un literal representa directamente un valor, como 42, "Java" o true.
 
+<!-- example:expressions-boolean-range -->
 ```java
 int cantidad = 3 + 2;
 boolean valida = cantidad > 0 && cantidad <= 10;
@@ -29,6 +32,7 @@ boolean valida = cantidad > 0 && cantidad <= 10;
 
 ## Cortocircuito
 
+<!-- example:expressions-null-guard -->
 ```java
 String titulo = null;
 
@@ -62,6 +66,7 @@ Un operador especifica una operación; sus operandos son las expresiones sobre l
 
 ## Ejemplo autónomo: cortocircuito
 
+<!-- example:expressions-short-circuit -->
 ```java
 public class CortocircuitoDemo {
 
@@ -79,6 +84,20 @@ public class CortocircuitoDemo {
 ```
 
 Archivo CortocircuitoDemo.java. Salida esperada: false, true, Evaluado, true (cada resultado en su propia línea). Las dos primeras expresiones omiten la llamada porque su resultado ya es conocido. La tercera la invoca. Evita incluir cambios de estado necesarios en condiciones que pueden omitir su evaluación. Para rangos no uses `0 < cantidad < 10`; combina comparaciones con &&. Consulta [lógica proposicional](/handbook/foundations/boolean-logic/).
+
+## Verificación del ejemplo
+
+En una expresión `a && b`, el valor de `a` determina si se evalúa `b`. Una prueba de salida permite observar si la llamada ocurrió realmente, no solo el resultado booleano.
+
+Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/expressions/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
+
+## Práctica de diagnóstico
+
+Traza las tres expresiones de CortocircuitoDemo indicando resultado y si se invoca comprobar. Las dos primeras omiten la llamada y la tercera imprime Evaluado antes de true. Para un rango, prueba mentalmente los extremos 0 y 10 y reescribe una comparación encadenada como dos comparaciones unidas por &&; decide si los límites deben incluirse.
+
+**Fuentes de los ejemplos mostrados:** [ExpressionsFragmentsTest.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/expressions/ExpressionsFragmentsTest.java) · [CortocircuitoDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/expressions/CortocircuitoDemo.java).
+
+Casos de rechazo verificados con javac 21: [ChainedComparison.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/ChainedComparison.java). Son archivos deliberadamente inválidos, no ejemplos para copiar como solución.
 
 ## Conceptos relacionados
 

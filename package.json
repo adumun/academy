@@ -8,10 +8,13 @@
     "build": "astro build",
     "preview": "astro preview",
     "validate:content": "node scripts/validate-content.mjs",
-    "prebuild": "npm run test:taxonomy && npm run validate:content && npm run validate:taxonomy",
+    "prebuild": "npm run test:taxonomy && npm run validate:content && npm run validate:taxonomy && npm run validate:snippets",
     "test:java-examples": "node scripts/test-java-examples.mjs",
     "validate:taxonomy": "node scripts/validate-taxonomy.mjs",
-    "test:taxonomy": "node --test scripts/test-knowledge-taxonomy.mjs"
+    "test:taxonomy": "node --test scripts/test-knowledge-taxonomy.mjs",
+    "validate:snippets": "node scripts/sync-java-snippets.mjs",
+    "sync:snippets": "node scripts/sync-java-snippets.mjs --write",
+    "test:java-sources": "node scripts/test-java-sources.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.4",

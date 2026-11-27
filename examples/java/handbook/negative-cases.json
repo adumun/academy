@@ -1,0 +1,9 @@
+[
+  {"file":"FinalReassignment.java","page":"handbook/java/variables.md","diagnostic":"compiler.err.cant.assign.val.to.var"},
+  {"file":"OutOfScope.java","page":"handbook/java/variables.md","diagnostic":"compiler.err.cant.resolve.location"},
+  {"file":"UninitializedLocal.java","page":"handbook/java/variables.md","diagnostic":"compiler.err.var.might.not.have.been.initialized"},
+  {"file":"IncompatibleType.java","page":"handbook/java/types.md","diagnostic":"compiler.err.prob.found.req"},
+  {"file":"ReturnOnlyOverload.java","page":"handbook/java/methods.md","diagnostic":"compiler.err.already.defined"},
+  {"file":"StaticContext.java","page":"handbook/java/methods.md","diagnostic":"compiler.err.non-static.cant.be.ref"},
+  {"file":"ChainedComparison.java","page":"handbook/java/expressions.md","diagnostic":"compiler.err.operator.cant.be.applied.1"}
+]

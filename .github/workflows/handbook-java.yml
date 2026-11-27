@@ -1,0 +1,47 @@
+name: Handbook executable examples
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - 'examples/java/handbook/**'
+      - 'src/content/docs/handbook/**'
+      - 'scripts/*java*.mjs'
+      - '.github/workflows/handbook-java.yml'
+      - 'package.json'
+  push:
+    branches: [master, feature/ADU-236-executable-examples]
+    paths:
+      - 'examples/java/handbook/**'
+      - 'src/content/docs/handbook/**'
+      - 'scripts/*java*.mjs'
+      - '.github/workflows/handbook-java.yml'
+      - 'package.json'
+permissions:
+  contents: read
+jobs:
+  executable-examples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Record toolchain versions
+        run: |
+          node --version
+          java -version
+          javac -version
+      - name: Verify canonical snippet synchronization
+        run: node scripts/sync-java-snippets.mjs
+      - name: Compile and execute canonical sources
+        run: node scripts/test-java-sources.mjs
+      - name: Run historical executable examples
+        run: node scripts/test-java-examples.mjs
