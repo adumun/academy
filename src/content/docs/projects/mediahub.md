@@ -504,7 +504,7 @@ requerimiento
 
 ## Implementación de referencia
 
-Después de diseñar tu solución, consulta el [proyecto Java de referencia](https://github.com/adumun/academy/tree/master/examples/java/projects/mediahub) mantenido por ADÜMÜN. Clona Academy, abre `examples/java/projects/mediahub` con JDK 21 y marca `src` como carpeta de fuentes. Ejecuta `cl.adumun.academy.mediahub.Main`. También puedes usar la terminal desde esa carpeta:
+Después de diseñar tu solución, consulta el [proyecto Java de referencia](https://github.com/adumun/academy/tree/d8b5bff7826df7bde55f1d27e50837746310fb75/examples/java/projects/mediahub) mantenido por ADÜMÜN. Clona Academy, abre `examples/java/projects/mediahub` con JDK 21 y marca `src` como carpeta de fuentes. Ejecuta `cl.adumun.academy.mediahub.Main`. También puedes usar la terminal desde esa carpeta:
 
 ```bash
 mkdir -p out
