@@ -1,5 +1,5 @@
 import javafx.scene.control.*;
-import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.NumberBinding;
 import javafx.beans.property.SimpleIntegerProperty;
 public class BindingFragmentos {
     final Button btnGuardar = new Button();
@@ -15,10 +15,10 @@ public class BindingFragmentos {
         // snippet:total:start
         SimpleIntegerProperty cantidad = new SimpleIntegerProperty(2);
         SimpleIntegerProperty precio = new SimpleIntegerProperty(5);
-        IntegerBinding total = cantidad.multiply(precio);
-        System.out.println(total.get()); // 10
+        NumberBinding total = cantidad.multiply(precio);
+        System.out.println(total.intValue()); // 10
         cantidad.set(3);
-        System.out.println(total.get()); // 15
+        System.out.println(total.intValue()); // 15
         // snippet:total:end
     }
 }

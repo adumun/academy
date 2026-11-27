@@ -102,19 +102,19 @@ El enlace bidireccional requiere dos propiedades compatibles y una decisión cla
 
 ### Ejemplo de valor derivado
 
-Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.IntegerBinding.
+Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.NumberBinding.
 
 <!-- example:fx-derived-binding -->
 ```java
 SimpleIntegerProperty cantidad = new SimpleIntegerProperty(2);
 SimpleIntegerProperty precio = new SimpleIntegerProperty(5);
-IntegerBinding total = cantidad.multiply(precio);
-System.out.println(total.get()); // 10
+NumberBinding total = cantidad.multiply(precio);
+System.out.println(total.intValue()); // 10
 cantidad.set(3);
-System.out.println(total.get()); // 15
+System.out.println(total.intValue()); // 15
 ```
 
-El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada evento. La salida es esperada, no verificada en ejecución JavaFX. Para montos reales, este ejemplo entero no sustituye una política de precisión y redondeo.
+La sobrecarga multiply(ObservableNumberValue) devuelve NumberBinding; intValue() obtiene el resultado entero. El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada evento. La salida es esperada, no verificada en ejecución JavaFX. Para montos reales, este ejemplo entero no sustituye una política de precisión y redondeo.
 
 ## Conceptos relacionados
 
