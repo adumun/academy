@@ -32,6 +32,7 @@ Un char no representa necesariamente un carácter Unicode completo. float y doub
 
 Clases, interfaces y arreglos definen tipos de referencia. String representa texto y es inmutable; Integer es la clase envoltorio de int. A diferencia de int, Integer puede representar ausencia mediante null. Los [genéricos](/handbook/java/generics/) utilizan tipos de referencia como argumentos.
 
+<!-- example:types-declaration -->
 ```java
 int edad = 21;
 Integer edadOpcional = null;
@@ -43,6 +44,7 @@ Son declaraciones independientes. No uses el valor cero como sustituto universal
 
 ## Conversión y análisis de texto
 
+<!-- example:types-demo -->
 ```java
 public class TiposDemo {
 
@@ -79,6 +81,7 @@ Los enteros tienen límites: sumar 1 a Integer.MAX_VALUE con aritmética int ord
 
 ## Conversiones distintas, resultados distintos
 
+<!-- example:types-conversions -->
 ```java
 System.out.println(5 / 2);          // 2
 System.out.println(5 / 2.0);        // 2.5
@@ -92,6 +95,12 @@ Fragmento dentro de un método. En la tercera operación la división entera ocu
 ## Autocomprobación
 
 Predice la salida de 7 / 3, 7 / 3.0 y (double) (7 / 3). Explica por qué Integer puede ser null pero int no. Comprueba qué ocurre al convertir "12a" con Integer.parseInt.
+
+## Verificación del ejemplo
+
+La conversión numérica y la validación son operaciones distintas. Una prueba de desbordamiento o estrechamiento comprueba la semántica de Java, no la validez del dato para un dominio.
+
+Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/types/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
 
 ## Conceptos relacionados
 

@@ -2,9 +2,117 @@
   {
     "page": "handbook/java/methods.md",
     "snippets": [
-      { "id": "method-instance", "file": "methods/MetodosInstanciaDemo.java", "region": "sumar" },
-      { "id": "method-static", "file": "methods/MetodosDemo.java" },
-      { "id": "method-overload", "file": "methods/SobrecargaDemo.java" }
+      {
+        "id": "method-instance",
+        "file": "methods/MetodosInstanciaDemo.java",
+        "region": "sumar"
+      },
+      {
+        "id": "method-static",
+        "file": "methods/MetodosDemo.java"
+      },
+      {
+        "id": "method-overload",
+        "file": "methods/SobrecargaDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/variables.md",
+    "snippets": [
+      {
+        "id": "variables-declaration",
+        "file": "variables/VariablesFragmentsTest.java",
+        "region": "declaration"
+      },
+      {
+        "id": "variables-demo",
+        "file": "variables/VariablesDemo.java"
+      },
+      {
+        "id": "variables-scope",
+        "file": "variables/VariablesFragmentsTest.java",
+        "region": "scope"
+      },
+      {
+        "id": "variables-final-reference",
+        "file": "variables/VariablesFragmentsTest.java",
+        "region": "final-reference"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/types.md",
+    "snippets": [
+      {
+        "id": "types-declaration",
+        "file": "types/TypesFragmentsTest.java",
+        "region": "declaration"
+      },
+      {
+        "id": "types-demo",
+        "file": "types/TiposDemo.java"
+      },
+      {
+        "id": "types-conversions",
+        "file": "types/TypesFragmentsTest.java",
+        "region": "conversions"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/expressions.md",
+    "snippets": [
+      {
+        "id": "expressions-boolean-range",
+        "file": "expressions/ExpressionsFragmentsTest.java",
+        "region": "boolean-range"
+      },
+      {
+        "id": "expressions-null-guard",
+        "file": "expressions/ExpressionsFragmentsTest.java",
+        "region": "null-guard"
+      },
+      {
+        "id": "expressions-short-circuit",
+        "file": "expressions/CortocircuitoDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/control-flow.md",
+    "snippets": [
+      {
+        "id": "control-flow-decision",
+        "file": "control-flow/ControlFlowFragmentsTest.java",
+        "region": "decision"
+      },
+      {
+        "id": "control-flow-loops",
+        "file": "control-flow/FlujoDemo.java"
+      },
+      {
+        "id": "control-flow-search",
+        "file": "control-flow/BusquedaDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/references.md",
+    "snippets": [
+      {
+        "id": "references-alias",
+        "file": "references/ReferencesFragmentsTest.java",
+        "region": "alias"
+      },
+      {
+        "id": "references-null",
+        "file": "references/ReferenciasDemo.java"
+      },
+      {
+        "id": "references-pass-by-value",
+        "file": "references/AliasDemo.java"
+      }
     ]
   }
 ]

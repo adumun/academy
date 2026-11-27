@@ -37,6 +37,8 @@ for (const entry of manifest) {
     }
     const markers = [...md.matchAll(/<!-- example:([a-z0-9-]+) -->/g)].map(m => m[1]);
     if (markers.length !== ids.size || markers.some(id => !ids.has(id))) throw new Error('Unregistered marker: ' + entry.page);
+    const javaBlocks = [...md.matchAll(/^```java\n[\s\S]*?\n^```\s*$/gm)];
+    if (javaBlocks.length !== ids.size) throw new Error('Unregistered Java block: ' + entry.page);
     if (write && md !== original) writeFileSync(path, md, 'utf8');
 }
 console.log('Canonical snippets: ' + count + ' ' + (write ? 'synchronized' : 'PASS'));

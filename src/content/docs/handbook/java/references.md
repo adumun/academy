@@ -11,6 +11,7 @@ Los [objetos, identidad y estado](/handbook/foundations/objects/) son conceptos 
 
 Un [objeto](/handbook/java/classes-and-objects/) es una instancia creada en ejecución. Una referencia es un valor que permite acceder a ese objeto. Una [variable](/handbook/java/variables/) de [tipo de referencia](/handbook/java/types/) contiene una referencia o null, no una copia automática del objeto.
 
+<!-- example:references-alias -->
 ```java
 StringBuilder primero = new StringBuilder("Java");
 StringBuilder segundo = primero;
@@ -34,6 +35,7 @@ Un objeto puede ser inmutable, como String: sus operaciones no cambian su estado
 
 ## Ejemplo de ausencia
 
+<!-- example:references-null -->
 ```java
 public class ReferenciasDemo {
 
@@ -65,6 +67,7 @@ En el diagrama A y B son etiquetas conceptuales, no direcciones de memoria ni va
 
 Archivo AliasDemo.java, Java 21 sin dependencias.
 
+<!-- example:references-pass-by-value -->
 ```java
 public class AliasDemo {
 
@@ -90,6 +93,12 @@ Salida esperada: AB, AB y true (una línea por valor). La primera llamada append
 ## Autocomprobación
 
 Cambia segundo por una instancia nueva antes de invocar modificar. Predice los dos textos y la identidad. Para igualdad lógica, consulta [equals y hashCode](/handbook/java/equality/).
+
+## Verificación del ejemplo
+
+Una prueba de alias debe verificar identidad y estado por separado. El paso por valor de una referencia permite mutar el objeto compartido, pero no cambiar la variable del llamador.
+
+Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/references/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
 
 ## Conceptos relacionados
 
