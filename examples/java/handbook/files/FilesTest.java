@@ -18,8 +18,8 @@ public class FilesTest {
             System.setOut(captura);
             mostrarRuta();
         } finally { System.setOut(original); }
-        String salida = buffer.toString(StandardCharsets.UTF_8).replace("\r\n", "\n").trimEnd();
-        if (!salida.equals(esperada.toAbsolutePath().normalize() + "\n" + Files.isRegularFile(esperada))) throw new AssertionError("path display");
+        String salida = buffer.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
+        if (!salida.equals(esperada.toAbsolutePath().normalize() + "\n" + Files.isRegularFile(esperada) + "\n")) throw new AssertionError("path display");
         Path dir = Files.createTempDirectory("academy-files-");
         Path file = dir.resolve("data.txt");
         try {
