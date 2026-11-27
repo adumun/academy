@@ -186,5 +186,135 @@
         "file": "interfaces/DespachoDemo.java"
       }
     ]
+  },
+  {
+    "page": "handbook/java/arrays.md",
+    "snippets": [
+      {
+        "id": "arrays-arraysdemo",
+        "file": "arrays/ArraysDemo.java"
+      },
+      {
+        "id": "arrays-alias-copy",
+        "file": "arrays/ArraysTest.java",
+        "region": "alias-copy"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/collections.md",
+    "snippets": [
+      {
+        "id": "collections-coleccionesdemo",
+        "file": "collections/ColeccionesDemo.java"
+      },
+      {
+        "id": "collections-eliminardemo",
+        "file": "collections/EliminarDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/sets.md",
+    "snippets": [
+      {
+        "id": "sets-setdemo",
+        "file": "sets/SetDemo.java"
+      },
+      {
+        "id": "sets-insertion-order",
+        "file": "sets/SetsTest.java",
+        "region": "insertion-order"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/maps.md",
+    "snippets": [
+      {
+        "id": "maps-mapdemo",
+        "file": "maps/MapDemo.java"
+      },
+      {
+        "id": "maps-entries",
+        "file": "maps/MapsTest.java",
+        "region": "entries"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/generics.md",
+    "snippets": [
+      {
+        "id": "generics-typed-list",
+        "file": "generics/GenericsTest.java",
+        "region": "typed-list"
+      },
+      {
+        "id": "generics-caja",
+        "file": "generics/Caja.java"
+      },
+      {
+        "id": "generics-first",
+        "file": "generics/GenericsTest.java",
+        "region": "first"
+      },
+      {
+        "id": "generics-upper-bound",
+        "file": "generics/GenericsTest.java",
+        "region": "upper-bound"
+      },
+      {
+        "id": "generics-choose",
+        "file": "generics/GenericsTest.java",
+        "region": "choose"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/lambdas.md",
+    "snippets": [
+      {
+        "id": "lambdas-predicate",
+        "file": "lambdas/LambdasTest.java",
+        "region": "predicate"
+      },
+      {
+        "id": "lambdas-lambdasdemo",
+        "file": "lambdas/LambdasDemo.java"
+      },
+      {
+        "id": "lambdas-predicadodemo",
+        "file": "lambdas/PredicadoDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/streams.md",
+    "snippets": [
+      {
+        "id": "streams-streamsdemo",
+        "file": "streams/StreamsDemo.java"
+      },
+      {
+        "id": "streams-loop-equivalence",
+        "file": "streams/StreamsTest.java",
+        "region": "loop-equivalence"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/optional.md",
+    "snippets": [
+      {
+        "id": "optional-optionaldemo",
+        "file": "optional/OptionalDemo.java"
+      },
+      {
+        "id": "optional-fallback",
+        "file": "optional/OptionalTest.java",
+        "region": "fallback"
+      }
+    ]
   }
 ]

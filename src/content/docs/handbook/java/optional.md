@@ -5,6 +5,8 @@ description: "Representar ausencia explícita, métodos y límites."
 
 **Tipo:** explicación y referencia. **Nivel:** complementario.
 
+**Al terminar esta ficha:** Distinguir presencia, ausencia, transformación y evaluación de alternativas.
+
 ## Conocimientos previos recomendados
 
 - [Genéricos](/handbook/java/generics/)
@@ -29,6 +31,7 @@ description: "Representar ausencia explícita, métodos y límites."
 
 ## Ejemplo completo
 
+<!-- example:optional-optionaldemo -->
 ```java
 import java.util.Optional;
 
@@ -56,6 +59,7 @@ Un Optional vacío representa que no hay valor, no que se produjo cualquier erro
 
 ### Alternativa evaluada frente a alternativa diferida
 
+<!-- example:optional-fallback -->
 ```java
 java.util.Optional<String> dato = java.util.Optional.of("A");
 System.out.println(dato.orElse(alternativa()));
@@ -76,6 +80,10 @@ Prueba ofNullable(null), ofNullable(""), empty y una búsqueda que lanza una exc
 
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
 - [CRUD JDBC](/handbook/java/jdbc/crud/)
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/optional/`. La suite `OptionalTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 

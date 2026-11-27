@@ -5,6 +5,8 @@ description: "Funciones como valores, parámetros, callbacks y referencias a mé
 
 **Tipo:** explicación y referencia. **Nivel:** complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Representar comportamiento con interfaces funcionales, lambdas y referencias a métodos.
+
 ## Conocimientos previos recomendados
 
 - [Interfaces](/handbook/java/interfaces/)
@@ -14,6 +16,7 @@ description: "Funciones como valores, parámetros, callbacks y referencias a mé
 
 Una lambda expresa una implementación de una [interfaz funcional](/handbook/java/interfaces/): una interfaz con un único método abstracto relevante. Un método abstracto especifica una operación sin su cuerpo. El tipo de destino determina los [parámetros y retorno](/handbook/java/methods/) esperados. Una [expresión](/handbook/java/expressions/) lambda permite describir una operación en el lugar donde otra API la necesita. Un callback es código entregado a otro componente para que lo invoque cuando corresponda; por ejemplo, un filtro llama a un Predicate para cada elemento.
 
+<!-- example:lambdas-predicate -->
 ```java
 Predicate<String> noVacio = texto -> !texto.isBlank();
 System.out.println(noVacio.test("Java"));
@@ -44,6 +47,7 @@ Los tipos se pueden declarar cuando sea necesario. Una expresión puede omitir r
 
 ## Ejemplo completo
 
+<!-- example:lambdas-lambdasdemo -->
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +85,7 @@ Una lambda tiene un tipo de destino, por ejemplo Predicate de String. La asignac
 
 ## Tres formas de expresar la misma operación
 
+<!-- example:lambdas-predicadodemo -->
 ```java
 import java.util.function.Predicate;
 
@@ -114,6 +119,10 @@ Salida esperada: true, false, false. La primera usa una clase anónima, la segun
 - [Colecciones](/handbook/java/collections/)
 - [Eventos JavaFX](/handbook/java/javafx/events/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/lambdas/`. La suite `LambdasTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 
