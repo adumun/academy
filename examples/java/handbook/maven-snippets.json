@@ -1,0 +1,28 @@
+[
+  {
+    "page": "handbook/java/json-serialization.md",
+    "snippets": [
+      {
+        "id": "jackson-typed-list",
+        "file": "maven/json-junit/src/main/java/DemoJackson.java"
+      },
+      {
+        "id": "gson-typed-list",
+        "file": "maven/json-junit/src/main/java/DemoGson.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/junit.md",
+    "snippets": [
+      {
+        "id": "rango-source",
+        "file": "maven/json-junit/src/main/java/Rango.java"
+      },
+      {
+        "id": "rango-junit",
+        "file": "maven/json-junit/src/test/java/RangoTest.java"
+      }
+    ]
+  }
+]

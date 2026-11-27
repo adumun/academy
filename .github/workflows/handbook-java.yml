@@ -7,6 +7,7 @@ on:
       - 'examples/java/handbook/**'
       - 'src/content/docs/handbook/**'
       - 'scripts/*java*.mjs'
+      - 'scripts/verify-maven-reports.py'
       - '.github/workflows/handbook-java.yml'
       - 'package.json'
   push:
@@ -15,6 +16,7 @@ on:
       - 'examples/java/handbook/**'
       - 'src/content/docs/handbook/**'
       - 'scripts/*java*.mjs'
+      - 'scripts/verify-maven-reports.py'
       - '.github/workflows/handbook-java.yml'
       - 'package.json'
 permissions:
@@ -47,3 +49,34 @@ jobs:
         run: node scripts/test-java-sources.mjs
       - name: Run historical executable examples
         run: node scripts/test-java-examples.mjs
+  maven-json-junit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Record Maven toolchain
+        run: mvn -version
+      - name: Run real library and JUnit tests
+        run: |
+          mvn -B -ntp -f examples/java/handbook/maven/json-junit/pom.xml clean test
+          python3 scripts/verify-maven-reports.py examples/java/handbook/maven/json-junit/target/surefire-reports normal
+      - name: Prove the range test detects regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          work=$(mktemp -d)
+          trap 'rm -rf "$work"' EXIT
+          cp examples/java/handbook/maven/json-junit/pom.xml "$work/"
+          cp -R examples/java/handbook/maven/json-junit/src "$work/"
+          python3 -c 'from pathlib import Path; import sys; p=Path(sys.argv[1]); s=p.read_text(); old="return (long) maximo - minimo;"; assert s.count(old)==1; p.write_text(s.replace(old,"return 0L;"))' "$work/src/main/java/Rango.java"
+          if mvn -B -ntp -f "$work/pom.xml" -Dtest=RangoTest test; then
+            echo "Deliberate regression unexpectedly passed"
+            exit 1
+          fi
+          python3 scripts/verify-maven-reports.py "$work/target/surefire-reports" mutation

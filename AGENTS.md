@@ -14,3 +14,5 @@
 - Autonomía editorial (ADU-235): repositorios docentes personales son fuentes de adaptación, no dependencias. Alojar los recursos necesarios bajo ADÜMÜN; registrar procedencia separada, conservar enlaces canónicos y validar independencia del recorrido. No declarar pruebas de runtime por build estático.
 
 - ADU-236: editar primero las fuentes reales de los snippets migrados, sincronizar con `npm run sync:snippets`, ejecutar `npm run validate:snippets` y `npm run test:java-sources` con JDK 21. No confundir cobertura parcial con certificación global.
+
+- ADU-232: para fichas Maven, mantener `maven-snippets.json` sincronizado por el mismo gate. Ejecutar el módulo Maven correspondiente y comprobar informes Surefire; no confundir el runner JDK puro o el build Astro con ejecución de dependencias externas.

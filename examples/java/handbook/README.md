@@ -9,3 +9,5 @@ Lote POO: clases/objetos/encapsulamiento, constructores, colaboración/composici
 Lote Java intermedio: arrays, colecciones, genéricos, lambdas, streams y Optional. Los fragmentos son regiones de clases compilables; las suites ejercitan contratos y casos de frontera.
 
 Excepciones, fechas y archivos incluyen pruebas de límites de aplicación con DAO/JDBC simulados y recursos temporales reales. Los dobles de prueba no equivalen a integración con base de datos.
+
+Módulos Maven: `maven-snippets.json` registra fichas con dependencias externas para el mismo gate de sincronización. `test-java-sources.mjs` conserva su alcance JDK puro; el job `maven-json-junit` ejecuta pruebas de bibliotecas reales y una regresión deliberada en copia temporal. Comando: `mvn -B -ntp -f examples/java/handbook/maven/json-junit/pom.xml clean test`.

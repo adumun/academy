@@ -152,6 +152,10 @@ mvn test invoca una fase del ciclo de vida y ejecuta las fases anteriores necesa
 
 Si javac compila un ejemplo simple pero Maven informa Invalid target release, compara el JDK que reportan java -version y mvn -version. Si Maven compila pero la aplicación no conecta con la base, el fallo pertenece a otra frontera. Consulta [diagnóstico](/handbook/troubleshooting/) antes de agregar dependencias que no necesita el proyecto.
 
+## Proyecto Maven ejecutable de referencia
+
+El repositorio incluye `examples/java/handbook/maven/json-junit/pom.xml`: un proyecto real Java 21 no modular con fuentes en src/main/java y pruebas en src/test/java. Desde su carpeta, `mvn -B -ntp clean test` resuelve dependencias, compila y ejecuta JUnit. Consulta los informes de Surefire y compara con las fichas de serialización JSON y JUnit. No necesita JavaFX ni una base de datos; el POM de referencia anterior conserva otro propósito.
+
 ## Conceptos relacionados
 
 - [JavaFX](/handbook/java/javafx/)

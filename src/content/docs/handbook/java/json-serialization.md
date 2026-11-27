@@ -23,6 +23,7 @@ En el bloque dependencies del POM añade jackson-databind. La versión 2.18.3 es
 
 Archivo DemoJackson.java en un proyecto Maven Java 21 no modular. El record expresa datos de ejemplo; no exige utilizar records para todas las entidades.
 
+<!-- example:jackson-typed-list -->
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -32,11 +33,18 @@ public class DemoJackson {
     public record Medicion(String etiqueta, int valor) {
     }
 
-    public static void main(String[] args) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        String texto = mapper.writeValueAsString(List.of(new Medicion("A", 21)));
-        List<Medicion> recuperadas = mapper.readValue(
+    public static String escribir(List<Medicion> datos) throws Exception {
+        return new ObjectMapper().writeValueAsString(datos);
+    }
+
+    public static List<Medicion> leer(String texto) throws Exception {
+        return new ObjectMapper().readValue(
                 texto, new TypeReference<List<Medicion>>() {});
+    }
+
+    public static void main(String[] args) throws Exception {
+        String texto = escribir(List.of(new Medicion("A", 21)));
+        List<Medicion> recuperadas = leer(texto);
         System.out.println(recuperadas.get(0).valor());
     }
 }
@@ -46,10 +54,13 @@ Salida esperada: 21. TypeReference captura información del tipo genérico media
 
 ## Gson: alternativa de biblioteca
 
-En un proyecto con `com.google.code.gson:gson` fijado en el POM (como el kit de prácticas EP2), utiliza Gson y TypeToken. No se necesitan ambas bibliotecas para un mismo ejemplo.
+En el proyecto de referencia se fija `com.google.code.gson:gson:2.11.0`. Gson y TypeToken permiten recuperar una lista tipada; Strictness.STRICT solicita sintaxis JSON estricta. No se necesitan ambas bibliotecas para un mismo ejemplo.
 
+<!-- example:gson-typed-list -->
 ```java
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.Strictness;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
@@ -58,17 +69,27 @@ public class DemoGson {
     public record Medicion(String etiqueta, int valor) {
     }
 
+    private static final Gson GSON = new GsonBuilder()
+            .setStrictness(Strictness.STRICT).create();
+    private static final Type TIPO = new TypeToken<List<Medicion>>() {}.getType();
+
+    public static String escribir(List<Medicion> datos) {
+        return GSON.toJson(datos);
+    }
+
+    public static List<Medicion> leer(String texto) {
+        return GSON.fromJson(texto, TIPO);
+    }
+
     public static void main(String[] args) {
-        Gson gson = new Gson();
-        String texto = gson.toJson(List.of(new Medicion("A", 21)));
-        Type tipo = new TypeToken<List<Medicion>>() {}.getType();
-        List<Medicion> recuperadas = gson.fromJson(texto, tipo);
+        String texto = escribir(List.of(new Medicion("A", 21)));
+        List<Medicion> recuperadas = leer(texto);
         System.out.println(recuperadas.get(0).valor());
     }
 }
 ```
 
-Salida esperada: 21 con una versión de Gson compatible con records. Consulta el POM de la actividad antes de ejecutar. Estos ejemplos requieren bibliotecas externas y no están incluidos en el test de Java puro.
+Salida esperada: 21 con una versión de Gson compatible con records. El POM propio de Academy reúne ambas bibliotecas para comprobar los ejemplos, no porque una aplicación necesite las dos. El runner Java puro no incluye estas dependencias.
 
 ## Validación y límites
 
@@ -100,7 +121,11 @@ Una lista genérica requiere conservar información sobre el tipo de sus element
 
 ## Probar la ida y vuelta
 
-En los ejemplos anteriores, imprime también texto: se espera un arreglo JSON con una medición que contiene etiqueta A y valor 21. No dependas del orden de las propiedades. Comprueba lista vacía, campo ausente, valor de tipo incorrecto y texto malformado; la respuesta concreta depende de la configuración y versión de cada biblioteca. Declara qué entradas rechaza tu aplicación, en vez de aceptar implícitamente cualquier conversión. Estos escenarios requieren ejecutar los ejemplos con sus dependencias reales.
+En los ejemplos anteriores, imprime también texto: se espera un arreglo JSON con una medición que contiene etiqueta A y valor 21. No dependas del orden de las propiedades. Comprueba lista vacía, campo ausente, valor de tipo incorrecto y texto malformado; la respuesta concreta depende de la configuración y versión de cada biblioteca. Declara qué entradas rechaza tu aplicación, en vez de aceptar implícitamente cualquier conversión. El proyecto Maven propio comprueba las listas tipadas, listas vacías, campos ausentes, estructuras incompatibles y texto truncado. Un campo int ausente se representa con 0 en estos ejemplos; si es obligatorio, la aplicación debe validar su presencia. No interpretes el valor por defecto como una medición válida.
+
+## Verificación ejecutable
+
+Fuentes canónicas: `examples/java/handbook/maven/json-junit/src/main/java/`. Desde `examples/java/handbook/maven/json-junit/` ejecuta `mvn -B -ntp clean test`; las suites DemoJacksonTest y DemoGsonTest comprueban seis casos cada una, incluida la salida publicada. No requieren una base de datos. Consulta los informes Surefire y los resultados CI del commit utilizado, no solo el build del sitio.
 
 ## Referencias
 
