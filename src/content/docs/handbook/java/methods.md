@@ -5,6 +5,8 @@ description: "Firma, argumentos, retorno, void, static y sobrecarga."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir parámetro de argumento, valor retornado de salida por consola, método de instancia de método estático y sobrecarga de sobrescritura.
+
 ## Qué es un método en Java
 
 Las [operaciones, parámetros y contratos](/handbook/foundations/operations/) existen independientemente del lenguaje. Aquí se documentan las reglas de declaración, invocación y retorno de métodos en Java.
@@ -109,6 +111,14 @@ La suma de enteros usa la aritmética de `int`: si supera el máximo representab
 ## Autocomprobación
 
 ¿Qué ocurre si declaras otro agregar(int cantidad) con retorno int? No basta cambiar el retorno para distinguir la firma. Intenta llamar consultar directamente desde main sin una instancia y explica el diagnóstico.
+
+## Práctica de diagnóstico
+
+Predice qué ocurre si dos instancias de SobrecargaDemo reciben cantidades distintas. Después realiza una llamada que retorne un valor y otra que lo imprima. Comprueba que una llamada a consultar no modifica el estado. Si intentas sobrecargar agregar variando solo el retorno, javac rechaza la firma duplicada; si llamas a consultar sin instancia desde main, rechaza el contexto estático.
+
+**Fuentes de los ejemplos mostrados:** [MetodosInstanciaDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/MetodosInstanciaDemo.java) · [MetodosDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/MetodosDemo.java) · [SobrecargaDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/methods/SobrecargaDemo.java).
+
+Casos de rechazo verificados con javac 21: [ReturnOnlyOverload.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/ReturnOnlyOverload.java) · [StaticContext.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/StaticContext.java). Son archivos deliberadamente inválidos, no ejemplos para copiar como solución.
 
 ## Conceptos relacionados
 

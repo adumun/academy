@@ -5,6 +5,8 @@ description: "Diferencia entre objetos y referencias, alias, igualdad, ausencia 
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Explicar identidad, alias, ausencia y paso de argumentos por valor; predecir cómo un método puede cambiar el estado sin reasignar la variable del llamador.
+
 ## Objeto y referencia
 
 Los [objetos, identidad y estado](/handbook/foundations/objects/) son conceptos generales. Aquí se explica cómo Java representa y copia referencias y cómo utiliza null.
@@ -99,6 +101,12 @@ Cambia segundo por una instancia nueva antes de invocar modificar. Predice los d
 Una prueba de alias debe verificar identidad y estado por separado. El paso por valor de una referencia permite mutar el objeto compartido, pero no cambiar la variable del llamador.
 
 Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/references/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
+
+## Práctica de diagnóstico
+
+Dibuja dos variables que apuntan al mismo StringBuilder. Después de modificar, el objeto original contiene AB y ambas variables siguen apuntando a él; el objeto CD fue creado dentro del método. Repite la predicción con segundo apuntando a un objeto independiente y explica qué cambia. Distingue una referencia null de una instancia que contiene una cadena vacía.
+
+**Fuentes de los ejemplos mostrados:** [ReferencesFragmentsTest.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/references/ReferencesFragmentsTest.java) · [ReferenciasDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/references/ReferenciasDemo.java) · [AliasDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/references/AliasDemo.java).
 
 ## Conceptos relacionados
 

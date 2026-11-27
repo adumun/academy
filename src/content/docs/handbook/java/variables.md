@@ -5,6 +5,8 @@ description: "Declaración, inicialización, asignación, alcance y final."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Identificar el tipo, nombre, valor, alcance y duración de variables, y distinguir reasignación de una referencia de mutación del objeto.
+
 ## Qué es una variable en Java
 
 Consulta [valores, variables y tipos](/handbook/foundations/values-and-types/) para la definición independiente del lenguaje. Aquí se desarrolla la semántica de almacenamiento, asignación y alcance en Java.
@@ -102,6 +104,14 @@ En VariablesDemo, señala qué variable se crea en cada llamada, qué campo cons
 La asignación de un valor a un campo no cambia los campos de otras instancias. Una variable local debe estar definitivamente asignada; un campo recibe un valor inicial por defecto. La prueba de referencia final comprueba que mutar el objeto es distinto de reasignar la variable.
 
 Las fuentes versionadas de esta ficha se encuentran en `examples/java/handbook/variables/`. Los fragmentos se extraen de clases compilables y los ejemplos completos se conservan íntegros. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con Node.js y JDK 21.
+
+## Práctica de diagnóstico
+
+Dibuja el estado de dos instancias de VariablesDemo antes y después de sumar cantidades diferentes. En el fragmento final, predice por separado si append cambia el contenido y si asignar otro StringBuilder a texto compila. Cambia el alcance de incremento e intenta leerlo fuera del bloque: el error de alcance no es lo mismo que el de inicialización definitiva.
+
+**Fuentes de los ejemplos mostrados:** [VariablesFragmentsTest.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/variables/VariablesFragmentsTest.java) · [VariablesDemo.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/variables/VariablesDemo.java).
+
+Casos de rechazo verificados con javac 21: [FinalReassignment.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/FinalReassignment.java) · [OutOfScope.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/OutOfScope.java) · [UninitializedLocal.java](https://github.com/adumun/academy/blob/41676c634274d580ab7985417c90bc949045d72d/examples/java/handbook/negative/UninitializedLocal.java). Son archivos deliberadamente inválidos, no ejemplos para copiar como solución.
 
 ## Conceptos relacionados
 
