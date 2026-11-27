@@ -29,11 +29,16 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
+      - name: Record toolchain versions
+        run: |
+          node --version
+          java -version
+          javac -version
       - name: Verify canonical snippet synchronization
         run: node scripts/sync-java-snippets.mjs
       - name: Compile and execute canonical sources
