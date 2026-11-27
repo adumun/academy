@@ -41,6 +41,8 @@ jobs:
           javac -version
       - name: Verify canonical snippet synchronization
         run: node scripts/sync-java-snippets.mjs
+      - name: Test compiler diagnostic parser
+        run: node --test scripts/test-java-compiler-diagnostics.mjs
       - name: Compile and execute canonical sources
         run: node scripts/test-java-sources.mjs
       - name: Run historical executable examples
