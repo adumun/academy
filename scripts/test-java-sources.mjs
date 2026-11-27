@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { matchesCompilerRejection } from './java-compiler-diagnostics.mjs';
 const source = fileURLToPath(new URL('../examples/java/handbook/', import.meta.url));
 const suites = JSON.parse(readFileSync(join(source, 'test-suites.json'), 'utf8'));
 const manifest = JSON.parse(readFileSync(join(source, 'snippets.json'), 'utf8'));
@@ -47,8 +48,7 @@ for (const test of negatives) {
     const out = mkdtempSync(join(tmpdir(), 'academy-negative-'));
     try {
         const result = spawnSync('javac', ['--release', '21', '-encoding', 'UTF-8', '-XDrawDiagnostics', '-d', out, join(source, 'negative', test.file)], { encoding: 'utf8', timeout: 30000 });
-        const diagnostics = (result.stderr || '').split(/\r?\n/).filter(line => line.includes('compiler.err.'));
-        if (result.error || result.status !== 1 || diagnostics.length !== 1 || !diagnostics[0].includes(': ' + test.diagnostic + ':')) {
+        if (!matchesCompilerRejection(result, test.diagnostic)) {
             throw new Error(test.file + ': unexpected compiler result: ' + (result.error || result.stderr || result.stdout));
         }
         console.log('PASS expected compilation rejection ' + test.file);

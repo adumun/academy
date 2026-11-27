@@ -5,6 +5,8 @@ description: "Estado, identidad, constructores, acceso y modelos de dominio."
 
 **Tipo:** explicación. **Nivel:** esencial. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir clase, instancia, identidad y estado, y diseñar operaciones que preserven invariantes.
+
 ## Conocimientos previos recomendados
 
 - [Variables, valores y constantes](/handbook/java/variables/)
@@ -30,6 +32,7 @@ El **estado** es el conjunto de valores que caracterizan a un objeto en un momen
 
 Una [variable](/handbook/java/variables/) almacena un valor. Cuando su tipo es Libro, almacena una [referencia](/handbook/java/references/) al objeto, o null. Asignar la referencia a otra variable no crea una copia.
 
+<!-- example:classes-and-objects-alias -->
 ```java
 Libro primero = new Libro(1, "Java");
 Libro segundo = primero;
@@ -45,6 +48,7 @@ La **encapsulación** protege el estado mediante una interfaz de uso controlada.
 
 ## Ejemplo completo: contexto ilustrativo de biblioteca
 
+<!-- example:classes-and-objects-libro -->
 ```java
 public class Libro {
 
@@ -113,6 +117,7 @@ El archivo fuente contiene la declaración de clase, que describe los campos y m
 
 Archivo ContadorValidoDemo.java, Java 21. El dominio es distinto del ejemplo Libro y permite observar una operación de cambio.
 
+<!-- example:classes-and-objects-counter -->
 ```java
 public class ContadorValidoDemo {
 
@@ -163,6 +168,12 @@ private controla acceso de código según las reglas de Java (incluidas clases a
 - [Interfaces](/handbook/java/interfaces/)
 - [MVC y DAO](/handbook/architecture/)
 - [Observabilidad](/handbook/java/javafx/table-view-observability/)
+
+## Práctica de diagnóstico y verificación
+
+Predice la identidad de las tres referencias. Después intenta construir libros con título null, vacío y con espacios alrededor de un texto válido. Comprueba que dos contadores no comparten estado y que decrementar desde cero no cambia el valor.
+
+Fuentes versionadas: `examples/java/handbook/classes-and-objects/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21. Casos negativos deliberados en `examples/java/handbook/negative/`: `PrivateFieldAccess.java`.
 
 ## Documentación oficial
 

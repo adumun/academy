@@ -5,6 +5,8 @@ description: "Contrato común, comportamiento obligatorio y clases concretas."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Identificar estado y comportamiento común en una clase abstracta y completar los métodos especializados en subtipos concretos.
+
 ## Modelo mental
 
 Una clase abstracta expresa una [abstracción](/handbook/foundations/object-relationships/) que no puede instanciarse directamente. Puede tener campos, constructores y métodos concretos. Un método abstracto declara una firma sin cuerpo; una subclase concreta debe implementar los métodos abstractos que queden pendientes. Una interfaz y una clase abstracta resuelven necesidades relacionadas pero diferentes.
@@ -13,6 +15,7 @@ Una clase abstracta expresa una [abstracción](/handbook/foundations/object-rela
 
 Archivo `AbstraccionDemo.java`. Guarda el siguiente código y ejecuta `javac --release 21 AbstraccionDemo.java` y `java AbstraccionDemo` con JDK 21. No requiere dependencias externas.
 
+<!-- example:abstract-classes-measurement -->
 ```java
 public class AbstraccionDemo {
 
@@ -76,6 +79,12 @@ El constructor de Medicion sí se ejecuta cuando se construye Temperatura. Que n
 ## Comprobación de extensión
 
 Agrega una subclase que represente una distancia con unidad m y método valor que retorna 5. Invoca mostrar mediante una referencia Medicion. Debe producir 5 m. Si omites valor, la clase concreta no compila. Esta familia comparte representación de magnitud y unidad; un consumidor que espera exclusivamente temperatura necesita un contrato más específico. Compara con [herencia](/handbook/java/inheritance/) e [interfaces](/handbook/java/interfaces/).
+
+## Práctica de diagnóstico y verificación
+
+Añade una medición de distancia con unidad m y valor 5. Comprueba que el mismo comportamiento mostrar devuelve 5 m. Instanciar la clase abstracta u omitir el método abstracto en una clase concreta produce errores distintos.
+
+Fuentes versionadas: `examples/java/handbook/abstract-classes/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21. Casos negativos deliberados en `examples/java/handbook/negative/`: `AbstractInstantiation.java`, `MissingAbstractMethod.java`.
 
 ## Documentación oficial
 

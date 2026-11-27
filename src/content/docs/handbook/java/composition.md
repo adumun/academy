@@ -5,6 +5,8 @@ description: "Referencias a otros objetos, delegación, propiedad y responsabili
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir colaboración, delegación, propiedad de objetos y exposición segura de colecciones.
+
 ## Modelo mental
 
 Una clase puede almacenar una [referencia](/handbook/java/references/) a otra instancia y delegarle trabajo mediante métodos. La [asociación y composición](/handbook/foundations/object-relationships/) describen relaciones de diseño; Java no impone su ciclo de vida por declarar un campo. La composición no es sinónimo de cualquier relación «tiene un».
@@ -13,10 +15,11 @@ Una clase puede almacenar una [referencia](/handbook/java/references/) a otra in
 
 Archivo `ComposicionDemo.java`. Guarda el siguiente código y ejecuta `javac --release 21 ComposicionDemo.java` y `java ComposicionDemo` con JDK 21. No requiere dependencias externas.
 
+<!-- example:composition-collaboration -->
 ```java
 public class ComposicionDemo {
 
-    private static class Punto {
+    static class Punto {
         private final int coordenadaX;
         private final int coordenadaY;
 
@@ -30,7 +33,7 @@ public class ComposicionDemo {
         }
     }
 
-    private static class Circulo {
+    static class Circulo {
         private final Punto centro;
 
         Circulo(Punto centro) {
@@ -59,7 +62,7 @@ Salida esperada:
 Centro: 0,0
 ```
 
-El ejemplo agrupa clases anidadas para ejecutar en un archivo; normalmente se separan en archivos si son responsabilidades reutilizables. Punto es inmutable en este ejemplo. El círculo recibe una referencia al punto: no lo copia y no prueba propiedad exclusiva. Si necesitas esa garantía, diseña construcción/copia y controla mutabilidad.
+El ejemplo agrupa clases anidadas con acceso de paquete para permitir pruebas del mismo paquete y ejecutar en un archivo; normalmente se separan en archivos si son responsabilidades reutilizables. Punto es inmutable en este ejemplo. El círculo recibe una referencia al punto: no lo copia y no prueba propiedad exclusiva. Si necesitas esa garantía, diseña construcción/copia y controla mutabilidad.
 
 ## Errores habituales
 
@@ -75,6 +78,7 @@ El campo centro almacena una referencia al Punto recibido; Circulo delega la rep
 
 ## Propiedad frente a acceso
 
+<!-- example:composition-snapshot -->
 ```java
 // Fragmento dentro de una clase que administra datos propios.
 private final java.util.List<String> datos = new java.util.ArrayList<>();
@@ -89,6 +93,12 @@ Retornar una copia no modificable evita que el consumidor agregue elementos dire
 ## Cuándo preferir delegación
 
 Si un objeto necesita usar otra capacidad sin ser un subtipo de ella, delegar conserva contratos separados. Si cambia el colaborador, el consumidor debería depender de las operaciones que necesita, no de detalles internos. No agregues una capa intermedia sin un motivo de responsabilidad o sustitución.
+
+## Práctica de diagnóstico y verificación
+
+Construye dos círculos que comparten un punto inmutable. Verifica que un centro nulo se rechaza y que una lista obtenida mediante copyOf no permite modificar los datos internos ni cambia cuando el propietario agrega nuevos elementos. El primer ejemplo ilustra colaboración; no demuestra composición UML fuerte.
+
+Fuentes versionadas: `examples/java/handbook/composition/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21.
 
 ## Documentación oficial
 

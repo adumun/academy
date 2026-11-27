@@ -114,5 +114,77 @@
         "file": "references/AliasDemo.java"
       }
     ]
+  },
+  {
+    "page": "handbook/java/classes-and-objects.md",
+    "snippets": [
+      {
+        "id": "classes-and-objects-alias",
+        "file": "classes-and-objects/ObjectsTest.java",
+        "region": "alias"
+      },
+      {
+        "id": "classes-and-objects-libro",
+        "file": "classes-and-objects/Libro.java"
+      },
+      {
+        "id": "classes-and-objects-counter",
+        "file": "classes-and-objects/ContadorValidoDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/constructors.md",
+    "snippets": [
+      {
+        "id": "constructors-range",
+        "file": "constructors/ConstructorDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/composition.md",
+    "snippets": [
+      {
+        "id": "composition-collaboration",
+        "file": "composition/ComposicionDemo.java"
+      },
+      {
+        "id": "composition-snapshot",
+        "file": "composition/DatosPropios.java",
+        "region": "snapshot"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/inheritance.md",
+    "snippets": [
+      {
+        "id": "inheritance-dispatch",
+        "file": "inheritance/HerenciaDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/abstract-classes.md",
+    "snippets": [
+      {
+        "id": "abstract-classes-measurement",
+        "file": "abstract-classes/AbstraccionDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/interfaces.md",
+    "snippets": [
+      {
+        "id": "interfaces-catalog",
+        "file": "interfaces/CatalogoDemo.java"
+      },
+      {
+        "id": "interfaces-dispatch",
+        "file": "interfaces/DespachoDemo.java"
+      }
+    ]
   }
 ]

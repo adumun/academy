@@ -5,6 +5,8 @@ description: "Constructor implícito, sobrecarga, delegación e invariantes."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Comprender la delegación entre constructores, establecer invariantes al crear objetos y elegir tipos capaces de representar el resultado.
+
 ## Modelo mental
 
 Un constructor inicializa una nueva [instancia](/handbook/foundations/objects/) y establece sus invariantes. Tiene el nombre de la clase y no declara retorno, ni siquiera void. `new` crea el objeto e invoca el constructor. Si no declaras ningún constructor, Java proporciona un constructor sin argumentos según las reglas de la clase; al declarar uno propio deja de hacerlo.
@@ -15,6 +17,7 @@ Un constructor inicializa una nueva [instancia](/handbook/foundations/objects/) 
 
 Archivo `ConstructorDemo.java`. Guarda el siguiente código y ejecuta `javac --release 21 ConstructorDemo.java` y `java ConstructorDemo` con JDK 21. No requiere dependencias externas.
 
+<!-- example:constructors-range -->
 ```java
 public class ConstructorDemo {
 
@@ -34,8 +37,8 @@ public class ConstructorDemo {
         this.maximo = maximo;
     }
 
-    public int amplitud() {
-        return maximo - minimo;
+    public long amplitud() {
+        return (long) maximo - minimo;
     }
 
     public static void main(String[] args) {
@@ -61,6 +64,8 @@ Salida esperada:
 Rechazado
 ```
 
+La amplitud es un `long` porque la diferencia entre dos valores `int` puede superar `Integer.MAX_VALUE`. El cast del máximo antes de restar hace que la operación se realice en `long`.
+
 ## Diagnóstico y buenas prácticas
 
 No uses un setter obligatorio posterior para completar un objeto inválido. No ignores una entrada incorrecta dejando el valor por defecto accidentalmente; define explícitamente la política de error. El ejemplo usa una excepción no comprobada, consulta [excepciones](/handbook/java/exceptions/). El constructor de una subclase debe inicializar su parte heredada según [herencia](/handbook/java/inheritance/).
@@ -83,6 +88,12 @@ Si la superclase no tiene un constructor sin argumentos accesible, la subclase d
 ## Autocomprobación
 
 En ConstructorDemo, sigue la ejecución de new ConstructorDemo(10) y de new ConstructorDemo(9, 2). ¿Qué valores se validan? ¿Por qué no se debe duplicar la validación en todos los constructores?
+
+## Práctica de diagnóstico y verificación
+
+Prueba límites iguales, invertidos y los dos extremos de int. El ancho del rango completo es 4294967295: cabe en long, no en int. La conversión debe ocurrir antes de restar; convertir un resultado int desbordado no lo recupera. La ausencia de constructor sin argumentos también tiene un diagnóstico verificable.
+
+Fuentes versionadas: `examples/java/handbook/constructors/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21. Casos negativos deliberados en `examples/java/handbook/negative/`: `MissingNoArgConstructor.java`.
 
 ## Documentación oficial
 
