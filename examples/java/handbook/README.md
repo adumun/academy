@@ -7,3 +7,5 @@ Los archivos de `negative/` son deliberadamente inválidos; no forman parte de l
 Lote POO: clases/objetos/encapsulamiento, constructores, colaboración/composición, herencia, clases abstractas e interfaces. Las pruebas adicionales comprueban invariantes, alias, límites, despacho y sustitución. El método amplitud devuelve long para preservar el rango completo de int.
 
 Lote Java intermedio: arrays, colecciones, genéricos, lambdas, streams y Optional. Los fragmentos son regiones de clases compilables; las suites ejercitan contratos y casos de frontera.
+
+Excepciones, fechas y archivos incluyen pruebas de límites de aplicación con DAO/JDBC simulados y recursos temporales reales. Los dobles de prueba no equivalen a integración con base de datos.

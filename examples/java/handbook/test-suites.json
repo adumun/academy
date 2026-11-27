@@ -278,5 +278,48 @@
         "expected": "A\nA\nOptional PASS"
       }
     ]
+  },
+  {
+    "directory": "exceptions",
+    "runs": [
+      {
+        "className": "RecursosDemo",
+        "expected": "Java"
+      },
+      {
+        "className": "PropagacionDemo",
+        "expected": "12\nFormato invalido\nFin"
+      },
+      {
+        "className": "ExceptionsTest",
+        "expected": "Exceptions PASS"
+      }
+    ]
+  },
+  {
+    "directory": "dates",
+    "runs": [
+      {
+        "className": "FechasDemo",
+        "expected": "2026-11-25\n2026-11-26\ntrue"
+      },
+      {
+        "className": "DatesTest",
+        "expected": "Fecha invalida\nDates PASS"
+      }
+    ]
+  },
+  {
+    "directory": "files",
+    "runs": [
+      {
+        "className": "ArchivosDemo",
+        "expected": "21"
+      },
+      {
+        "className": "FilesTest",
+        "expected": "Files PASS"
+      }
+    ]
   }
 ]

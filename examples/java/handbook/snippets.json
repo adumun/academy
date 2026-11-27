@@ -316,5 +316,56 @@
         "region": "fallback"
       }
     ]
+  },
+  {
+    "page": "handbook/java/exceptions.md",
+    "snippets": [
+      {
+        "id": "exceptions-dao-boundary",
+        "file": "exceptions/ExceptionsTest.java",
+        "region": "dao-boundary"
+      },
+      {
+        "id": "exceptions-recursosdemo",
+        "file": "exceptions/RecursosDemo.java"
+      },
+      {
+        "id": "exceptions-propagaciondemo",
+        "file": "exceptions/PropagacionDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/dates.md",
+    "snippets": [
+      {
+        "id": "dates-fechasdemo",
+        "file": "dates/FechasDemo.java"
+      },
+      {
+        "id": "dates-sql-date",
+        "file": "dates/DatesTest.java",
+        "region": "sql-date"
+      },
+      {
+        "id": "dates-invalid-date",
+        "file": "dates/DatesTest.java",
+        "region": "invalid-date"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/files.md",
+    "snippets": [
+      {
+        "id": "files-archivosdemo",
+        "file": "files/ArchivosDemo.java"
+      },
+      {
+        "id": "files-path",
+        "file": "files/FilesTest.java",
+        "region": "path"
+      }
+    ]
   }
 ]

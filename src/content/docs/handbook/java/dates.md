@@ -5,6 +5,8 @@ description: "Fechas sin hora, conversión y validación de entrada."
 
 **Tipo:** explicación y referencia. **Nivel:** complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Elegir tipos temporales y distinguir una fecha de calendario, un instante y una conversión JDBC.
+
 ## Conocimientos previos recomendados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
@@ -27,6 +29,7 @@ Una fecha de nacimiento o vencimiento normalmente requiere LocalDate; un instant
 
 ## API y ejemplo autónomo
 
+<!-- example:dates-fechasdemo -->
 ```java
 import java.time.LocalDate;
 
@@ -47,6 +50,7 @@ Salida: 2026-11-25, 2026-11-26 y true en líneas distintas. LocalDate es inmutab
 
 ## Aplicación: conversión para SQL DATE
 
+<!-- example:dates-sql-date -->
 ```java
 java.sql.Date fechaSql = java.sql.Date.valueOf(fecha);
 ps.setDate(1, fechaSql);
@@ -77,6 +81,7 @@ Una fecha como 2026-11-25 no indica una hora; una hora local 08:00 no identifica
 
 ### Validar una fecha introducida como texto
 
+<!-- example:dates-invalid-date -->
 ```java
 try {
     java.time.LocalDate fecha = java.time.LocalDate.parse("2026-02-30");
@@ -93,6 +98,12 @@ Fragmento de método. El 30 de febrero no existe y se rechaza. No uses una caden
 - [PreparedStatement](/handbook/java/jdbc/prepared-statement/)
 - [ResultSet](/handbook/java/jdbc/result-set/)
 - [Validación JavaFX](/handbook/java/javafx/validation/)
+
+## Verificación ejecutable
+
+La conversión SQL DATE se ejecuta contra dobles de prueba limitados a setDate y getDate, incluyendo SQL NULL y año bisiesto. No certifica el comportamiento de un driver ni de un servidor real.
+
+Fuentes: `examples/java/handbook/dates/`. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` con JDK 21.
 
 ## Documentación oficial
 
