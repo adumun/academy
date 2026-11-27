@@ -80,3 +80,33 @@ jobs:
             exit 1
           fi
           python3 scripts/verify-maven-reports.py "$work/target/surefire-reports" mutation
+  maven-javafx:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Prepare virtual display
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb xauth libgtk-3-0t64
+          mvn -version
+      - name: Test JavaFX runtime on virtual display
+        run: xvfb-run -a mvn -B -ntp -f examples/java/handbook/maven/javafx/pom.xml clean test
+      - name: Verify exact runtime test results
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          root = ET.parse(Path('examples/java/handbook/maven/javafx/target/surefire-reports/TEST-FxRuntimeTest.xml')).getroot()
+          expected = {'ventanaMinima','eventosDemo','accionYListeners','listaObservable','bindings','filtroOrdenYFuente','columnaObservaPropiedad','cargaFxmlEInyeccion','sceneBuilderFxml','navegarYVolver'}
+          cases = root.findall('testcase')
+          assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
+          assert all(c.find(tag) is None for c in cases for tag in ('failure','error','skipped'))
+          print('JavaFX runtime: 10/10 PASS')
+          PY
