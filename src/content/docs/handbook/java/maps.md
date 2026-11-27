@@ -5,6 +5,8 @@ description: "Asociación clave–valor, reemplazo, ausencia y recorrido."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir clave y valor, reemplazo y ausencia de una entrada.
+
 ## Modelo mental
 
 Un Map representa una [asociación](/handbook/foundations/data-structures/) clave–valor. Cada clave tiene como máximo un valor asociado. Los valores pueden repetirse. HashMap no garantiza orden de recorrido. Map no extiende Collection.
@@ -13,6 +15,7 @@ Un Map representa una [asociación](/handbook/foundations/data-structures/) clav
 
 Archivo `MapDemo.java`. Guarda el siguiente código y ejecuta `javac --release 21 MapDemo.java` y `java MapDemo` con JDK 21. No requiere dependencias externas.
 
+<!-- example:maps-mapdemo -->
 ```java
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +62,7 @@ Map representa asociaciones identificadas por clave, no posiciones. put retorna 
 
 ### Recorrer pares sin perder su relación
 
+<!-- example:maps-entries -->
 ```java
 java.util.Map<String, Integer> medidas = new java.util.LinkedHashMap<>();
 medidas.put("A", 10);
@@ -73,6 +77,10 @@ Fragmento de método. Salida esperada A: 10 y B: 10 en orden de inserción para 
 ## Autocomprobación
 
 Registra A dos veces con distinto valor y B con el mismo valor de A. Predice tamaño, valor anterior y contenido. Después prueba una clave ausente y una clave asociada a null en HashMap. Si la operación del dominio es registrar solo una vez, define rechazo explícito de duplicado en lugar de usar put como si fuera un alta incondicional.
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/maps/`. La suite `MapsTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 

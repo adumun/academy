@@ -5,6 +5,8 @@ description: "Errores, propagación, captura, recursos y diagnóstico."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir ausencia de datos, excepciones y responsabilidad de traducción en un límite de aplicación.
+
 ## Conocimientos previos recomendados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
@@ -23,6 +25,7 @@ Una excepción es un objeto que representa una condición excepcional: interrump
 
 El método DAO puede declarar throws SQLException, mientras un controlador captura el fallo, registra diagnóstico adecuado y comunica un mensaje. Un catch vacío o un retorno de éxito tras un error oculta información relevante.
 
+<!-- example:exceptions-dao-boundary -->
 ```java
 try {
     int filas = dao.eliminar(id);
@@ -41,6 +44,7 @@ Fragmento de controlador con dao, id y mostrarError definidos. No significa que 
 
 AutoCloseable define close(). Try-with-resources administra automáticamente recursos declarados en el encabezado, incluso ante excepciones. Los cierra en orden inverso.
 
+<!-- example:exceptions-recursosdemo -->
 ```java
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -77,6 +81,7 @@ Cuando se ejecuta throw, no se siguen las instrucciones normales de ese bloque. 
 
 ## Ejemplo autónomo: capturar en el límite
 
+<!-- example:exceptions-propagaciondemo -->
 ```java
 public class PropagacionDemo {
 
@@ -105,6 +110,12 @@ Salida esperada: 12, Formato invalido, Fin. La segunda llamada no retorna normal
 - [Connection](/handbook/java/jdbc/connection/)
 - [ResultSet](/handbook/java/jdbc/result-set/)
 - [Diagnóstico](/handbook/troubleshooting/)
+
+## Verificación ejecutable
+
+El DAO del fragmento es una interfaz de prueba con tres respuestas controladas; no se conecta a una base de datos. Se verifica ausencia, éxito y SQLException.
+
+Fuentes: `examples/java/handbook/exceptions/`. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` con JDK 21.
 
 ## Documentación oficial
 

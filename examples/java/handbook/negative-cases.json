@@ -63,5 +63,10 @@
     "file": "InterfaceAccess.java",
     "page": "handbook/java/interfaces.md",
     "diagnostic": "compiler.err.override.weaker.access"
+  },
+  {
+    "file": "GenericInvariance.java",
+    "page": "handbook/java/generics.md",
+    "diagnostic": "compiler.err.prob.found.req"
   }
 ]

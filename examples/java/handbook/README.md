@@ -5,3 +5,7 @@ Lote fundamentos: métodos, variables, tipos, expresiones, control de flujo y re
 Los archivos de `negative/` son deliberadamente inválidos; no forman parte de las suites positivas. `negative-cases.json` vincula cada caso con la ficha y el diagnóstico esperado de javac 21. El runner exige código de salida 1 y exactamente el diagnóstico esperado; un fallo arbitrario de compilación no cuenta como prueba exitosa.
 
 Lote POO: clases/objetos/encapsulamiento, constructores, colaboración/composición, herencia, clases abstractas e interfaces. Las pruebas adicionales comprueban invariantes, alias, límites, despacho y sustitución. El método amplitud devuelve long para preservar el rango completo de int.
+
+Lote Java intermedio: arrays, colecciones, genéricos, lambdas, streams y Optional. Los fragmentos son regiones de clases compilables; las suites ejercitan contratos y casos de frontera.
+
+Excepciones, fechas y archivos incluyen pruebas de límites de aplicación con DAO/JDBC simulados y recursos temporales reales. Los dobles de prueba no equivalen a integración con base de datos.

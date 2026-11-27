@@ -5,6 +5,8 @@ description: "Rutas, directorios, lectura/escritura, recursos y recuperación."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario.
 
+**Al terminar esta ficha:** Distinguir una ruta de un archivo existente y gestionar recursos temporales sin alterar datos del consumidor.
+
 ## Qué hace cada API
 
 La [persistencia](/handbook/foundations/persistence/) en archivos necesita una ubicación y una operación de E/S (entrada/salida). Path representa una ruta; Files opera sobre archivos y directorios; File es una abstracción histórica compatible. Una ruta relativa se resuelve respecto al directorio de trabajo del proceso; `toAbsolutePath()` ayuda a diagnosticar qué archivo utiliza la aplicación. No es el classpath.
@@ -13,6 +15,7 @@ La [persistencia](/handbook/foundations/persistence/) en archivos necesita una u
 
 Archivo `ArchivosDemo.java`. Compila con `javac --release 21 ArchivosDemo.java` y ejecuta `java ArchivosDemo`.
 
+<!-- example:files-archivosdemo -->
 ```java
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -60,6 +63,7 @@ Path no abre un archivo por sí mismo. resolve construye una nueva ruta a partir
 
 ### Diagnosticar sin modificar datos
 
+<!-- example:files-path -->
 ```java
 java.nio.file.Path archivo = java.nio.file.Path.of("data", "mediciones.txt");
 System.out.println(archivo.toAbsolutePath().normalize());
@@ -71,6 +75,12 @@ Fragmento de método. La salida depende del entorno. normalize elimina component
 ## Lectura frente a escritura
 
 readString resulta adecuado para archivos de texto pequeños; para volúmenes grandes conviene procesamiento incremental. writeString sin opciones específicas crea o trunca el archivo según su contrato. Para anexar datos se requieren opciones explícitas. No escribas directamente sobre el único archivo valioso si debes preservar el estado anterior: valida datos, usa temporal y aplica una política de reemplazo y respaldo. Consulta [persistencia](/handbook/foundations/persistence/). El ejemplo autónomo trabaja en una carpeta temporal y la elimina al terminar; no utiliza datos reales.
+
+## Verificación ejecutable
+
+La suite comprueba resolución de rutas, lectura y escritura UTF-8 con archivos temporales y limpieza; no modifica el directorio data del usuario.
+
+Fuentes: `examples/java/handbook/files/`. Ejecuta `npm run validate:snippets` y `npm run test:java-sources` con JDK 21.
 
 ## Documentación oficial
 

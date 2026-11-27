@@ -5,6 +5,8 @@ description: "Pipelines, predicados, transformaciones, operaciones terminales y 
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario.
 
+**Al terminar esta ficha:** Reconocer operaciones intermedias y terminales y comprobar equivalencia con un ciclo.
+
 ## Modelo mental
 
 Un Stream representa una secuencia de elementos procesable mediante operaciones. No es una colección: puede provenir de una [List](/handbook/java/collections/) u otra fuente y se consume una sola vez. Una operación intermedia construye el pipeline; una terminal produce un resultado o efecto. Las operaciones pueden evaluarse de forma perezosa, al necesitarse el resultado.
@@ -13,6 +15,7 @@ Un Stream representa una secuencia de elementos procesable mediante operaciones.
 
 Archivo `StreamsDemo.java`. Compila con `javac --release 21 StreamsDemo.java` y ejecuta `java StreamsDemo`.
 
+<!-- example:streams-streamsdemo -->
 ```java
 import java.util.List;
 
@@ -69,6 +72,7 @@ anyMatch puede detener el recorrido al encontrar una coincidencia. allMatch sobr
 
 ## Contraste con un ciclo
 
+<!-- example:streams-loop-equivalence -->
 ```java
 java.util.List<Integer> resultado = new java.util.ArrayList<>();
 for (Integer valor : java.util.List.of(1, -2, 3)) {
@@ -80,6 +84,10 @@ System.out.println(resultado); // [2, 6]
 ```
 
 Fragmento dentro de un método. El ciclo y el pipeline expresan el mismo cálculo, aunque esta lista es modificable y la de toList no. Elige según claridad, contrato y necesidad de control del recorrido.
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/streams/`. La suite `StreamsTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 

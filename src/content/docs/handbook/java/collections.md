@@ -5,6 +5,8 @@ description: "Interfaces de colección, orden, operaciones, mutabilidad y selecc
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Elegir operaciones de List y reconocer la diferencia entre eliminar por índice y por valor.
+
 ## Conocimientos previos recomendados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
@@ -39,6 +41,7 @@ Una posición no es un ID de negocio. get(size()) falla, porque la última posic
 
 ## Ejemplo autónomo
 
+<!-- example:collections-coleccionesdemo -->
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +94,7 @@ El tamaño es el número de elementos actualmente almacenados. La capacidad de A
 
 ## Ejemplo autónomo: dos formas de eliminar
 
+<!-- example:collections-eliminardemo -->
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +119,10 @@ Salida esperada: [1, 1] y [1]. La primera sobrecarga elimina índice 1 (el 8); l
 - [Lambdas](/handbook/java/lambdas/)
 - [ResultSet](/handbook/java/jdbc/result-set/)
 - [ObservableList](/handbook/java/javafx/observable-list/)
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/collections/`. La suite `CollectionsTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 

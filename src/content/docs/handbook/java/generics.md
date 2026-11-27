@@ -5,6 +5,8 @@ description: "Parámetros de tipo, seguridad de tipos, límites, comodines e inv
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a avanzado. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Usar argumentos de tipo, métodos genéricos y comodines sin perder seguridad estática.
+
 ## Conocimientos previos recomendados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
@@ -14,6 +16,7 @@ description: "Parámetros de tipo, seguridad de tipos, límites, comodines e inv
 
 Un genérico parametriza un [tipo](/handbook/java/types/) o [método](/handbook/java/methods/). Parametrizar significa declarar una parte variable del contrato (por ejemplo T) y especificarla cuando se usa. Una caja de String y una caja de Integer tienen la misma implementación, pero aceptan valores de tipos distintos. El [compilador](/handbook/java/programming/) comprueba la compatibilidad antes de ejecutar. Una [colección](/handbook/java/collections/) es una estructura que agrupa elementos; sus genéricos indican qué elementos admite. Los límites y comodines avanzados presuponen la relación entre tipos e interfaces.
 
+<!-- example:generics-typed-list -->
 ```java
 List<String> titulos = new ArrayList<>();
 titulos.add("Java");
@@ -38,6 +41,7 @@ T, E, K y V son convenciones, no palabras reservadas. Un parámetro debe represe
 
 Archivo Caja.java. No requiere JavaFX ni dependencias externas.
 
+<!-- example:generics-caja -->
 ```java
 public class Caja<T> {
 
@@ -67,6 +71,7 @@ Salida: Java y 21, en líneas distintas. Ejecuta javac Caja.java y java Caja con
 
 Un método puede declarar sus propios parámetros aunque su clase no sea genérica.
 
+<!-- example:generics-first -->
 ```java
 public static <T> T primero(List<T> elementos) {
     if (elementos.isEmpty()) {
@@ -89,6 +94,7 @@ El método utiliza una List no nula. El compilador infiere T a partir del argume
 | `List<? super Integer>` | Agregar Integer; leer como Object |
 | `List<?>` | Leer como Object; tipo concreto desconocido |
 
+<!-- example:generics-upper-bound -->
 ```java
 public static double sumar(List<? extends Number> valores) {
     double total = 0;
@@ -127,6 +133,7 @@ Supón que se permitiera asignar una List de Integer a una List de Number. El se
 
 ### Ejemplo de método genérico
 
+<!-- example:generics-choose -->
 ```java
 public static <T> T elegir(boolean usarPrimero, T primero, T segundo) {
     if (usarPrimero) {
@@ -143,6 +150,10 @@ Fragmento dentro de una clase. elegir(true, "A", "B") retorna A; elegir(false, 1
 - [Colecciones y List](/handbook/java/collections/)
 - [Lambdas](/handbook/java/lambdas/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Los ejemplos y fragmentos están respaldados por fuentes Java en `examples/java/handbook/generics/`. La suite `GenericsTest` comprueba el contrato del concepto, además de las salidas de los ejemplos completos. Predice el resultado antes de ejecutar `npm run test:java-sources` con JDK 21; usa `npm run validate:snippets` para verificar sincronía.
 
 ## Documentación oficial
 

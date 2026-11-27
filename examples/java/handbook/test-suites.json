@@ -166,5 +166,160 @@
         "expected": "Interfaces PASS"
       }
     ]
+  },
+  {
+    "directory": "arrays",
+    "runs": [
+      {
+        "className": "ArraysDemo",
+        "expected": "3\n20\n60"
+      },
+      {
+        "className": "ArraysTest",
+        "expected": "99\n5\n0\nArrays PASS"
+      }
+    ]
+  },
+  {
+    "directory": "collections",
+    "runs": [
+      {
+        "className": "ColeccionesDemo",
+        "expected": "Java\nSQL\nJava\nTotal: 3"
+      },
+      {
+        "className": "EliminarDemo",
+        "expected": "[1, 1]\n[1]"
+      },
+      {
+        "className": "CollectionsTest",
+        "expected": "Collections PASS"
+      }
+    ]
+  },
+  {
+    "directory": "sets",
+    "runs": [
+      {
+        "className": "SetDemo",
+        "expected": "true\nfalse\ntrue\n2"
+      },
+      {
+        "className": "SetsTest",
+        "expected": "[B, A]\nSets PASS"
+      }
+    ]
+  },
+  {
+    "directory": "maps",
+    "runs": [
+      {
+        "className": "MapDemo",
+        "expected": "10\n15\nfalse\n2"
+      },
+      {
+        "className": "MapsTest",
+        "expected": "A: 10\nB: 10\nMaps PASS"
+      }
+    ]
+  },
+  {
+    "directory": "generics",
+    "runs": [
+      {
+        "className": "Caja",
+        "expected": "Java\n21"
+      },
+      {
+        "className": "GenericsTest",
+        "expected": "Generics PASS"
+      }
+    ]
+  },
+  {
+    "directory": "lambdas",
+    "runs": [
+      {
+        "className": "LambdasDemo",
+        "expected": "Java\nSQL"
+      },
+      {
+        "className": "PredicadoDemo",
+        "expected": "true\nfalse\nfalse"
+      },
+      {
+        "className": "LambdasTest",
+        "expected": "true\nLambdas PASS"
+      }
+    ]
+  },
+  {
+    "directory": "streams",
+    "runs": [
+      {
+        "className": "StreamsDemo",
+        "expected": "true\n[2, 6]"
+      },
+      {
+        "className": "StreamsTest",
+        "expected": "[2, 6]\nStreams PASS"
+      }
+    ]
+  },
+  {
+    "directory": "optional",
+    "runs": [
+      {
+        "className": "OptionalDemo",
+        "expected": "Java\nSin título"
+      },
+      {
+        "className": "OptionalTest",
+        "expected": "A\nA\nOptional PASS"
+      }
+    ]
+  },
+  {
+    "directory": "exceptions",
+    "runs": [
+      {
+        "className": "RecursosDemo",
+        "expected": "Java"
+      },
+      {
+        "className": "PropagacionDemo",
+        "expected": "12\nFormato invalido\nFin"
+      },
+      {
+        "className": "ExceptionsTest",
+        "expected": "Exceptions PASS"
+      }
+    ]
+  },
+  {
+    "directory": "dates",
+    "runs": [
+      {
+        "className": "FechasDemo",
+        "expected": "2026-11-25\n2026-11-26\ntrue"
+      },
+      {
+        "className": "DatesTest",
+        "expected": "Fecha invalida\nDates PASS"
+      }
+    ]
+  },
+  {
+    "directory": "files",
+    "runs": [
+      {
+        "className": "ArchivosDemo",
+        "expected": "21"
+      },
+      {
+        "className": "FilesTest",
+        "expected": "Files PASS"
+      }
+    ]
   }
 ]
