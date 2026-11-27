@@ -25,6 +25,7 @@ Un evento representa una interacción u ocurrencia, como pulsar un botón. Un li
 
 ## Ejemplo de acción
 
+<!-- example:fx-button-action -->
 ```java
 Button guardar = new Button("Guardar");
 guardar.setOnAction(evento -> guardarLibro());
@@ -36,6 +37,7 @@ En FXML, onAction="#guardarLibro" delega a un método del controlador. La instan
 
 ## Escuchar cambios
 
+<!-- example:fx-text-listener -->
 ```java
 txtTitulo.textProperty().addListener(
         (observable, anterior, actual) -> {
@@ -48,6 +50,7 @@ Fragmento de initialize() con TextField y Button inyectados. Deshabilitar un bot
 
 ## Selección de fila
 
+<!-- example:fx-row-listener -->
 ```java
 tablaLibros.getSelectionModel()
         .selectedItemProperty()
@@ -82,6 +85,7 @@ Una acción no equivale necesariamente a un clic de ratón: Button puede dispara
 
 Archivo EventosDemo.java en un proyecto JavaFX 21 con javafx-controls; ejecuta con la configuración Maven de la ficha JavaFX.
 
+<!-- example:fx-events-demo -->
 ```java
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -122,6 +126,10 @@ Resultado esperado: escribir texto habilita Aceptar, pero la etiqueta solo cambi
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)
 - [ObservableList](/handbook/java/javafx/observable-list/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 

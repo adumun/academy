@@ -30,6 +30,7 @@ Un [atributo](/handbook/java/variables/) ordinario almacena un valor de un objet
 
 Necesita javafx-base en el classpath, incluido en el proyecto Maven JavaFX de Academy. Archivo BindingDemo.java.
 
+<!-- example:fx-binding-demo -->
 ```java
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -59,6 +60,7 @@ Salida esperada: Java, JavaFX y SQL. Mientras destino está enlazado unidireccio
 
 ## Binding en formularios
 
+<!-- example:fx-form-binding -->
 ```java
 btnGuardar.disableProperty().bind(
         txtTitulo.textProperty().isEmpty()
@@ -102,6 +104,7 @@ El enlace bidireccional requiere dos propiedades compatibles y una decisión cla
 
 Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.IntegerBinding.
 
+<!-- example:fx-derived-binding -->
 ```java
 SimpleIntegerProperty cantidad = new SimpleIntegerProperty(2);
 SimpleIntegerProperty precio = new SimpleIntegerProperty(5);
@@ -119,6 +122,10 @@ El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada even
 - [Eventos](/handbook/java/javafx/events/)
 - [Validación](/handbook/java/javafx/validation/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 

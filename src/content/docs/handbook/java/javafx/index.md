@@ -28,6 +28,7 @@ JavaFX es una biblioteca y framework de interfaz gráfica (consulta [programas, 
 
 Archivo app/Main.java. Requiere el proyecto Maven no modular de la ficha Maven.
 
+<!-- example:fx-window -->
 ```java
 package app;
 
@@ -116,6 +117,10 @@ No crees Scene o Stage en init. El punto de entrada main inicia el runtime; los 
 - [TableView](/handbook/java/javafx/table-view/)
 - [Validaciones](/handbook/java/javafx/validation/)
 - [MVC y DAO](/handbook/architecture/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 

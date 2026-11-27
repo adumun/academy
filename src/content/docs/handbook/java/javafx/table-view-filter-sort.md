@@ -15,12 +15,13 @@ description: "Guía práctica con ObservableList, FilteredList y SortedList."
 
 Crear una tabla que permita buscar títulos mientras el usuario escribe y ordenar pulsando sus encabezados, sin eliminar registros de la [colección](/handbook/java/collections/) original. Filtrar significa incluir solo los elementos que cumplen una condición; ordenar modifica la secuencia de presentación según un comparador. Un predicado es una [función](/handbook/java/lambdas/) que devuelve true o false; un comparador define el orden relativo de dos elementos. FilteredList y SortedList son vistas derivadas de la fuente: conservan el vínculo con los datos originales mediante la [observabilidad](/handbook/java/javafx/observable-list/).
 
-Usa el proyecto Maven no modular descrito en [Maven y entorno Java](/handbook/tools/maven/). Este ejemplo completo utiliza datos en memoria para aislar el comportamiento de la UI. No requiere MariaDB ni FXML. Sustituye temporalmente app/Main.java en un proyecto de prueba.
+Usa el proyecto Maven no modular descrito en [Maven y entorno Java](/handbook/tools/maven/). Este ejemplo completo utiliza datos en memoria para aislar el comportamiento de la UI. No requiere MariaDB ni FXML. Sustituye temporalmente catalogo/Main.java en un proyecto de prueba.
 
 ## Implementación
 
+<!-- example:fx-filter-sort -->
 ```java
-package app;
+package catalogo;
 
 import java.util.Locale;
 import javafx.application.Application;
@@ -151,6 +152,10 @@ Si el filtro depende de un campo mutable, comprueba que los cambios produzcan un
 - [TableView](/handbook/java/javafx/table-view/)
 - [Observabilidad](/handbook/java/javafx/table-view-observability/)
 - [CRUD JDBC](/handbook/java/jdbc/crud/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 
