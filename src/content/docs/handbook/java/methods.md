@@ -11,6 +11,7 @@ Las [operaciones, parámetros y contratos](/handbook/foundations/operations/) ex
 
 Un método es una operación con nombre declarada en una clase o interfaz. Su cuerpo puede ejecutar instrucciones, recibir datos mediante parámetros y devolver un resultado. El conjunto de operaciones de un objeto contribuye a su comportamiento.
 
+<!-- example:method-instance -->
 ```java
 public int sumar(int primero, int segundo) {
     return primero + segundo;
@@ -21,6 +22,7 @@ Es un fragmento de clase. public indica acceso; int es el [tipo](/handbook/java/
 
 ## Llamada, parámetros y argumentos
 
+<!-- example:method-static -->
 ```java
 public class MetodosDemo {
 
@@ -69,6 +71,7 @@ Una llamada evalúa sus argumentos y crea parámetros locales con sus valores. U
 
 Archivo SobrecargaDemo.java, Java 21.
 
+<!-- example:method-overload -->
 ```java
 public class SobrecargaDemo {
 
@@ -96,6 +99,12 @@ public class SobrecargaDemo {
 ```
 
 Salida esperada: 9. La sobrecarga con dos argumentos delega a la operación con uno; no duplica el cambio de estado. consultar retorna el valor sin imprimirlo. La elección de sobrecarga ocurre durante compilación, a diferencia del despacho dinámico de métodos sobrescritos.
+
+## Comprobación ejecutable
+
+Los tres ejemplos de esta ficha se mantienen como fuentes Java en `examples/java/handbook/methods/`. El primer bloque es un método de instancia extraído de una clase compilable; los otros dos son clases completas. Desde la raíz del repositorio, `npm run test:java-sources` compila las fuentes y ejecuta pruebas de comportamiento, incluidas las salidas publicadas. `npm run validate:snippets` comprueba que el texto mostrado coincida con las fuentes.
+
+La suma de enteros usa la aritmética de `int`: si supera el máximo representable, se produce desbordamiento. Para rechazarlo explícitamente existe `Math.addExact`. Cada instancia del acumulador conserva su propio total; un argumento negativo lo reduce porque este ejemplo no impone una regla de negocio.
 
 ## Autocomprobación
 

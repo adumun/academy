@@ -1,0 +1,10 @@
+[
+  {
+    "page": "handbook/java/methods.md",
+    "snippets": [
+      { "id": "method-instance", "file": "methods/MetodosInstanciaDemo.java", "region": "sumar" },
+      { "id": "method-static", "file": "methods/MetodosDemo.java" },
+      { "id": "method-overload", "file": "methods/SobrecargaDemo.java" }
+    ]
+  }
+]
