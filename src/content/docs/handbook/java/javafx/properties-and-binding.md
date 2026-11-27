@@ -30,6 +30,7 @@ Un [atributo](/handbook/java/variables/) ordinario almacena un valor de un objet
 
 Necesita javafx-base en el classpath, incluido en el proyecto Maven JavaFX de Academy. Archivo BindingDemo.java.
 
+<!-- example:fx-binding-demo -->
 ```java
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -59,6 +60,7 @@ Salida esperada: Java, JavaFX y SQL. Mientras destino está enlazado unidireccio
 
 ## Binding en formularios
 
+<!-- example:fx-form-binding -->
 ```java
 btnGuardar.disableProperty().bind(
         txtTitulo.textProperty().isEmpty()
@@ -100,18 +102,19 @@ El enlace bidireccional requiere dos propiedades compatibles y una decisión cla
 
 ### Ejemplo de valor derivado
 
-Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.IntegerBinding.
+Fragmento autónomo dentro de un método con javafx-base e imports javafx.beans.property.SimpleIntegerProperty, javafx.beans.binding.NumberBinding.
 
+<!-- example:fx-derived-binding -->
 ```java
 SimpleIntegerProperty cantidad = new SimpleIntegerProperty(2);
 SimpleIntegerProperty precio = new SimpleIntegerProperty(5);
-IntegerBinding total = cantidad.multiply(precio);
-System.out.println(total.get()); // 10
+NumberBinding total = cantidad.multiply(precio);
+System.out.println(total.intValue()); // 10
 cantidad.set(3);
-System.out.println(total.get()); // 15
+System.out.println(total.intValue()); // 15
 ```
 
-El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada evento. La salida es esperada, no verificada en ejecución JavaFX. Para montos reales, este ejemplo entero no sustituye una política de precisión y redondeo.
+La sobrecarga multiply(ObservableNumberValue) devuelve NumberBinding; intValue() obtiene el resultado entero. El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada evento. La salida es esperada, no verificada en ejecución JavaFX. Para montos reales, este ejemplo entero no sustituye una política de precisión y redondeo.
 
 ## Conceptos relacionados
 
@@ -119,6 +122,10 @@ El total se deriva de dos fuentes; no necesita duplicar su cálculo en cada even
 - [Eventos](/handbook/java/javafx/events/)
 - [Validación](/handbook/java/javafx/validation/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 

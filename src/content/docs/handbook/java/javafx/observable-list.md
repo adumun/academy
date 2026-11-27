@@ -28,6 +28,7 @@ description: "Colecciones observables, creación, listeners y sincronización co
 
 Requiere javafx-base en el [classpath](/handbook/java/packages-and-imports/), las ubicaciones donde se buscan clases y recursos; el proyecto [Maven](/handbook/tools/maven/) ya incluye esta dependencia transitivamente (a través de otra dependencia).
 
+<!-- example:fx-observable-demo -->
 ```java
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -58,6 +59,7 @@ Salida esperada: [Java]. El Change puede contener varios cambios parciales; rec�
 
 ## Lista fuente y lista de la vista
 
+<!-- example:fx-list-source -->
 ```java
 private final ObservableList<Libro> fuente =
         FXCollections.observableArrayList();
@@ -98,6 +100,7 @@ ObservableList notifica cambios estructurales: incorporación, eliminación, ree
 
 ### Comprobar la referencia compartida
 
+<!-- example:fx-list-alias -->
 ```java
 ObservableList<String> fuente = FXCollections.observableArrayList("A");
 ObservableList<String> consumidor = fuente;
@@ -114,6 +117,10 @@ Fragmento dentro de un método con javafx-base e imports correspondientes. La se
 - [TableView](/handbook/java/javafx/table-view/)
 - [Observabilidad](/handbook/java/javafx/table-view-observability/)
 - [Filtrar y ordenar](/handbook/java/javafx/table-view-filter-sort/)
+
+## Verificación ejecutable
+
+DAO simulado en memoria; no certifica MariaDB. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 

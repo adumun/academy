@@ -16,6 +16,7 @@ Scene Builder es un editor visual para [FXML](/handbook/java/javafx/xml-and-fxml
 3. Guarda en src/main/resources, revisa el XML y confirma imports y rutas.
 4. Escribe el handler @FXML, carga el recurso con FXMLLoader y ejecuta con Maven.
 
+<!-- example:fx-form-fxml -->
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
@@ -56,6 +57,7 @@ Scene Builder ── guarda ──► vista.fxml
 
 Archivo app/FormController.java, con las dependencias JavaFX del proyecto. El campo texto corresponde exactamente al fx:id; el método aceptar al onAction.
 
+<!-- example:fx-form-controller -->
 ```java
 package app;
 
@@ -75,6 +77,10 @@ public class FormController {
 ```
 
 Cargar el documento desde la aplicación descrita en [FXML y Controller](/handbook/java/javafx/fxml-controller/). Al escribir Hola y pulsar Aceptar, la salida esperada es Hola. Cambia deliberadamente el nombre del manejador en una copia y verifica el error de carga. El ejemplo requiere ejecución JavaFX real para confirmar el resultado.
+
+## Verificación ejecutable
+
+Se verifica la carga FXML y la interacción con el controlador real; no la herramienta visual Scene Builder. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta los informes Surefire del SHA utilizado.
 
 ## Referencias
 

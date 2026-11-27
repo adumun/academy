@@ -24,5 +24,142 @@
         "file": "maven/json-junit/src/test/java/RangoTest.java"
       }
     ]
+  },
+  {
+    "page": "handbook/java/javafx/index.md",
+    "snippets": [
+      {
+        "id": "fx-window",
+        "file": "maven/javafx/src/main/java/app/Main.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/events.md",
+    "snippets": [
+      {
+        "id": "fx-button-action",
+        "file": "maven/javafx/src/main/java/EventosFragmentos.java",
+        "region": "action"
+      },
+      {
+        "id": "fx-text-listener",
+        "file": "maven/javafx/src/main/java/EventosFragmentos.java",
+        "region": "listener"
+      },
+      {
+        "id": "fx-row-listener",
+        "file": "maven/javafx/src/main/java/EventosFragmentos.java",
+        "region": "selection"
+      },
+      {
+        "id": "fx-events-demo",
+        "file": "maven/javafx/src/main/java/EventosDemo.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/observable-list.md",
+    "snippets": [
+      {
+        "id": "fx-observable-demo",
+        "file": "maven/javafx/src/main/java/ListaObservableDemo.java"
+      },
+      {
+        "id": "fx-list-source",
+        "file": "maven/javafx/src/main/java/ListaFuente.java",
+        "region": "source"
+      },
+      {
+        "id": "fx-list-alias",
+        "file": "maven/javafx/src/main/java/ListaFuente.java",
+        "region": "alias"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/properties-and-binding.md",
+    "snippets": [
+      {
+        "id": "fx-binding-demo",
+        "file": "maven/javafx/src/main/java/BindingDemo.java"
+      },
+      {
+        "id": "fx-form-binding",
+        "file": "maven/javafx/src/main/java/BindingFragmentos.java",
+        "region": "form"
+      },
+      {
+        "id": "fx-derived-binding",
+        "file": "maven/javafx/src/main/java/BindingFragmentos.java",
+        "region": "total"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/table-view-filter-sort.md",
+    "snippets": [
+      {
+        "id": "fx-filter-sort",
+        "file": "maven/javafx/src/main/java/catalogo/Main.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/table-view-observability.md",
+    "snippets": [
+      {
+        "id": "fx-observable-book",
+        "file": "maven/javafx/src/main/java/LibroObservable.java"
+      },
+      {
+        "id": "fx-observable-cell",
+        "file": "maven/javafx/src/main/java/ColumnaObservable.java",
+        "region": "cell"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/fxml-controller.md",
+    "snippets": [
+      {
+        "id": "fx-book-fxml",
+        "file": "maven/javafx/src/main/resources/view/libro.fxml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-book-controller",
+        "file": "maven/javafx/src/main/java/controller/LibroController.java"
+      },
+      {
+        "id": "fx-fxml-loader",
+        "file": "maven/javafx/src/main/java/VentanaLibro.java",
+        "region": "loader"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/scene-builder.md",
+    "snippets": [
+      {
+        "id": "fx-form-fxml",
+        "file": "maven/javafx/src/main/resources/view/form.fxml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-form-controller",
+        "file": "maven/javafx/src/main/java/app/FormController.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/navigation.md",
+    "snippets": [
+      {
+        "id": "fx-navigation",
+        "file": "maven/javafx/src/main/java/navegacion/NavegacionDemo.java",
+        "region": "navigation"
+      }
+    ]
   }
 ]

@@ -15,10 +15,12 @@ for (const entry of [...manifest, ...mavenManifest]) {
     const original = readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
     let md = original;
     const ids = new Set();
+    const languages = new Set(entry.snippets.map(snippet => snippet.language || 'java'));
     for (const snippet of entry.snippets) {
         if (ids.has(snippet.id)) throw new Error('Duplicate snippet: ' + snippet.id);
         ids.add(snippet.id);
-        if (!/^[a-zA-Z0-9/-]+\.java$/.test(snippet.file) || !/^[a-z0-9-]+$/.test(snippet.id)) {
+        const language = snippet.language || 'java';
+        if (!['java', 'xml'].includes(language) || (language === 'xml' && snippet.region) || !/^[a-zA-Z0-9/-]+\.(?:java|fxml|xml)$/.test(snippet.file) || (language === 'java' ? !snippet.file.endsWith('.java') : !/\.(?:fxml|xml)$/.test(snippet.file)) || !/^[a-z0-9-]+$/.test(snippet.id)) {
             throw new Error('Invalid snippet path/id');
         }
         let source = readFileSync(join(root, 'examples/java/handbook', snippet.file), 'utf8').replace(/\r\n/g, '\n').trimEnd();
@@ -32,17 +34,17 @@ for (const entry of [...manifest, ...mavenManifest]) {
             source = region.map(l => l.slice(indent)).join('\n');
         }
         const marker = '<!-- example:' + snippet.id + ' -->';
-        const pattern = new RegExp(marker + '\\n```java\\n([\\s\\S]*?)\\n```(?=\\n|$)', 'g');
+        const pattern = new RegExp(marker + '\\n```' + language + '\\n([\\s\\S]*?)\\n```(?=\\n|$)', 'g');
         const matches = [...md.matchAll(pattern)];
         if (matches.length !== 1) throw new Error('Expected one marker: ' + snippet.id);
         if (!write && matches[0][1] !== source) throw new Error('Snippet drift: ' + snippet.id);
-        md = md.replace(pattern, () => marker + '\n```java\n' + source + '\n```');
+        md = md.replace(pattern, () => marker + '\n```' + language + '\n' + source + '\n```');
         count++;
     }
     const markers = [...md.matchAll(/<!-- example:([a-z0-9-]+) -->/g)].map(m => m[1]);
     if (markers.length !== ids.size || markers.some(id => !ids.has(id))) throw new Error('Unregistered marker: ' + entry.page);
-    const javaBlocks = [...md.matchAll(/^```java\n[\s\S]*?\n^```\s*$/gm)];
-    if (javaBlocks.length !== ids.size) throw new Error('Unregistered Java block: ' + entry.page);
+    const sourceBlocks = [...md.matchAll(/^```(java|xml)\n[\s\S]*?\n^```\s*$/gm)].filter(match => languages.has(match[1]));
+    if (sourceBlocks.length !== ids.size) throw new Error('Unregistered source block: ' + entry.page);
     if (write && md !== original) writeFileSync(path, md, 'utf8');
 }
 console.log('Canonical snippets: ' + count + ' ' + (write ? 'synchronized' : 'PASS'));

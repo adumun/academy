@@ -25,6 +25,7 @@ El [estado](/handbook/java/classes-and-objects/) de una tabla incluye los elemen
 
 Para un objeto inmutable como Libro, devolver una envoltura observable de solo lectura a una cell value factory (callback que extrae el valor de una celda; consulta [TableView](/handbook/java/javafx/table-view/)) es suficiente cuando sustituyes los objetos al recargar. Una propiedad JavaFX aporta otro comportamiento: permite observar cambios de valor mediante [listeners](/handbook/java/javafx/events/), aplicando un mecanismo relacionado con el [patrón Observer](/handbook/architecture/observer/).
 
+<!-- example:fx-observable-book -->
 ```java
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -53,6 +54,7 @@ public class LibroObservable {
 
 En una tabla de LibroObservable, configura la columna del mismo tipo:
 
+<!-- example:fx-observable-cell -->
 ```java
 colTitulo.setCellValueFactory(
         celda -> celda.getValue().tituloProperty()
@@ -98,6 +100,10 @@ Prueba con un modelo mutable ordinario, después con una propiedad observable y 
 - [TableView](/handbook/java/javafx/table-view/)
 - [Filtrado y ordenamiento](/handbook/java/javafx/table-view-filter-sort/)
 - [MVC y DAO](/handbook/architecture/)
+
+## Verificación ejecutable
+
+Pruebas sobre las fuentes canónicas con el toolkit JavaFX real. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta resultados Surefire del SHA utilizado; no equivale a revisión visual manual.
 
 ## Documentación oficial
 
