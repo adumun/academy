@@ -9,37 +9,47 @@ description: "JUnit Jupiter, aserciones, casos negativos y temporales."
 
 Una [prueba](/handbook/foundations/testing/) define un resultado esperado bajo condiciones controladas. JUnit Jupiter identifica métodos de prueba anotados con @Test, ejecuta cada caso y registra fallos. Una aserción compara expectativas, no imprime solamente valores.
 
-## Ejemplo de prueba
+## Ejemplo de implementación y prueba
 
-Requiere un proyecto Maven Java 21 con JUnit Jupiter 5 configurado como dependencia test y Maven Surefire compatible. Es un archivo de pruebas, no un programa con main. Guarda como src/test/java/RangoTest.java.
+Requiere un proyecto Maven Java 21 con JUnit Jupiter 5 configurado como dependencia test y Maven Surefire compatible. El código de producción se guarda como src/main/java/Rango.java. La prueba invoca ese código, en lugar de duplicar su algoritmo.
 
+<!-- example:rango-source -->
+```java
+public final class Rango {
+    private Rango() {
+    }
+
+    public static long amplitud(int minimo, int maximo) {
+        if (minimo > maximo) {
+            throw new IllegalArgumentException("Rango invalido");
+        }
+        return (long) maximo - minimo;
+    }
+}
+```
+
+Guarda la siguiente prueba como src/test/java/RangoTest.java. No es un programa con main.
+
+<!-- example:rango-junit -->
 ```java
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RangoTest {
-
-    private int amplitud(int minimo, int maximo) {
-        if (minimo > maximo) {
-            throw new IllegalArgumentException("Rango invalido");
-        }
-        return maximo - minimo;
-    }
-
     @Test
     void rangoValido() {
-        assertEquals(5, amplitud(3, 8));
+        assertEquals(5L, Rango.amplitud(3, 8));
     }
 
     @Test
     void rechazaRangoInvertido() {
-        assertThrows(IllegalArgumentException.class, () -> amplitud(8, 3));
+        assertThrows(IllegalArgumentException.class, () -> Rango.amplitud(8, 3));
     }
 }
 ```
 
-Ejecuta `mvn test` y comprueba que detecta y ejecuta dos tests. No interpretar BUILD SUCCESS sin verificar número de pruebas y que no se omitieron. El ejemplo no se ha ejecutado con JUnit en este incremento.
+Ejecuta `mvn -Dtest=RangoTest test` y comprueba que detecta y ejecuta dos tests. No interpretar BUILD SUCCESS sin verificar número de pruebas y que no se omitieron. Rango utiliza long para representar la diferencia completa de dos int; el proyecto incluye otras dos pruebas de límites.
 
 ## Archivos y casos negativos
 
@@ -78,7 +88,11 @@ mvn test        → compilación + ejecución + resultados
 
 assertEquals compara un resultado esperado con el observado; assertTrue comprueba una condición; assertThrows comprueba que la operación lanza una excepción compatible con el tipo requerido. Una prueba debe fallar si la implementación deja de cumplir el contrato. Cambia temporalmente el retorno del cálculo a cero y confirma que rangoValido falla; restaura el código antes de continuar.
 
-El método privado en RangoTest ilustra la mecánica de JUnit, pero en una aplicación real las pruebas deben invocar la implementación productiva, no una copia de su algoritmo. Una prueba unitaria no sustituye una prueba de integración con MariaDB ni una prueba de interacción JavaFX.
+RangoTest invoca la implementación productiva Rango. Cambiarla en una copia temporal debe hacer fallar rangoValido y conservar la prueba de rango invertido. Esto verifica que la prueba detecta una regresión concreta, no que cubra todos los defectos. Una prueba unitaria no sustituye una prueba de integración con MariaDB ni una prueba de interacción JavaFX.
+
+## Verificación ejecutable
+
+Proyecto real: `examples/java/handbook/maven/json-junit/`. Ejecuta `mvn -B -ntp clean test` desde esa carpeta. El proyecto contiene dos pruebas RangoTest, dos pruebas de frontera y doce de serialización. Consulta `target/surefire-reports/`; la comprobación automatizada de regresión deliberada se realiza en una copia desechable, sin editar el código canónico.
 
 ## Referencias
 

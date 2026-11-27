@@ -5,8 +5,12 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const write = process.argv.includes('--write');
 const manifest = JSON.parse(readFileSync(join(root, 'examples/java/handbook/snippets.json'), 'utf8'));
+const mavenManifest = JSON.parse(readFileSync(join(root, 'examples/java/handbook/maven-snippets.json'), 'utf8'));
+const pages = new Set();
 let count = 0;
-for (const entry of manifest) {
+for (const entry of [...manifest, ...mavenManifest]) {
+    if (pages.has(entry.page)) throw new Error('Duplicate snippet page: ' + entry.page);
+    pages.add(entry.page);
     const path = join(root, 'src/content/docs', entry.page);
     const original = readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
     let md = original;
