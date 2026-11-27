@@ -3,6 +3,7 @@ import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const publicRoot = fileURLToPath(new URL('../public/', import.meta.url));
+const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
 const root = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
 function markdownFiles(directory) {
@@ -73,6 +74,20 @@ for (const path of files) {
             continue;
         }
 
+        // ADU-235: personal teaching sources may be optional Handbook attribution only.
+        const personal = /(?:github\.com\/cmartinezs\/|raw\.githubusercontent\.com\/cmartinezs\/|cmartinezs\.github\.io)/i;
+        if (personal.test(line) && !(name.startsWith('handbook' + sep)
+                && /^Adaptación original de (?:temas trabajados en )?\[material docente(?: versionado)?\]/.test(line))) {
+            errors.push(name + ': ' + (index + 1) + ': personal teaching dependency');
+        }
+        if (name.startsWith('projects' + sep)) {
+            for (const ref of line.matchAll(/\]\(https:\/\/github\.com\/adumun\/academy\/(?:blob|tree)\/[a-f0-9]{40}\/(examples\/java\/projects\/[^)\s]+)\)/g)) {
+                if (!existsSync(join(repositoryRoot, ref[1]))) {
+                    errors.push(name + ': ' + (index + 1) + ': missing owned project resource ' + ref[1]);
+                }
+            }
+        }
+
         // The current editorial convention uses root-relative Markdown links.
         // This intentionally validates route existence, not anchor or external HTTP health.
         for (const match of line.matchAll(/\]\((\/[^)\s]+)\)/g)) {
@@ -110,5 +125,5 @@ if (errors.length > 0) {
     console.error(errors.join('\n'));
     process.exitCode = 1;
 } else {
-    console.log('PASS: route existence, frontmatter, fenced code blocks, local diagram assets and alt text.');
+    console.log('PASS: route existence, frontmatter, fenced code blocks, local diagram assets, alt text and editorial autonomy.');
 }

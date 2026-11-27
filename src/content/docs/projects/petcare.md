@@ -3,7 +3,7 @@ title: "PetCare"
 description: "Proyecto longitudinal de POO, colecciones y adaptación gráfica con JavaFX."
 ---
 
-**Tipo:** proyecto longitudinal. **Entorno:** Java 21; Maven y JavaFX solo en el último incremento. **Estado de la guía fuente:** incrementos 02–09 documentados; no se certifica ejecución nueva ni una solución posterior a la UI inicial.
+**Tipo:** proyecto longitudinal. **Entorno:** Java 21; Maven y JavaFX solo en el último incremento. **Alcance:** incrementos 02–09 documentados; no se certifica ejecución nueva ni una solución posterior a la UI inicial.
 
 ## Problema y resultado
 
@@ -25,7 +25,7 @@ El modelo protege las reglas del dominio; el servicio coordina operaciones sobre
 
 **Checkpoint:** Ejecuta el programa y demuestra al menos una entrada y resultado; explica parámetros y retorno.
 
-Consulta [Métodos](/handbook/java/methods/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-02/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-02/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-02/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Métodos](/handbook/java/methods/). [Guía detallada](/projects/petcare/p02/) · [Modelo y checkpoint](/projects/petcare/p02/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p02/#referencia)
 
 ## Incremento P03 — Trasladar comportamiento al objeto
 
@@ -33,7 +33,7 @@ Consulta [Métodos](/handbook/java/methods/). [Guía detallada](https://github.c
 
 **Checkpoint:** Muestra dos objetos con datos distintos, una operación válida y una inválida sin acceso directo a atributos privados.
 
-Consulta [Clases y objetos](/handbook/java/classes-and-objects/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-03/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-03/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-03/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Clases y objetos](/handbook/java/classes-and-objects/). [Guía detallada](/projects/petcare/p03/) · [Modelo y checkpoint](/projects/petcare/p03/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p03/#referencia)
 
 ## Incremento P04 — Construcción válida y colaboración
 
@@ -41,7 +41,7 @@ Consulta [Clases y objetos](/handbook/java/classes-and-objects/). [Guía detalla
 
 **Checkpoint:** Al menos tres instancias coherentes; prueba una regla de estado y explica la relación entre objetos si existe.
 
-Consulta [Estado e invariantes](/handbook/foundations/objects/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-04/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-04/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-04/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Estado e invariantes](/handbook/foundations/objects/). [Guía detallada](/projects/petcare/p04/) · [Modelo y checkpoint](/projects/petcare/p04/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p04/#referencia)
 
 ## Incremento P05 — Especializar comportamiento
 
@@ -49,7 +49,7 @@ Consulta [Estado e invariantes](/handbook/foundations/objects/). [Guía detallad
 
 **Checkpoint:** El comportamiento especializado cambia según el objeto real sin un if/switch por tipo para decidir esa operación.
 
-Consulta [Polimorfismo](/handbook/java/interfaces/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-05/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-05/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-05/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Polimorfismo](/handbook/java/interfaces/). [Guía detallada](/projects/petcare/p05/) · [Modelo y checkpoint](/projects/petcare/p05/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p05/#referencia)
 
 ## Incremento P06 — Administrar múltiples mascotas
 
@@ -57,7 +57,7 @@ Consulta [Polimorfismo](/handbook/java/interfaces/). [Guía detallada](https://g
 
 **Checkpoint:** Demuestra lista variable, búsqueda exitosa y fallo controlado. Explica quién detecta, lanza y captura.
 
-Consulta [Colecciones](/handbook/java/collections/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-06/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-06/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-06/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Colecciones](/handbook/java/collections/). [Guía detallada](/projects/petcare/p06/) · [Modelo y checkpoint](/projects/petcare/p06/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p06/#referencia)
 
 ## Incremento P07 — Abstraer e integrar
 
@@ -65,7 +65,7 @@ Consulta [Colecciones](/handbook/java/collections/). [Guía detallada](https://g
 
 **Checkpoint:** Ejecuta un flujo de consola completo, muestra polimorfismo y un caso inválido. Justifica las abstracciones elegidas.
 
-Consulta [Interfaces](/handbook/java/interfaces/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-07/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-07/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-07/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [Interfaces](/handbook/java/interfaces/). [Guía detallada](/projects/petcare/p07/) · [Modelo y checkpoint](/projects/petcare/p07/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p07/#referencia)
 
 ## Incremento P08 — Elegir estructuras según necesidad
 
@@ -73,7 +73,7 @@ Consulta [Interfaces](/handbook/java/interfaces/). [Guía detallada](https://git
 
 **Checkpoint:** Caso válido y duplicado o clave inexistente. Explica qué alternativa descartaste; evita índices redundantes incoherentes.
 
-Consulta [List, Set y Map](/handbook/java/collections/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-08/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-08/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-08/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [List, Set y Map](/handbook/java/collections/). [Guía detallada](/projects/petcare/p08/) · [Modelo y checkpoint](/projects/petcare/p08/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p08/#referencia)
 
 ## Incremento P09 — Construir adaptador gráfico
 
@@ -81,7 +81,7 @@ Consulta [List, Set y Map](/handbook/java/collections/). [Guía detallada](https
 
 **Checkpoint:** Ventana funcional, caso válido e inválido; core y CLI continúan funcionando. No exige TableView, navegación compleja ni persistencia.
 
-Consulta [JavaFX](/handbook/java/javafx/). [Guía detallada](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-09/README.md) · [Modelo y checkpoint](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-09/MODELO-Y-CHECKPOINT.md) · [Implementación de referencia (consultar tras intentar)](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/semana-09/IMPLEMENTACION-DE-REFERENCIA.md)
+Consulta [JavaFX](/handbook/java/javafx/). [Guía detallada](/projects/petcare/p09/) · [Modelo y checkpoint](/projects/petcare/p09/#modelo-y-checkpoint) · [Referencia (consultar tras intentar)](/projects/petcare/p09/#referencia)
 
 ## Cierre de la experiencia
 
@@ -92,4 +92,4 @@ Consulta [JavaFX](/handbook/java/javafx/). [Guía detallada](https://github.com/
 
 ## Procedencia
 
-Adaptación del [proyecto formativo PetCare](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/README.md) y su [roadmap](https://github.com/cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2/blob/a28dbca877a9ef6e0105777cae48ba4fa252f10c/proyecto-formativo/ROADMAP-SEMANAL.md) al corte del repositorio docente 25-11-2026. Las guías y referencias conservan sus commits; la evaluación y las fechas de asignatura no forman parte de este proyecto reutilizable.
+Adaptación editorial de material didáctico propio. Se conservan los ocho incrementos documentados P02–P09. El origen y el corte están registrados en el manifiesto editorial de Academy. No se requiere acceder al repositorio original. Las referencias son fragmentos orientativos; no se afirma que exista un proyecto completo probado para cada incremento.

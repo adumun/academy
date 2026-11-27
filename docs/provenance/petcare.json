@@ -1,0 +1,26 @@
+{
+  "resource": "/projects/petcare/",
+  "sourceRepository": "cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2",
+  "sourceCommit": "a28dbca877a9ef6e0105777cae48ba4fa252f10c",
+  "sourceDirectories": [
+    "proyecto-formativo/semana-02/",
+    "proyecto-formativo/semana-03/",
+    "proyecto-formativo/semana-04/",
+    "proyecto-formativo/semana-05/",
+    "proyecto-formativo/semana-06/",
+    "proyecto-formativo/semana-07/",
+    "proyecto-formativo/semana-08/",
+    "proyecto-formativo/semana-09/"
+  ],
+  "destinations": [
+    "/projects/petcare/p02/",
+    "/projects/petcare/p03/",
+    "/projects/petcare/p04/",
+    "/projects/petcare/p05/",
+    "/projects/petcare/p06/",
+    "/projects/petcare/p07/",
+    "/projects/petcare/p08/",
+    "/projects/petcare/p09/"
+  ],
+  "notes": "Guías, pasos, modelos y referencias adaptados; fechas y secciones retiradas. Los fragmentos no son snapshots ejecutables completos; validación posterior ADU-236."
+}

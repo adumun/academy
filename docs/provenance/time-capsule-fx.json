@@ -1,0 +1,31 @@
+{
+  "resource": "/projects/time-capsule-fx/",
+  "sourceRepository": "cmartinezs/DSY1102-JFX-TIME-CAPSULE",
+  "sourceCommits": {
+    "r00": "f3408276766358884c1c12f4c0b3ed63211bc36f",
+    "r01": "13a21df0cfc536c0bcc016f2bae8f063058291dc",
+    "r02": "44511026ba156c4ed863ed45f987e4b7709b9179",
+    "r03": "ec77d7341973f21d14d29a437ba00c3adf9bd56c",
+    "r04": "09e5b99e9dce71998333f6c2718ff29040d9b00e",
+    "r05": "ebca5421fec797ecf7a8fb62cd31cba70cbbd71c",
+    "r06": "9ba9214e8836f1d116cfacb6e34c5b24842352f9"
+  },
+  "sourceGuides": {
+    "repository": "cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2",
+    "commit": "a28dbca877a9ef6e0105777cae48ba4fa252f10c",
+    "root": "clases/unidad-02/capsula-tiempo-fx/",
+    "documents": [
+      "README.md",
+      "CODIGO-POR-INCREMENTO.md",
+      "docs/EVIDENCIAS-R06.md",
+      "docs/GUIA-NIO2-PATH-FILES-R06.md",
+      "docs/GUIA-STREAMS-LAMBDAS-R06.md",
+      "jdbc/01-r07-conexion-insert-validacion.md",
+      "jdbc/02-r08-resultset-modelo-tableview.md",
+      "jdbc/README.md",
+      "jdbc/codigo/"
+    ]
+  },
+  "destination": "examples/java/projects/time-capsule-fx/",
+  "adaptation": "R00-R04 historical snapshots; R05/R06 working commits, not accepted releases; R07/R08 overlays on R04. Namespace adapted, Maven Wrapper and personal IDE config omitted; historical screenshots not imported; runtime unverified."
+}

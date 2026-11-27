@@ -1,0 +1,16 @@
+{
+  "resource": "/projects/mediahub/",
+  "sourceRepository": "cmartinezs/DSY1102-DESARROLLO-ORIENTADO-OBJETOS-2026-2",
+  "sourceCommit": "a28dbca877a9ef6e0105777cae48ba4fa252f10c",
+  "sourceGuides": [
+    "semanas/semana-07/01-requerimiento-y-modelado.md",
+    "semanas/semana-07/02-clases-abstractas.md",
+    "semanas/semana-07/03-interfaces.md",
+    "semanas/semana-07/04-listas-y-polimorfismo.md",
+    "semanas/semana-07/05-main-menu-y-excepciones.md",
+    "semanas/semana-07/06-integracion-y-prueba-final.md"
+  ],
+  "sourceCode": "ejemplos/semana-07/proyecto-integracion-ea1/",
+  "destinationCode": "examples/java/projects/mediahub/",
+  "adaptation": "Guides embedded in project page; package namespace adapted to ADÜMÜN. Original files unchanged. Runtime verification pending ADU-236."
+}
