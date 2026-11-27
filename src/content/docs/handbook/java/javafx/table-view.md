@@ -26,10 +26,14 @@ La clase `TableView<T>` presenta una [colección de objetos](/handbook/java/coll
 
 ## Vista
 
-Fragmento dentro del FXML, con imports TableView y TableColumn. El controlador debe contener los campos con los mismos fx:id.
+Vista FXML completa del proyecto de referencia, con imports y controlador. El cargador configura una controller factory para suministrar el DAO antes de initialize; los campos conservan los mismos fx:id.
 
+<!-- example:fx-table-fxml -->
 ```xml
-<TableView fx:id="tablaLibros">
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<TableView xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="tablaLibros" fx:controller="TablaLibrosDemo">
     <columns>
         <TableColumn fx:id="colId" text="ID"/>
         <TableColumn fx:id="colTitulo" text="Título"/>
@@ -41,6 +45,7 @@ Fragmento dentro del FXML, con imports TableView y TableColumn. El controlador d
 
 Fragmentos para una clase con los imports de JavaFX, modelo Libro, DAO y SQLException. El modelo expone getId() y getTitulo().
 
+<!-- example:fx-table-controller -->
 ```java
 @FXML
 private TableView<Libro> tablaLibros;
@@ -72,6 +77,7 @@ PropertyValueFactory busca [propiedades observables](/handbook/java/javafx/prope
 
 ### Alternativa sin reflexión
 
+<!-- example:fx-table-alternative -->
 ```java
 colTitulo.setCellValueFactory(
         celda -> new ReadOnlyStringWrapper(
@@ -84,6 +90,7 @@ Requiere javafx.beans.property.ReadOnlyStringWrapper. Resulta útil para detecta
 
 ## Selección y refresco
 
+<!-- example:fx-table-select -->
 ```java
 Libro seleccionado = tablaLibros.getSelectionModel().getSelectedItem();
 
@@ -111,6 +118,7 @@ Usa la [clave primaria](/handbook/sql/relational-model/) o ID real, no getSelect
 
 No confundas el valor de una celda con su representación. Una columna numérica debe conservar un tipo numérico aunque se muestre con formato.
 
+<!-- example:fx-table-columns -->
 ```java
 colId.setCellValueFactory(
         celda -> new ReadOnlyObjectWrapper<>(
@@ -125,6 +133,7 @@ Fragmento de controlador con las columnas declaradas arriba; importa javafx.bean
 
 ## Selección simple y múltiple · complementario
 
+<!-- example:fx-table-multiple -->
 ```java
 tablaLibros.getSelectionModel().setSelectionMode(
         SelectionMode.MULTIPLE
@@ -139,6 +148,7 @@ Importa javafx.scene.control.SelectionMode, java.util.List y java.util.ArrayList
 
 Para actualizar un formulario cuando cambia la selección:
 
+<!-- example:fx-table-listener -->
 ```java
 tablaLibros.getSelectionModel()
         .selectedItemProperty()
@@ -163,6 +173,7 @@ Para filtrar por texto sin perder registros ni reconsultar la base por cada tecl
 
 Una cell factory utiliza un callback, normalmente una [lambda](/handbook/java/lambdas/), para cambiar cómo se presenta el valor sin modificar el modelo. Fragmento para la columna de título:
 
+<!-- example:fx-table-cell -->
 ```java
 colTitulo.setCellFactory(columna -> new TableCell<Libro, String>() {
 
@@ -248,6 +259,10 @@ Una tabla vacía puede significar una consulta exitosa sin resultados, un filtro
 - [ResultSet](/handbook/java/jdbc/result-set/)
 - [CRUD](/handbook/java/jdbc/crud/)
 - [Validaciones](/handbook/java/javafx/validation/)
+
+## Verificación ejecutable
+
+Fuentes canónicas en `examples/java/handbook/maven/javafx/`. Los casos se ejecutan con JavaFX real y un DAO simulado; no acreditan persistencia. Consulta la suite JUnit y el pipeline del commit utilizado. Para ejecutar localmente en Linux: `xvfb-run -a mvn -B -ntp clean test` desde el módulo.
 
 ## Documentación oficial
 
