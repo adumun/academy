@@ -48,7 +48,7 @@ for (const test of negatives) {
     try {
         const result = spawnSync('javac', ['--release', '21', '-encoding', 'UTF-8', '-XDrawDiagnostics', '-d', out, join(source, 'negative', test.file)], { encoding: 'utf8', timeout: 30000 });
         const diagnostics = (result.stderr || '').split(/\r?\n/).filter(line => line.includes('compiler.err.'));
-        if (result.error || result.status !== 1 || diagnostics.length !== 1 || !diagnostics[0].includes(': ' + test.diagnostic + ':')) {
+        if (result.error || result.status !== 1 || diagnostics.length !== 1 || diagnostics[0].match(/\bcompiler\.err\.[\w.]+/)?.[0] !== test.diagnostic) {
             throw new Error(test.file + ': unexpected compiler result: ' + (result.error || result.stderr || result.stdout));
         }
         console.log('PASS expected compilation rejection ' + test.file);

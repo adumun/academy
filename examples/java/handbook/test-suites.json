@@ -80,5 +80,91 @@
         "expected": "JavaFX\nReferences fragments PASS"
       }
     ]
+  },
+  {
+    "directory": "classes-and-objects",
+    "runs": [
+      {
+        "className": "Libro",
+        "expected": "Java\nSQL"
+      },
+      {
+        "className": "ContadorValidoDemo",
+        "expected": "1\n0\nfalse\n0"
+      },
+      {
+        "className": "ObjectsTest",
+        "expected": "true\nfalse\nObjects PASS"
+      }
+    ]
+  },
+  {
+    "directory": "constructors",
+    "runs": [
+      {
+        "className": "ConstructorDemo",
+        "expected": "10\n5\nRechazado"
+      },
+      {
+        "className": "ConstructorsTest",
+        "expected": "Constructors PASS"
+      }
+    ]
+  },
+  {
+    "directory": "composition",
+    "runs": [
+      {
+        "className": "ComposicionDemo",
+        "expected": "Centro: 0,0"
+      },
+      {
+        "className": "CompositionTest",
+        "expected": "Composition PASS"
+      }
+    ]
+  },
+  {
+    "directory": "inheritance",
+    "runs": [
+      {
+        "className": "HerenciaDemo",
+        "expected": "Normal\nCritico"
+      },
+      {
+        "className": "InheritanceTest",
+        "expected": "Inheritance PASS"
+      }
+    ]
+  },
+  {
+    "directory": "abstract-classes",
+    "runs": [
+      {
+        "className": "AbstraccionDemo",
+        "expected": "21 C"
+      },
+      {
+        "className": "AbstractionTest",
+        "expected": "Abstraction PASS"
+      }
+    ]
+  },
+  {
+    "directory": "interfaces",
+    "runs": [
+      {
+        "className": "CatalogoDemo",
+        "expected": "[Java, SQL]"
+      },
+      {
+        "className": "DespachoDemo",
+        "expected": "Punto\nLinea"
+      },
+      {
+        "className": "InterfacesTest",
+        "expected": "Interfaces PASS"
+      }
+    ]
   }
 ]

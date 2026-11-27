@@ -5,6 +5,8 @@ description: "extends, super, Override, despacho de métodos y sustitución."
 
 **Tipo:** explicación y referencia. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Distinguir el tipo declarado del tipo real y reconocer sobrescritura, despacho dinámico y sustitución.
+
 ## Modelo mental
 
 La [generalización y especialización](/handbook/foundations/object-relationships/) permite expresar una relación de subtipos. `extends` declara la superclase; Java permite una sola superclase directa. Los constructores no se heredan: `super(...)` invoca el constructor de la clase padre. `@Override` verifica que la declaración realmente sobrescribe un método compatible.
@@ -15,6 +17,7 @@ La sobrecarga se resuelve según tipos y firmas durante compilación; la sobresc
 
 Archivo `HerenciaDemo.java`. Guarda el siguiente código y ejecuta `javac --release 21 HerenciaDemo.java` y `java HerenciaDemo` con JDK 21. No requiere dependencias externas.
 
+<!-- example:inheritance-dispatch -->
 ```java
 public class HerenciaDemo {
 
@@ -71,6 +74,12 @@ El tipo declarado determina las operaciones accesibles durante compilación; el 
 | final en clase | Impide crear subclases |
 
 No reduzcas visibilidad de un método sobrescrito ni cambies su contrato de manera incompatible. Un campo con el mismo nombre en una subclase no se despacha polimórficamente como los métodos. La relación de sustitución es una decisión de diseño: si un subtipo rompe reglas válidas del padre, revisa la abstracción. Consulta [clases abstractas](/handbook/java/abstract-classes/).
+
+## Práctica de diagnóstico y verificación
+
+Declara dos variables Indicador con objetos de tipos diferentes. Predice el resultado sin usar instanceof ni cast. Cambiar los parámetros de mostrar manteniendo @Override no sobrescribe el método: javac lo rechaza.
+
+Fuentes versionadas: `examples/java/handbook/inheritance/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21. Casos negativos deliberados en `examples/java/handbook/negative/`: `InvalidOverride.java`.
 
 ## Documentación oficial
 

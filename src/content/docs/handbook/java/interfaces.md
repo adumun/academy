@@ -5,6 +5,8 @@ description: "Contratos, implementaciones, sustitución y desacoplamiento."
 
 **Tipo:** explicación. **Nivel:** esencial a complementario. **Versión:** Java 21.
 
+**Al terminar esta ficha:** Definir una capacidad por contrato y sustituir implementaciones sin acoplar al consumidor a sus clases concretas.
+
 ## Conocimientos previos recomendados
 
 - [Clases y objetos](/handbook/java/classes-and-objects/)
@@ -15,6 +17,7 @@ Una interfaz es un [tipo de referencia](/handbook/java/types/) que expresa opera
 
 ## Ejemplo completo
 
+<!-- example:interfaces-catalog -->
 ```java
 import java.util.List;
 
@@ -72,6 +75,7 @@ El tipo declarado determina qué operaciones puede invocar el consumidor. El obj
 
 Archivo DespachoDemo.java, Java 21. Ambas implementaciones cumplen el contrato de obtener una descripción textual no nula.
 
+<!-- example:interfaces-dispatch -->
 ```java
 public class DespachoDemo {
 
@@ -116,6 +120,12 @@ Agrega un tercer elemento describible y úsalo sin editar mostrar. Compara con u
 - [Colecciones](/handbook/java/collections/)
 - [MVC y DAO](/handbook/architecture/)
 - [Lambdas](/handbook/java/lambdas/)
+
+## Práctica de diagnóstico y verificación
+
+Sustituye CatalogoMemoria por un catálogo vacío sin modificar el contrato del consumidor. Crea una tercera implementación de Describible. Comprueba el comportamiento de ambas y el rechazo de una implementación que reduce la visibilidad pública.
+
+Fuentes versionadas: `examples/java/handbook/interfaces/`. Pruebas: `npm run validate:snippets` y `npm run test:java-sources` desde la raíz del repositorio con JDK 21. Casos negativos deliberados en `examples/java/handbook/negative/`: `InterfaceAccess.java`.
 
 ## Documentación oficial
 
