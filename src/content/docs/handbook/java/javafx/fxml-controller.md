@@ -16,6 +16,7 @@ description: "Vincular vistas XML, campos, eventos, recursos y ciclo de iniciali
 
 Ubica libro.fxml en src/main/resources/view/. La clase del controlador vive en src/main/java/controller/.
 
+<!-- example:fx-book-fxml -->
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -34,6 +35,7 @@ Ubica libro.fxml en src/main/resources/view/. La clase del controlador vive en s
 </VBox>
 ```
 
+<!-- example:fx-book-controller -->
 ```java
 package controller;
 
@@ -63,6 +65,7 @@ public class LibroController {
 
 Carga la vista desde Main.start(Stage stage) en lugar de construir VBox por código. Imports: FXMLLoader, Scene y Objects.
 
+<!-- example:fx-fxml-loader -->
 ```java
 FXMLLoader loader = new FXMLLoader(
         Objects.requireNonNull(
@@ -132,6 +135,10 @@ Prueba de contraste: elimina onAction de una copia del documento y observa que e
 - [TableView](/handbook/java/javafx/table-view/)
 - [Controles y validación](/handbook/java/javafx/validation/)
 - [MVC y DAO](/handbook/architecture/)
+
+## Verificación ejecutable
+
+Se verifica la carga FXML y la interacción con el controlador real; no la herramienta visual Scene Builder. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta los informes Surefire del SHA utilizado.
 
 ## Documentación oficial
 

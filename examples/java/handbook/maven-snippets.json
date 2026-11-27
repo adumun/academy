@@ -118,5 +118,48 @@
         "region": "cell"
       }
     ]
+  },
+  {
+    "page": "handbook/java/javafx/fxml-controller.md",
+    "snippets": [
+      {
+        "id": "fx-book-fxml",
+        "file": "maven/javafx/src/main/resources/view/libro.fxml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-book-controller",
+        "file": "maven/javafx/src/main/java/controller/LibroController.java"
+      },
+      {
+        "id": "fx-fxml-loader",
+        "file": "maven/javafx/src/main/java/VentanaLibro.java",
+        "region": "loader"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/scene-builder.md",
+    "snippets": [
+      {
+        "id": "fx-form-fxml",
+        "file": "maven/javafx/src/main/resources/view/form.fxml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-form-controller",
+        "file": "maven/javafx/src/main/java/app/FormController.java"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/navigation.md",
+    "snippets": [
+      {
+        "id": "fx-navigation",
+        "file": "maven/javafx/src/main/java/navegacion/NavegacionDemo.java",
+        "region": "navigation"
+      }
+    ]
   }
 ]

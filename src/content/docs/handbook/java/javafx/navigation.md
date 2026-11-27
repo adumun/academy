@@ -13,6 +13,7 @@ Stage es la ventana; Scene contiene el árbol visual. Navegar puede significar c
 
 Fragmento de una clase Application que ya conserva el Stage y un servicio compartido. Cada archivo FXML declara su controlador; configura antes de mostrar la vista. Imports: javafx.fxml.FXMLLoader, javafx.scene.Parent, javafx.scene.Scene, java.io.IOException, java.util.Objects.
 
+<!-- example:fx-navigation -->
 ```java
 private void mostrarDetalle() throws IOException {
     FXMLLoader loader = new FXMLLoader(
@@ -52,6 +53,10 @@ La Application o un coordinador posee la ventana y las dependencias compartidas.
 5. Volver a listado y recuperar el estado actual. Retirar suscripciones de vistas descartadas cuando corresponda.
 
 Si la carga de detalle falla, conserva la escena anterior: crea y configura el nuevo árbol antes de sustituir el actual. El ejemplo original emplea un Runnable para retornar; es una interfaz funcional sin parámetros ni retorno, consulta [lambdas](/handbook/java/lambdas/). La navegación no implica almacenamiento persistente.
+
+## Verificación ejecutable
+
+La prueba utiliza dos vistas y un servicio compartido de ejemplo. Proyecto Maven: `examples/java/handbook/maven/javafx/`. En Linux con pantalla virtual, ejecuta `xvfb-run -a mvn -B -ntp clean test` desde esa carpeta. Consulta los informes Surefire del SHA utilizado.
 
 ## Referencias
 
