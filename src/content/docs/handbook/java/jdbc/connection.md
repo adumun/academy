@@ -51,6 +51,7 @@ En un contenedor, localhost identifica ese contenedor, no necesariamente el host
 
 Archivo database/DatabaseConnection.java, sin credenciales fijas.
 
+<!-- example:jdbc-database-connection -->
 ```java
 package database;
 
@@ -79,6 +80,7 @@ public final class DatabaseConnection {
 
 ## Prueba independiente
 
+<!-- example:jdbc-test-connection -->
 ```java
 package app;
 
