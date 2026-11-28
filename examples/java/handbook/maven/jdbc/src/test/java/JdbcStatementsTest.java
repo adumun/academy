@@ -27,8 +27,8 @@ class JdbcStatementsTest {
     @AfterEach
     void revertir() throws SQLException {
         if (con != null) {
-            try (con) {
-                con.rollback();
+            try (Connection connection = con) {
+                connection.rollback();
             }
         }
     }
