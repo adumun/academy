@@ -58,4 +58,13 @@ cases = root.findall('testcase')
 assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
 assert all(c.find(tag) is None for c in cases for tag in ('failure', 'error', 'skipped'))
 print('MariaDB statements and result set: 12/12 PASS')
+report = report.with_name('TEST-JdbcCrudDaoTest.xml')
+root = ET.parse(report).getroot()
+expected = {'listarVacio', 'insertarYConfirmar', 'identidadYOrdenConTitulosRepetidos',
+            'actualizarExistenteYAusente', 'eliminarExistenteYAusente',
+            'falloNoEsAusencia', 'contratoMemoriaParcial', 'persistenciaEntreProcesos'}
+cases = root.findall('testcase')
+assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
+assert all(c.find(tag) is None for c in cases for tag in ('failure', 'error', 'skipped'))
+print('MariaDB CRUD and DAO: 8/8 PASS')
 PY
