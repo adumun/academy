@@ -104,9 +104,9 @@ jobs:
           from pathlib import Path
           import xml.etree.ElementTree as ET
           root = ET.parse(Path('examples/java/handbook/maven/javafx/target/surefire-reports/TEST-FxRuntimeTest.xml')).getroot()
-          expected = {'ventanaMinima','eventosDemo','accionYListeners','listaObservable','bindings','filtroOrdenYFuente','columnaObservaPropiedad','cargaFxmlEInyeccion','sceneBuilderFxml','navegarYVolver'}
+          expected = {'ventanaMinima','eventosDemo','accionYListeners','listaObservable','bindings','filtroOrdenYFuente','columnaObservaPropiedad','cargaFxmlEInyeccion','sceneBuilderFxml','navegarYVolver','selectorYFecha','cantidadControl','tablaCargaYColumnas','tablaSeleccionYOrden','tablaCeldaPersonalizada','tituloYNumeroInvalidos','guardadoYRefrescoSeparados','confirmacionYAlertaReales','xmlYFxmlValidos','xmlMalformadoYFxmlInvalido'}
           cases = root.findall('testcase')
           assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
           assert all(c.find(tag) is None for c in cases for tag in ('failure','error','skipped'))
-          print('JavaFX runtime: 10/10 PASS')
+          print('JavaFX runtime: 20/20 PASS')
           PY

@@ -27,6 +27,7 @@ Un formulario es un conjunto de [controles](/handbook/java/javafx/controls/) que
 
 Valida el formulario antes de construir el [objeto del dominio](/handbook/java/classes-and-objects/) o invocar el DAO. La validación es una regla, mientras las [excepciones](/handbook/java/exceptions/) representan fallos o condiciones excepcionales del contrato. La interfaz puede dar retroalimentación temprana; las restricciones del esquema siguen siendo necesarias. No confundas un texto vacío con NULL SQL.
 
+<!-- example:fx-validation-title -->
 ```java
 private boolean validarTitulo(String titulo) {
     if (titulo == null || titulo.isBlank()) {
@@ -47,6 +48,7 @@ private boolean validarTitulo(String titulo) {
 
 Fragmento de Controller con txtTitulo, dao, cargar y mostrarError definidos. En este ejemplo cargar declara throws SQLException y no captura internamente el error; el guardado y el refresco se tratan por separado. Se presupone que insertar usa auto-commit y comunica su resultado según el contrato. El ID cero representa un objeto aún no persistido en este ejemplo; no se incluye en el INSERT autoincremental.
 
+<!-- example:fx-validation-save -->
 ```java
 @FXML
 private void guardar() {
@@ -83,6 +85,7 @@ No borres los datos si la operación falló. Si el guardado fue exitoso pero el 
 
 ## Confirmar eliminación
 
+<!-- example:fx-validation-confirm -->
 ```java
 Alert alerta = new Alert(
         Alert.AlertType.CONFIRMATION,
@@ -102,6 +105,7 @@ Luego ejecuta DELETE por el ID seleccionado y verifica el resultado. Cerrar el d
 
 ## Informar un error
 
+<!-- example:fx-validation-error -->
 ```java
 private void mostrarError(String mensaje) {
     Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -118,6 +122,7 @@ El detalle técnico puede registrarse por separado sin incluir credenciales ni d
 
 Los TextField contienen texto, no números. [Convertir o analizar un valor](/handbook/java/types/) transforma el texto en un tipo numérico; validar comprueba que ese valor cumpla la regla. Una entrada vacía y una [referencia null](/handbook/java/references/) son situaciones distintas. Convierte y valida antes de construir el modelo. Fragmento de controlador con txtCantidad y mostrarError definidos:
 
+<!-- example:fx-validation-quantity -->
 ```java
 int cantidad;
 
@@ -174,6 +179,10 @@ Configura un DAO de prueba que retorna una fila insertada y una operación de le
 - [TableView](/handbook/java/javafx/table-view/)
 - [CRUD](/handbook/java/jdbc/crud/)
 - [Diagnóstico](/handbook/troubleshooting/)
+
+## Verificación ejecutable
+
+El módulo JavaFX de Academy verifica las reglas de entrada, las alertas reales y las ramas de guardado y refresco usando un DAO simulado. La confirmación de escritura es una respuesta del doble de prueba, no una transacción real. Consulta los informes Surefire del commit utilizado. Las fuentes están en `examples/java/handbook/maven/javafx/`.
 
 ## Documentación oficial
 

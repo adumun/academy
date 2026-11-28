@@ -9,6 +9,7 @@ description: "Etiquetas, atributos, estructura, espacios de nombres y construcci
 
 XML es un formato de texto estructurado. Un elemento tiene una etiqueta de apertura y cierre (o una etiqueta autocerrada), puede contener otros elementos y atributos. Un documento XML bien formado tiene un elemento raíz, nombres válidos, atributos entre comillas y elementos correctamente anidados.
 
+<!-- example:fx-xml-book -->
 ```xml
 <libro id="1">
     <titulo>Java</titulo>
@@ -21,6 +22,7 @@ libro es el elemento raíz; id es un atributo y titulo un elemento hijo. XML des
 
 FXML es un formato XML que FXMLLoader interpreta para construir objetos JavaFX. Las etiquetas pueden representar clases y propiedades; los atributos pueden configurar valores o referencias.
 
+<!-- example:fx-xml-button -->
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
@@ -71,6 +73,10 @@ Un documento puede ser XML bien formado pero FXML inválido. Por ejemplo, un atr
 - [Paquetes e imports](/handbook/java/packages-and-imports/)
 - [Eventos y listeners](/handbook/java/javafx/events/)
 - [FXML y Controller](/handbook/java/javafx/fxml-controller/)
+
+## Verificación ejecutable
+
+El módulo JavaFX de Academy carga el recurso FXML real, analiza el XML de datos y contrasta un XML mal formado con un FXML de propiedad inexistente. Consulta los informes Surefire del commit utilizado. Las fuentes están en `examples/java/handbook/maven/javafx/`.
 
 ## Documentación oficial
 

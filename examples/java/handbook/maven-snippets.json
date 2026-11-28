@@ -161,5 +161,115 @@
         "region": "navigation"
       }
     ]
+  },
+  {
+    "page": "handbook/java/javafx/controls.md",
+    "snippets": [
+      {
+        "id": "fx-control-combo",
+        "file": "maven/javafx/src/main/java/ControlesDemo.java",
+        "region": "combo"
+      },
+      {
+        "id": "fx-control-date",
+        "file": "maven/javafx/src/main/java/ControlesDemo.java",
+        "region": "date"
+      },
+      {
+        "id": "fx-control-quantity",
+        "file": "maven/javafx/src/main/java/ControlesDemo.java",
+        "region": "quantity"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/table-view.md",
+    "snippets": [
+      {
+        "id": "fx-table-fxml",
+        "file": "maven/javafx/src/main/resources/view/tabla.fxml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-table-controller",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "controller"
+      },
+      {
+        "id": "fx-table-alternative",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "alternative"
+      },
+      {
+        "id": "fx-table-select",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "select"
+      },
+      {
+        "id": "fx-table-columns",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "columns"
+      },
+      {
+        "id": "fx-table-multiple",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "multiple"
+      },
+      {
+        "id": "fx-table-listener",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "listener"
+      },
+      {
+        "id": "fx-table-cell",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "cell"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/validation.md",
+    "snippets": [
+      {
+        "id": "fx-validation-title",
+        "file": "maven/javafx/src/main/java/ValidacionDemo.java",
+        "region": "title"
+      },
+      {
+        "id": "fx-validation-save",
+        "file": "maven/javafx/src/main/java/ValidacionDemo.java",
+        "region": "save"
+      },
+      {
+        "id": "fx-validation-confirm",
+        "file": "maven/javafx/src/main/java/AlertasDemo.java",
+        "region": "confirm"
+      },
+      {
+        "id": "fx-validation-error",
+        "file": "maven/javafx/src/main/java/AlertasDemo.java",
+        "region": "error"
+      },
+      {
+        "id": "fx-validation-quantity",
+        "file": "maven/javafx/src/main/java/ValidacionDemo.java",
+        "region": "quantity"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/javafx/xml-and-fxml.md",
+    "snippets": [
+      {
+        "id": "fx-xml-book",
+        "file": "maven/javafx/src/main/resources/view/libro.xml",
+        "language": "xml"
+      },
+      {
+        "id": "fx-xml-button",
+        "file": "maven/javafx/src/main/resources/view/guardar.fxml",
+        "language": "xml"
+      }
+    ]
   }
 ]

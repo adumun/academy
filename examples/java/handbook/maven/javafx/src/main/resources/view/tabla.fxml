@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<TableView xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="tablaLibros" fx:controller="TablaLibrosDemo">
+    <columns>
+        <TableColumn fx:id="colId" text="ID"/>
+        <TableColumn fx:id="colTitulo" text="Título"/>
+    </columns>
+</TableView>

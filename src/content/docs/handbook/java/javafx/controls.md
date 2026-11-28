@@ -30,6 +30,7 @@ El texto mostrado no siempre es el dato del dominio. ComboBox puede contener obj
 
 Fragmento de controlador con modelo Libro, colLibros de tipo `ComboBox<Libro>` y DAO definidos. Utiliza una StringConverter para la representación: transforma entre el objeto y el texto mostrado, sin reemplazar necesariamente la identidad del objeto. En este ejemplo no se permite escribir valores arbitrarios.
 
+<!-- example:fx-control-combo -->
 ```java
 colLibros.setEditable(false);
 colLibros.getItems().setAll(dao.listarTodos());
@@ -61,6 +62,7 @@ Importa javafx.util.StringConverter. Si necesitas personalización adicional de 
 
 ## Fechas y selección booleana
 
+<!-- example:fx-control-date -->
 ```java
 LocalDate vencimiento = fechaVencimiento.getValue();
 boolean confirmado = chkConfirmado.isSelected();
@@ -100,6 +102,7 @@ Control → extracción → conversión → validación → operación de domini
 
 Fragmento dentro de un controlador: cantidadField es TextField y mensaje es Label.
 
+<!-- example:fx-control-quantity -->
 ```java
 String entrada = cantidadField.getText().strip();
 
@@ -126,6 +129,10 @@ RadioButton permite representar opciones mutuamente excluyentes si pertenecen a 
 - [Validación y alertas](/handbook/java/javafx/validation/)
 - [ObservableList](/handbook/java/javafx/observable-list/)
 - [TableView](/handbook/java/javafx/table-view/)
+
+## Verificación ejecutable
+
+Fuentes canónicas en `examples/java/handbook/maven/javafx/`. Los casos se ejecutan con JavaFX real y un DAO simulado; no acreditan persistencia. Consulta la suite JUnit y el pipeline del commit utilizado. Para ejecutar localmente en Linux: `xvfb-run -a mvn -B -ntp clean test` desde el módulo.
 
 ## Documentación oficial
 
