@@ -26,7 +26,11 @@ Dependencias habituales: vista → controlador → contrato DAO → implementaci
 
 ## Contrato DAO
 
+<!-- example:dao-contract -->
 ```java
+import java.sql.SQLException;
+import java.util.List;
+
 public interface LibroDao {
     List<Libro> listarTodos() throws SQLException;
     int insertar(Libro libro) throws SQLException;
@@ -39,40 +43,51 @@ Define firmas, resultados y comportamiento ante errores. Este contrato educativo
 
 ## Implementación
 
+<!-- example:dao-jdbc-list -->
 ```java
-public class LibroDaoMySql implements LibroDao {
+public List<Libro> listarTodos() throws SQLException {
+    String sql = "SELECT id, titulo FROM libro ORDER BY id";
+    List<Libro> libros = new ArrayList<>();
 
-    @Override
-    public List<Libro> listarTodos() throws SQLException {
-        String sql = "SELECT id, titulo FROM libro ORDER BY id";
-        List<Libro> libros = new ArrayList<>();
+    try (Connection con = DatabaseConnection.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
 
-        try (Connection con = DatabaseConnection.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Libro libro = new Libro(
-                        rs.getInt("id"),
-                        rs.getString("titulo")
-                );
-                libros.add(libro);
-            }
+        while (rs.next()) {
+            Libro libro = new Libro(
+                    rs.getInt("id"),
+                    rs.getString("titulo")
+            );
+            libros.add(libro);
         }
-
-        return libros;
     }
 
-    // Implementar insertar, actualizar y eliminar según el contrato.
+    return libros;
 }
 ```
 
-Es un fragmento parcial de clase: para compilar necesita los otros tres métodos (consulta la ficha CRUD), los imports y las clases del modelo y conexión.
+Este método pertenece a la clase canónica `LibroDaoMySql implements LibroDao`. Los otros tres métodos de la misma clase están en [CRUD con JDBC](/handbook/java/jdbc/crud/). La implementación completa utiliza MariaDB Connector/J; el nombre histórico de la clase se conserva para continuidad editorial.
 
 ## Consumo desde un Controller
 
+<!-- example:dao-controller-read -->
 ```java
-private final LibroDao dao = new LibroDaoMySql();
+@FXML
+private TableView<Libro> tablaLibros;
+
+@FXML
+private TableColumn<Libro, Integer> colId;
+
+@FXML
+private TableColumn<Libro, String> colTitulo;
+
+@FXML
+private void initialize() {
+    colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+    colTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+
+    cargar();
+}
 
 private void cargar() {
     try {
@@ -83,13 +98,17 @@ private void cargar() {
 }
 ```
 
-El controlador conoce el contrato; en este ejemplo simple selecciona una implementación. Más adelante puede recibirla mediante inyección de dependencias: el consumidor recibe la implementación desde fuera, por ejemplo en un constructor, en lugar de construirla por sí mismo. Consulta [contratos y dependencias](/handbook/architecture/contracts/). El DAO no conoce controles JavaFX.
+El controlador de la ficha TableView recibe una implementación de un contrato de lectura `Dao` mediante su constructor y el controller factory de FXMLLoader. Es el ejemplo JavaFX ya existente, con un doble de prueba de lectura; todavía no es el adaptador JDBC completo de `LibroDao`. La inyección de dependencias permite entregar una implementación desde fuera en lugar de construirla en el controlador. Consulta [contratos y dependencias](/handbook/architecture/contracts/). El DAO no conoce controles JavaFX.
 
 ## Sustituir una implementación · complementario
 
 El DAO es un [contrato](/handbook/java/interfaces/), no un nombre de clase obligatorio. Una implementación en memoria permite aislar el consumidor de la infraestructura.
 
+<!-- example:dao-memory -->
 ```java
+import java.util.ArrayList;
+import java.util.List;
+
 public class LibroDaoMemoria implements LibroDao {
 
     private final List<Libro> libros = new ArrayList<>();
@@ -126,7 +145,7 @@ public class LibroDaoMemoria implements LibroDao {
 }
 ```
 
-Ejemplo educativo parcial de semántica: presupone IDs únicos asignados por el llamador; no reproduce generación de claves, restricciones SQL ni transacciones. No sustituye la prueba JDBC real. Utiliza [colecciones](/handbook/java/collections/) y una [lambda](/handbook/java/lambdas/) en removeIf. En un test del controlador, inyecta el contrato en lugar de acoplarlo a una implementación concreta.
+Ejemplo educativo parcial de semántica: presupone IDs únicos asignados por el llamador y una entrada válida; no reproduce generación de claves, restricciones SQL ni transacciones. No sustituye la prueba JDBC real. Utiliza [colecciones](/handbook/java/collections/) y una [lambda](/handbook/java/lambdas/) en removeIf. En un test del controlador, inyecta el contrato en lugar de acoplarlo a una implementación concreta.
 
 ## Refactorización en pasos verificables
 
@@ -164,7 +183,7 @@ En una aplicación con reglas, el controlador obtiene datos de la vista, convier
 
 La dirección de llamadas y la dependencia de tipos no son necesariamente iguales. El punto de composición puede crear DAO y entregarlo a los consumidores; no es necesario que cada Controller conozca su clase concreta.
 
-El DAO en memoria de esta ficha es una aproximación parcial: antes de utilizarlo como doble de prueba, define si los IDs son asignados por el cliente o generados por el motor y qué debe ocurrir con duplicados. No declarar equivalencia de implementaciones que no cumplen las mismas precondiciones y resultados.
+El DAO en memoria de esta ficha es una aproximación parcial, no un sustituto equivalente del INSERT JDBC: antes de utilizarlo como doble de prueba, define si los IDs son asignados por el cliente o generados por el motor y qué debe ocurrir con duplicados. No declarar equivalencia de implementaciones que no cumplen las mismas precondiciones y resultados.
 
 ## Conceptos relacionados
 

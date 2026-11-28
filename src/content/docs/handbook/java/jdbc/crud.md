@@ -14,8 +14,11 @@ description: "Operaciones completas de acceso a datos y comprobación de filas a
 
 CRUD significa crear, leer, actualizar y eliminar [registros](/handbook/sql/relational-model/). Una operación de lectura no modifica datos; una escritura cambia el estado persistente. El [contrato](/handbook/architecture/contracts/) del DAO define entradas, resultados y fallos, incluyendo la diferencia entre una fila inexistente y una excepción de acceso. La clave primaria identifica el registro y no su posición en una colección. No confundir crear una fila con CREATE TABLE, que crea una estructura. En estos métodos se supone la tabla libro definida en la ficha SQL, el modelo Libro y DatabaseConnection de la ficha de conexión.
 
+Los cuatro métodos son regiones de la misma implementación canónica `LibroDaoMySql`, que implementa el contrato [LibroDao](/handbook/architecture/). El método insertar devuelve el conteo, no modifica la identidad del objeto y no devuelve la clave. Cada operación abre y cierra su propia conexión; el auto-commit del conector confirma las escrituras individuales. Para recuperar una identidad generada de forma inequívoca usa el contrato alternativo de [claves generadas](/handbook/java/jdbc/prepared-statement/), no una búsqueda por título.
+
 ## INSERT
 
+<!-- example:jdbc-crud-insert -->
 ```java
 public int insertar(Libro libro) throws SQLException {
     String sql = "INSERT INTO libro (titulo) VALUES (?)";
@@ -33,6 +36,7 @@ La base genera el ID cuando la columna es AUTO_INCREMENT. Si necesitas recuperar
 
 ## SELECT
 
+<!-- example:jdbc-crud-list -->
 ```java
 public List<Libro> listarTodos() throws SQLException {
     String sql = "SELECT id, titulo FROM libro ORDER BY id";
@@ -57,6 +61,7 @@ public List<Libro> listarTodos() throws SQLException {
 
 ## UPDATE
 
+<!-- example:jdbc-crud-update -->
 ```java
 public int actualizar(Libro libro) throws SQLException {
     String sql = "UPDATE libro SET titulo = ? WHERE id = ?";
@@ -73,6 +78,7 @@ public int actualizar(Libro libro) throws SQLException {
 
 ## DELETE
 
+<!-- example:jdbc-crud-delete -->
 ```java
 public int eliminar(int id) throws SQLException {
     String sql = "DELETE FROM libro WHERE id = ?";

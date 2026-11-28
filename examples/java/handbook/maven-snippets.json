@@ -338,5 +338,53 @@
         "file": "maven/jdbc/src/main/java/CursorDemo.java"
       }
     ]
+  },
+  {
+    "page": "handbook/java/jdbc/crud.md",
+    "snippets": [
+      {
+        "id": "jdbc-crud-insert",
+        "file": "maven/jdbc/src/main/java/LibroDaoMySql.java",
+        "region": "insert"
+      },
+      {
+        "id": "jdbc-crud-list",
+        "file": "maven/jdbc/src/main/java/LibroDaoMySql.java",
+        "region": "list"
+      },
+      {
+        "id": "jdbc-crud-update",
+        "file": "maven/jdbc/src/main/java/LibroDaoMySql.java",
+        "region": "update"
+      },
+      {
+        "id": "jdbc-crud-delete",
+        "file": "maven/jdbc/src/main/java/LibroDaoMySql.java",
+        "region": "delete"
+      }
+    ]
+  },
+  {
+    "page": "handbook/architecture/index.md",
+    "snippets": [
+      {
+        "id": "dao-contract",
+        "file": "maven/jdbc/src/main/java/LibroDao.java"
+      },
+      {
+        "id": "dao-jdbc-list",
+        "file": "maven/jdbc/src/main/java/LibroDaoMySql.java",
+        "region": "list"
+      },
+      {
+        "id": "dao-controller-read",
+        "file": "maven/javafx/src/main/java/TablaLibrosDemo.java",
+        "region": "controller"
+      },
+      {
+        "id": "dao-memory",
+        "file": "maven/jdbc/src/main/java/LibroDaoMemoria.java"
+      }
+    ]
   }
 ]
