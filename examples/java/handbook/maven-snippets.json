@@ -284,5 +284,59 @@
         "file": "maven/jdbc/src/main/java/app/TestConnection.java"
       }
     ]
+  },
+  {
+    "page": "handbook/java/jdbc/prepared-statement.md",
+    "snippets": [
+      {
+        "id": "jdbc-ps-find",
+        "file": "maven/jdbc/src/main/java/SentenciasDemo.java",
+        "region": "find"
+      },
+      {
+        "id": "jdbc-ps-update",
+        "file": "maven/jdbc/src/main/java/SentenciasDemo.java",
+        "region": "update"
+      },
+      {
+        "id": "jdbc-ps-date",
+        "file": "maven/jdbc/src/main/java/SentenciasDemo.java",
+        "region": "date"
+      },
+      {
+        "id": "jdbc-ps-keys",
+        "file": "maven/jdbc/src/main/java/SentenciasDemo.java",
+        "region": "keys"
+      },
+      {
+        "id": "jdbc-ps-read",
+        "file": "maven/jdbc/src/main/java/SentenciasDemo.java",
+        "region": "read"
+      }
+    ]
+  },
+  {
+    "page": "handbook/java/jdbc/result-set.md",
+    "snippets": [
+      {
+        "id": "jdbc-rs-map",
+        "file": "maven/jdbc/src/main/java/MapeoDemo.java",
+        "region": "map"
+      },
+      {
+        "id": "jdbc-rs-separate",
+        "file": "maven/jdbc/src/main/java/MapeoDemo.java",
+        "region": "separate"
+      },
+      {
+        "id": "jdbc-rs-null",
+        "file": "maven/jdbc/src/main/java/MapeoDemo.java",
+        "region": "nullable"
+      },
+      {
+        "id": "jdbc-rs-memory",
+        "file": "maven/jdbc/src/main/java/CursorDemo.java"
+      }
+    ]
   }
 ]

@@ -41,6 +41,7 @@ Los métodos JDBC anteriores pueden lanzar SQLException. Los setters deben corre
 
 El siguiente método supone una Connection abierta recibida por parámetro y un modelo Libro.
 
+<!-- example:jdbc-ps-find -->
 ```java
 public Optional<Libro> buscarPorId(Connection con, int id)
         throws SQLException {
@@ -69,6 +70,7 @@ Optional permite representar la ausencia de un registro sin devolver null. Requi
 
 ## UPDATE parametrizado
 
+<!-- example:jdbc-ps-update -->
 ```java
 public int actualizar(Connection con, Libro libro) throws SQLException {
     String sql = "UPDATE libro SET titulo = ? WHERE id = ?";
@@ -90,6 +92,7 @@ El método buscarPorId utiliza [Optional](/handbook/java/optional/) para expresa
 
 ## Fechas y valores nulos
 
+<!-- example:jdbc-ps-date -->
 ```java
 if (fechaApertura == null) {
     ps.setNull(1, java.sql.Types.DATE);
@@ -104,6 +107,7 @@ El ejemplo usa LocalDate y una columna que admite NULL. Si el dato es obligatori
 
 Cuando el servidor genera el ID al insertar, puedes solicitar las claves mediante `Statement.RETURN_GENERATED_KEYS`. El siguiente fragmento presupone una Connection abierta, un título validado y una tabla libro con ID autoincremental. Importa java.sql.PreparedStatement, java.sql.ResultSet, java.sql.Statement y java.sql.SQLException.
 
+<!-- example:jdbc-ps-keys -->
 ```java
 String sql = "INSERT INTO libro (titulo) VALUES (?)";
 
@@ -165,6 +169,7 @@ Los marcadores se cuentan en el orden de la sentencia, empezando en 1. El driver
 
 Fragmento Java dentro de un DAO con una Connection abierta y los imports de java.sql. No requiere una clase de modelo para comprobar parámetros.
 
+<!-- example:jdbc-ps-read -->
 ```java
 String consulta = "SELECT titulo FROM libro WHERE id = ?";
 try (PreparedStatement sentencia = conexion.prepareStatement(consulta)) {

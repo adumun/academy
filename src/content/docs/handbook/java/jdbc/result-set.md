@@ -39,6 +39,7 @@ Los índices de columna también comienzan en 1; preferimos nombres o alias expl
 
 ## Mapeo fila por fila
 
+<!-- example:jdbc-rs-map -->
 ```java
 public List<Libro> mapear(ResultSet rs) throws SQLException {
     List<Libro> libros = new ArrayList<>();
@@ -61,6 +62,7 @@ El método recibe un ResultSet abierto posicionado antes de la primera fila. Qui
 
 El cursor y el modelo pertenecen a responsabilidades diferentes. Una función de mapeo puede transformar exclusivamente la fila actual y otra encargarse de iterar. El tipo `List<Libro>` utiliza [genéricos](/handbook/java/generics/) y el resultado es una [colección](/handbook/java/collections/) de objetos independientes.
 
+<!-- example:jdbc-rs-separate -->
 ```java
 private Libro mapearFila(ResultSet rs) throws SQLException {
     return new Libro(
@@ -92,6 +94,7 @@ Para buscar por una [clave primaria](/handbook/sql/relational-model/), if (rs.ne
 
 Un [entero primitivo](/handbook/java/types/) no puede representar [null](/handbook/java/references/). NULL SQL expresa ausencia de un valor en una columna, no un número cero. getInt devuelve cero si la columna es NULL SQL; consulta wasNull inmediatamente después de leer esa columna.
 
+<!-- example:jdbc-rs-null -->
 ```java
 int cantidad = rs.getInt("cantidad");
 Integer cantidadOpcional = rs.wasNull() ? null : cantidad;
@@ -141,6 +144,7 @@ Los getters no avanzan el cursor. Si se utiliza if en lugar de while para listar
 
 Archivo CursorDemo.java, JDK 21. Usa CachedRowSet, una implementación desconectada de ResultSet, para practicar el contrato del cursor sin necesitar MariaDB. No sustituye las pruebas del driver.
 
+<!-- example:jdbc-rs-memory -->
 ```java
 import java.sql.Types;
 import javax.sql.rowset.CachedRowSet;

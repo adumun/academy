@@ -33,6 +33,7 @@ CREATE USER 'academy_lab'@'%' IDENTIFIED BY '$DB_PASSWORD';
 GRANT SELECT, INSERT, UPDATE, DELETE ON preparacion_db.* TO 'academy_lab'@'%';
 USE preparacion_db;
 CREATE TABLE libro (id INT AUTO_INCREMENT PRIMARY KEY, titulo VARCHAR(120) NOT NULL) ENGINE=InnoDB;
+CREATE TABLE detalle_libro (id INT AUTO_INCREMENT PRIMARY KEY, cantidad INT NULL, fecha_apertura DATE NULL, precio DECIMAL(10,2) NULL) ENGINE=InnoDB;
 SELECT VERSION();
 SQL
 mvn -version
@@ -47,4 +48,14 @@ cases = root.findall('testcase')
 assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
 assert all(c.find(tag) is None for c in cases for tag in ('failure', 'error', 'skipped'))
 print('MariaDB connection: 5/5 PASS')
+report = report.with_name('TEST-JdbcStatementsTest.xml')
+root = ET.parse(report).getroot()
+expected = {'buscarPresenciaAusencia', 'actualizarConteo', 'tituloComoDato',
+            'claveGenerada', 'fechaNulaYValor', 'lecturaFragmento',
+            'cursorCeroUnaVarias', 'mapeoSeparado', 'nullYConversiones',
+            'parametrosInvalidos', 'etiquetaInexistente', 'cursorEnMemoria'}
+cases = root.findall('testcase')
+assert len(cases) == len(expected) and {c.attrib['name'] for c in cases} == expected
+assert all(c.find(tag) is None for c in cases for tag in ('failure', 'error', 'skipped'))
+print('MariaDB statements and result set: 12/12 PASS')
 PY
