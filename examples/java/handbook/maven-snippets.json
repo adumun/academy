@@ -271,5 +271,18 @@
         "language": "xml"
       }
     ]
+  },
+  {
+    "page": "handbook/java/jdbc/connection.md",
+    "snippets": [
+      {
+        "id": "jdbc-database-connection",
+        "file": "maven/jdbc/src/main/java/database/DatabaseConnection.java"
+      },
+      {
+        "id": "jdbc-test-connection",
+        "file": "maven/jdbc/src/main/java/app/TestConnection.java"
+      }
+    ]
   }
 ]

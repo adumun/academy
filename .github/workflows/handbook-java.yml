@@ -8,6 +8,7 @@ on:
       - 'src/content/docs/handbook/**'
       - 'scripts/*java*.mjs'
       - 'scripts/verify-maven-reports.py'
+      - 'scripts/test-jdbc-mariadb.sh'
       - '.github/workflows/handbook-java.yml'
       - 'package.json'
   push:
@@ -17,6 +18,7 @@ on:
       - 'src/content/docs/handbook/**'
       - 'scripts/*java*.mjs'
       - 'scripts/verify-maven-reports.py'
+      - 'scripts/test-jdbc-mariadb.sh'
       - '.github/workflows/handbook-java.yml'
       - 'package.json'
 permissions:
@@ -110,3 +112,16 @@ jobs:
           assert all(c.find(tag) is None for c in cases for tag in ('failure','error','skipped'))
           print('JavaFX runtime: 20/20 PASS')
           PY
+  maven-jdbc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Run JDBC against disposable MariaDB
+        run: bash scripts/test-jdbc-mariadb.sh
